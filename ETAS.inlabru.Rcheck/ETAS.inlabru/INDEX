@@ -1,0 +1,24 @@
+Int.ETAS.time.trig.function
+                        Integrated ETAS time-triggering function
+Inv.Int.ETAS.time.trig.function
+                        Inverse of integrated ETAS time-triggering
+                        function
+generate.temoral.ETAS.synthetic
+                        Generates a sythetic catalogue using the ETAS
+                        model
+log.Lambda_h2           integrated triggering function - used by
+                        Inlabru ALSO USED IN GENERATION SAMPLES
+sample.GR.magnitudes    Return a sample of magnitudes drawn from the GR
+                        distribution
+sample.temoral.ETAS.daughters
+                        Generate a sample of new events
+                        'data.frame(t_i, M_i)' of length 'n.ev' for
+                        parent event occuring at time 't_h' using the
+                        ETAS model
+sample.temporal.ETAS.generation
+                        Take all previous parent events from
+                        'Ht=data.frame[ts, magnitudes]' and generates
+                        their daughters events using the ETAS model
+sample.temporal.ETAS.times
+                        Sampling times according to the EYAS triggering
+                        function

@@ -1,0 +1,77 @@
+pkgname <- "ETAS.inlabru"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+base::assign(".ExTimings", "ETAS.inlabru-Ex.timings", pos = 'CheckExEnv')
+base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+base::assign(".format_ptime",
+function(x) {
+  if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
+  if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
+  options(OutDec = '.')
+  format(x[1L:3L], digits = 7L)
+},
+pos = 'CheckExEnv')
+
+### * </HEADER>
+library('ETAS.inlabru')
+
+base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+cleanEx()
+nameEx("generate.temoral.ETAS.synthetic")
+### * generate.temoral.ETAS.synthetic
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: generate.temoral.ETAS.synthetic
+### Title: Generates a sythetic catalogue using the ETAS model
+### Aliases: generate.temoral.ETAS.synthetic
+
+### ** Examples
+
+## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
+
+generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.?08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+
+
+## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
+
+Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
+generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("generate.temoral.ETAS.synthetic", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("sample.GR.magnitudes")
+### * sample.GR.magnitudes
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: sample.GR.magnitudes
+### Title: Return a sample of magnitudes drawn from the GR distribution
+### Aliases: sample.GR.magnitudes
+
+### ** Examples
+
+sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("sample.GR.magnitudes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+### * <FOOTER>
+###
+cleanEx()
+options(digits = 7L)
+base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+grDevices::dev.off()
+###
+### Local variables: ***
+### mode: outline-minor ***
+### outline-regexp: "\\(> \\)?### [*]+" ***
+### End: ***
+quit('no')

@@ -1,0 +1,18 @@
+Package: ETAS.inlabru
+Type: Package
+Title: This package uses inlabru to implement a Bayesian ETAS model for modelling seismic sequences
+Version: 0.1.0
+Author: Francesco Serafini, Mark Naylor and Finn Lindgren
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
+Imports: 
+    lemon,
+    parallel,
+    tidyquant,
+    dplyr
