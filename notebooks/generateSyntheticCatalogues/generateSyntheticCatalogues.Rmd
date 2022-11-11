@@ -28,9 +28,8 @@ theta_etas <- data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
 
 Ht <- data.frame(ts=c(0., 1.5), magnitudes=c(6.7, 7.))
 
-samp.etas.list <- generate.temoral.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, T1 = 0, T2 = modelledDuration, Ht=Ht)
+samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, T1 = 0, T2 = modelledDuration, Ht=Ht)
 
-#injection.ETAS.cat <- bind_rows(samp.etas.list)
 ggplot() + 
   geom_point(data = samp.etas.list[[1]], aes(x=ts, y=magnitudes), color='red') + 
   geom_point(data = samp.etas.list[[2]], aes(x=ts, y=magnitudes), color='green') + 

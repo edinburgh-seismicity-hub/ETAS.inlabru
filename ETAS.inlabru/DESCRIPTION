@@ -2,10 +2,20 @@ Package: ETAS.inlabru
 Type: Package
 Title: This package uses inlabru to implement a Bayesian ETAS model for modelling seismic sequences
 Version: 0.1.0
-Author: Francesco Serafini, Mark Naylor and Finn Lindgren
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Mark Naylor, Francesco Serafini, and Finn Lindgren
+Maintainer: The package maintainer <mark.naylor@ed.ac.ukt>
+Description: Modelling and inversion of ETAS model of seismicity using inlabru
+    The Epidemic Type Aftershock Sequence (ETAS) model is designed to 
+    model earthquakes that are triggered by previous events. In statistics, this is
+    referred to as a Hawkes process.
+    The code can be used to generate synthetic ETAS catalogues which can also
+    include some seeded events to model specific sequences.
+    We also implement a Bayesian inversion scheme using the Integrated Nested Laplace
+    Approximation (INLA) using inlabru. 
+    For the temporal model, given a training catalogue of times and magnitudes, the code 
+    returns the joint posteriors for all the ETAS parameters.
+    In the future roadmap, we will include tools to model the spatial distribution
+    and spatio-temporal evolution of seismic sequences.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

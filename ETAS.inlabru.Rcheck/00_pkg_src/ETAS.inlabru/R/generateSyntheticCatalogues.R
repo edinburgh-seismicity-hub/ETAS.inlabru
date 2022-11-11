@@ -23,15 +23,15 @@
 #' @examples
 #' ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 #'
-#' generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.?08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+#' generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
 #'
 #'
 #' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 #'
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 
-generate.temoral.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
+generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
                             Ht = NULL, ncore = 1){
   #sample.ETAS <- function(theta, beta.p, M0, T1, T2,
 

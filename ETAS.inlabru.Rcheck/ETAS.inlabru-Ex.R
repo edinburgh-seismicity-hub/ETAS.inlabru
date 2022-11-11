@@ -18,32 +18,32 @@ library('ETAS.inlabru')
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 cleanEx()
-nameEx("generate.temoral.ETAS.synthetic")
-### * generate.temoral.ETAS.synthetic
+nameEx("generate.temporal.ETAS.synthetic")
+### * generate.temporal.ETAS.synthetic
 
 flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-### Name: generate.temoral.ETAS.synthetic
+### Name: generate.temporal.ETAS.synthetic
 ### Title: Generates a sythetic catalogue using the ETAS model
-### Aliases: generate.temoral.ETAS.synthetic
+### Aliases: generate.temporal.ETAS.synthetic
 
 ### ** Examples
 
 ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 
-generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.?08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
 
 
 ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 
 
 
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("generate.temoral.ETAS.synthetic", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+base::cat("generate.temporal.ETAS.synthetic", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("sample.GR.magnitudes")
 ### * sample.GR.magnitudes

@@ -3,7 +3,7 @@ Int.ETAS.time.trig.function
 Inv.Int.ETAS.time.trig.function
                         Inverse of integrated ETAS time-triggering
                         function
-generate.temoral.ETAS.synthetic
+generate.temporal.ETAS.synthetic
                         Generates a sythetic catalogue using the ETAS
                         model
 log.Lambda_h2           integrated triggering function - used by

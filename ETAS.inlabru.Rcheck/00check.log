@@ -60,11 +60,11 @@ manual.
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
-generate.temoral.ETAS.synthetic: no visible global function definition
+generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rpois’
-generate.temoral.ETAS.synthetic: no visible global function definition
+generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘runif’
-generate.temoral.ETAS.synthetic: no visible global function definition
+generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rexp’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temporal.ETAS.generation : <anonymous>: no visible global
@@ -79,14 +79,14 @@ to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... NOTE
-Rd file 'generate.temoral.ETAS.synthetic.Rd':
+Rd file 'generate.temporal.ETAS.synthetic.Rd':
   \examples lines wider than 100 characters:
-     generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.?08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
-     generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000  ... [TRUNCATED]
+     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, ... [TRUNCATED]
 
 These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
-Missing link or links in documentation object 'generate.temoral.ETAS.synthetic.Rd':
+Missing link or links in documentation object 'generate.temporal.ETAS.synthetic.Rd':
   ‘days’
 
 Missing link or links in documentation object 'sample.temoral.ETAS.daughters.Rd':
@@ -136,25 +136,8 @@ Argument items with no description in Rd object 'sample.temporal.ETAS.times':
   ‘T2’
 
 * checking for unstated dependencies in examples ... OK
-* checking examples ... ERROR
-Running examples in ‘ETAS.inlabru-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: generate.temoral.ETAS.synthetic
-> ### Title: Generates a sythetic catalogue using the ETAS model
-> ### Aliases: generate.temoral.ETAS.synthetic
-> 
-> ### ** Examples
-> 
-> ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
-> 
-> generate.temoral.ETAS.synthetic( theta=c(0.1, 0.089, 2.29, 0.11, 1.?08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
-Error in `?`(1, 8) : 
-  no documentation of type ‘1’ and topic ‘8’ (or error in processing help)
-Calls: generate.temoral.ETAS.synthetic -> rpois -> ?
-Execution halted
+* checking examples ... OK
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 5 WARNINGs, 4 NOTEs
+Status: 5 WARNINGs, 4 NOTEs
