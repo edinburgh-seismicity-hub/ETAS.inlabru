@@ -23,4 +23,4 @@ RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Imports: lemon, parallel, tidyquant, dplyr
 NeedsCompilation: no
-Packaged: 2022-11-11 17:45:14 UTC; mnaylor
+Packaged: 2022-11-12 22:58:17 UTC; mnaylor

@@ -7,13 +7,19 @@
 sample.temoral.ETAS.daughters(theta, beta.p, th, n.ev, M0, T1, T2)
 }
 \arguments{
-\item{n.ev}{The number of events to be placed}
+\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
-\item{M0}{Minimum magnitude in synthetic catalogue}
+\item{beta.p}{Slope of GR relation: beta = b ln(10).}
 
-\item{T1}{Start time for synthetic catalogue \link{days}}
+\item{th}{Time of parent event \link{days}.}
 
-\item{T2}{End time for synthetic catalogue \link{days}}
+\item{n.ev}{The number of events to be placed.}
+
+\item{M0}{Minimum magnitude in synthetic catalogue.}
+
+\item{T1}{Start time for synthetic catalogue \link{days}.}
+
+\item{T2}{End time for synthetic catalogue \link{days}.}
 }
 \description{
 Generate a sample of new events \code{data.frame(t_i, M_i)} of length \code{n.ev} for parent event occuring at time \code{t_h} using the ETAS model

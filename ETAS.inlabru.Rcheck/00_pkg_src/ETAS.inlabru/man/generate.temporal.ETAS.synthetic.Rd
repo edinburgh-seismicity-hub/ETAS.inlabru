@@ -15,9 +15,9 @@ generate.temporal.ETAS.synthetic(
 )
 }
 \arguments{
-\item{theta}{A list of ETAS parameters, \code{c(mu, K, alpha, c, p)}.}
+\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
-\item{beta.p}{Is related to the GR b-value: beta = b ln(10).}
+\item{beta.p}{Slope of GR relation: beta = b ln(10).}
 
 \item{M0}{The minimum magnitude in the synthetic catalogue.}
 

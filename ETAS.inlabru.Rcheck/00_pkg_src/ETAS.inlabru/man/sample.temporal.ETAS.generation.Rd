@@ -7,6 +7,10 @@
 sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
 }
 \arguments{
+\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
+
+\item{beta.p}{Slope of GR relation: beta = b ln(10).}
+
 \item{Ht}{The set of parent events in the form \code{data.frame[ts, magnitudes]}}
 
 \item{M0}{The minimum earthquake magnitude in the synthetic catalogue.}

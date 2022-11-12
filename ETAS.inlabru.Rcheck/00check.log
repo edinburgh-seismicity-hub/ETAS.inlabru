@@ -19,8 +19,7 @@
 * checking whether package ‘ETAS.inlabru’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... NOTE
-unable to verify current time
+* checking for future file timestamps ... OK
 * checking DESCRIPTION meta-information ... WARNING
 Non-standard license specification:
   What license is it under?
@@ -37,7 +36,8 @@ Standardizable: FALSE
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking loading without being on the library search path ... OK
-* checking dependencies in R code ... NOTE
+* checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: ‘inlabru’
 Namespaces in Imports field not imported from:
   ‘lemon’ ‘tidyquant’
   All declared Imports should be used.
@@ -47,11 +47,21 @@ log:
 log.Lambda_h2:
   function(theta, ti, mi, M0, T1, T2)
 
+gamma:
+  function(x)
+gamma.t:
+  function(x, a, b)
+
+time:
+  function(x, ...)
+time.grid:
+  function(data.point, coef.t, delta.t, T2., displaygrid, N.exp.)
+
 See section ‘Generic functions and methods’ in the ‘Writing R
 Extensions’ manual.
 
 Found the following apparent S3 methods exported but not registered:
-  log.Lambda_h2
+  gamma.t log.Lambda_h2 time.grid
 See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
 manual.
 * checking replacement functions ... OK
@@ -60,21 +70,80 @@ manual.
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
+Hawkes.bru: no visible global function definition for ‘%do%’
+Hawkes.bru: no visible global function definition for ‘foreach’
+Hawkes.bru: no visible binding for global variable ‘idx’
+Hawkes.bru : logLambda.h.inla: no visible binding for global variable
+  ‘ncore’
+Hawkes.bru : loglambda.inla: no visible global function definition for
+  ‘mclapply’
+Hawkes.bru : loglambda.inla : <anonymous>: no visible global function
+  definition for ‘lambda_2’
+Hawkes.bru: no visible global function definition for ‘bru’
+Hawkes.bru2: no visible global function definition for ‘%do%’
+Hawkes.bru2: no visible global function definition for ‘foreach’
+Hawkes.bru2: no visible binding for global variable ‘idx’
+Hawkes.bru2 : logLambda.h.inla: no visible binding for global variable
+  ‘ncore’
+Hawkes.bru2 : loglambda.inla: no visible global function definition for
+  ‘mclapply’
+Hawkes.bru2 : loglambda.inla : <anonymous>: no visible global function
+  definition for ‘lambda_2’
+Hawkes.bru2: no visible global function definition for ‘bind_rows’
+Hawkes.bru2: no visible global function definition for ‘bru’
+gamma.t: no visible global function definition for
+  ‘bru_forward_transformation’
+gamma.t: no visible binding for global variable ‘qgamma’
 generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rpois’
 generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘runif’
 generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rexp’
+inv.exp.t: no visible global function definition for ‘qnorm’
+inv.exp.t: no visible global function definition for ‘pexp’
+inv.gamma.t: no visible global function definition for ‘qnorm’
+inv.gamma.t: no visible global function definition for ‘pgamma’
+inv.loggaus.t: no visible global function definition for ‘qnorm’
+inv.loggaus.t: no visible global function definition for ‘plnorm’
+inv.unif.t: no visible global function definition for ‘qnorm’
+inv.unif.t: no visible global function definition for ‘punif’
+loggaus.t: no visible global function definition for
+  ‘bru_forward_transformation’
+loggaus.t: no visible binding for global variable ‘qlnorm’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
+sample.temoral.injection.events: no visible global function definition
+  for ‘rpois’
+sample.temoral.injection.events: no visible global function definition
+  for ‘runif’
+sample.temoral.injection.events: no visible global function definition
+  for ‘rexp’
 sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
+time.grid: no visible global function definition for ‘Plot_grid’
+time.grid: no visible binding for global variable ‘xx.’
+time.grid: no visible binding for global variable ‘yy.’
+time.grid: no visible binding for global variable ‘delta.’
+time.grid: no visible binding for global variable ‘n.layer.’
+time.grid: no visible binding for global variable ‘bdy.’
+time.grid: no visible binding for global variable ‘min.edge.’
+time.grid: no visible global function definition for ‘%>%’
+time.grid: no visible global function definition for ‘mutate’
+time.grid: no visible binding for global variable ‘t.start’
+time.grid: no visible binding for global variable ‘t.end’
+unif.t: no visible global function definition for
+  ‘bru_forward_transformation’
+unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  rexp rpois runif
+  %>% %do% Plot_grid bdy. bind_rows bru bru_forward_transformation
+  delta. foreach idx lambda_2 mclapply min.edge. mutate n.layer. ncore
+  pexp pgamma plnorm punif qgamma qlnorm qnorm qunif rexp rpois runif
+  t.end t.start xx. yy.
 Consider adding
-  importFrom("stats", "rexp", "rpois", "runif")
+  importFrom("stats", "pexp", "pgamma", "plnorm", "punif", "qgamma",
+             "qlnorm", "qnorm", "qunif", "rexp", "rpois", "runif")
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
@@ -86,36 +155,84 @@ Rd file 'generate.temporal.ETAS.synthetic.Rd':
 
 These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'Hawkes.bru2.Rd':
+  ‘days’
+
+Missing link or links in documentation object 'Int.ETAS.time.trig.function.Rd':
+  ‘days’
+
+Missing link or links in documentation object 'breaks_exp.Rd':
+  ‘days’
+
 Missing link or links in documentation object 'generate.temporal.ETAS.synthetic.Rd':
   ‘days’
 
 Missing link or links in documentation object 'sample.temoral.ETAS.daughters.Rd':
   ‘days’
 
+Missing link or links in documentation object 'sample.temoral.injection.events.Rd':
+  ‘days’
+
 Missing link or links in documentation object 'sample.temporal.ETAS.generation.Rd':
   ‘days’
+
+Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
+  ‘0, T2’
 
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'Int.ETAS.time.trig.function'
-  ‘theta’ ‘th’
+Undocumented arguments in documentation object 'Hawkes.bru'
+  ‘sample.s’ ‘link.functions’
+
+Undocumented arguments in documentation object 'Hawkes.bru2'
+  ‘sample.s’ ‘link.functions’
+
+Undocumented arguments in documentation object 'IntInjecIntensity'
+  ‘a’ ‘V.i’ ‘tau’ ‘T.i’
 
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
-  ‘theta’ ‘omega’
+  ‘omega’
 
-Undocumented arguments in documentation object 'log.Lambda_h2'
-  ‘ti’ ‘mi’ ‘M0’ ‘T1’
+Undocumented arguments in documentation object 'Inv.IntInjecIntensity'
+  ‘a’ ‘V.i’ ‘tau’ ‘T.i’
 
-Undocumented arguments in documentation object 'sample.temoral.ETAS.daughters'
-  ‘theta’ ‘beta.p’ ‘th’
+Undocumented arguments in documentation object 'It_df'
+  ‘param_’
 
-Undocumented arguments in documentation object 'sample.temporal.ETAS.generation'
-  ‘theta’ ‘beta.p’
+Undocumented arguments in documentation object 'breaks_exp'
+  ‘coef_’ ‘delta_’
 
-Undocumented arguments in documentation object 'sample.temporal.ETAS.times'
-  ‘th’
+Undocumented arguments in documentation object 'compute.grid'
+  ‘param.’
+
+Undocumented arguments in documentation object 'gamma.t'
+  ‘x’ ‘a’
+
+Undocumented arguments in documentation object 'inv.exp.t'
+  ‘x’
+
+Undocumented arguments in documentation object 'inv.gamma.t'
+  ‘x’ ‘a’
+
+Undocumented arguments in documentation object 'inv.loggaus.t'
+  ‘x’ ‘m’
+
+Undocumented arguments in documentation object 'inv.unif.t'
+  ‘x’ ‘a’
+
+Undocumented arguments in documentation object 'loggaus.t'
+  ‘x’ ‘m’
+
+Undocumented arguments in documentation object 'sample.temoral.injection.events'
+  ‘beta.p’
+
+Undocumented arguments in documentation object 'time.grid'
+  ‘data.point’ ‘coef.t’ ‘delta.t’ ‘T2.’ ‘displaygrid’
+
+Undocumented arguments in documentation object 'unif.t'
+  ‘x’ ‘a’
 
 Functions with \usage entries need to have the appropriate \alias
 entries, and all their arguments documented.
@@ -123,21 +240,60 @@ The \usage entries must correspond to syntactically valid R code.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking Rd contents ... WARNING
+Argument items with no description in Rd object 'Hawkes.bru':
+  ‘bru.opt’
+
+Argument items with no description in Rd object 'Hawkes.bru2':
+  ‘bru.opt’
+
 Argument items with no description in Rd object 'Int.ETAS.time.trig.function':
+  ‘T2’
+
+Argument items with no description in Rd object 'IntInjecIntensity':
   ‘T2’
 
 Argument items with no description in Rd object 'Inv.Int.ETAS.time.trig.function':
   ‘th’
 
-Argument items with no description in Rd object 'log.Lambda_h2':
-  ‘T2’
+Argument items with no description in Rd object 'Inv.IntInjecIntensity':
+  ‘number.injected.events’
 
-Argument items with no description in Rd object 'sample.temporal.ETAS.times':
-  ‘T2’
+Argument items with no description in Rd object 'It_df':
+  ‘time.df’
+
+Argument items with no description in Rd object 'breaks_exp':
+  ‘N_exp_’
+
+Argument items with no description in Rd object 'compute.grid':
+  ‘list.input_’
+
+Argument items with no description in Rd object 'gamma.t':
+  ‘b’
+
+Argument items with no description in Rd object 'inv.exp.t':
+  ‘rate’
+
+Argument items with no description in Rd object 'inv.gamma.t':
+  ‘b’
+
+Argument items with no description in Rd object 'inv.loggaus.t':
+  ‘s’
+
+Argument items with no description in Rd object 'inv.unif.t':
+  ‘b’
+
+Argument items with no description in Rd object 'loggaus.t':
+  ‘s’
+
+Argument items with no description in Rd object 'time.grid':
+  ‘N.exp.’
+
+Argument items with no description in Rd object 'unif.t':
+  ‘b’
 
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 5 WARNINGs, 4 NOTEs
+Status: 6 WARNINGs, 2 NOTEs

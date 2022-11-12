@@ -7,6 +7,8 @@
 Inv.Int.ETAS.time.trig.function(theta, omega, th)
 }
 \arguments{
+\item{theta}{ETAS parameters data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}
+
 \item{th}{}
 }
 \description{

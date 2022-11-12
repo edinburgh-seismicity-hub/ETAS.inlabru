@@ -7,9 +7,17 @@
 \method{log}{Lambda_h2}(theta, ti, mi, M0, T1, T2)
 }
 \arguments{
-\item{theta}{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}
+\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
-\item{T2}{}
+\item{ti}{Time of parent event.}
+
+\item{mi}{Magnitude of parent event}
+
+\item{M0}{Minimum magnitude threshold}
+
+\item{T1}{Start of temporal model domain.}
+
+\item{T2}{End of temporal model domain.}
 }
 \description{
 integrated triggering function - used by Inlabru ALSO USED IN GENERATION SAMPLES

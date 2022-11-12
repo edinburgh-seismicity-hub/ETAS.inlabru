@@ -2,17 +2,22 @@
 % Please edit documentation in R/generateSyntheticCatalogues.R
 \name{sample.temporal.ETAS.times}
 \alias{sample.temporal.ETAS.times}
-\title{Sampling times according to the EYAS triggering function}
+\title{Sampling times for events triggered by a parent at th according to the ETAS triggering function}
 \usage{
 sample.temporal.ETAS.times(theta, n.ev, th, T2)
 }
 \arguments{
-\item{theta}{The ETAS parameter set which}
+\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
-\item{n.ev}{Number of events to return in the sample}
+\item{n.ev}{Number of events to return in the sample in time domain (th, T2].}
 
-\item{T2}{}
+\item{th}{Time of the parent event producing n.ev daughters.}
+
+\item{T2}{End time of model domain.}
+}
+\value{
+t.sample A list of times in the interval \link{0, T2} distributed according to the ETAS triggering function.
 }
 \description{
-Sampling times according to the EYAS triggering function
+Sampling times for events triggered by a parent at th according to the ETAS triggering function
 }
