@@ -1,4 +1,12 @@
-input.file.to.list <- function(input_path){
+#' Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
+#'
+#' @param input_path
+#'
+#' @return
+#' @export
+#'
+#' @examples
+create.input.list.temporal.withCatalogue <- function(input_path){
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
@@ -251,7 +259,17 @@ input.file.to.list <- function(input_path){
 }
 
 
-createDeafultInputList.temporal.noCatalogue <- function(input_path){
+#' Function to create a default input file for the ETAS Hawkes temporal model where no catalogue is specified in the input file
+#'
+#' @param input_path Input file and path as a string
+#'
+#' @return The formatted input.list with the elements required for the temporal Hawkes model
+#' @export
+#'
+#' @examples
+#' # HOW DO WE REFERENCE A FILE IN THE data DIRECTORY?
+#' #create.input.list.temporal.noCatalogue('data/user_input_synthetic_noCatalog.txt')
+create.input.list.temporal.noCatalogue <- function(input_path){
 
   con <- file(input_path)
   on.exit(close(con))
