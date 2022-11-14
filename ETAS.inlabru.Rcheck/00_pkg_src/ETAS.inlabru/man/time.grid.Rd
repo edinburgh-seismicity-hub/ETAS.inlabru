@@ -2,13 +2,33 @@
 % Please edit documentation in R/temporalBinning.R
 \name{time.grid}
 \alias{time.grid}
-\title{Title}
+\title{Generate a set of time bins for a specific event and return.}
 \usage{
 \method{time}{grid}(data.point, coef.t, delta.t, T2., displaygrid = FALSE, N.exp.)
 }
 \arguments{
-\item{N.exp.}{}
+\item{coef.t}{TimeBinning parameter:}
+
+\item{delta.t}{TimeBinning parameter:}
+
+\item{T2.}{End of the temporal domain \link{days}.}
+
+\item{displaygrid}{Boolean variable - whether to plot the grid}
+
+\item{N.exp.}{TimeBinning parameter:}
+}
+\value{
+A set of time bins aggregated over all events MORE DETAIL
 }
 \description{
-Title
+Generate a set of time bins for a specific event and return.
+}
+\examples{
+## EXAMPLE 1
+events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
+T2 <- 20
+N.exp <- 8
+delta.t <- 1
+coef.t <- 1
+time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
 }

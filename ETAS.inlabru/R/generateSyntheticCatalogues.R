@@ -121,7 +121,7 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
   }
   Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
   Ht.to.gen$gen = -1
-  append(list(Ht), Gen.list)
+  return( append(list(Ht), Gen.list) )
 }
 
 
@@ -136,10 +136,13 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @param T2 The end time for the synthetic catalogue [days].
 #' @param ncore The number of compute cores to use
 #'
-#' @return
+#' @return Return one generation of daughters from the parents in `Ht` in the form `data.frame(t_i, M_i)`.
 #' @export
 #'
 #' @examples
+#' # The parents are specified in Ht
+#' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
+#' sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
@@ -174,7 +177,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 
 
 ##
-#' Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for parent event occuring at time `t_h` using the ETAS model
+#' Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for one parent event occuring at time `t_h` using the ETAS model.
 #'
 #' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
@@ -184,7 +187,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T1 Start time for synthetic catalogue [days].
 #' @param T2 End time for synthetic catalogue [days].
 #'
-#' @return
+#' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
 #' @export
 #'
 #' @examples
@@ -202,6 +205,7 @@ sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 
     # Generate the magnitude sample
     samp.mags <- sample.GR.magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
+    print(c(length(samp.mags), length(samp.ts)))
 
     # Combine to build output synthetic catalogue for single parent
     samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
@@ -257,10 +261,10 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
 ## Forward time integrated function for exponential rate decay
 #' Title
 #'
-#' @param a
-#' @param V.i
-#' @param tau
-#' @param T.i
+#' @param a Event rate per unit volume injected
+#' @param V.i Injected volume
+#' @param tau Decau rate [days]
+#' @param T.i Time of injection event
 #' @param T2
 #'
 #' @return
@@ -275,10 +279,10 @@ IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
 ## Returns end time given a ...
 #' Title
 #'
-#' @param a
-#' @param V.i
-#' @param tau
-#' @param T.i
+#' @param a Event rate per unit volume injected
+#' @param V.i Injected volume
+#' @param tau Decau rate [days]
+#' @param T.i Time of injection event
 #' @param number.injected.events
 #'
 #' @return
@@ -295,7 +299,7 @@ Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.even
 #' @param a Induced event rate per unit volume.
 #' @param V.i Injected volume
 #' @param tau Decay rate [days].
-#' @param beta.p
+#' @param beta.p Related to the b-value via `b ln(10)`.
 #' @param M0 Minimum magnitude threshold.
 #' @param T.i Time of injection [days].
 #' @param T2 End of temporal model domain [days].

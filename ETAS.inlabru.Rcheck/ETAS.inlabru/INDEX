@@ -1,4 +1,3 @@
-Hawkes.bru              Function to fit Hawkes process model
 Hawkes.bru2             Function to fit Hawkes process model
 Int.ETAS.time.trig.function
                         Integrated ETAS time-triggering function
@@ -8,6 +7,10 @@ Inv.Int.ETAS.time.trig.function
                         function
 Inv.IntInjecIntensity   Title
 It_df                   Title
+Plot_grid               Title
+Temporal.ETAS.fit       Fits the remporal ETAS model and returns the
+                        results. This function decomposes the
+                        input.list for the 'Hawkes.bru2" function.
 breaks_exp              Title
 compute.grid            Title
 gamma.t                 Gamma copula transformation: Conversion of ETAS
@@ -27,9 +30,9 @@ sample.GR.magnitudes    Return a sample of magnitudes drawn from the GR
                         distribution
 sample.temoral.ETAS.daughters
                         Generate a sample of new events
-                        'data.frame(t_i, M_i)' of length 'n.ev' for
+                        'data.frame(t_i, M_i)' of length 'n.ev' for one
                         parent event occuring at time 't_h' using the
-                        ETAS model
+                        ETAS model.
 sample.temoral.injection.events
                         Title
 sample.temporal.ETAS.generation
@@ -39,6 +42,7 @@ sample.temporal.ETAS.generation
 sample.temporal.ETAS.times
                         Sampling times for events triggered by a parent
                         at th according to the ETAS triggering function
-time.grid               Title
+time.grid               Generate a set of time bins for a specific
+                        event and return.
 unif.t                  Uniform copula transformation: Conversion of
                         ETAS para to internal scale

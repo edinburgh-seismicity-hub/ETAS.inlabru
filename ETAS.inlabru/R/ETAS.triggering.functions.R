@@ -145,7 +145,7 @@ log.Lambda_h2 <- function(theta, ti, mi, M0, T1, T2){
 # It <- function(theta, th, T2){
 Int.ETAS.time.trig.function <- function(theta, th, T2){
   gamma.u <- (T2 - th)/theta$c
-  ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^(1-theta$p) )
+  ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
 }
 
 

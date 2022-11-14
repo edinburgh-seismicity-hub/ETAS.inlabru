@@ -1,139 +1,34 @@
-#' Function to fit Hawkes process model
+## MN: DESCRIPTION: Fit a model according to the information in the input list
+## MN: Arguments: input list containing parameters
+## MN: Returns: bru output for the fitted ETAS model as a dataframe
+#' Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.
 #'
-#' @param sample.s
-#' @param M0 Minimum magnitude threshold
-#' @param T1 Start of temporal model domain.
-#' @param T2 End of temporal model domain.
-#' @param link.functions
-#' @param coef.t. TimeBinning parameter:
-#' @param delta.t. TimeBinning parameter:
-#' @param N.max. TimeBinning parameter: Number of bins
-#' @param bru.opt
+#' @param input.list All input data and parameters are passed to inlabru via this structured list.
 #'
-#' @return
+#' @return The inlabru Hawkes process results data.frame
 #' @export
 #'
 #' @examples
-Hawkes.bru <- function(sample.s, M0, T1, T2, link.functions = NULL,
-                       coef.t., delta.t., N.max., bru.opt){
-  # Expected number of background events
-  df.0 <- data.frame(counts = 0, exposures = 1, part = 'background')
-  # this is the expression of log(Lambda0)
-  form.0 <- counts ~ log(link.functions$mu(th.mu)) + log(T2 - T1)
-  # first likelihood
-  lik.0 <- inlabru::like(formula = form.0,
-                         data = df.0,
-                         family = 'poisson',
-                         options = list(E = df.0$exposures))
-
-  cat('Start creating grid...', '\n')
-  time.g.st <- Sys.time()
-  df.j <- foreach(idx = 1:nrow(sample.s), .combine = rbind) %do% {
-    time.grid(data.point = sample.s[idx,],
-              coef.t = coef.t.,
-              delta.t = delta.t.,
-              T2. = T2, N.exp. = N.max.
-    )
-  }
-
-  # Set the counts and exposure for the Poisson Counts model representation
-  ##  (counts = 0 and exposures = 1 for the integrals,
-  ##  and counts = nrow(data) and exposures = 0, for the sum of log-intensities)
-  ## The part variable is there to indicate which part of the likelihood has to be calculated, it is used to define the index variable used in the predictor.fun.
-  df.j$counts <- 0
-  df.j$exposures <- 1
-  df.j$part = 'triggered'
-
-
-  t.names <- unique(df.j$t.ref_layer)
-  time.sel <- df.j[vapply(t.names, \(bname) match(TRUE, df.j$t.ref_layer == bname), 0L), , drop = FALSE]
-  Imapping <- match(df.j$t.ref_layer, t.names)
-  list.input <- list(df_grid = df.j, M0 = M0, Imapping = Imapping, time.sel = time.sel)
-
-  cat('Finished creating grid, time ', Sys.time() - time.g.st, '\n')
-
-  logLambda.h.inla <- function(th.K, th.alpha, th.c, th.p, list.input_, ncore_ = ncore){
-    theta_ <- c(0,
-                link.functions$K(th.K[1]),
-                link.functions$alpha(th.alpha[1]),
-                link.functions$c_(th.c[1]),
-                link.functions$p(th.p[1]))
-
-    #cat('theta - LogL', theta_, '\n')
-    comp. <- compute.grid(param. = theta_, list.input_ = list.input_)
-    #print(sum(is.na(comp.list$It)))
-    #print(sum(is.infinite(comp.list$It)))
-    out <- theta_[3]*(list.input_$df_grid$magnitudes - list.input_$M0) + log(theta_[2] + 1e-100) + log(comp. + 1e-100)
-    out
-  }
-
-  # creating formula for past events contributions to integrated lambda
-  form.j.part <- counts ~ logLambda.h.inla(th.K = th.K, th.alpha = th.alpha,
-                                           th.c = th.c, th.p = th.p,
-                                           list.input_ = list.input)
-  # second for triggered part of the integral
-  lik.j.part <- inlabru::like(formula = form.j.part,
-                              data = df.j,
-                              family = 'poisson',
-                              options = list(E = df.j$exposures))
-
-  # third is for the sum of the log intensities
-  df.s <- data.frame(counts = nrow(sample.s), exposures = 0, part = 'SL')
-
-  loglambda.inla <- function(th.mu, th.K, th.alpha, th.c, th.p, tt, th, mh, M0){
-
-    if(is.null(link.functions)){
-      th.p <- c(th.mu[1], th.K[1], th.alpha[1], th.c[1], th.p[1])
-    }
-    else{
-      th.p <- c(link.functions$mu(th.mu[1]),
-                link.functions$K(th.K[1]),
-                link.functions$alpha(th.alpha[1]),
-                link.functions$c_(th.c[1]),
-                link.functions$p(th.p[1]))
-    }
-
-
-    mean(unlist(mclapply(tt, \(x) {
-      th_x <- th < x
-      log(lambda_2(th = th.p, t = x, ti.v = th[th_x],
-                   mi.v = mh[th_x], M0 = M0))
-    },
-    mc.cores = 5)))
-  }
-
-  # creating formula for summation part
-  form.s.part <- counts ~ loglambda.inla(th.mu = th.mu, th.K = th.K, th.alpha = th.alpha,
-                                         th.c = th.c, th.p = th.p, tt = sample.s$ts,
-                                         th = sample.s$ts,
-                                         mh = sample.s$magnitudes, M0 = M0)
-
-  lik.s.part <- inlabru::like(formula = form.s.part,
-                              data = df.s,
-                              family = 'poisson',
-                              options = list(E = df.s$exposures))
-
-  cmp.part <- counts ~ -1 +
-    th.mu(1, model = 'linear', mean.linear = 0 , prec.linear = 1) +
-    th.K(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
-    th.alpha(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
-    th.c(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
-    th.p(1, model = 'linear', mean.linear = 0, prec.linear = 1)
-
-  bru(lik.0, lik.j.part, lik.s.part, components = cmp.part,
-      options = bru.opt)
-
-
+Temporal.ETAS.fit <- function(input.list){
+  cat('Start model fitting', '\n')
+  fit_etas <- Hawkes.bru2(sample.s = input.list$catalog.bru, # data
+                          M0 = input.list$M0, # magnitude of completeness
+                          T1 = input.list$T12[1],
+                          T2 = input.list$T12[2], # time domain
+                          link.functions = input.list$link.functions, # link functions
+                          coef.t. = input.list$coef.t, # binning parameter (delta)
+                          delta.t. = input.list$delta.t, # binning parameter (Delta)
+                          N.max. = input.list$Nmax, # binning parameter (n.max)
+                          bru.opt = input.list$bru.opt.list) # bru options
+  cat('Finish model fitting', '\n')
+  fit_etas
 }
-
-
-
 
 
 #######
 ## MN: DESCRIPTION: Function to fit an ETAS Hawkes process model to catalogue data
 ## MN: Arguments:
-## MN: Returns:
+## MN: Returns: The inlabru Hawkes process results data.frame
 #' Function to fit Hawkes process model
 #'
 #' @param sample.s
@@ -144,9 +39,9 @@ Hawkes.bru <- function(sample.s, M0, T1, T2, link.functions = NULL,
 #' @param coef.t. TimeBinning parameter:
 #' @param delta.t. TimeBinning parameter:
 #' @param N.max. TimeBinning parameter: Number of bins
-#' @param bru.opt
+#' @param bru.opt Runtime options for inlabru: See https://inlabru-org.github.io/inlabru/reference/bru_call_options.html
 #'
-#' @return
+#' @return The inlabru Hawkes process results data.frame
 #' @export
 #'
 #' @examples
@@ -257,8 +152,8 @@ Hawkes.bru2 <- function(sample.s, M0, T1, T2, link.functions = NULL,
     th.c(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
     th.p(1, model = 'linear', mean.linear = 0, prec.linear = 1)
 
-  bru(formula = merged.form, components = cmp.part, data = data.input, family = 'Poisson',
-      options = append(bru.opt, list(E = data.input$exposure)))
+  return( bru(formula = merged.form, components = cmp.part, data = data.input, family = 'Poisson',
+      options = append(bru.opt, list(E = data.input$exposure))) )
 
 }
 

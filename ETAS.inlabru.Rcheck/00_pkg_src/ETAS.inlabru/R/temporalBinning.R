@@ -3,9 +3,9 @@
 #'
 #' @param tt_ List of the event times a grid is needed for [days].
 #' @param T2_ End of temporal domain [days].
-#' @param coef_
-#' @param delta_
-#' @param N_exp_
+#' @param coef_ TimeBinning parameter:
+#' @param delta_ TimeBinning parameter:
+#' @param N_exp_ TimeBinning parameter: Number of bins
 #'
 #' @return
 #' @export
@@ -33,19 +33,26 @@ breaks_exp <- function(tt_, T2_, coef_ = 2, delta_, N_exp_ = 10){
 }
 
 
-#' Title
+#' Generate a set of time bins for a specific event and return.
 #'
 #' @param data.point
-#' @param coef.t
-#' @param delta.t
-#' @param T2.
-#' @param displaygrid
-#' @param N.exp.
+#' @param coef.t TimeBinning parameter:
+#' @param delta.t TimeBinning parameter:
+#' @param T2. End of the temporal domain [days].
+#' @param displaygrid Boolean variable - whether to plot the grid
+#' @param N.exp. TimeBinning parameter:
 #'
-#' @return
+#' @return A set of time bins aggregated over all events MORE DETAIL
 #' @export
 #'
 #' @examples
+#' ## EXAMPLE 1
+#' events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
+#' T2 <- 20
+#' N.exp <- 8
+#' delta.t <- 1
+#' coef.t <- 1
+#' time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
 time.grid <- function(data.point, coef.t, delta.t,
                       T2., displaygrid = FALSE, N.exp.){
 

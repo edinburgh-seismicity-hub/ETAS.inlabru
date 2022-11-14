@@ -11,7 +11,11 @@ breaks_exp(tt_, T2_, coef_ = 2, delta_, N_exp_ = 10)
 
 \item{T2_}{End of temporal domain \link{days}.}
 
-\item{N_exp_}{}
+\item{coef_}{TimeBinning parameter:}
+
+\item{delta_}{TimeBinning parameter:}
+
+\item{N_exp_}{TimeBinning parameter: Number of bins}
 }
 \description{
 Title

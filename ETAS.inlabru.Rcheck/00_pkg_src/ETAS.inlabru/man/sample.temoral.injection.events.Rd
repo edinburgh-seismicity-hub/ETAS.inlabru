@@ -13,6 +13,8 @@ sample.temoral.injection.events(a = 50, V.i = 1, tau = 10, beta.p, M0, T.i, T2)
 
 \item{tau}{Decay rate \link{days}.}
 
+\item{beta.p}{Related to the b-value via \verb{b ln(10)}.}
+
 \item{M0}{Minimum magnitude threshold.}
 
 \item{T.i}{Time of injection \link{days}.}

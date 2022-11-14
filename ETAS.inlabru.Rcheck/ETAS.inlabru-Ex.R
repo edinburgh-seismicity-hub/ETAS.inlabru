@@ -63,6 +63,31 @@ sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
 
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 base::cat("sample.GR.magnitudes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("time.grid")
+### * time.grid
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: time.grid
+### Title: Generate a set of time bins for a specific event and return.
+### Aliases: time.grid
+
+### ** Examples
+
+## EXAMPLE 1
+events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
+T2 <- 20
+N.exp <- 8
+delta.t <- 1
+coef.t <- 1
+time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("time.grid", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 ### * <FOOTER>
 ###
 cleanEx()

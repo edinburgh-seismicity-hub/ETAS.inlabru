@@ -21,6 +21,9 @@ sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
 
 \item{ncore}{The number of compute cores to use}
 }
+\value{
+Return one generation of daughters from the parents in \code{Ht} in the form \code{data.frame(t_i, M_i)}.
+}
 \description{
 Take all previous parent events from \code{Ht=data.frame[ts, magnitudes]} and generates their daughters events using the ETAS model
 }

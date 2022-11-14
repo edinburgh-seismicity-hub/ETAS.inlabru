@@ -7,6 +7,14 @@
 IntInjecIntensity(a = 50, V.i = 1, tau = 10, T.i, T2)
 }
 \arguments{
+\item{a}{Event rate per unit volume injected}
+
+\item{V.i}{Injected volume}
+
+\item{tau}{Decau rate \link{days}}
+
+\item{T.i}{Time of injection event}
+
 \item{T2}{}
 }
 \description{

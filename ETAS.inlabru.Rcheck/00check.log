@@ -36,8 +36,7 @@ Standardizable: FALSE
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking loading without being on the library search path ... OK
-* checking dependencies in R code ... WARNING
-'::' or ':::' import not declared from: ‘inlabru’
+* checking dependencies in R code ... NOTE
 Namespaces in Imports field not imported from:
   ‘lemon’ ‘tidyquant’
   All declared Imports should be used.
@@ -70,16 +69,6 @@ manual.
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
-Hawkes.bru: no visible global function definition for ‘%do%’
-Hawkes.bru: no visible global function definition for ‘foreach’
-Hawkes.bru: no visible binding for global variable ‘idx’
-Hawkes.bru : logLambda.h.inla: no visible binding for global variable
-  ‘ncore’
-Hawkes.bru : loglambda.inla: no visible global function definition for
-  ‘mclapply’
-Hawkes.bru : loglambda.inla : <anonymous>: no visible global function
-  definition for ‘lambda_2’
-Hawkes.bru: no visible global function definition for ‘bru’
 Hawkes.bru2: no visible global function definition for ‘%do%’
 Hawkes.bru2: no visible global function definition for ‘foreach’
 Hawkes.bru2: no visible binding for global variable ‘idx’
@@ -91,6 +80,12 @@ Hawkes.bru2 : loglambda.inla : <anonymous>: no visible global function
   definition for ‘lambda_2’
 Hawkes.bru2: no visible global function definition for ‘bind_rows’
 Hawkes.bru2: no visible global function definition for ‘bru’
+Plot_grid: no visible binding for global variable ‘xx.’
+Plot_grid: no visible binding for global variable ‘yy.’
+Plot_grid: no visible binding for global variable ‘delta.’
+Plot_grid: no visible binding for global variable ‘n.layer.’
+Plot_grid: no visible binding for global variable ‘bdy.’
+Plot_grid: no visible binding for global variable ‘min.edge.’
 gamma.t: no visible global function definition for
   ‘bru_forward_transformation’
 gamma.t: no visible binding for global variable ‘qgamma’
@@ -122,7 +117,6 @@ sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
-time.grid: no visible global function definition for ‘Plot_grid’
 time.grid: no visible binding for global variable ‘xx.’
 time.grid: no visible binding for global variable ‘yy.’
 time.grid: no visible binding for global variable ‘delta.’
@@ -137,10 +131,10 @@ unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  %>% %do% Plot_grid bdy. bind_rows bru bru_forward_transformation
-  delta. foreach idx lambda_2 mclapply min.edge. mutate n.layer. ncore
-  pexp pgamma plnorm punif qgamma qlnorm qnorm qunif rexp rpois runif
-  t.end t.start xx. yy.
+  %>% %do% bdy. bind_rows bru bru_forward_transformation delta. foreach
+  idx lambda_2 mclapply min.edge. mutate n.layer. ncore pexp pgamma
+  plnorm punif qgamma qlnorm qnorm qunif rexp rpois runif t.end t.start
+  xx. yy.
 Consider adding
   importFrom("stats", "pexp", "pgamma", "plnorm", "punif", "qgamma",
              "qlnorm", "qnorm", "qunif", "rexp", "rpois", "runif")
@@ -161,6 +155,12 @@ Missing link or links in documentation object 'Hawkes.bru2.Rd':
 Missing link or links in documentation object 'Int.ETAS.time.trig.function.Rd':
   ‘days’
 
+Missing link or links in documentation object 'IntInjecIntensity.Rd':
+  ‘days’
+
+Missing link or links in documentation object 'Inv.IntInjecIntensity.Rd':
+  ‘days’
+
 Missing link or links in documentation object 'breaks_exp.Rd':
   ‘days’
 
@@ -179,30 +179,24 @@ Missing link or links in documentation object 'sample.temporal.ETAS.generation.R
 Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
   ‘0, T2’
 
+Missing link or links in documentation object 'time.grid.Rd':
+  ‘days’
+
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'Hawkes.bru'
-  ‘sample.s’ ‘link.functions’
-
 Undocumented arguments in documentation object 'Hawkes.bru2'
   ‘sample.s’ ‘link.functions’
-
-Undocumented arguments in documentation object 'IntInjecIntensity'
-  ‘a’ ‘V.i’ ‘tau’ ‘T.i’
 
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
   ‘omega’
 
-Undocumented arguments in documentation object 'Inv.IntInjecIntensity'
-  ‘a’ ‘V.i’ ‘tau’ ‘T.i’
-
 Undocumented arguments in documentation object 'It_df'
   ‘param_’
 
-Undocumented arguments in documentation object 'breaks_exp'
-  ‘coef_’ ‘delta_’
+Undocumented arguments in documentation object 'Plot_grid'
+  ‘xx’ ‘yy’ ‘delta_’ ‘n.layer’ ‘bdy_’
 
 Undocumented arguments in documentation object 'compute.grid'
   ‘param.’
@@ -225,11 +219,8 @@ Undocumented arguments in documentation object 'inv.unif.t'
 Undocumented arguments in documentation object 'loggaus.t'
   ‘x’ ‘m’
 
-Undocumented arguments in documentation object 'sample.temoral.injection.events'
-  ‘beta.p’
-
 Undocumented arguments in documentation object 'time.grid'
-  ‘data.point’ ‘coef.t’ ‘delta.t’ ‘T2.’ ‘displaygrid’
+  ‘data.point’
 
 Undocumented arguments in documentation object 'unif.t'
   ‘x’ ‘a’
@@ -240,12 +231,6 @@ The \usage entries must correspond to syntactically valid R code.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking Rd contents ... WARNING
-Argument items with no description in Rd object 'Hawkes.bru':
-  ‘bru.opt’
-
-Argument items with no description in Rd object 'Hawkes.bru2':
-  ‘bru.opt’
-
 Argument items with no description in Rd object 'Int.ETAS.time.trig.function':
   ‘T2’
 
@@ -261,8 +246,8 @@ Argument items with no description in Rd object 'Inv.IntInjecIntensity':
 Argument items with no description in Rd object 'It_df':
   ‘time.df’
 
-Argument items with no description in Rd object 'breaks_exp':
-  ‘N_exp_’
+Argument items with no description in Rd object 'Plot_grid':
+  ‘min.edge’
 
 Argument items with no description in Rd object 'compute.grid':
   ‘list.input_’
@@ -285,15 +270,29 @@ Argument items with no description in Rd object 'inv.unif.t':
 Argument items with no description in Rd object 'loggaus.t':
   ‘s’
 
-Argument items with no description in Rd object 'time.grid':
-  ‘N.exp.’
-
 Argument items with no description in Rd object 'unif.t':
   ‘b’
 
 * checking for unstated dependencies in examples ... OK
-* checking examples ... OK
+* checking examples ... ERROR
+Running examples in ‘ETAS.inlabru-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: generate.temporal.ETAS.synthetic
+> ### Title: Generates a sythetic catalogue using the ETAS model
+> ### Aliases: generate.temporal.ETAS.synthetic
+> 
+> ### ** Examples
+> 
+> ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
+> 
+> generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+Error in data.frame(ts = samp.ts, magnitudes = samp.mags) : 
+  arguments imply differing number of rows: 0, 6
+Calls: generate.temporal.ETAS.synthetic ... lapply -> FUN -> sample.temoral.ETAS.daughters -> data.frame
+Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 6 WARNINGs, 2 NOTEs
+Status: 1 ERROR, 5 WARNINGs, 3 NOTEs

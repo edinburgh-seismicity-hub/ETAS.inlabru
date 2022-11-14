@@ -29,7 +29,10 @@ Hawkes.bru2(
 
 \item{N.max.}{TimeBinning parameter: Number of bins}
 
-\item{bru.opt}{}
+\item{bru.opt}{Runtime options for inlabru: See https://inlabru-org.github.io/inlabru/reference/bru_call_options.html}
+}
+\value{
+The inlabru Hawkes process results data.frame
 }
 \description{
 Function to fit Hawkes process model
