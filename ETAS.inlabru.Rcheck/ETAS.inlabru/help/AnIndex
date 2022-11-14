@@ -4,6 +4,8 @@ create.input.list.temporal.noCatalogue	create.input.list.temporal.noCatalogue
 create.input.list.temporal.withCatalogue	create.input.list.temporal.withCatalogue
 gamma.t	gamma.t
 generate.temporal.ETAS.synthetic	generate.temporal.ETAS.synthetic
+gt	gt
+gt.2	gt.2
 Hawkes.bru2	Hawkes.bru2
 Int.ETAS.time.trig.function	Int.ETAS.time.trig.function
 IntInjecIntensity	IntInjecIntensity
@@ -14,8 +16,12 @@ Inv.IntInjecIntensity	Inv.IntInjecIntensity
 inv.loggaus.t	inv.loggaus.t
 inv.unif.t	inv.unif.t
 It_df	It_df
+lambda_	lambda_
+lambda_2	lambda_2
+log.Lambda_h	log.Lambda_h
 log.Lambda_h2	log.Lambda_h2
 loggaus.t	loggaus.t
+omori_plot	omori_plot
 Plot_grid	Plot_grid
 sample.GR.magnitudes	sample.GR.magnitudes
 sample.temoral.ETAS.daughters	sample.temoral.ETAS.daughters

@@ -107,6 +107,56 @@ inv.loggaus.t <- function(x, m, s){
 }
 
 
+
+
+#' Time triggering function - used by Inlabru
+#' MN: TODO Cross-reference the paper
+#'
+#' @param th
+#' @param t
+#' @param ti
+#' @param mi
+#' @param M0 Minimum magnitude threshold
+#'
+#' @return
+#' @export
+#'
+#' @examples
+gt.2 <- function(th, t, ti, mi, M0){
+  output <- rep(0,length(ti))
+  t.diff <- t - ti
+  neg <- t.diff <= 0
+  if(sum(!neg) > 0){
+    log.out <- log(th[2]) + th[3]*(mi[!neg] - M0)  - th[5]*log(1 + t.diff[!neg]/th[4])
+    output[!neg] <- exp(log.out)
+  }
+  else{
+    output
+  }
+  output
+}
+
+
+#' conditional intensity (used by Inlabru)
+#'
+#' @param th Set of trial ETAS parameters ??
+#' @param t
+#' @param ti.v
+#' @param mi.v
+#' @param M0 Minimum magnitude threshold
+#'
+#' @return
+#' @export
+#'
+#' @examples
+lambda_2 <- function(th, t, ti.v, mi.v, M0){
+  if(is.null(ti.v) | all(ti.v > t)){
+    th[1]
+  }
+  th[1] + sum(gt.2(th, t, ti.v, mi.v, M0))
+}
+
+
 #' integrated triggering function - used by Inlabru ALSO USED IN GENERATION SAMPLES
 #'
 #' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
@@ -136,7 +186,7 @@ log.Lambda_h2 <- function(theta, ti, mi, M0, T1, T2){
 #'
 #' @param theta ETAS parameters data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
 #' @param th Time of past event? [days]
-#' @param T2
+#' @param T2 End of temporal model domain.
 #'
 #' @return
 #' @export
@@ -163,3 +213,5 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }
+
+

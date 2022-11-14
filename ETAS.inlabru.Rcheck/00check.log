@@ -25,7 +25,8 @@ obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... OK
+* checking for future file timestamps ... NOTE
+unable to verify current time
 * checking DESCRIPTION meta-information ... WARNING
 Non-standard license specification:
   What license is it under?
@@ -44,9 +45,14 @@ Standardizable: FALSE
 * checking loading without being on the library search path ... OK
 * checking dependencies in R code ... NOTE
 Namespaces in Imports field not imported from:
-  ‘lemon’ ‘tidyquant’
+  ‘INLA’ ‘foreach’ ‘ggplot2’ ‘inlabru’ ‘lemon’ ‘tidyquant’
   All declared Imports should be used.
 * checking S3 generic/method consistency ... WARNING
+log:
+  function(x, base)
+log.Lambda_h:
+  function(th, ti, mi, M0, T1, T2)
+
 log:
   function(x, base)
 log.Lambda_h2:
@@ -66,7 +72,7 @@ See section ‘Generic functions and methods’ in the ‘Writing R
 Extensions’ manual.
 
 Found the following apparent S3 methods exported but not registered:
-  gamma.t log.Lambda_h2 time.grid
+  gamma.t log.Lambda_h log.Lambda_h2 time.grid
 See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
 manual.
 * checking replacement functions ... OK
@@ -82,8 +88,6 @@ Hawkes.bru2 : logLambda.h.inla: no visible binding for global variable
   ‘ncore’
 Hawkes.bru2 : loglambda.inla: no visible global function definition for
   ‘mclapply’
-Hawkes.bru2 : loglambda.inla : <anonymous>: no visible global function
-  definition for ‘lambda_2’
 Hawkes.bru2: no visible global function definition for ‘bind_rows’
 Hawkes.bru2: no visible global function definition for ‘bru’
 Plot_grid: no visible binding for global variable ‘xx.’
@@ -294,6 +298,17 @@ inv.unif.t: no visible global function definition for ‘punif’
 loggaus.t: no visible global function definition for
   ‘bru_forward_transformation’
 loggaus.t: no visible binding for global variable ‘qlnorm’
+omori_plot: no visible global function definition for ‘generate’
+omori_plot : <anonymous>: no visible global function definition for
+  ‘omori’
+omori_plot: no visible global function definition for ‘bind_cols’
+omori_plot : <anonymous>: no visible global function definition for
+  ‘quantile’
+omori_plot: no visible global function definition for ‘ggplot’
+omori_plot: no visible global function definition for ‘geom_line’
+omori_plot: no visible global function definition for ‘aes’
+omori_plot: no visible binding for global variable ‘omori’
+omori_plot: no visible global function definition for ‘theme_classic’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
   for ‘rpois’
@@ -315,25 +330,45 @@ time.grid: no visible global function definition for ‘%>%’
 time.grid: no visible global function definition for ‘mutate’
 time.grid: no visible binding for global variable ‘t.start’
 time.grid: no visible binding for global variable ‘t.end’
+triggering_fun_plot: no visible global function definition for
+  ‘generate’
+triggering_fun_plot : <anonymous>: no visible global function
+  definition for ‘trigger’
+triggering_fun_plot: no visible global function definition for
+  ‘bind_cols’
+triggering_fun_plot : <anonymous>: no visible global function
+  definition for ‘quantile’
+triggering_fun_plot: no visible global function definition for
+  ‘quantile’
+triggering_fun_plot: no visible global function definition for ‘ggplot’
+triggering_fun_plot: no visible global function definition for
+  ‘geom_line’
+triggering_fun_plot: no visible global function definition for ‘aes’
+triggering_fun_plot: no visible binding for global variable ‘trig’
+triggering_fun_plot: no visible global function definition for
+  ‘geom_hline’
+triggering_fun_plot: no visible global function definition for
+  ‘theme_classic’
 unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  %>% %do% DELTA K.init Lat Lon Nmax a_K a_alpha a_c a_mu a_p
-  alpha.init b_K b_alpha b_c b_mu b_p bdy. bind_rows bru
+  %>% %do% DELTA K.init Lat Lon Nmax a_K a_alpha a_c a_mu a_p aes
+  alpha.init b_K b_alpha b_c b_mu b_p bdy. bind_cols bind_rows bru
   bru_forward_transformation c.init catalog.colnames catalog.header
   catalog.path catalog.sep catalog.skip coef.t delta. filter foreach
-  idx injection_activityDecayRate injection_vol2activity lambda_2
-  magnitude.completeness magnitude.update magnitudes max.latitude
-  max.longitude max_iter max_step mclapply min.edge. min.latitude
-  min.longitude mu.init mutate n.layer. n.periods ncore output.name
-  p.init period.length pexp pgamma plnorm punif qgamma qlnorm qnorm
-  qunif read.table rexp rpois runif scenario start.date.fore t.end
-  t.start time_date time_string xx. yy.
+  generate geom_hline geom_line ggplot idx injection_activityDecayRate
+  injection_vol2activity magnitude.completeness magnitude.update
+  magnitudes max.latitude max.longitude max_iter max_step mclapply
+  min.edge. min.latitude min.longitude mu.init mutate n.layer.
+  n.periods ncore omori output.name p.init period.length pexp pgamma
+  plnorm punif qgamma qlnorm qnorm quantile qunif read.table rexp rpois
+  runif scenario start.date.fore t.end t.start theme_classic time_date
+  time_string trig trigger xx. yy.
 Consider adding
   importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "punif",
-             "qgamma", "qlnorm", "qnorm", "qunif", "rexp", "rpois",
-             "runif")
+             "qgamma", "qlnorm", "qnorm", "quantile", "qunif", "rexp",
+             "rpois", "runif")
   importFrom("utils", "read.table")
 to your NAMESPACE file.
 * checking Rd files ... OK
@@ -386,7 +421,8 @@ Missing link or links in documentation object 'time.grid.Rd':
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
+  ‘triggering_fun_plot’ ‘user_input_synthetic’
+  ‘user_input_synthetic_noCatalogue’
 Undocumented data sets:
   ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
 All user-level objects in a package should have documentation entries.
@@ -412,6 +448,12 @@ Undocumented arguments in documentation object 'compute.grid'
 Undocumented arguments in documentation object 'gamma.t'
   ‘x’ ‘a’
 
+Undocumented arguments in documentation object 'gt.2'
+  ‘th’ ‘t’ ‘ti’ ‘mi’
+
+Undocumented arguments in documentation object 'gt'
+  ‘th’ ‘t’ ‘ti’ ‘mi’
+
 Undocumented arguments in documentation object 'inv.exp.t'
   ‘x’
 
@@ -424,8 +466,20 @@ Undocumented arguments in documentation object 'inv.loggaus.t'
 Undocumented arguments in documentation object 'inv.unif.t'
   ‘x’ ‘a’
 
+Undocumented arguments in documentation object 'lambda_'
+  ‘th’ ‘t’ ‘ti.v’ ‘mi.v’
+
+Undocumented arguments in documentation object 'lambda_2'
+  ‘t’ ‘ti.v’ ‘mi.v’
+
+Undocumented arguments in documentation object 'log.Lambda_h'
+  ‘th’ ‘ti’ ‘mi’
+
 Undocumented arguments in documentation object 'loggaus.t'
   ‘x’ ‘m’
+
+Undocumented arguments in documentation object 'omori_plot'
+  ‘list.input’ ‘n.samp’ ‘t.end’
 
 Undocumented arguments in documentation object 'time.grid'
   ‘data.point’
@@ -439,9 +493,6 @@ The \usage entries must correspond to syntactically valid R code.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking Rd contents ... WARNING
-Argument items with no description in Rd object 'Int.ETAS.time.trig.function':
-  ‘T2’
-
 Argument items with no description in Rd object 'IntInjecIntensity':
   ‘T2’
 
@@ -481,6 +532,9 @@ Argument items with no description in Rd object 'inv.unif.t':
 Argument items with no description in Rd object 'loggaus.t':
   ‘s’
 
+Argument items with no description in Rd object 'omori_plot':
+  ‘n.breaks’
+
 Argument items with no description in Rd object 'unif.t':
   ‘b’
 
@@ -513,4 +567,4 @@ Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 7 WARNINGs, 3 NOTEs
+Status: 1 ERROR, 7 WARNINGs, 4 NOTEs

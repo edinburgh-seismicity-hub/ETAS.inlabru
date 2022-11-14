@@ -205,7 +205,6 @@ sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 
     # Generate the magnitude sample
     samp.mags <- sample.GR.magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
-    print(c(length(samp.mags), length(samp.ts)))
 
     # Combine to build output synthetic catalogue for single parent
     samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)

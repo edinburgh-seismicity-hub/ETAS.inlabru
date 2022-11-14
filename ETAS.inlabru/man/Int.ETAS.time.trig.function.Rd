@@ -11,7 +11,7 @@ Int.ETAS.time.trig.function(theta, th, T2)
 
 \item{th}{Time of past event? \link{days}}
 
-\item{T2}{}
+\item{T2}{End of temporal model domain.}
 }
 \description{
 Integrated ETAS time-triggering function
