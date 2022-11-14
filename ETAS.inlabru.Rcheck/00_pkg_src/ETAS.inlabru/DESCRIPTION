@@ -19,8 +19,9 @@ Description: Modelling and inversion of ETAS model of seismicity using inlabru
     and spatio-temporal evolution of seismic sequences.
 License: What license is it under?
 Encoding: UTF-8
+LazyData: true
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Imports: lemon, parallel, tidyquant, dplyr
 NeedsCompilation: no
-Packaged: 2022-11-14 09:13:58 UTC; mnaylor
+Packaged: 2022-11-14 09:54:24 UTC; mnaylor

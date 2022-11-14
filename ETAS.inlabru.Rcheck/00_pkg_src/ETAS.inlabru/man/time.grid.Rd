@@ -28,7 +28,7 @@ Generate a set of time bins for a specific event and return.
 events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
 T2 <- 20
 N.exp <- 8
-delta.t <- 1
+delta.t <- 0.1
 coef.t <- 1
 time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
 }

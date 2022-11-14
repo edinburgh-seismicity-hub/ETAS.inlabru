@@ -21,6 +21,9 @@ sample.temoral.ETAS.daughters(theta, beta.p, th, n.ev, M0, T1, T2)
 
 \item{T2}{End time for synthetic catalogue \link{days}.}
 }
+\value{
+Generate a sample of new events \code{data.frame(t_i, M_i)} from one parent
+}
 \description{
 Generate a sample of new events \code{data.frame(t_i, M_i)} of length \code{n.ev} for one parent event occuring at time \code{t_h} using the ETAS model.
 }

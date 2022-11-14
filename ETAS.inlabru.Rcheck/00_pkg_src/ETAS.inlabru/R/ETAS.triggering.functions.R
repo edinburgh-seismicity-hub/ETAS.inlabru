@@ -161,5 +161,5 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #' @examples
 #Inv.It <- function(theta, omega, th){
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
-  th + theta$cc*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
+  th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }

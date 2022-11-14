@@ -18,6 +18,27 @@ library('ETAS.inlabru')
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 cleanEx()
+nameEx("create.input.list.temporal.noCatalogue")
+### * create.input.list.temporal.noCatalogue
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: create.input.list.temporal.noCatalogue
+### Title: Function to create a default input file for the ETAS Hawkes
+###   temporal model where no catalogue is specified in the input file
+### Aliases: create.input.list.temporal.noCatalogue
+
+### ** Examples
+
+# HOW DO WE REFERENCE A FILE IN THE data DIRECTORY?
+#create.input.list.temporal.noCatalogue('data/user_input_synthetic_noCatalog.txt')
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("create.input.list.temporal.noCatalogue", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
 nameEx("generate.temporal.ETAS.synthetic")
 ### * generate.temporal.ETAS.synthetic
 
@@ -64,6 +85,29 @@ sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 base::cat("sample.GR.magnitudes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
+nameEx("sample.temporal.ETAS.generation")
+### * sample.temporal.ETAS.generation
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: sample.temporal.ETAS.generation
+### Title: Take all previous parent events from 'Ht=data.frame[ts,
+###   magnitudes]' and generates their daughters events using the ETAS
+###   model
+### Aliases: sample.temporal.ETAS.generation
+
+### ** Examples
+
+# The parents are specified in Ht
+Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
+sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("sample.temporal.ETAS.generation", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
 nameEx("time.grid")
 ### * time.grid
 
@@ -80,7 +124,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
 T2 <- 20
 N.exp <- 8
-delta.t <- 1
+delta.t <- 0.1
 coef.t <- 1
 time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
 

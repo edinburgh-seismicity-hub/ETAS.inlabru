@@ -50,7 +50,7 @@ breaks_exp <- function(tt_, T2_, coef_ = 2, delta_, N_exp_ = 10){
 #' events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
 #' T2 <- 20
 #' N.exp <- 8
-#' delta.t <- 1
+#' delta.t <- 0.1
 #' coef.t <- 1
 #' time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
 time.grid <- function(data.point, coef.t, delta.t,

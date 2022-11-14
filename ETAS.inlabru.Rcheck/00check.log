@@ -16,7 +16,13 @@
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
 * checking serialization versions ... OK
-* checking whether package ‘ETAS.inlabru’ can be installed ... OK
+* checking whether package ‘ETAS.inlabru’ can be installed ... WARNING
+Found the following significant warnings:
+  Note: possible error in 'filter(time_date >= start.date, ': unused argument (magnitudes >= magnitude.completeness) 
+See ‘/Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck/00install.out’ for details.
+Information on the location(s) of code generating the ‘Note’s can be
+obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking for future file timestamps ... OK
@@ -86,6 +92,188 @@ Plot_grid: no visible binding for global variable ‘delta.’
 Plot_grid: no visible binding for global variable ‘n.layer.’
 Plot_grid: no visible binding for global variable ‘bdy.’
 Plot_grid: no visible binding for global variable ‘min.edge.’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_mu’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_mu’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_K’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_K’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_alpha’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_alpha’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_c’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_c’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_p’
+create.input.list.temporal.noCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_p’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘mu.init’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘a_mu’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘b_mu’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘K.init’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘a_K’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘b_K’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘alpha.init’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘a_alpha’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘b_alpha’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘c.init’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘a_c’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘b_c’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘p.init’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘a_p’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘b_p’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘max_step’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘max_iter’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘coef.t’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘DELTA’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘Nmax’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘n.periods’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘period.length’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘magnitude.update’
+create.input.list.temporal.noCatalogue: no visible binding for global
+  variable ‘output.name’
+create.input.list.temporal.withCatalogue: no visible global function
+  definition for ‘read.table’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘catalog.path’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘catalog.header’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘catalog.sep’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘catalog.skip’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘catalog.colnames’
+create.input.list.temporal.withCatalogue: no visible global function
+  definition for ‘%>%’
+create.input.list.temporal.withCatalogue: no visible global function
+  definition for ‘mutate’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘time_string’
+create.input.list.temporal.withCatalogue: no visible global function
+  definition for ‘filter’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘time_date’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘Lon’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘min.longitude’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘max.longitude’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘Lat’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘min.latitude’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘max.latitude’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘magnitudes’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘magnitude.completeness’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_mu’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_mu’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_K’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_K’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_alpha’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_alpha’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_c’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_c’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘a_p’
+create.input.list.temporal.withCatalogue : <anonymous>: no visible
+  binding for global variable ‘b_p’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘mu.init’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘a_mu’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘b_mu’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘K.init’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘a_K’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘b_K’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘alpha.init’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘a_alpha’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘b_alpha’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘c.init’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘a_c’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘b_c’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘p.init’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘a_p’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘b_p’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘max_step’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘max_iter’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘scenario’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘coef.t’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘DELTA’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘Nmax’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘n.periods’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘period.length’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘start.date.fore’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘magnitude.update’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘output.name’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘injection_vol2activity’
+create.input.list.temporal.withCatalogue: no visible binding for global
+  variable ‘injection_activityDecayRate’
 gamma.t: no visible global function definition for
   ‘bru_forward_transformation’
 gamma.t: no visible binding for global variable ‘qgamma’
@@ -131,13 +319,22 @@ unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  %>% %do% bdy. bind_rows bru bru_forward_transformation delta. foreach
-  idx lambda_2 mclapply min.edge. mutate n.layer. ncore pexp pgamma
-  plnorm punif qgamma qlnorm qnorm qunif rexp rpois runif t.end t.start
-  xx. yy.
+  %>% %do% DELTA K.init Lat Lon Nmax a_K a_alpha a_c a_mu a_p
+  alpha.init b_K b_alpha b_c b_mu b_p bdy. bind_rows bru
+  bru_forward_transformation c.init catalog.colnames catalog.header
+  catalog.path catalog.sep catalog.skip coef.t delta. filter foreach
+  idx injection_activityDecayRate injection_vol2activity lambda_2
+  magnitude.completeness magnitude.update magnitudes max.latitude
+  max.longitude max_iter max_step mclapply min.edge. min.latitude
+  min.longitude mu.init mutate n.layer. n.periods ncore output.name
+  p.init period.length pexp pgamma plnorm punif qgamma qlnorm qnorm
+  qunif read.table rexp rpois runif scenario start.date.fore t.end
+  t.start time_date time_string xx. yy.
 Consider adding
-  importFrom("stats", "pexp", "pgamma", "plnorm", "punif", "qgamma",
-             "qlnorm", "qnorm", "qunif", "rexp", "rpois", "runif")
+  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "punif",
+             "qgamma", "qlnorm", "qnorm", "qunif", "rexp", "rpois",
+             "runif")
+  importFrom("utils", "read.table")
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
@@ -146,6 +343,10 @@ Rd file 'generate.temporal.ETAS.synthetic.Rd':
   \examples lines wider than 100 characters:
      generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000  ... [TRUNCATED]
      generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, ... [TRUNCATED]
+
+Rd file 'sample.temporal.ETAS.generation.Rd':
+  \examples lines wider than 100 characters:
+     sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000,  ... [TRUNCATED]
 
 These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
@@ -183,7 +384,14 @@ Missing link or links in documentation object 'time.grid.Rd':
   ‘days’
 
 See section 'Cross-references' in the 'Writing R Extensions' manual.
-* checking for missing documentation entries ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
+Undocumented data sets:
+  ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... WARNING
 Undocumented arguments in documentation object 'Hawkes.bru2'
@@ -252,6 +460,9 @@ Argument items with no description in Rd object 'Plot_grid':
 Argument items with no description in Rd object 'compute.grid':
   ‘list.input_’
 
+Argument items with no description in Rd object 'create.input.list.temporal.withCatalogue':
+  ‘input_path’
+
 Argument items with no description in Rd object 'gamma.t':
   ‘b’
 
@@ -274,25 +485,32 @@ Argument items with no description in Rd object 'unif.t':
   ‘b’
 
 * checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
 * checking examples ... ERROR
 Running examples in ‘ETAS.inlabru-Ex.R’ failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: generate.temporal.ETAS.synthetic
-> ### Title: Generates a sythetic catalogue using the ETAS model
-> ### Aliases: generate.temporal.ETAS.synthetic
+> ### Name: time.grid
+> ### Title: Generate a set of time bins for a specific event and return.
+> ### Aliases: time.grid
 > 
 > ### ** Examples
 > 
-> ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
-> 
-> generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
-Error in data.frame(ts = samp.ts, magnitudes = samp.mags) : 
-  arguments imply differing number of rows: 0, 6
-Calls: generate.temporal.ETAS.synthetic ... lapply -> FUN -> sample.temoral.ETAS.daughters -> data.frame
+> ## EXAMPLE 1
+> events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
+> T2 <- 20
+> N.exp <- 8
+> delta.t <- 0.1
+> coef.t <- 1
+> time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
+Error in if (T2_ - tt_ < delta_) { : the condition has length > 1
+Calls: time.grid -> breaks_exp
 Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 5 WARNINGs, 3 NOTEs
+Status: 1 ERROR, 7 WARNINGs, 3 NOTEs

@@ -1,7 +1,10 @@
 * installing *source* package ‘ETAS.inlabru’ ...
 ** using staged installation
 ** R
+** data
+*** moving datasets to lazyload DB
 ** byte-compile and prepare package for lazy loading
+Note: possible error in 'filter(time_date >= start.date, ': unused argument (magnitudes >= magnitude.completeness) 
 ** help
 *** installing help indices
 ** building package indices

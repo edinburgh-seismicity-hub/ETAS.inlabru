@@ -1,5 +1,7 @@
 breaks_exp	breaks_exp
 compute.grid	compute.grid
+create.input.list.temporal.noCatalogue	create.input.list.temporal.noCatalogue
+create.input.list.temporal.withCatalogue	create.input.list.temporal.withCatalogue
 gamma.t	gamma.t
 generate.temporal.ETAS.synthetic	generate.temporal.ETAS.synthetic
 Hawkes.bru2	Hawkes.bru2

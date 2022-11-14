@@ -140,6 +140,9 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @export
 #'
 #' @examples
+#' # The parents are specified in Ht
+#' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
+#' sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
@@ -184,7 +187,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T1 Start time for synthetic catalogue [days].
 #' @param T2 End time for synthetic catalogue [days].
 #'
-#' @return
+#' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
 #' @export
 #'
 #' @examples
@@ -202,6 +205,7 @@ sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 
     # Generate the magnitude sample
     samp.mags <- sample.GR.magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
+    print(c(length(samp.mags), length(samp.ts)))
 
     # Combine to build output synthetic catalogue for single parent
     samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
