@@ -25,4 +25,8 @@ Imports:
     lemon,
     parallel,
     tidyquant,
-    dplyr
+    dplyr,
+    ggplot2,
+    foreach,
+    INLA,
+    inlabru
