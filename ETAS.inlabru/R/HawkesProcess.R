@@ -11,7 +11,7 @@
 #' @examples
 Temporal.ETAS.fit <- function(input.list){
   cat('Start model fitting', '\n')
-  fit_etas <- Temporal.ETAS(sample.s = input.list$catalog.bru, # data
+  fit_etas <- Temporal.ETAS(total.data = input.list$catalog.bru, # data
                             M0 = input.list$M0, # magnitude of completeness
                             T1 = input.list$T12[1],
                             T2 = input.list$T12[2], # time domain
