@@ -2,33 +2,41 @@
 % Please edit documentation in R/temporalBinning.R
 \name{time.grid}
 \alias{time.grid}
-\title{Generate a set of time bins for a specific event and return.}
+\title{Generate a set of time bins for a specific event.}
 \usage{
-\method{time}{grid}(data.point, coef.t, delta.t, T2., displaygrid = FALSE, N.exp.)
+\method{time}{grid}(data.point, coef.t, delta.t, N.exp., T1., T2.)
 }
 \arguments{
-\item{coef.t}{TimeBinning parameter:}
+\item{data.point}{Point for which the binning is calculated, \code{list} with elements time (\verb{ts, scalar}), event index (\verb{idx.p, scalar}). Names are mandatory and should not be changed}
 
-\item{delta.t}{TimeBinning parameter:}
+\item{coef.t}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
 
-\item{T2.}{End of the temporal domain \link{days}.}
+\item{delta.t}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
 
-\item{displaygrid}{Boolean variable - whether to plot the grid}
+\item{N.exp.}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
 
-\item{N.exp.}{TimeBinning parameter:}
+\item{T1.}{Start of the temporal domain, \code{scalar}}
+
+\item{T2.}{End of the temporal domain \code{scalar}.}
 }
 \value{
-A set of time bins aggregated over all events MORE DETAIL
+A \code{data.frame} with as many rows as the number of bins and fixed number of columns.
+The columns are
+\itemize{
+\item \code{t.start} : starting point of the bin (minimum = \code{T1.}).
+\item \code{t.end} : end point of the bin. (maximum = \code{T2.}).
+\item \code{t.bin.name} : unique bin identifier.
+\item \code{t.ref_layer} : bin identifier for calculations
+\item \code{ts} : time provided in \code{data.point}
+\item \code{idx.p} : identifier provided in \code{data.point}
+}
+The bins are only between \code{T1.} and \code{T2.} or containing \code{T1.}
 }
 \description{
-Generate a set of time bins for a specific event and return.
+Generate a set of time bins for a specific event.
 }
 \examples{
 ## EXAMPLE 1
-events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
-T2 <- 20
-N.exp <- 8
-delta.t <- 0.1
-coef.t <- 1
-time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
+event <- list( ts= 0, idx.p= 1 )
+time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1 = 1, T2 = 20)
 }
