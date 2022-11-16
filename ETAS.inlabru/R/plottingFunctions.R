@@ -61,7 +61,7 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
 
 #' Code to plot samples from the of posterior ETAS triggering function
 #'
-#' @param list.input
+#' @param list.input 
 #' @param n.samp
 #' @param t.end
 #' @param n.breaks
