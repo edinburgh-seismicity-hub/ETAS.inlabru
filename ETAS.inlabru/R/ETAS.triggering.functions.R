@@ -214,4 +214,28 @@ Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }
 
-
+#' Title
+#'
+#' @param th
+#' @param t
+#' @param ti
+#' @param mi
+#' @param M0
+#'
+#' @return
+#' @export
+#'
+#' @examples
+trigger <- function(th, t, ti, mi, M0){
+  output <- rep(0,length(t))
+  t.diff <- t - ti
+  neg <- t.diff <= 0
+  if(sum(!neg) > 0){
+    log.out <- log(th[2]) + th[3]*(mi - M0) - th[5]*log(1 + t.diff[!neg]/th[4])
+    output[!neg] <- exp(log.out)
+  }
+  else{
+    output
+  }
+  output
+}

@@ -54,7 +54,9 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
     geom_line(aes(x = t.eval, y = trig.upper.quant)) +
     geom_hline(yintercept = mu.lower.quant, color = 'red') +
     geom_hline(yintercept = mu.upper.quant, color = 'red') +
-    theme_classic()
+    theme_bw() +
+    xlab("Time [days]") +
+    ylab("Event rate per unit time ??")
 }
 
 

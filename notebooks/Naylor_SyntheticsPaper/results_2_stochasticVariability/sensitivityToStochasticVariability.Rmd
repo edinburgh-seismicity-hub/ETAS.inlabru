@@ -26,6 +26,7 @@ library(INLA)
 
 library(dplyr)
 
+
 ```
 
 
@@ -44,11 +45,11 @@ p <- 1.08
 theta_etas <- data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
 
 # A dataframe containing different starting values for the algorithm
-startingValues <- data.frame( mu=c(0.05, 5., mu, 0.3),
-                              K=c(0.01, 1., K, 0.1),
-                              alpha=c(1., 5., alpha, 1.),
-                              c=c(0.05, 0.3, c, 0.2),
-                              p=c(1.01, 1.5, p, 1.01))
+startingValues <- data.frame( mu=c( 0.3),
+                              K=c( 0.1),
+                              alpha=c( 1.),
+                              c=c( 0.2),
+                              p=c(1.01))
 nRealisations <- length(startingValues$mu)
 
 
@@ -60,18 +61,70 @@ M0 = 2.5
 
 ```
 
+```{r Plot the priors with true values}
+mu_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$mu(rnorm(100000))) ) +
+geom_vline(aes(xintercept = mu, color='True value')) +
+geom_vline(aes(xintercept = list.input$mu.init, color='Initial value')) +
+xlab("mu") +
+ggtitle("mu prior")+
+    theme_bw() +
+       theme(legend.position = c(.7, .7))
+
+K_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$K(rnorm(100000))) , show.legend = FALSE) +
+geom_vline(aes(xintercept = K, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$K.init, color='Initial value'), show.legend = FALSE) +
+xlab("K") +
+    theme_bw() +
+ggtitle("K prior")  
+
+alpha_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$alpha(rnorm(100000))) ) +
+geom_vline(aes(xintercept = alpha, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.legend = FALSE) + 
+  xlab("alpha") +
+    theme_bw() +
+ggtitle("alpha prior")
+
+c_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
+geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
+  xlab("c") +
+    theme_bw() +
+  ggtitle("c prior")
+
+p_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$p(rnorm(100000))) ) +
+geom_vline(aes(xintercept = p, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$p.init, color='Initial value'), show.legend = FALSE) +
+  xlab("p") +
+  theme_bw() +
+ggtitle("p prior")
+
+multiplot(mu_priorPlot,K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot,cols = 3)
+```
+
+
 ## Generate new catalogues and save them
 
 ```{r}
 ############
 #### Generate the first catalogue with no large events
 
-samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, 
-                      beta.p = log(10), M0 = M0,  T1 = 0, T2 = modelledDuration, Ht=NULL)
+Ht <- NULL   # Do not impose specific events
+nCats <- 10
 
-quiet.ETAS.cat <- bind_rows(samp.etas.list)
-quiet.ETAS.cat <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts),]
+quiet.ETAS.cat.list <- list()
 
+for(i in 1:nCats){
+  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+                                  T1 = 0, T2 = modelledDuration, Ht=Ht)
+
+  quiet.ETAS.cat <- bind_rows(samp.etas.list)
+  quiet.ETAS.cat.list[[i]] <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts),]
+}
 ```
 
 ```{r}
@@ -81,11 +134,15 @@ quiet.ETAS.cat <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts),]
 
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))   # Impose a M6.7 event on day 1000
 
-samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, T1 = 0, T2 = modelledDuration, Ht=Ht)
+M6p7.ETAS.cat.list <- list()
 
-M6p7.ETAS.cat <- bind_rows(samp.etas.list)
-M6p7.ETAS.cat <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts),]
+for(i in 1:nCats){
+  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+                                  T1 = 0, T2 = modelledDuration, Ht=Ht)
 
+  M6p7.ETAS.cat <- bind_rows(samp.etas.list)
+  M6p7.ETAS.cat.list[[i]] <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts),]
+}
 ```
 
 ```{r}
@@ -104,30 +161,58 @@ load("quiet.ETAS.cat.Rda")
 
 ## Plot properties of the catalogues
 
-```{r}
+```{r fig.height=5}
 plots <-list()
 
-plots[[1]] <- ggplot() + 
-  geom_point(data = quiet.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+for( i in 1:10){
+plots[[i]] <- ggplot() + 
+  geom_point(data = M6p7.ETAS.cat.list[[i]], aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
   xlim(0, modelledDuration) +
-  ggtitle(paste("(a) Quiet syntheic catalogue, nEvents =", length(quiet.ETAS.cat$ts) )) +
+  ggtitle(paste("Quiet syntheic catalogue",i,", nEvents =", length(M6p7.ETAS.cat.list[[i]]$ts) )) +
   ylim(2,7) +
+  theme_bw() +
   xlab("Time [days]") +
-  ylab("Magnitude") + 
-  theme_linedraw()
+  ylab("Magnitude")
+}
 
-plots[[2]] <- ggplot() + 
-  geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+#plots[[2]] <- ggplot() + 
+#  geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+#  xlim(0, modelledDuration) +
+#  ggtitle(paste("(b) Catalogue with M6.7 event on day 1000, nEvents =", length(M6p7.ETAS.cat$ts) )) +
+#  ylim(2,7) +
+#  xlab("Time [days]") +
+#  ylab("Magnitude")
+
+marrangeGrob(plots, nrow=5, ncol=2)
+
+ggsave("Sipp_10M6p7Cats.png", marrangeGrob(plots, nrow=5, ncol=2))
+```
+
+```{r fig.height=5}
+plots <-list()
+
+for( i in 1:10){
+plots[[i]] <- ggplot() + 
+  geom_point(data = quiet.ETAS.cat.list[[i]], aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
   xlim(0, modelledDuration) +
-  ggtitle(paste("(b) Catalogue with M6.7 event on day 1000, nEvents =", length(M6p7.ETAS.cat$ts) )) +
+  ggtitle(paste("Quiet syntheic catalogue",i,", nEvents =", length(quiet.ETAS.cat.list[[i]]$ts) )) +
   ylim(2,7) +
+  theme_bw() +
   xlab("Time [days]") +
-  ylab("Magnitude") + 
-  theme_linedraw()
+  ylab("Magnitude")
+}
 
-marrangeGrob(plots, nrow=2, ncol=1)
+#plots[[2]] <- ggplot() + 
+#  geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+#  xlim(0, modelledDuration) +
+#  ggtitle(paste("(b) Catalogue with M6.7 event on day 1000, nEvents =", length(M6p7.ETAS.cat$ts) )) +
+#  ylim(2,7) +
+#  xlab("Time [days]") +
+#  ylab("Magnitude")
 
-ggsave("initialConditionCats.png", marrangeGrob(plots, nrow=2, ncol=1))
+marrangeGrob(plots, nrow=5, ncol=2)
+
+ggsave("Sipp_10QuietCats.png", marrangeGrob(plots, nrow=5, ncol=2))
 ```
 
 # Analyse the sensitivity to starting conditions
@@ -137,7 +222,7 @@ ggsave("initialConditionCats.png", marrangeGrob(plots, nrow=2, ncol=1))
 ```{r}
 list.output.quietScenario <-list()
 
-for (i in 1:nRealisations){
+for (i in 1:nCats){
   remove(list.input)
 
   # Load a set of parameters that we will need to tweak for this application
@@ -151,11 +236,11 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
   list.input$T12 <- c(0, modelledDuration)
   
   # Change the starting location, measured on the ETAS scale
-  list.input$mu.init <- startingValues$mu[i]
-  list.input$alpha.init <- startingValues$alpha[i]
-  list.input$K.init <- startingValues$K[i]
-  list.input$c.init <- startingValues$c[i]
-  list.input$p.init <- startingValues$p[i]
+  list.input$mu.init <- startingValues$mu
+  list.input$alpha.init <- startingValues$alpha
+  list.input$K.init <- startingValues$K
+  list.input$c.init <- startingValues$c
+  list.input$p.init <- startingValues$p
 
     link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
                  K = \(x) loggaus.t(x, a_K, b_K), 
@@ -188,6 +273,8 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
   }
 
   ## Add out catalogue to the input list
+  quiet.ETAS.cat <- quiet.ETAS.cat.list[[i]]
+  
   list.input$catalog <- data.frame( 
       time_diff = quiet.ETAS.cat$ts,
       magnitudes = quiet.ETAS.cat$magnitudes
@@ -218,7 +305,7 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
 ```{r}
 list.output.M6p7Scenario <-list()
 
-for (i in 2:nRealisations){
+for (i in 1:nCats){
   if(exists("list.input")) {remove(list.input)}
 
   # Load a set of parameters that we will need to tweak for this application
@@ -232,11 +319,11 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
   list.input$T12 <- c(0, modelledDuration)
   
   # Change the starting location, measured on the ETAS scale
-  list.input$mu.init <- startingValues$mu[i]
-  list.input$alpha.init <- startingValues$alpha[i]
-  list.input$K.init <- startingValues$K[i]
-  list.input$c.init <- startingValues$c[i]
-  list.input$p.init <- startingValues$p[i]
+  list.input$mu.init <- startingValues$mu
+  list.input$alpha.init <- startingValues$alpha
+  list.input$K.init <- startingValues$K
+  list.input$c.init <- startingValues$c
+  list.input$p.init <- startingValues$p
 
     link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
                  K = \(x) loggaus.t(x, a_K, b_K), 
@@ -269,6 +356,8 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
   }
 
   ## Add out catalogue to the input list
+  M6p7.ETAS.cat <- M6p7.ETAS.cat.list[[i]]
+
   list.input$catalog <- data.frame( 
       time_diff = M6p7.ETAS.cat$ts,
       magnitudes = M6p7.ETAS.cat$magnitudes
@@ -305,7 +394,7 @@ post.list <- get_posterior_param(input.list = list.output.quietScenario[[1]])
 post.df <-  post.list[[1]]
 post.df$id <-1
  
-for(i in 2:nRealisations){
+for(i in 2:10){
  post.list <- get_posterior_param(input.list = list.output.quietScenario[[i]])
  post.df.tmp <-  post.list[[1]]
  post.df.tmp$id <-i
@@ -316,14 +405,14 @@ for(i in 2:nRealisations){
 plots[[1]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=factor(id))) + 
     geom_line() +
   #scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) + 
-    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=1) +
+    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
   geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
-  labs(color='Initial ETAS Para. Set', linetype='Initial ETAS Para. Set' ) +
-  ggtitle(paste("Inversion of a 1000 day catalogue with no large events, nEvents =",length(quiet.ETAS.cat$ts )) ) +
-  xlab("ETAS Posteriors") + 
-  theme_bw()+
+  labs(color='Random catalogue number', linetype='Random catalogue number' ) +
+  ggtitle(paste("Impact of stochastic variability for 1000 day catalogue with no large events seeded") ) +
+  xlab("ETAS Posteriors") +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust=1))+
-  theme(legend.position='hidden') 
+  theme(legend.position='hidden')
 
 ```
 
@@ -334,7 +423,7 @@ post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[2]])
 post.df <-  post.list[[1]]
 post.df$id <-2
  
-for(i in 3:nRealisations){
+for(i in 2:10){
  post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[i]])
  post.df.tmp <-  post.list[[1]]
  post.df.tmp$id <-i
@@ -345,14 +434,14 @@ for(i in 3:nRealisations){
 plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=factor(id))) + 
     geom_line() +
   #scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) + 
-    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=1) +
+    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
   geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
-  labs(color='Initial ETAS Para. Set', linetype='Initial ETAS Para. Set' ) +
-  ggtitle(paste("Inversion of a 1000 day catalogue with a M6.7 on day 500, nEvents =", length(M6p7.ETAS.cat$ts )) ) +
-  xlab("ETAS Posteriors") + 
-  theme_bw()+
+  labs(color='Random catalogue number', linetype='Random catalogue number' ) +
+  ggtitle(paste("Impact of stochastic variability for 1000 day catalogue with a M6.7 event seeded on day 500")) +
+  xlab("ETAS Posteriors") +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust=1))+
-  theme(legend.position='hidden') 
+  theme(legend.position='hidden')
 
 ```
 
@@ -360,34 +449,24 @@ plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
 ```{r}
 marrangeGrob(plots, nrow=2, ncol=1)
 
-ggsave("initialCondition_posteriors.png", marrangeGrob(plots, nrow=2, ncol=1))
+ggsave("stochasticVariability_posteriors.png", marrangeGrob(plots, nrow=2, ncol=1))
 
 ```
 
-```{r}
+```{r fig.height=4, fig.width=4}
 grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
 ```
-## Explore ETAS triggering function using posterior samples
 
 ```{r}
-plot_triggering <- list()
-plot_triggering[[1]] <- triggering_fun_plot(list.output.quietScenario[[2]], magnitude = 4, n.samp = 100) +
-ggtitle("(a) Quiecent posteriors; M4 event")+     theme_bw()  + ylim(0,5.5)
+runtimeList<-c()
+nEventsList<-c()
 
+for(i in 1:10){
+  nEventsList <- c(nEventsList, list.output.quietScenario[[i]]$nEvents, list.output.M6p7Scenario[[i]]$nEvents)
+  runtimeList <- c(runtimeList, list.output.quietScenario[[i]]$runtime, list.output.M6p7Scenario[[i]]$runtime)
+}
 
-plot_triggering[[2]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magnitude = 4, n.samp = 100)+
-ggtitle("(b) M6.7 posteriors; M4 event")+     theme_bw()  + ylim(0,5.5)
-
-plot_triggering[[3]] <- triggering_fun_plot(list.output.quietScenario[[2]], magnitude = 6.7, n.samp = 100) +
-ggtitle("(c) Quiecent posteriors; M6.7 event")+     theme_bw()    + ylim(0,1700)
-
-
-plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magnitude = 6.7, n.samp = 100)+
-ggtitle("(d) M6.7 posteriors; M6.7 event")+     theme_bw()  + ylim(0,1700)
-
-
-plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]],plot_triggering[[2]], plot_triggering[[4]], ncol=2, nrow=2, top="Triggering function variability")
-
-ggsave("trigFuncVariability_runin.png", plt)
+plot(nEventsList, runtimeList/60, ylab="inlabru inversion runtime [min]", xlab="Number of events in catalogue")
+abline(lm(runtimeList/60 ~ nEventsList), lty=2, col='blue')
 ```
 

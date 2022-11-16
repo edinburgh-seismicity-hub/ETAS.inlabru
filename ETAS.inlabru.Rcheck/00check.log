@@ -25,8 +25,7 @@ obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... NOTE
-unable to verify current time
+* checking for future file timestamps ... OK
 * checking DESCRIPTION meta-information ... WARNING
 Non-standard license specification:
   What license is it under?
@@ -78,6 +77,9 @@ manual.
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... NOTE
+lambda.N: warning in log.Lambda_h2(th = theta_etas, ti = Ht$ts, mi =
+  Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial argument match of
+  'th' to 'theta'
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
@@ -287,6 +289,33 @@ generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘runif’
 generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rexp’
+get_posterior_N: no visible global function definition for ‘predict’
+get_posterior_N: no visible global function definition for ‘ggplot’
+get_posterior_N: no visible global function definition for ‘aes’
+get_posterior_N: no visible binding for global variable ‘N’
+get_posterior_N: no visible global function definition for ‘geom_line’
+get_posterior_N: no visible global function definition for ‘geom_vline’
+get_posterior_N: no visible global function definition for ‘ylab’
+get_posterior_N: no visible global function definition for
+  ‘geom_ribbon’
+get_posterior_N: no visible binding for global variable ‘q0.025’
+get_posterior_N: no visible binding for global variable ‘q0.975’
+get_posterior_param: no visible global function definition for
+  ‘inla.tmarginal’
+get_posterior_param: no visible global function definition for ‘ggplot’
+get_posterior_param: no visible global function definition for ‘aes’
+get_posterior_param: no visible binding for global variable ‘x’
+get_posterior_param: no visible binding for global variable ‘y’
+get_posterior_param: no visible global function definition for
+  ‘geom_line’
+get_posterior_param: no visible global function definition for
+  ‘facet_wrap’
+get_posterior_param: no visible global function definition for ‘vars’
+get_posterior_param: no visible binding for global variable ‘param’
+get_posterior_param: no visible binding for global variable
+  ‘label_parsed’
+get_posterior_param: no visible global function definition for ‘xlab’
+get_posterior_param: no visible global function definition for ‘ylab’
 inv.exp.t: no visible global function definition for ‘qnorm’
 inv.exp.t: no visible global function definition for ‘pexp’
 inv.gamma.t: no visible global function definition for ‘qnorm’
@@ -309,6 +338,7 @@ omori_plot: no visible global function definition for ‘geom_line’
 omori_plot: no visible global function definition for ‘aes’
 omori_plot: no visible binding for global variable ‘omori’
 omori_plot: no visible global function definition for ‘theme_classic’
+post_sampling: no visible global function definition for ‘generate’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
   for ‘rpois’
@@ -332,8 +362,6 @@ time.grid: no visible binding for global variable ‘t.start’
 time.grid: no visible binding for global variable ‘t.end’
 triggering_fun_plot: no visible global function definition for
   ‘generate’
-triggering_fun_plot : <anonymous>: no visible global function
-  definition for ‘trigger’
 triggering_fun_plot: no visible global function definition for
   ‘bind_cols’
 triggering_fun_plot : <anonymous>: no visible global function
@@ -348,27 +376,31 @@ triggering_fun_plot: no visible binding for global variable ‘trig’
 triggering_fun_plot: no visible global function definition for
   ‘geom_hline’
 triggering_fun_plot: no visible global function definition for
-  ‘theme_classic’
+  ‘theme_bw’
+triggering_fun_plot: no visible global function definition for ‘xlab’
+triggering_fun_plot: no visible global function definition for ‘ylab’
 unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  %>% %do% DELTA K.init Lat Lon Nmax a_K a_alpha a_c a_mu a_p aes
+  %>% %do% DELTA K.init Lat Lon N Nmax a_K a_alpha a_c a_mu a_p aes
   alpha.init b_K b_alpha b_c b_mu b_p bdy. bind_cols bind_rows bru
   bru_forward_transformation c.init catalog.colnames catalog.header
-  catalog.path catalog.sep catalog.skip coef.t delta. filter foreach
-  generate geom_hline geom_line ggplot idx injection_activityDecayRate
-  injection_vol2activity magnitude.completeness magnitude.update
-  magnitudes max.latitude max.longitude max_iter max_step mclapply
-  min.edge. min.latitude min.longitude mu.init mutate n.layer.
-  n.periods ncore omori output.name p.init period.length pexp pgamma
-  plnorm punif qgamma qlnorm qnorm quantile qunif read.table rexp rpois
-  runif scenario start.date.fore t.end t.start theme_classic time_date
-  time_string trig trigger xx. yy.
+  catalog.path catalog.sep catalog.skip coef.t delta. facet_wrap filter
+  foreach generate geom_hline geom_line geom_ribbon geom_vline ggplot
+  idx injection_activityDecayRate injection_vol2activity inla.tmarginal
+  label_parsed magnitude.completeness magnitude.update magnitudes
+  max.latitude max.longitude max_iter max_step mclapply min.edge.
+  min.latitude min.longitude mu.init mutate n.layer. n.periods ncore
+  omori output.name p.init param period.length pexp pgamma plnorm
+  predict punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif
+  read.table rexp rpois runif scenario start.date.fore t.end t.start
+  theme_bw theme_classic time_date time_string trig vars x xlab xx. y
+  ylab yy.
 Consider adding
-  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "punif",
-             "qgamma", "qlnorm", "qnorm", "quantile", "qunif", "rexp",
-             "rpois", "runif")
+  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "predict",
+             "punif", "qgamma", "qlnorm", "qnorm", "quantile", "qunif",
+             "rexp", "rpois", "runif")
   importFrom("utils", "read.table")
 to your NAMESPACE file.
 * checking Rd files ... OK
@@ -421,10 +453,7 @@ Missing link or links in documentation object 'time.grid.Rd':
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘triggering_fun_plot’ ‘user_input_synthetic’
-  ‘user_input_synthetic_noCatalogue’
-Undocumented data sets:
-  ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
+  ‘triggering_fun_plot’
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
@@ -466,6 +495,9 @@ Undocumented arguments in documentation object 'inv.loggaus.t'
 Undocumented arguments in documentation object 'inv.unif.t'
   ‘x’ ‘a’
 
+Undocumented arguments in documentation object 'lambda.N'
+  ‘Ht’
+
 Undocumented arguments in documentation object 'lambda_'
   ‘th’ ‘t’ ‘ti.v’ ‘mi.v’
 
@@ -483,6 +515,9 @@ Undocumented arguments in documentation object 'omori_plot'
 
 Undocumented arguments in documentation object 'time.grid'
   ‘data.point’
+
+Undocumented arguments in documentation object 'trigger'
+  ‘th’ ‘t’ ‘ti’ ‘mi’
 
 Undocumented arguments in documentation object 'unif.t'
   ‘x’ ‘a’
@@ -529,20 +564,22 @@ Argument items with no description in Rd object 'inv.loggaus.t':
 Argument items with no description in Rd object 'inv.unif.t':
   ‘b’
 
+Argument items with no description in Rd object 'lambda.N':
+  ‘link.functions’
+
 Argument items with no description in Rd object 'loggaus.t':
   ‘s’
 
 Argument items with no description in Rd object 'omori_plot':
   ‘n.breaks’
 
+Argument items with no description in Rd object 'trigger':
+  ‘M0’
+
 Argument items with no description in Rd object 'unif.t':
   ‘b’
 
 * checking for unstated dependencies in examples ... OK
-* checking contents of ‘data’ directory ... OK
-* checking data for non-ASCII characters ... OK
-* checking LazyData ... OK
-* checking data for ASCII and uncompressed saves ... OK
 * checking examples ... ERROR
 Running examples in ‘ETAS.inlabru-Ex.R’ failed
 The error most likely occurred in:
@@ -567,4 +604,4 @@ Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 7 WARNINGs, 4 NOTEs
+Status: 1 ERROR, 7 WARNINGs, 3 NOTEs

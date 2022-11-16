@@ -4,6 +4,8 @@ create.input.list.temporal.noCatalogue	create.input.list.temporal.noCatalogue
 create.input.list.temporal.withCatalogue	create.input.list.temporal.withCatalogue
 gamma.t	gamma.t
 generate.temporal.ETAS.synthetic	generate.temporal.ETAS.synthetic
+get_posterior_N	get_posterior_N
+get_posterior_param	get_posterior_param
 gt	gt
 gt.2	gt.2
 Hawkes.bru2	Hawkes.bru2
@@ -16,6 +18,7 @@ Inv.IntInjecIntensity	Inv.IntInjecIntensity
 inv.loggaus.t	inv.loggaus.t
 inv.unif.t	inv.unif.t
 It_df	It_df
+lambda.N	lambda.N
 lambda_	lambda_
 lambda_2	lambda_2
 log.Lambda_h	log.Lambda_h
@@ -23,6 +26,7 @@ log.Lambda_h2	log.Lambda_h2
 loggaus.t	loggaus.t
 omori_plot	omori_plot
 Plot_grid	Plot_grid
+post_sampling	post_sampling
 sample.GR.magnitudes	sample.GR.magnitudes
 sample.temoral.ETAS.daughters	sample.temoral.ETAS.daughters
 sample.temoral.injection.events	sample.temoral.injection.events
@@ -30,4 +34,5 @@ sample.temporal.ETAS.generation	sample.temporal.ETAS.generation
 sample.temporal.ETAS.times	sample.temporal.ETAS.times
 Temporal.ETAS.fit	Temporal.ETAS.fit
 time.grid	time.grid
+trigger	trigger
 unif.t	unif.t

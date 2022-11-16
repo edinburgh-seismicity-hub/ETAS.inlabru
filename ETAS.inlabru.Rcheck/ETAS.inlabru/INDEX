@@ -26,6 +26,9 @@ gamma.t                 Gamma copula transformation: Conversion of ETAS
 generate.temporal.ETAS.synthetic
                         Generates a sythetic catalogue using the ETAS
                         model
+get_posterior_N         Title
+get_posterior_param     Generate summary information on the fitted ETAS
+                        model
 gt                      Time triggering function - used by bayesianETAS
                         Used for comparing output of inlabru with
                         Bayesian ETAS MN: TODO Cross-reference the
@@ -36,6 +39,7 @@ inv.exp.t               Inverse exponential link function:
 inv.gamma.t             Inverse gamma copula transformation:
 inv.loggaus.t           Inverse log-gaussian copula transformation:
 inv.unif.t              Inverse uniform copula transformation:
+lambda.N                Title
 lambda_                 Conditional intensity - used by bayesianETAS
                         Used for comparing output of inlabru with
                         Bayesian ETAS
@@ -49,6 +53,8 @@ loggaus.t               Log-gaussian copula transformation: Conversion
                         of ETAS para to internal scale
 omori_plot              Code to plot samples from the of posterior ETAS
                         triggering function
+post_sampling           Function to return a many (n.samp) samples from
+                        the posterior of the parameters
 sample.GR.magnitudes    Return a sample of magnitudes drawn from the GR
                         distribution
 sample.temoral.ETAS.daughters
@@ -67,5 +73,6 @@ sample.temporal.ETAS.times
                         at th according to the ETAS triggering function
 time.grid               Generate a set of time bins for a specific
                         event and return.
+trigger                 Title
 unif.t                  Uniform copula transformation: Conversion of
                         ETAS para to internal scale
