@@ -7,6 +7,8 @@
 omori_plot(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 }
 \arguments{
+\item{list.input}{}
+
 \item{n.breaks}{}
 }
 \description{

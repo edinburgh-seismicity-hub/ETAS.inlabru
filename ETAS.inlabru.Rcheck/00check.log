@@ -1,8 +1,7 @@
-* using log directory ‘/Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck’
+* using log directory ‘/home/serra/SEISMICITY/ETAS.inlabru/ETAS.inlabru.Rcheck’
 * using R version 4.2.1 (2022-06-23)
-* using platform: x86_64-apple-darwin17.0 (64-bit)
+* using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
-* using options ‘--no-manual --as-cran’
 * checking for file ‘ETAS.inlabru/DESCRIPTION’ ... OK
 * checking extension type ... Package
 * this is package ‘ETAS.inlabru’ version ‘0.1.0’
@@ -15,18 +14,15 @@
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
-* checking serialization versions ... OK
 * checking whether package ‘ETAS.inlabru’ can be installed ... WARNING
 Found the following significant warnings:
   Note: possible error in 'filter(time_date >= start.date, ': unused argument (magnitudes >= magnitude.completeness) 
-See ‘/Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck/00install.out’ for details.
+See ‘/home/serra/SEISMICITY/ETAS.inlabru/ETAS.inlabru.Rcheck/00install.out’ for details.
 Information on the location(s) of code generating the ‘Note’s can be
 obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... NOTE
-unable to verify current time
 * checking DESCRIPTION meta-information ... WARNING
 Non-standard license specification:
   What license is it under?
@@ -78,18 +74,12 @@ manual.
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... NOTE
+lambda.N: warning in log.Lambda_h2(th = theta_etas, ti = Ht$ts, mi =
+  Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial argument match of
+  'th' to 'theta'
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
-Hawkes.bru2: no visible global function definition for ‘%do%’
-Hawkes.bru2: no visible global function definition for ‘foreach’
-Hawkes.bru2: no visible binding for global variable ‘idx’
-Hawkes.bru2 : logLambda.h.inla: no visible binding for global variable
-  ‘ncore’
-Hawkes.bru2 : loglambda.inla: no visible global function definition for
-  ‘mclapply’
-Hawkes.bru2: no visible global function definition for ‘bind_rows’
-Hawkes.bru2: no visible global function definition for ‘bru’
 Plot_grid: no visible binding for global variable ‘xx.’
 Plot_grid: no visible binding for global variable ‘yy.’
 Plot_grid: no visible binding for global variable ‘delta.’
@@ -287,6 +277,33 @@ generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘runif’
 generate.temporal.ETAS.synthetic: no visible global function definition
   for ‘rexp’
+get_posterior_N: no visible global function definition for ‘predict’
+get_posterior_N: no visible global function definition for ‘ggplot’
+get_posterior_N: no visible global function definition for ‘aes’
+get_posterior_N: no visible binding for global variable ‘N’
+get_posterior_N: no visible global function definition for ‘geom_line’
+get_posterior_N: no visible global function definition for ‘geom_vline’
+get_posterior_N: no visible global function definition for ‘ylab’
+get_posterior_N: no visible global function definition for
+  ‘geom_ribbon’
+get_posterior_N: no visible binding for global variable ‘q0.025’
+get_posterior_N: no visible binding for global variable ‘q0.975’
+get_posterior_param: no visible global function definition for
+  ‘inla.tmarginal’
+get_posterior_param: no visible global function definition for ‘ggplot’
+get_posterior_param: no visible global function definition for ‘aes’
+get_posterior_param: no visible binding for global variable ‘x’
+get_posterior_param: no visible binding for global variable ‘y’
+get_posterior_param: no visible global function definition for
+  ‘geom_line’
+get_posterior_param: no visible global function definition for
+  ‘facet_wrap’
+get_posterior_param: no visible global function definition for ‘vars’
+get_posterior_param: no visible binding for global variable ‘param’
+get_posterior_param: no visible binding for global variable
+  ‘label_parsed’
+get_posterior_param: no visible global function definition for ‘xlab’
+get_posterior_param: no visible global function definition for ‘ylab’
 inv.exp.t: no visible global function definition for ‘qnorm’
 inv.exp.t: no visible global function definition for ‘pexp’
 inv.gamma.t: no visible global function definition for ‘qnorm’
@@ -309,6 +326,7 @@ omori_plot: no visible global function definition for ‘geom_line’
 omori_plot: no visible global function definition for ‘aes’
 omori_plot: no visible binding for global variable ‘omori’
 omori_plot: no visible global function definition for ‘theme_classic’
+post_sampling: no visible global function definition for ‘generate’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
   for ‘rpois’
@@ -320,6 +338,15 @@ sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
+temporal.ETAS: no visible global function definition for ‘%do%’
+temporal.ETAS: no visible global function definition for ‘foreach’
+temporal.ETAS: no visible binding for global variable ‘idx’
+temporal.ETAS : logLambda.h.inla: no visible binding for global
+  variable ‘ncore’
+temporal.ETAS : loglambda.inla: no visible global function definition
+  for ‘mclapply’
+temporal.ETAS: no visible global function definition for ‘bind_rows’
+temporal.ETAS: no visible global function definition for ‘bru’
 time.grid: no visible binding for global variable ‘xx.’
 time.grid: no visible binding for global variable ‘yy.’
 time.grid: no visible binding for global variable ‘delta.’
@@ -353,41 +380,29 @@ unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
 Undefined global functions or variables:
-  %>% %do% DELTA K.init Lat Lon Nmax a_K a_alpha a_c a_mu a_p aes
+  %>% %do% DELTA K.init Lat Lon N Nmax a_K a_alpha a_c a_mu a_p aes
   alpha.init b_K b_alpha b_c b_mu b_p bdy. bind_cols bind_rows bru
   bru_forward_transformation c.init catalog.colnames catalog.header
-  catalog.path catalog.sep catalog.skip coef.t delta. filter foreach
-  generate geom_hline geom_line ggplot idx injection_activityDecayRate
-  injection_vol2activity magnitude.completeness magnitude.update
-  magnitudes max.latitude max.longitude max_iter max_step mclapply
-  min.edge. min.latitude min.longitude mu.init mutate n.layer.
-  n.periods ncore omori output.name p.init period.length pexp pgamma
-  plnorm punif qgamma qlnorm qnorm quantile qunif read.table rexp rpois
-  runif scenario start.date.fore t.end t.start theme_classic time_date
-  time_string trig trigger xx. yy.
+  catalog.path catalog.sep catalog.skip coef.t delta. facet_wrap filter
+  foreach generate geom_hline geom_line geom_ribbon geom_vline ggplot
+  idx injection_activityDecayRate injection_vol2activity inla.tmarginal
+  label_parsed magnitude.completeness magnitude.update magnitudes
+  max.latitude max.longitude max_iter max_step mclapply min.edge.
+  min.latitude min.longitude mu.init mutate n.layer. n.periods ncore
+  omori output.name p.init param period.length pexp pgamma plnorm
+  predict punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif
+  read.table rexp rpois runif scenario start.date.fore t.end t.start
+  theme_classic time_date time_string trig trigger vars x xlab xx. y
+  ylab yy.
 Consider adding
-  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "punif",
-             "qgamma", "qlnorm", "qnorm", "quantile", "qunif", "rexp",
-             "rpois", "runif")
+  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "predict",
+             "punif", "qgamma", "qlnorm", "qnorm", "quantile", "qunif",
+             "rexp", "rpois", "runif")
   importFrom("utils", "read.table")
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
-* checking Rd line widths ... NOTE
-Rd file 'generate.temporal.ETAS.synthetic.Rd':
-  \examples lines wider than 100 characters:
-     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000  ... [TRUNCATED]
-     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, ... [TRUNCATED]
-
-Rd file 'sample.temporal.ETAS.generation.Rd':
-  \examples lines wider than 100 characters:
-     sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000,  ... [TRUNCATED]
-
-These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
-Missing link or links in documentation object 'Hawkes.bru2.Rd':
-  ‘days’
-
 Missing link or links in documentation object 'Int.ETAS.time.trig.function.Rd':
   ‘days’
 
@@ -415,6 +430,9 @@ Missing link or links in documentation object 'sample.temporal.ETAS.generation.R
 Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
   ‘0, T2’
 
+Missing link or links in documentation object 'temporal.ETAS.Rd':
+  ‘measure unit of sample.s$ts’
+
 Missing link or links in documentation object 'time.grid.Rd':
   ‘days’
 
@@ -430,9 +448,6 @@ See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'Hawkes.bru2'
-  ‘sample.s’ ‘link.functions’
-
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
   ‘omega’
 
@@ -466,6 +481,9 @@ Undocumented arguments in documentation object 'inv.loggaus.t'
 Undocumented arguments in documentation object 'inv.unif.t'
   ‘x’ ‘a’
 
+Undocumented arguments in documentation object 'lambda.N'
+  ‘th.mu’ ‘th.K’ ‘th.alpha’ ‘th.c’ ‘th.p’ ‘T1’ ‘T2’ ‘M0’ ‘Ht’
+
 Undocumented arguments in documentation object 'lambda_'
   ‘th’ ‘t’ ‘ti.v’ ‘mi.v’
 
@@ -479,7 +497,7 @@ Undocumented arguments in documentation object 'loggaus.t'
   ‘x’ ‘m’
 
 Undocumented arguments in documentation object 'omori_plot'
-  ‘list.input’ ‘n.samp’ ‘t.end’
+  ‘n.samp’ ‘t.end’
 
 Undocumented arguments in documentation object 'time.grid'
   ‘data.point’
@@ -517,6 +535,9 @@ Argument items with no description in Rd object 'create.input.list.temporal.with
 Argument items with no description in Rd object 'gamma.t':
   ‘b’
 
+Argument items with no description in Rd object 'get_posterior_N':
+  ‘input.list’
+
 Argument items with no description in Rd object 'inv.exp.t':
   ‘rate’
 
@@ -529,11 +550,14 @@ Argument items with no description in Rd object 'inv.loggaus.t':
 Argument items with no description in Rd object 'inv.unif.t':
   ‘b’
 
+Argument items with no description in Rd object 'lambda.N':
+  ‘link.functions’
+
 Argument items with no description in Rd object 'loggaus.t':
   ‘s’
 
 Argument items with no description in Rd object 'omori_plot':
-  ‘n.breaks’
+  ‘list.input’ ‘n.breaks’
 
 Argument items with no description in Rd object 'unif.t':
   ‘b’
@@ -547,7 +571,6 @@ Argument items with no description in Rd object 'unif.t':
 Running examples in ‘ETAS.inlabru-Ex.R’ failed
 The error most likely occurred in:
 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: time.grid
 > ### Title: Generate a set of time bins for a specific event and return.
 > ### Aliases: time.grid
@@ -564,7 +587,21 @@ The error most likely occurred in:
 Error in if (T2_ - tt_ < delta_) { : the condition has length > 1
 Calls: time.grid -> breaks_exp
 Execution halted
-* checking for non-standard things in the check directory ... OK
-* checking for detritus in the temp directory ... OK
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+LaTeX errors found:
+! LaTeX Error: File `inconsolata.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.297 ^^M
+         
+!  ==> Fatal error occurred, no output PDF file produced!
+* checking PDF version of manual without index ... OK
 * DONE
-Status: 1 ERROR, 7 WARNINGs, 4 NOTEs
+Status: 1 ERROR, 8 WARNINGs, 2 NOTEs
