@@ -391,3 +391,35 @@ plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]],plot_triggering[[
 ggsave("trigFuncVariability_runin.png", plt)
 ```
 
+```{r}
+omori <- function(th, t, ti){
+  output <- rep(0,length(t))
+  t.diff <- t - ti
+  neg <- t.diff <= 0
+  if(sum(!neg) > 0){
+    log.out <- - th[5]*log(1 + t.diff[!neg]/th[4])
+    output[!neg] <- exp(log.out)
+  }
+  else{
+    output
+  }
+  output
+}
+```
+
+
+```{r}
+plot_omori <- list()
+plot_omori[[1]] <- omori_plot(list.output.quietScenario[[2]], n.samp = 20) +
+ggtitle("(a) Quiecent posteriors; M4 event")+     theme_bw()  + ylim(0,1)
+
+
+plot_omori[[2]] <- omori_plot(list.output.M6p7Scenario[[2]], n.samp = 20)+
+ggtitle("(b) M6.7 posteriors; M4 event")+     theme_bw()  + ylim(0,1)
+
+
+
+plt <- grid.arrange(plot_omori[[1]], plot_omori[[2]], ncol=1, nrow=2, top="Triggering function variability")
+
+ggsave("trigFuncVariability_runin.png", plt)
+```

@@ -56,14 +56,37 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
     geom_hline(yintercept = mu.upper.quant, color = 'red') +
     theme_bw() +
     xlab("Time [days]") +
-    ylab("Event rate per unit time ??")
+    ylab("Event rate per unit time")
 }
 
 
-
-#' Code to plot samples from the of posterior ETAS triggering function
+#' Title
 #'
-#' @param list.input 
+#' @param th
+#' @param t
+#' @param ti
+#'
+#' @return
+#' @export
+#'
+#' @examples
+omori <- function(th, t, ti){
+  output <- rep(0,length(t))
+  t.diff <- t - ti
+  neg <- t.diff <= 0
+  if(sum(!neg) > 0){
+    log.out <- - th[5]*log(1 + t.diff[!neg]/th[4])
+    output[!neg] <- exp(log.out)
+  }
+  else{
+    output
+  }
+  output
+}
+
+#' Plot the Omori function using samples from the posteriors containted in `list.input``
+#'
+#' @param list.input
 #' @param n.samp
 #' @param t.end
 #' @param n.breaks
