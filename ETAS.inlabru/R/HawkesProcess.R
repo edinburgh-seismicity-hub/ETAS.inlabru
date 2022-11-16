@@ -29,7 +29,7 @@ Temporal.ETAS.fit <- function(input.list){
 ## MN: DESCRIPTION: Function to fit an ETAS Hawkes process model to catalogue data
 #' Function to fit Hawkes process model
 #' @description function to fit a temporal ETAS model using `inlabru`.
-#' @param sample.s Observed events: `data.frame` with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.
+#' @param total.data Observed events: `data.frame` with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.
 #' @param M0 Minimum magnitude threshold, `scalar`
 #' @param T1 Start of temporal model domain, `scalar` [measure unit of sample.s$ts].
 #' @param T2 End of temporal model domain, `scalar` [measure unit of sample.s$ts].
@@ -43,8 +43,15 @@ Temporal.ETAS.fit <- function(input.list){
 #' @export
 #'
 #' @examples
-Temporal.ETAS <- function(sample.s, M0, T1, T2, link.functions = NULL,
+Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
                           coef.t., delta.t., N.max., bru.opt){
+  idx.remove <- total.data$ts > T2
+  if(sum(idx.remove) > 0){
+    total.data <- total.data[total.data$ts > T2, ]
+    warning('Removing events after T2')
+  }
+  idx.sample <- total.data$ts > T1 & total.data$ts < T2
+  sample.s <- total.data[idx.sample, ]
 
   # Expected number of background events
   df.0 <- data.frame(counts = 0, exposures = 1, part = 'background')
@@ -53,11 +60,13 @@ Temporal.ETAS <- function(sample.s, M0, T1, T2, link.functions = NULL,
   ## Create the grid for the XX integration
   cat('Start creating grid...', '\n')
   time.g.st <- Sys.time()
-  df.j <- foreach(idx = 1:nrow(sample.s), .combine = rbind) %do% {
-    time.grid(data.point = sample.s[idx,],
+  df.j <- foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
+    time.grid(data.point = total.data[idx,],
               coef.t = coef.t.,
               delta.t = delta.t.,
-              T2. = T2, N.exp. = N.max.
+              T1. = T1,
+              T2. = T2,
+              N.exp. = N.max.
     )
   }
   df.j$counts <- 0
@@ -117,7 +126,7 @@ Temporal.ETAS <- function(sample.s, M0, T1, T2, link.functions = NULL,
   }
 
   list.input <- list(df_grid = df.j, M0 = M0, Imapping = Imapping, time.sel = time.sel,
-                     sample.s = sample.s)
+                     sample.s = sample.s, total.data = total.data)
   data.input = bind_rows(df.0, df.s, df.j)      ## Combine
   list.input <- append(list.input,
                        list(idx.bkg = data.input$part == 'background',
@@ -134,8 +143,8 @@ Temporal.ETAS <- function(sample.s, M0, T1, T2, link.functions = NULL,
     out[list.input$idx.sl] <- loglambda.inla(th.mu = th.mu, th.K = th.K, th.alpha = th.alpha,
                                              th.c = th.c, th.p = th.p,
                                              tt = list.input$sample.s$ts,
-                                             th = list.input$sample.s$ts,
-                                             mh = list.input$sample.s$magnitudes,
+                                             th = list.input$total.data$ts,
+                                             mh = list.input$total.data$magnitudes,
                                              M0 = M0)
     out
   }
