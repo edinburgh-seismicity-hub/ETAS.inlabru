@@ -55,8 +55,8 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
     geom_hline(yintercept = mu.lower.quant, color = 'red') +
     geom_hline(yintercept = mu.upper.quant, color = 'red') +
     theme_bw() +
-    xlab("Time [days]") +
-    ylab("Event rate per unit time")
+    xlab("Time") +
+    ylab("Event rate")
 }
 
 
@@ -128,5 +128,7 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   output.plot +
     geom_line(aes(x = t.eval, y = omori.lower.quant)) +
     geom_line(aes(x = t.eval, y = omori.upper.quant)) +
-    theme_classic()
+    theme_bw() +
+    xlab("Time") +
+    ylab("Event rate")
 }

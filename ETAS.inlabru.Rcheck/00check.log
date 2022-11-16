@@ -83,15 +83,6 @@ lambda.N: warning in log.Lambda_h2(th = theta_etas, ti = Ht$ts, mi =
 sample.temporal.ETAS.generation: warning in log.Lambda_h2(th = theta,
   ti = Ht$ts, mi = Ht$magnitudes, M0 = M0, T1 = T1, T2 = T2): partial
   argument match of 'th' to 'theta'
-Hawkes.bru2: no visible global function definition for ‘%do%’
-Hawkes.bru2: no visible global function definition for ‘foreach’
-Hawkes.bru2: no visible binding for global variable ‘idx’
-Hawkes.bru2 : logLambda.h.inla: no visible binding for global variable
-  ‘ncore’
-Hawkes.bru2 : loglambda.inla: no visible global function definition for
-  ‘mclapply’
-Hawkes.bru2: no visible global function definition for ‘bind_rows’
-Hawkes.bru2: no visible global function definition for ‘bru’
 Plot_grid: no visible binding for global variable ‘xx.’
 Plot_grid: no visible binding for global variable ‘yy.’
 Plot_grid: no visible binding for global variable ‘delta.’
@@ -328,16 +319,15 @@ loggaus.t: no visible global function definition for
   ‘bru_forward_transformation’
 loggaus.t: no visible binding for global variable ‘qlnorm’
 omori_plot: no visible global function definition for ‘generate’
-omori_plot : <anonymous>: no visible global function definition for
-  ‘omori’
 omori_plot: no visible global function definition for ‘bind_cols’
 omori_plot : <anonymous>: no visible global function definition for
   ‘quantile’
 omori_plot: no visible global function definition for ‘ggplot’
 omori_plot: no visible global function definition for ‘geom_line’
 omori_plot: no visible global function definition for ‘aes’
-omori_plot: no visible binding for global variable ‘omori’
-omori_plot: no visible global function definition for ‘theme_classic’
+omori_plot: no visible global function definition for ‘theme_bw’
+omori_plot: no visible global function definition for ‘xlab’
+omori_plot: no visible global function definition for ‘ylab’
 post_sampling: no visible global function definition for ‘generate’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
@@ -350,6 +340,15 @@ sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
+temporal.ETAS: no visible global function definition for ‘%do%’
+temporal.ETAS: no visible global function definition for ‘foreach’
+temporal.ETAS: no visible binding for global variable ‘idx’
+temporal.ETAS : logLambda.h.inla: no visible binding for global
+  variable ‘ncore’
+temporal.ETAS : loglambda.inla: no visible global function definition
+  for ‘mclapply’
+temporal.ETAS: no visible global function definition for ‘bind_rows’
+temporal.ETAS: no visible global function definition for ‘bru’
 time.grid: no visible binding for global variable ‘xx.’
 time.grid: no visible binding for global variable ‘yy.’
 time.grid: no visible binding for global variable ‘delta.’
@@ -392,11 +391,10 @@ Undefined global functions or variables:
   label_parsed magnitude.completeness magnitude.update magnitudes
   max.latitude max.longitude max_iter max_step mclapply min.edge.
   min.latitude min.longitude mu.init mutate n.layer. n.periods ncore
-  omori output.name p.init param period.length pexp pgamma plnorm
-  predict punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif
-  read.table rexp rpois runif scenario start.date.fore t.end t.start
-  theme_bw theme_classic time_date time_string trig vars x xlab xx. y
-  ylab yy.
+  output.name p.init param period.length pexp pgamma plnorm predict
+  punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif read.table
+  rexp rpois runif scenario start.date.fore t.end t.start theme_bw
+  time_date time_string trig vars x xlab xx. y ylab yy.
 Consider adding
   importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "predict",
              "punif", "qgamma", "qlnorm", "qnorm", "quantile", "qunif",
@@ -417,9 +415,6 @@ Rd file 'sample.temporal.ETAS.generation.Rd':
 
 These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
-Missing link or links in documentation object 'Hawkes.bru2.Rd':
-  ‘days’
-
 Missing link or links in documentation object 'Int.ETAS.time.trig.function.Rd':
   ‘days’
 
@@ -447,21 +442,21 @@ Missing link or links in documentation object 'sample.temporal.ETAS.generation.R
 Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
   ‘0, T2’
 
+Missing link or links in documentation object 'temporal.ETAS.Rd':
+  ‘measure unit of sample.s$ts’
+
 Missing link or links in documentation object 'time.grid.Rd':
   ‘days’
 
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘triggering_fun_plot’
+  ‘omori’ ‘triggering_fun_plot’
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'Hawkes.bru2'
-  ‘sample.s’ ‘link.functions’
-
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
   ‘omega’
 
@@ -511,7 +506,7 @@ Undocumented arguments in documentation object 'loggaus.t'
   ‘x’ ‘m’
 
 Undocumented arguments in documentation object 'omori_plot'
-  ‘list.input’ ‘n.samp’ ‘t.end’
+  ‘n.samp’ ‘t.end’
 
 Undocumented arguments in documentation object 'time.grid'
   ‘data.point’
@@ -571,7 +566,7 @@ Argument items with no description in Rd object 'loggaus.t':
   ‘s’
 
 Argument items with no description in Rd object 'omori_plot':
-  ‘n.breaks’
+  ‘list.input’ ‘n.breaks’
 
 Argument items with no description in Rd object 'trigger':
   ‘M0’
