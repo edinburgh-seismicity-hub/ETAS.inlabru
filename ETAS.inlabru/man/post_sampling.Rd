@@ -2,18 +2,22 @@
 % Please edit documentation in R/AnalysingPosteriors.R
 \name{post_sampling}
 \alias{post_sampling}
-\title{Function to return a many (n.samp) samples from the posterior of the parameters}
+\title{Sample from the posterior of the ETAS parameters}
 \usage{
 post_sampling(input.list, n.samp)
 }
 \arguments{
-\item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
+\item{input.list}{structured input \code{list} with at least two elements:
+\itemize{
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+}}
 
 \item{n.samp}{The number of samples to draw from the posteriors}
 }
 \value{
-n.samp samples drawn from the posteriors.
+\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters.
 }
 \description{
-Function to return a many (n.samp) samples from the posterior of the parameters
+Sample from the posterior of the ETAS parameters
 }

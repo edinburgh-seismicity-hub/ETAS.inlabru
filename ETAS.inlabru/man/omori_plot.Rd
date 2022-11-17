@@ -2,15 +2,23 @@
 % Please edit documentation in R/plottingFunctions.R
 \name{omori_plot}
 \alias{omori_plot}
-\title{Code to plot samples from the of posterior ETAS triggering function}
+\title{Function to plot the Omori's law corresponding to different posterior samples}
 \usage{
 omori_plot(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 }
 \arguments{
-\item{list.input}{}
+\item{list.input}{structured input \code{list} with at least two elements:
+\itemize{
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+}}
 
-\item{n.breaks}{}
+\item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
+
+\item{t.end}{Upper bund of the x-axis, \code{scalar} (\code{default = 1}).}
+
+\item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the function, \code{integer} (\code{default = 100}).}
 }
 \description{
-Code to plot samples from the of posterior ETAS triggering function
+Function to plot the Omori's law corresponding to different posterior samples
 }

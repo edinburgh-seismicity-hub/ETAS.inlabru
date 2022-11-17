@@ -65,11 +65,11 @@ cond.lambda <- function(theta, t, th, mh, M0){
 }
 
 
-#' integrated triggering function - used by Inlabru ALSO USED IN GENERATION SAMPLES
+#' Logarithm of the integral of the ETAS triggering function
 #'
 #' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
-#' @param ti Time of parent event.
-#' @param mi Magnitude of parent event
+#' @param th Time of parent event.
+#' @param mh Magnitude of parent event
 #' @param M0 Minimum magnitude threshold
 #' @param T1 Start of temporal model domain.
 #' @param T2 End of temporal model domain.
@@ -78,72 +78,15 @@ cond.lambda <- function(theta, t, th, mh, M0){
 #' @export
 #'
 #' @examples
-log.Lambda_h2 <- function(theta, ti, mi, M0, T1, T2){
-  th <- theta
-  T.low <- pmax(T1, ti)#sapply(ti, \(x) max(T1, x))
+log.Lambda.h <- function(theta, th, mh, M0, T1, T2){
+  T.low <- pmax(T1, th)
 
-  gamma.l <- (T.low - ti)/th$c
-  gamma.u <- (T2 - ti)/th$c
+  gamma.l <- (T.low - th)/theta$c
+  gamma.u <- (T2 - th)/theta$c
   w.l <- (1 + gamma.l)^(1-th$p)
   w.u <- (1 + gamma.u)^(1-th$p)
   # output
-  log(th$K) + th$alpha*(mi - M0) + log(th$c) - log(th$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
-}
-
-#' Integrated ETAS time-triggering function
-#'
-#' @param theta ETAS parameters data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
-#' @param th Time of past event? [days]
-#' @param T2 End of temporal model domain.
-#'
-#' @return
-#' @export
-#'
-#' @examples
-# It <- function(theta, th, T2){
-Int.ETAS.time.trig.function <- function(theta, th, T2){
-  gamma.u <- (T2 - th)/theta$c
-  ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
+  log(theta$K) + theta$alpha*(mi - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
 }
 
 
-#' Inverse of integrated ETAS time-triggering function
-#'
-#' @param theta ETAS parameters data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
-#' @param omega
-#' @param th
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#Inv.It <- function(theta, omega, th){
-Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
-  th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
-}
-
-#' Title
-#'
-#' @param th
-#' @param t
-#' @param ti
-#' @param mi
-#' @param M0
-#'
-#' @return
-#' @export
-#'
-#' @examples
-trigger <- function(th, t, ti, mi, M0){
-  output <- rep(0,length(t))
-  t.diff <- t - ti
-  neg <- t.diff <= 0
-  if(sum(!neg) > 0){
-    log.out <- log(th[2]) + th[3]*(mi - M0) - th[5]*log(1 + t.diff[!neg]/th[4])
-    output[!neg] <- exp(log.out)
-  }
-  else{
-    output
-  }
-  output
-}

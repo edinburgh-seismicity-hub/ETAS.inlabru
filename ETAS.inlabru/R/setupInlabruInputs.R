@@ -1,8 +1,8 @@
 #' Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
 #'
-#' @param input_path
+#' @param input_path path of the `txt` file containing experiment's information
 #'
-#' @return
+#' @return The formatted input.list with the elements required for the temporal Hawkes model
 #' @export
 #'
 #' @examples

@@ -7,7 +7,7 @@
 sample.temporal.ETAS.times(theta, n.ev, th, T2)
 }
 \arguments{
-\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
+\item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
 \item{n.ev}{Number of events to return in the sample in time domain (th, T2].}
 
