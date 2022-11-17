@@ -87,7 +87,7 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
                   link.functions$p(th.p[1]))
 
 
-  return( theta_etas[1]*(T2 - T1) + sum(exp(log.Lambda_h2(th = theta_etas,
+  return( theta_etas[1]*(T2 - T1) + sum(exp(log.Lambda_h2(theta = theta_etas,
                                                           ti = Ht$ts,
                                                           mi = Ht$magnitudes,
                                                           M0 = M0,
