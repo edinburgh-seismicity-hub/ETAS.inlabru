@@ -5,7 +5,7 @@
 \title{Function to fit Hawkes process model}
 \usage{
 Temporal.ETAS(
-  sample.s,
+  total.data,
   M0,
   T1,
   T2,
@@ -17,7 +17,7 @@ Temporal.ETAS(
 )
 }
 \arguments{
-\item{sample.s}{Observed events: \code{data.frame} with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.}
+\item{total.data}{Observed events: \code{data.frame} with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.}
 
 \item{M0}{Minimum magnitude threshold, \code{scalar}}
 

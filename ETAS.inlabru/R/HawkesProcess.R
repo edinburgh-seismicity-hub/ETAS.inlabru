@@ -3,9 +3,10 @@
 ## MN: Returns: bru output for the fitted ETAS model as a dataframe
 #' Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.
 #'
-#' @param input.list All input data and parameters are passed to inlabru via this structured list.
+#' @param input.list All input data and parameters are passed to inlabru via this structured `list`.
+#' This is the output of the function [create.input.list.temporal.withCatalogue] or [create.input.list.temporal.noCatalogue]
 #'
-#' @return The fitted model as a bru object, which is a list
+#' @return The fitted model as a `bru` object, which is a list
 #' @export
 #'
 #' @examples
