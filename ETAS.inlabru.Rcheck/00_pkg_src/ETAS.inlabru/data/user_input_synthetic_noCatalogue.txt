@@ -1,0 +1,86 @@
+#######################
+# Sequence parameters #
+#######################
+
+scenario = "synthetic"
+
+# start.date = "2016-08-24 01:36:00 BST"
+# end.date = "2017-08-15 19:25:33 BST"
+# magnitude.completeness = 0
+# min.longitude = -180
+# max.longitude = 180
+# min.latitude = -90
+# max.latitude = 90
+# catalog.path = NULL
+# catalog.header = TRUE
+# catalog.sep = ' '
+# catalog.skip = 0
+# catalog.colnames = NULL
+
+##########
+# Priors #
+##########
+
+a_mu = 0.5
+b_mu = 0.5
+a_K = -1 
+b_K = 0.5
+a_alpha = 0
+b_alpha = 10
+a_c = 0
+b_c = 1
+a_p = 1
+b_p = 2
+
+##################
+# Initial values #
+##################
+
+#th.mu.init = 0.5
+#th.K.init = 0.5
+#th.alpha.init = -2
+#th.c.init = -2 
+#th.p.init = -2
+
+##################
+# Initial values on the ETAS scale #
+##################
+
+mu.init = 0.25
+K.init = 0.3
+alpha.init = 1.6
+c.init = 0.2
+p.init = 1.1
+
+
+###################
+# Inlabru options #
+###################
+
+max_iter = 100
+max_step = NULL
+
+###########################
+# Time binning parameters #
+###########################
+# Amatrice #
+
+coef.t = 1     # 
+DELTA = 0.1    #
+Nmax = 8       #
+
+############
+# Forecast #
+############
+
+n.periods = 120
+period.length = 1
+start.date.fore = NULL
+magnitude.update = 5.5
+
+###############
+# Output name #
+###############
+
+output.name = 'report_ETAS'
+

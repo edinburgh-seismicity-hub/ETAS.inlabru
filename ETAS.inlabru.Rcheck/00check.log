@@ -1,7 +1,8 @@
-* using log directory ‘/home/serra/SEISMICITY/ETAS.inlabru/ETAS.inlabru.Rcheck’
+* using log directory ‘/Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck’
 * using R version 4.2.1 (2022-06-23)
-* using platform: x86_64-pc-linux-gnu (64-bit)
+* using platform: x86_64-apple-darwin17.0 (64-bit)
 * using session charset: UTF-8
+* using options ‘--no-manual --as-cran’
 * checking for file ‘ETAS.inlabru/DESCRIPTION’ ... OK
 * checking extension type ... Package
 * this is package ‘ETAS.inlabru’ version ‘0.1.0’
@@ -14,15 +15,17 @@
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
 * checking whether package ‘ETAS.inlabru’ can be installed ... WARNING
 Found the following significant warnings:
   Note: possible error in 'filter(time_date >= start.date, ': unused argument (magnitudes >= magnitude.completeness) 
-See ‘/home/serra/SEISMICITY/ETAS.inlabru/ETAS.inlabru.Rcheck/00install.out’ for details.
+See ‘/Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck/00install.out’ for details.
 Information on the location(s) of code generating the ‘Note’s can be
 obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
+* checking for future file timestamps ... OK
 * checking DESCRIPTION meta-information ... WARNING
 Non-standard license specification:
   What license is it under?
@@ -62,7 +65,7 @@ gamma.t:
 time:
   function(x, ...)
 time.grid:
-  function(data.point, coef.t, delta.t, T2., displaygrid, N.exp.)
+  function(data.point, coef.t, delta.t, N.exp., T1., T2.)
 
 See section ‘Generic functions and methods’ in the ‘Writing R
 Extensions’ manual.
@@ -86,6 +89,15 @@ Plot_grid: no visible binding for global variable ‘delta.’
 Plot_grid: no visible binding for global variable ‘n.layer.’
 Plot_grid: no visible binding for global variable ‘bdy.’
 Plot_grid: no visible binding for global variable ‘min.edge.’
+Temporal.ETAS: no visible global function definition for ‘%do%’
+Temporal.ETAS: no visible global function definition for ‘foreach’
+Temporal.ETAS: no visible binding for global variable ‘idx’
+Temporal.ETAS : logLambda.h.inla: no visible binding for global
+  variable ‘ncore’
+Temporal.ETAS : loglambda.inla: no visible global function definition
+  for ‘mclapply’
+Temporal.ETAS: no visible global function definition for ‘bind_rows’
+Temporal.ETAS: no visible global function definition for ‘bru’
 create.input.list.temporal.noCatalogue : <anonymous>: no visible
   binding for global variable ‘a_mu’
 create.input.list.temporal.noCatalogue : <anonymous>: no visible
@@ -338,21 +350,6 @@ sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
-temporal.ETAS: no visible global function definition for ‘%do%’
-temporal.ETAS: no visible global function definition for ‘foreach’
-temporal.ETAS: no visible binding for global variable ‘idx’
-temporal.ETAS : logLambda.h.inla: no visible binding for global
-  variable ‘ncore’
-temporal.ETAS : loglambda.inla: no visible global function definition
-  for ‘mclapply’
-temporal.ETAS: no visible global function definition for ‘bind_rows’
-temporal.ETAS: no visible global function definition for ‘bru’
-time.grid: no visible binding for global variable ‘xx.’
-time.grid: no visible binding for global variable ‘yy.’
-time.grid: no visible binding for global variable ‘delta.’
-time.grid: no visible binding for global variable ‘n.layer.’
-time.grid: no visible binding for global variable ‘bdy.’
-time.grid: no visible binding for global variable ‘min.edge.’
 time.grid: no visible global function definition for ‘%>%’
 time.grid: no visible global function definition for ‘mutate’
 time.grid: no visible binding for global variable ‘t.start’
@@ -402,6 +399,17 @@ Consider adding
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
+* checking Rd line widths ... NOTE
+Rd file 'generate.temporal.ETAS.synthetic.Rd':
+  \examples lines wider than 100 characters:
+     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000  ... [TRUNCATED]
+     generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, ... [TRUNCATED]
+
+Rd file 'sample.temporal.ETAS.generation.Rd':
+  \examples lines wider than 100 characters:
+     sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000,  ... [TRUNCATED]
+
+These lines will be truncated in the PDF manual.
 * checking Rd cross-references ... WARNING
 Missing link or links in documentation object 'Int.ETAS.time.trig.function.Rd':
   ‘days’
@@ -412,8 +420,8 @@ Missing link or links in documentation object 'IntInjecIntensity.Rd':
 Missing link or links in documentation object 'Inv.IntInjecIntensity.Rd':
   ‘days’
 
-Missing link or links in documentation object 'breaks_exp.Rd':
-  ‘days’
+Missing link or links in documentation object 'Temporal.ETAS.Rd':
+  ‘measure unit of sample.s$ts’
 
 Missing link or links in documentation object 'generate.temporal.ETAS.synthetic.Rd':
   ‘days’
@@ -430,12 +438,6 @@ Missing link or links in documentation object 'sample.temporal.ETAS.generation.R
 Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
   ‘0, T2’
 
-Missing link or links in documentation object 'temporal.ETAS.Rd':
-  ‘measure unit of sample.s$ts’
-
-Missing link or links in documentation object 'time.grid.Rd':
-  ‘days’
-
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
@@ -446,19 +448,26 @@ Undocumented data sets:
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
-* checking for code/documentation mismatches ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'Temporal.ETAS':
+Temporal.ETAS
+  Code: function(total.data, M0, T1, T2, link.functions = NULL,
+                 coef.t., delta.t., N.max., bru.opt)
+  Docs: function(sample.s, M0, T1, T2, link.functions = NULL, coef.t.,
+                 delta.t., N.max., bru.opt)
+  Argument names in code not in docs:
+    total.data
+  Argument names in docs not in code:
+    sample.s
+  Mismatches in argument names:
+    Position: 1 Code: total.data Docs: sample.s
+
 * checking Rd \usage sections ... WARNING
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
   ‘omega’
 
-Undocumented arguments in documentation object 'It_df'
-  ‘param_’
-
 Undocumented arguments in documentation object 'Plot_grid'
   ‘xx’ ‘yy’ ‘delta_’ ‘n.layer’ ‘bdy_’
-
-Undocumented arguments in documentation object 'compute.grid'
-  ‘param.’
 
 Undocumented arguments in documentation object 'gamma.t'
   ‘x’ ‘a’
@@ -499,9 +508,6 @@ Undocumented arguments in documentation object 'loggaus.t'
 Undocumented arguments in documentation object 'omori_plot'
   ‘n.samp’ ‘t.end’
 
-Undocumented arguments in documentation object 'time.grid'
-  ‘data.point’
-
 Undocumented arguments in documentation object 'unif.t'
   ‘x’ ‘a’
 
@@ -520,14 +526,8 @@ Argument items with no description in Rd object 'Inv.Int.ETAS.time.trig.function
 Argument items with no description in Rd object 'Inv.IntInjecIntensity':
   ‘number.injected.events’
 
-Argument items with no description in Rd object 'It_df':
-  ‘time.df’
-
 Argument items with no description in Rd object 'Plot_grid':
   ‘min.edge’
-
-Argument items with no description in Rd object 'compute.grid':
-  ‘list.input_’
 
 Argument items with no description in Rd object 'create.input.list.temporal.withCatalogue':
   ‘input_path’
@@ -571,37 +571,21 @@ Argument items with no description in Rd object 'unif.t':
 Running examples in ‘ETAS.inlabru-Ex.R’ failed
 The error most likely occurred in:
 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: time.grid
-> ### Title: Generate a set of time bins for a specific event and return.
+> ### Title: Generate a set of time bins for a specific event.
 > ### Aliases: time.grid
 > 
 > ### ** Examples
 > 
 > ## EXAMPLE 1
-> events <- data.frame( ts=c(0,1 , 3 ), idx.p=c(1,2,3) )
-> T2 <- 20
-> N.exp <- 8
-> delta.t <- 0.1
-> coef.t <- 1
-> time.grid(events, coef.t, delta.t, T2, displaygrid = FALSE, N.exp)
-Error in if (T2_ - tt_ < delta_) { : the condition has length > 1
-Calls: time.grid -> breaks_exp
+> event <- list( ts= 0, idx.p= 1 )
+> time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1 = 1, T2 = 20)
+Error in data.frame(t.start = t_b[-length(t_b)], t.end = t_b[-1]) %>%  : 
+  could not find function "%>%"
+Calls: time.grid
 Execution halted
-* checking PDF version of manual ... WARNING
-LaTeX errors when creating PDF version.
-This typically indicates Rd problems.
-LaTeX errors found:
-! LaTeX Error: File `inconsolata.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-! Emergency stop.
-<read *> 
-         
-l.297 ^^M
-         
-!  ==> Fatal error occurred, no output PDF file produced!
-* checking PDF version of manual without index ... OK
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 8 WARNINGs, 2 NOTEs
+Status: 1 ERROR, 8 WARNINGs, 3 NOTEs
