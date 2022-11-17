@@ -2,13 +2,23 @@
 % Please edit documentation in R/temporalBinning.R
 \name{compute.grid}
 \alias{compute.grid}
-\title{Title}
+\title{Function to compute the integral of Omori's law efficiently}
 \usage{
-compute.grid(param., list.input_)
+\method{compute}{grid}(param., list.input_)
 }
 \arguments{
-\item{list.input_}{}
+\item{param.}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}
+
+\item{list.input_}{\code{list} containing information to calculate the integrals efficiently. The list is created inside the \code{Temporal.ETAS} function.
+Two elements are used
+\itemize{
+\item \code{time.sel} selection of rows of the output of \code{time.grid} with unique \code{t.ref_layer} value, \code{data.frame}.
+\item \code{Imapping} mapper between the unique names provided in \code{time.sel} and original rows of the output of \code{time.grid()}, \code{vector}.
+}}
+}
+\value{
+\code{vector} with same length as \code{list.input_$Imapping} with the integral of the Omori's law for each bin.
 }
 \description{
-Title
+Function to compute the integral of Omori's law efficiently
 }

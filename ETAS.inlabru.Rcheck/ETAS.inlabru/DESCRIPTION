@@ -25,5 +25,5 @@ Roxygen: list(markdown = TRUE)
 Imports: lemon, parallel, tidyquant, dplyr, ggplot2, foreach, INLA,
         inlabru
 NeedsCompilation: no
-Packaged: 2022-11-16 14:52:25 UTC; serra
-Built: R 4.2.1; ; 2022-11-16 14:52:27 UTC; unix
+Packaged: 2022-11-16 21:42:52 UTC; mnaylor
+Built: R 4.2.1; ; 2022-11-16 21:42:57 UTC; unix

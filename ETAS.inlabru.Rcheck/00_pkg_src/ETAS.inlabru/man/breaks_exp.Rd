@@ -2,21 +2,33 @@
 % Please edit documentation in R/temporalBinning.R
 \name{breaks_exp}
 \alias{breaks_exp}
-\title{Title}
+\title{Find breaks point for 1D grid}
 \usage{
-breaks_exp(tt_, T2_, coef_ = 2, delta_, N_exp_ = 10)
+breaks_exp(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10)
 }
 \arguments{
-\item{tt_}{List of the event times a grid is needed for \link{days}.}
+\item{start.grid}{Starting point of the grid, \code{scalar}.}
 
-\item{T2_}{End of temporal domain \link{days}.}
+\item{end.grid}{End point of the grid, \code{scalar}.}
 
-\item{coef_}{TimeBinning parameter:}
+\item{coef.t}{TimeBinning parameter: \eqn{\delta > 0} determines the relative length of subsequent intervals, \code{scalar}.}
 
-\item{delta_}{TimeBinning parameter:}
+\item{delta.t}{TimeBinning parameter: \eqn{\Delta > 0} determines the length of the intervals, \code{scalar}.}
 
-\item{N_exp_}{TimeBinning parameter: Number of bins}
+\item{N.exp.}{TimeBinning parameter: \eqn{n_{max} >0} determines the maximum number of intervals, \code{scalar}}
+}
+\value{
+\code{vector} containing the grid points
 }
 \description{
-Title
+\code{breaks_exp} return the breaks points of a one dimensional grid depending on three parameters, see details
+}
+\details{
+The grid is calculated as follows
+\deqn{t, t + \Delta, t + \Delta(1 + \delta), t + \Delta(1 + \delta)^2,...., T}
+where \eqn{t} is the \code{start.grid} argument, \eqn{T} is the \code{end.grid} argument, and \eqn{n_{max}} is the maximum value of the exponent
+}
+\examples{
+breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3)
+breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10)
 }

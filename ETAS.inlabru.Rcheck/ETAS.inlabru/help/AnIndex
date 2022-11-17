@@ -31,7 +31,7 @@ sample.temoral.ETAS.daughters	sample.temoral.ETAS.daughters
 sample.temoral.injection.events	sample.temoral.injection.events
 sample.temporal.ETAS.generation	sample.temporal.ETAS.generation
 sample.temporal.ETAS.times	sample.temporal.ETAS.times
-temporal.ETAS	temporal.ETAS
+Temporal.ETAS	Temporal.ETAS
 Temporal.ETAS.fit	Temporal.ETAS.fit
 time.grid	time.grid
 unif.t	unif.t
