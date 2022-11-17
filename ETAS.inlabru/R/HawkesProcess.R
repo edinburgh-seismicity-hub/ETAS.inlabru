@@ -106,24 +106,27 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
 
     ## MN: Rescale parameters to internal parameter scale
     if(is.null(link.functions)){
-      th.p <- c(th.mu[1], th.K[1], th.alpha[1], th.c[1], th.p[1])
+      th.p <- list(mu = th.mu[1],
+                   K = th.K[1], alpha = th.alpha[1],
+                   c = th.c[1], p = th.p[1])
     }
     else{
-      th.p <- c(link.functions$mu(th.mu[1]),
-                link.functions$K(th.K[1]),
-                link.functions$alpha(th.alpha[1]),
-                link.functions$c_(th.c[1]),
-                link.functions$p(th.p[1]))
+      th.p <- list(mu = link.functions$mu(th.mu[1]),
+                   K = link.functions$K(th.K[1]),
+                   alpha = link.functions$alpha(th.alpha[1]),
+                   c = link.functions$c_(th.c[1]),
+                   p = link.functions$p(th.p[1]))
     }
 
     ## MN: Parallel looping over the historic event magnitudes and times QQ why mean?  ALSO past in grid or historic?
     ## MN: Finn's trick for making more stable - QQ is this to avoid large numbers??
-    mean(unlist(mclapply(tt, \(x) {
+    out <- mean(unlist(lapply(tt, \(x) {
       th_x <- th < x
-      log(lambda_2(th = th.p, t = x, ti.v = th[th_x],
-                   mi.v = mh[th_x], M0 = M0))
-    },
-    mc.cores = 5)))
+      log(cond.lambda(theta = th.p, t = x, th = th[th_x],
+                     mh = mh[th_x], M0 = M0))
+    })))#,
+    #mc.cores = 5)))
+    return(out)
   }
 
   list.input <- list(df_grid = df.j, M0 = M0, Imapping = Imapping, time.sel = time.sel,
