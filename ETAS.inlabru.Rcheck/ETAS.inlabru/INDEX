@@ -73,7 +73,13 @@ sample.temporal.ETAS.generation
 sample.temporal.ETAS.times
                         Sampling times for events triggered by a parent
                         at th according to the ETAS triggering function
+temporal.ETAS           Function to fit Hawkes process model
 time.grid               Generate a set of time bins for a specific
+<<<<<<< HEAD
                         event.
+=======
+                        event and return.
+trigger                 Title
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 unif.t                  Uniform copula transformation: Conversion of
                         ETAS para to internal scale

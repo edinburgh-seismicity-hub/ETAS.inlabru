@@ -7,7 +7,7 @@
 get_posterior_N(input.list)
 }
 \arguments{
-\item{input.list}{}
+\item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
 }
 \description{
 Title

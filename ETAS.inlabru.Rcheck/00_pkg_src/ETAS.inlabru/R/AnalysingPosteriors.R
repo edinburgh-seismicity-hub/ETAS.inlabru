@@ -63,6 +63,7 @@ post_sampling <- function(input.list, n.samp){
 ## MN: Returns: number of events
 #' Title
 #'
+<<<<<<< HEAD
 #' @param th.mu
 #' @param th.K
 #' @param th.alpha
@@ -71,6 +72,16 @@ post_sampling <- function(input.list, n.samp){
 #' @param T1
 #' @param T2
 #' @param M0
+=======
+#' @param th.mu Background rate, `mu`, on the internal parameter scale
+#' @param th.K ETAS triggering parameter `K` on the internal parameter scale
+#' @param th.alpha ETAS triggering parameter `alpha` on the internal parameter scale
+#' @param th.c ETAS triggering parameter `c` on the internal parameter scale
+#' @param th.p ETAS triggering parameter `p` on the internal parameter scale
+#' @param T1 Start of temporal model domain.
+#' @param T2 End of temporal model domain.
+#' @param M0 Minimum magnitude threshold
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 #' @param Ht
 #' @param link.functions
 #'
@@ -103,7 +114,11 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 
 #' Title
 #'
+<<<<<<< HEAD
 #' @param input.list
+=======
+#' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 #'
 #' @return
 #' @export

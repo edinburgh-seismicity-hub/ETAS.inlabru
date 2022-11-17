@@ -31,7 +31,12 @@ sample.temoral.ETAS.daughters	sample.temoral.ETAS.daughters
 sample.temoral.injection.events	sample.temoral.injection.events
 sample.temporal.ETAS.generation	sample.temporal.ETAS.generation
 sample.temporal.ETAS.times	sample.temporal.ETAS.times
+<<<<<<< HEAD
 Temporal.ETAS	Temporal.ETAS
+=======
+temporal.ETAS	temporal.ETAS
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 Temporal.ETAS.fit	Temporal.ETAS.fit
 time.grid	time.grid
+trigger	trigger
 unif.t	unif.t

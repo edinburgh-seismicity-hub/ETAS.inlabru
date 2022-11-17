@@ -7,7 +7,11 @@
 get_posterior_N(input.list)
 }
 \arguments{
+<<<<<<< HEAD
 \item{input.list}{}
+=======
+\item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 }
 \description{
 Title

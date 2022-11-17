@@ -7,6 +7,22 @@
 lambda.N(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht, link.functions)
 }
 \arguments{
+\item{th.mu}{Background rate, \code{mu}, on the internal parameter scale}
+
+\item{th.K}{ETAS triggering parameter \code{K} on the internal parameter scale}
+
+\item{th.alpha}{ETAS triggering parameter \code{alpha} on the internal parameter scale}
+
+\item{th.c}{ETAS triggering parameter \code{c} on the internal parameter scale}
+
+\item{th.p}{ETAS triggering parameter \code{p} on the internal parameter scale}
+
+\item{T1}{Start of temporal model domain.}
+
+\item{T2}{End of temporal model domain.}
+
+\item{M0}{Minimum magnitude threshold}
+
 \item{link.functions}{}
 }
 \description{

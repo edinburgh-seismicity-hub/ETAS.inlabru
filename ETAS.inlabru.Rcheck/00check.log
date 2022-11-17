@@ -328,16 +328,20 @@ loggaus.t: no visible global function definition for
   ‘bru_forward_transformation’
 loggaus.t: no visible binding for global variable ‘qlnorm’
 omori_plot: no visible global function definition for ‘generate’
-omori_plot : <anonymous>: no visible global function definition for
-  ‘omori’
 omori_plot: no visible global function definition for ‘bind_cols’
 omori_plot : <anonymous>: no visible global function definition for
   ‘quantile’
 omori_plot: no visible global function definition for ‘ggplot’
 omori_plot: no visible global function definition for ‘geom_line’
 omori_plot: no visible global function definition for ‘aes’
+<<<<<<< HEAD
 omori_plot: no visible binding for global variable ‘omori’
 omori_plot: no visible global function definition for ‘theme_classic’
+=======
+omori_plot: no visible global function definition for ‘theme_bw’
+omori_plot: no visible global function definition for ‘xlab’
+omori_plot: no visible global function definition for ‘ylab’
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 post_sampling: no visible global function definition for ‘generate’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
@@ -350,14 +354,30 @@ sample.temporal.ETAS.generation : <anonymous>: no visible global
   function definition for ‘rpois’
 sample.temporal.ETAS.times: no visible global function definition for
   ‘runif’
+<<<<<<< HEAD
+=======
+temporal.ETAS: no visible global function definition for ‘%do%’
+temporal.ETAS: no visible global function definition for ‘foreach’
+temporal.ETAS: no visible binding for global variable ‘idx’
+temporal.ETAS : logLambda.h.inla: no visible binding for global
+  variable ‘ncore’
+temporal.ETAS : loglambda.inla: no visible global function definition
+  for ‘mclapply’
+temporal.ETAS: no visible global function definition for ‘bind_rows’
+temporal.ETAS: no visible global function definition for ‘bru’
+time.grid: no visible binding for global variable ‘xx.’
+time.grid: no visible binding for global variable ‘yy.’
+time.grid: no visible binding for global variable ‘delta.’
+time.grid: no visible binding for global variable ‘n.layer.’
+time.grid: no visible binding for global variable ‘bdy.’
+time.grid: no visible binding for global variable ‘min.edge.’
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 time.grid: no visible global function definition for ‘%>%’
 time.grid: no visible global function definition for ‘mutate’
 time.grid: no visible binding for global variable ‘t.start’
 time.grid: no visible binding for global variable ‘t.end’
 triggering_fun_plot: no visible global function definition for
   ‘generate’
-triggering_fun_plot : <anonymous>: no visible global function
-  definition for ‘trigger’
 triggering_fun_plot: no visible global function definition for
   ‘bind_cols’
 triggering_fun_plot : <anonymous>: no visible global function
@@ -372,7 +392,9 @@ triggering_fun_plot: no visible binding for global variable ‘trig’
 triggering_fun_plot: no visible global function definition for
   ‘geom_hline’
 triggering_fun_plot: no visible global function definition for
-  ‘theme_classic’
+  ‘theme_bw’
+triggering_fun_plot: no visible global function definition for ‘xlab’
+triggering_fun_plot: no visible global function definition for ‘ylab’
 unif.t: no visible global function definition for
   ‘bru_forward_transformation’
 unif.t: no visible binding for global variable ‘qunif’
@@ -386,11 +408,18 @@ Undefined global functions or variables:
   label_parsed magnitude.completeness magnitude.update magnitudes
   max.latitude max.longitude max_iter max_step mclapply min.edge.
   min.latitude min.longitude mu.init mutate n.layer. n.periods ncore
+<<<<<<< HEAD
   omori output.name p.init param period.length pexp pgamma plnorm
   predict punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif
   read.table rexp rpois runif scenario start.date.fore t.end t.start
   theme_classic time_date time_string trig trigger vars x xlab xx. y
   ylab yy.
+=======
+  output.name p.init param period.length pexp pgamma plnorm predict
+  punif q0.025 q0.975 qgamma qlnorm qnorm quantile qunif read.table
+  rexp rpois runif scenario start.date.fore t.end t.start theme_bw
+  time_date time_string trig vars x xlab xx. y ylab yy.
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 Consider adding
   importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "predict",
              "punif", "qgamma", "qlnorm", "qnorm", "quantile", "qunif",
@@ -438,16 +467,23 @@ Missing link or links in documentation object 'sample.temporal.ETAS.generation.R
 Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
   ‘0, T2’
 
+<<<<<<< HEAD
+=======
+Missing link or links in documentation object 'temporal.ETAS.Rd':
+  ‘measure unit of sample.s$ts’
+
+Missing link or links in documentation object 'time.grid.Rd':
+  ‘days’
+
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘triggering_fun_plot’ ‘user_input_synthetic’
-  ‘user_input_synthetic_noCatalogue’
-Undocumented data sets:
-  ‘user_input_synthetic’ ‘user_input_synthetic_noCatalogue’
+  ‘omori’ ‘triggering_fun_plot’
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
+<<<<<<< HEAD
 * checking for code/documentation mismatches ... WARNING
 Codoc mismatches from documentation object 'Temporal.ETAS':
 Temporal.ETAS
@@ -462,6 +498,9 @@ Temporal.ETAS
   Mismatches in argument names:
     Position: 1 Code: total.data Docs: sample.s
 
+=======
+* checking for code/documentation mismatches ... OK
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 * checking Rd \usage sections ... WARNING
 Undocumented arguments in documentation object 'Inv.Int.ETAS.time.trig.function'
   ‘omega’
@@ -491,7 +530,11 @@ Undocumented arguments in documentation object 'inv.unif.t'
   ‘x’ ‘a’
 
 Undocumented arguments in documentation object 'lambda.N'
+<<<<<<< HEAD
   ‘th.mu’ ‘th.K’ ‘th.alpha’ ‘th.c’ ‘th.p’ ‘T1’ ‘T2’ ‘M0’ ‘Ht’
+=======
+  ‘Ht’
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 
 Undocumented arguments in documentation object 'lambda_'
   ‘th’ ‘t’ ‘ti.v’ ‘mi.v’
@@ -507,6 +550,15 @@ Undocumented arguments in documentation object 'loggaus.t'
 
 Undocumented arguments in documentation object 'omori_plot'
   ‘n.samp’ ‘t.end’
+<<<<<<< HEAD
+=======
+
+Undocumented arguments in documentation object 'time.grid'
+  ‘data.point’
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
+
+Undocumented arguments in documentation object 'trigger'
+  ‘th’ ‘t’ ‘ti’ ‘mi’
 
 Undocumented arguments in documentation object 'unif.t'
   ‘x’ ‘a’
@@ -558,15 +610,17 @@ Argument items with no description in Rd object 'loggaus.t':
 
 Argument items with no description in Rd object 'omori_plot':
   ‘list.input’ ‘n.breaks’
+<<<<<<< HEAD
+=======
+
+Argument items with no description in Rd object 'trigger':
+  ‘M0’
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 
 Argument items with no description in Rd object 'unif.t':
   ‘b’
 
 * checking for unstated dependencies in examples ... OK
-* checking contents of ‘data’ directory ... OK
-* checking data for non-ASCII characters ... OK
-* checking LazyData ... OK
-* checking data for ASCII and uncompressed saves ... OK
 * checking examples ... ERROR
 Running examples in ‘ETAS.inlabru-Ex.R’ failed
 The error most likely occurred in:
@@ -588,4 +642,8 @@ Execution halted
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
+<<<<<<< HEAD
 Status: 1 ERROR, 8 WARNINGs, 3 NOTEs
+=======
+Status: 1 ERROR, 7 WARNINGs, 3 NOTEs
+>>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
