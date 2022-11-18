@@ -83,10 +83,10 @@ log.Lambda.h <- function(theta, th, mh, M0, T1, T2){
 
   gamma.l <- (T.low - th)/theta$c
   gamma.u <- (T2 - th)/theta$c
-  w.l <- (1 + gamma.l)^(1-th$p)
-  w.u <- (1 + gamma.u)^(1-th$p)
+  w.l <- (1 + gamma.l)^(1-theta$p)
+  w.u <- (1 + gamma.u)^(1-theta$p)
   # output
-  log(theta$K) + theta$alpha*(mi - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
+  log(theta$K) + theta$alpha*(mh - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
 }
 
 

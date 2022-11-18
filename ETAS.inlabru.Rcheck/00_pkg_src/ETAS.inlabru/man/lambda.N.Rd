@@ -2,13 +2,11 @@
 % Please edit documentation in R/AnalysingPosteriors.R
 \name{lambda.N}
 \alias{lambda.N}
-\title{Title}
+\title{Calculate the integral of the ETAS conditional intensity}
 \usage{
 lambda.N(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht, link.functions)
 }
 \arguments{
-<<<<<<< HEAD
-=======
 \item{th.mu}{Background rate, \code{mu}, on the internal parameter scale}
 
 \item{th.K}{ETAS triggering parameter \code{K} on the internal parameter scale}
@@ -25,9 +23,13 @@ lambda.N(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht, link.functions)
 
 \item{M0}{Minimum magnitude threshold}
 
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
-\item{link.functions}{}
+\item{Ht}{History of the process, or set of known events in the interval. It must be a \code{data.frame} with columns \code{ts} (time) and \code{magnitudes} (magnitudes).}
+
+\item{link.functions}{\code{list} of functions to trasnform the parameters from the internal scale to the ETAS scale}
+}
+\value{
+Integral of the ETAS conditional intensity between \code{T1} and \code{T2} with minimum magnitude \code{M0}.
 }
 \description{
-Title
+Calculate the integral of the ETAS conditional intensity
 }

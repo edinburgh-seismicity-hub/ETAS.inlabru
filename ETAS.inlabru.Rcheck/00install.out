@@ -5,6 +5,9 @@
 ** byte-compile and prepare package for lazy loading
 Note: possible error in 'filter(time_date >= start.date, ': unused argument (magnitudes >= magnitude.completeness) 
 ** help
+Warning: /Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck/00_pkg_src/ETAS.inlabru/man/Inv.Int.ETAS.time.trig.function.Rd:25: unexpected VERBATIM TEXT '\link{t_h', expecting '{'
+Warning: /Users/mnaylor/Documents/GitHub/ETAS.inlabru/ETAS.inlabru.Rcheck/00_pkg_src/ETAS.inlabru/man/Inv.Int.ETAS.time.trig.function.Rd:26: unexpected '}'
+Warning: Inv.Int.ETAS.time.trig.function.Rd:25: All text must be in a section
 *** installing help indices
 ** building package indices
 ** testing if installed package can be loaded from temporary location

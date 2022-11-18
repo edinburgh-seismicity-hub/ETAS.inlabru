@@ -7,10 +7,11 @@
 Temporal.ETAS.fit(input.list)
 }
 \arguments{
-\item{input.list}{All input data and parameters are passed to inlabru via this structured list.}
+\item{input.list}{All input data and parameters are passed to inlabru via this structured \code{list}.
+This is the output of the function \link{create.input.list.temporal.withCatalogue} or \link{create.input.list.temporal.noCatalogue}}
 }
 \value{
-The fitted model as a bru object, which is a list
+The fitted model as a \code{bru} object, which is a list
 }
 \description{
 Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.
