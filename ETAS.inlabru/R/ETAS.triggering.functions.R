@@ -30,7 +30,8 @@ gt <- function(theta, t, th, mh, M0){
   t.diff <- t - th
   neg <- t.diff <= 0
   if(sum(!neg) > 0){
-    log.out <- log(theta$K) + theta$alpha*(mh[!neg] - M0)  - theta$p*log(1 + t.diff[!neg]/theta$c)
+    log.out <- log(theta[2]) + theta[3]*(mh - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
+    #log.out <- log(theta[2]) + theta[3]*(mh[!neg] - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
     output[!neg] <- exp(log.out)
   }
   else{
