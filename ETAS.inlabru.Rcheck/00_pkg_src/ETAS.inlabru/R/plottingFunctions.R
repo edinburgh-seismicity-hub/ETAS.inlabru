@@ -74,7 +74,7 @@ omori <- function(theta, t, ti){
   t.diff <- t - ti
   neg <- t.diff <= 0
   if(sum(!neg) > 0){
-    log.out <- - theta$p*log(1 + t.diff[!neg]/theta$c)
+    log.out <- - theta[5]*log(1 + t.diff[!neg]/theta[4])
     output[!neg] <- exp(log.out)
   }
   else{

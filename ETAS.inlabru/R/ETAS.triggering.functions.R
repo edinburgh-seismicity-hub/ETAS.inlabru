@@ -26,11 +26,25 @@
 #' Do not use if \eqn{t} and \eqn{t_h, m_h} are vectors of different lengths.
 #' @examples
 gt <- function(theta, t, th, mh, M0){
+  if(is.list(theta)){
+    mu <- theta$mu
+    alpha <- theta$alpha
+    K <- theta$K
+    c <- theta$c
+    p <- theta$p
+  } else {
+    mu <- theta[1]
+    K <- theta[2]
+    alpha <- theta[3]
+    c <- theta[4]
+    p <- theta[5]
+  }
+
   output <- rep(0,length(th))
   t.diff <- t - th
   neg <- t.diff <= 0
   if(sum(!neg) > 0){
-    log.out <- log(theta[2]) + theta[3]*(mh - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
+    log.out <- log(K) + alpha*(mh - M0)  - p*log(1 + t.diff[!neg]/c)
     #log.out <- log(theta[2]) + theta[3]*(mh[!neg] - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
     output[!neg] <- exp(log.out)
   }
