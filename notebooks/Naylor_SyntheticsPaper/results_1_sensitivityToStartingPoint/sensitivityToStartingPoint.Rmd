@@ -72,7 +72,7 @@ samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas,
 
 quiet.ETAS.cat <- bind_rows(samp.etas.list)
 quiet.ETAS.cat <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts),]
-
+#quiet.ETAS.cat <- na.omit(quiet.ETAS.cat)
 ```
 
 ```{r}

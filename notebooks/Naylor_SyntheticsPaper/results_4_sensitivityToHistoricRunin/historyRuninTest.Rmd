@@ -168,9 +168,9 @@ marrangeGrob(plots, nrow=length(catList), ncol=1)
 
 ## Loop over the catalog list and invert for the posteriors for each catalog
 
-- Loop over catalogues
-- Make sure that the period of the inversion is correct for the variable size catalogues
-- Store the results in `list.output.quietRuninScenario`
+-   Loop over catalogues
+-   Make sure that the period of the inversion is correct for the variable size catalogues
+-   Store the results in `list.output.quietRuninScenario`
 
 ```{r}
 ## This code creates a list for the version conditioned on the history
@@ -180,7 +180,9 @@ list.output.quietRuninScenario_V2 <-list()
   # Load a set of parameters that we will need to tweak for this application
 #fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
 #list.input <- create.input.list.temporal.noCatalogue(fpath)
-list.input <- create.input.list.temporal.noCatalogue('../../../ETAS.inlabru/data/user_input_synthetic_noCatalogue.txt')
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+  
   
   ####################
   # Tweak the variables laoded from the input file
@@ -261,7 +263,9 @@ list.output.quietRuninScenario <-list()
 
   # Load a set of parameters that we will need to tweak for this application
 
-list.input <- create.input.list.temporal.noCatalogue('../../../ETAS.inlabru/data/user_input_synthetic_noCatalogue.txt')
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+  
   
   ####################
   # Tweak the variables laoded from the input file
@@ -401,23 +405,19 @@ plots_V2[[1]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=fa
 
 ```
 
-
-
-```{r fig.height=3, fig.width=5}
-grid_arrange_shared_legend(catPlot, plots[[1]], plots_V2[[1]], ncol=1, nrow=3, position='bottom')
-```
-
-```{r fig.height=3, fig.width=5}
-grid_arrange_shared_legend(catPlot, plots[[1]], ncol=1, nrow=2, position='bottom')
-```
-
 ```{r}
-runtimes <- c()
-numberEvents <- c()
-for(i in 1:length(list.output.quietRuninScenario) ){
-  runtimes[i] <-list.output.quietRuninScenario[[i]]$runtime
-  numberEvents[i] <-  list.output.quietRuninScenario[[i]]$nEvents
-}
-
-runtimes
+save(list.output.quietRuninScenario, file="list.output.quietRuninScenario.Rda")
+save(list.output.quietRuninScenario_V2, file="list.output.quietRuninScenario_V2.Rda")
 ```
+
+
+```{r fig.height=3, fig.width=5}
+plt <- grid_arrange_shared_legend(catPlot, plots[[1]], plots_V2[[1]], ncol=1, nrow=3, position='bottom')
+
+
+ggsave("historyResults.png", plt)
+ggsave("historyResults.pdf", plt)
+
+
+```
+

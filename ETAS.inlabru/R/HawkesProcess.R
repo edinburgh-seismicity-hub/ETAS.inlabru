@@ -46,6 +46,12 @@ Temporal.ETAS.fit <- function(input.list){
 #' @examples
 Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
                           coef.t., delta.t., N.max., bru.opt){
+
+  if(sum(is.na(total.data))>0){
+    print("Some input data is NA; removing rows")
+    total.data <- na.omit(total.data)
+  }
+
   idx.remove <- total.data$ts > T2
   if(sum(idx.remove) > 0){
     total.data <- total.data[total.data$ts > T2, ]

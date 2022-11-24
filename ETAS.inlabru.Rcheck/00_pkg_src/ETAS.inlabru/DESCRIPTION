@@ -31,7 +31,7 @@ Roxygen: list(markdown = TRUE)
 Imports: lemon, parallel, tidyquant, dplyr, ggplot2, foreach, INLA,
         inlabru
 NeedsCompilation: no
-Packaged: 2022-11-24 14:31:45 UTC; mnaylor
+Packaged: 2022-11-24 22:05:51 UTC; mnaylor
 Author: Francesco Serafini [aut, cre],
   Mark Naylor [aut, ths] (<https://orcid.org/0000-0002-3761-5522>),
   Finn Lindgren [ths] (<https://orcid.org/0000-0002-5833-2011>)

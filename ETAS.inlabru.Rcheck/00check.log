@@ -81,6 +81,7 @@ manual.
 * checking R code for possible problems ... NOTE
 omori_plot : <anonymous>: warning in omori(th = post.samp[x, ], t =
   t.eval, ti = 0): partial argument match of 'th' to 'theta'
+Temporal.ETAS: no visible global function definition for ‘na.omit’
 Temporal.ETAS: no visible global function definition for ‘%do%’
 Temporal.ETAS: no visible global function definition for ‘foreach’
 Temporal.ETAS: no visible binding for global variable ‘idx’
@@ -377,15 +378,15 @@ Undefined global functions or variables:
   idx injection_activityDecayRate injection_vol2activity inla.tmarginal
   label_parsed magnitude.completeness magnitude.update magnitudes
   max.latitude max.longitude max_iter max_step min.latitude
-  min.longitude mu.init mutate n.periods ncore output.name p.init param
-  period.length pexp pgamma plnorm predict punif q0.025 q0.975 qexp
-  qgamma qlnorm qnorm quantile qunif read.table rexp rpois runif
-  scenario start.date.fore t.end t.start theme_bw time_date time_string
-  trig vars x xlab y ylab
+  min.longitude mu.init mutate n.periods na.omit ncore output.name
+  p.init param period.length pexp pgamma plnorm predict punif q0.025
+  q0.975 qexp qgamma qlnorm qnorm quantile qunif read.table rexp rpois
+  runif scenario start.date.fore t.end t.start theme_bw time_date
+  time_string trig vars x xlab y ylab
 Consider adding
-  importFrom("stats", "filter", "pexp", "pgamma", "plnorm", "predict",
-             "punif", "qexp", "qgamma", "qlnorm", "qnorm", "quantile",
-             "qunif", "rexp", "rpois", "runif")
+  importFrom("stats", "filter", "na.omit", "pexp", "pgamma", "plnorm",
+             "predict", "punif", "qexp", "qgamma", "qlnorm", "qnorm",
+             "quantile", "qunif", "rexp", "rpois", "runif")
   importFrom("utils", "read.table")
 to your NAMESPACE file.
 * checking Rd files ... WARNING
