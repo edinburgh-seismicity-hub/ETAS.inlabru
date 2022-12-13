@@ -109,7 +109,8 @@ M6p7.ETAS.cat.incomplete$idx <- seq(1,length(M6p7.ETAS.cat.incomplete$ts))
 
 ```{r}
 
-save(catList,file="catList.Rda")
+save(M6p7.ETAS.cat,file="M6p7.ETAS.cat.Rda")
+save(M6p7.ETAS.cat.incomplete,file="M6p7.ETAS.cat.incomplete.Rda")
 
 ```
 
@@ -133,7 +134,7 @@ df_large<-data.frame(ts=c(500), magnitudes=c(6.7), n<-c(n))
 plots[[1]] <- ggplot() + 
   geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
   xlim(0, 1000) +
-  ggtitle(paste( "(a) Complete catalogue, nEvents =", length(M6p7.ETAS.cat$ts) )) +
+  ggtitle(paste( "A. Complete catalogue, nEvents =", length(M6p7.ETAS.cat$ts) )) +
   ylim(2,7) +
   geom_vline(xintercept=500, lty=2, color='red') +
   geom_point(data=df_large, aes(ts, magnitudes), size=1) +
@@ -145,7 +146,7 @@ plots[[1]] <- ggplot() +
 plots[[2]] <- ggplot() + 
   geom_point(data = M6p7.ETAS.cat.incomplete, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
   xlim(0, 1000) +
-  ggtitle(paste( "(c) Incomplete catalogue, nEvents =", length(M6p7.ETAS.cat.incomplete$ts) )) +
+  ggtitle(paste( "C. Incomplete catalogue, nEvents =", length(M6p7.ETAS.cat.incomplete$ts) )) +
   ylim(2,7) +
   geom_vline(xintercept=500, lty=2, color='red') +
   geom_point(data=df_large, aes(ts, magnitudes), size=1) +
@@ -156,7 +157,7 @@ plots[[2]] <- ggplot() +
 
 plots[[3]] <- ggplot() + 
   geom_point(data = M6p7.ETAS.cat, aes(x=idx, y=magnitudes), size=0.1, alpha=0.5) +
-  ggtitle(paste( "(b) Complete" )) +
+  ggtitle(paste( "B. Complete" )) +
   ylim(2,7) +
   xlab("Event number") +
   ylab("Magnitude") +
@@ -167,7 +168,7 @@ plots[[3]] <- ggplot() +
 
 plots[[4]] <- ggplot() + 
   geom_point(data = M6p7.ETAS.cat.incomplete, aes(x=idx, y=magnitudes), size=0.1, alpha=0.5) +
-  ggtitle(paste( "(d) Incomplete" )) +
+  ggtitle(paste( "D. Incomplete" )) +
   ylim(2,7) +
   xlab("Event number") +
   ylab("Magnitude") +
@@ -407,25 +408,25 @@ ggsave("posteriorsForIncompletenessExp.pdf", plt)
 ```{r}
 plot_triggering <- list()
 plot_triggering[[1]] <- triggering_fun_plot(list.output.incompleteness[[1]], magnitude = 4, n.samp = 100) +
-  ggtitle("(c) M4 Complete") +     
+  ggtitle("C. M4 Complete") +     
   theme_bw()  + 
   ylim(0,5.5) + 
   theme(plot.title = element_text(size = 8))
 
 plot_triggering[[2]] <- triggering_fun_plot(list.output.incompleteness[[2]], magnitude = 4, n.samp = 100)+
-  ggtitle("(d) M4 Incomplete") +     
+  ggtitle("D. M4 Incomplete") +     
   theme_bw()  + 
   ylim(0,5.5) + 
   theme(plot.title = element_text(size = 8))
 
 plot_triggering[[3]] <- triggering_fun_plot(list.output.incompleteness[[1]], magnitude = 6.7, n.samp = 100) +
-  ggtitle("(e) M6.7 Complete") +     
+  ggtitle("E. M6.7 Complete") +     
   theme_bw() + 
   ylim(0,1700) + 
   theme(plot.title = element_text(size = 8))
 
 plot_triggering[[4]] <- triggering_fun_plot(list.output.incompleteness[[2]], magnitude = 6.7, n.samp = 100) +
-  ggtitle("(f) M6.7 Incomplete") +     
+  ggtitle("F. M6.7 Incomplete") +     
   theme_bw() + 
   ylim(0,1700) + 
   theme(plot.title = element_text(size = 8))
@@ -435,14 +436,14 @@ plot_triggering[[4]] <- triggering_fun_plot(list.output.incompleteness[[2]], mag
 ```{r}
 plot_omori <- list()
 plot_omori[[1]] <- omori_plot(list.output.incompleteness[[1]], n.samp = 100) +
-  ggtitle("(a) Omori decay for complete") +     
+  ggtitle("A. Omori decay for complete") +     
   theme_bw()  + 
   ylim(0,1) + 
   theme(plot.title = element_text(size = 8))
 
 
 plot_omori[[2]] <- omori_plot(list.output.incompleteness[[2]], n.samp = 100) +
-  ggtitle("(b) Omori decay for incomplete")+     
+  ggtitle("B. Omori decay for incomplete")+     
   theme_bw()  + 
   ylim(0,1) + 
   theme(plot.title = element_text(size = 8))

@@ -1,0 +1,378 @@
+---
+title: "CaliforniaCaseStudy"
+author: "Naylor"
+date: "2022-11-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ETAS.inlabru)
+
+library(rnaturalearth)
+library(lubridate)
+library(raster)
+library(sf)
+library(sp)
+
+#library(ggspatial)
+library(rnaturalearthdata)
+
+## This is just the EPSG equivalent of WGS84
+crs_wgs84 <- CRS(SRS_string='EPSG:4326')
+
+library(tidyquant)
+library(gridExtra)
+library(grid)
+library(lemon)
+library(ggplot2)
+library(ggpubr)
+
+library(inlabru)
+library(INLA)
+
+#inla.setOption(pardiso.license="~/sys/licences/paradiso.lic")
+               
+library(dplyr)
+
+```
+
+# Get map and extract crs for the map
+
+```{r}
+#lakes
+states50 <- ne_download(scale = 50, type = 'states', category = 'cultural')
+sp::plot(states50)
+xlim(-126,-110)
+```
+
+
+```{r}
+calif.map <- ne_countries(geounit = 'California', returnclass = "sf", scale = 'medium')
+calif.crs <- crs(calif.map)
+
+ggplot() + geom_sf(data = calif.map) + theme_bw()
+
+# Get the coastline from the rnaturalearth package for comparison
+#italy <- ne_countries(scale = "medium", returnclass = "sf", country = "New Zealand") %>%
+#  st_transform(crs = proj_nzsf()) %>%
+#  st_crop(get_statistical_areas(area = "EEZ"))
+```
+
+# Load catalogue
+
+```{r}
+df_cat <- read.table("./SC_sequences_M7.1.txt", header=TRUE, sep="", col.names=c("YR","MO","DY","HRMN","SEC","LATITUDE","LONGITUDE","DEPTH","MAG","GEN"), fill=TRUE)
+
+df_cat$HRMN <- formatC(df_cat$HR, width=4, flag="0")
+
+# add event number
+df_cat$event_num <- seq.int(nrow(df_cat))
+
+# parse date-times and set appropriate digital second resoluton
+op <- options(digits.secs=2)
+options(op)
+df_cat$date <- ymd( paste(df_cat$YR, df_cat$MO, df_cat$DY, sep="-") )
+df_cat$dateTime <- ymd_hms( paste(df_cat$YR,"-", df_cat$MO,"-", df_cat$DY," " , df_cat$HR,"-",df_cat$MN,"-" ,df_cat$SEC, sep="") )
+
+
+# sp version of the catalogue
+df_cat.sp <- data.frame(df_cat)
+sp::coordinates(df_cat.sp) <- c("LONGITUDE", "LATITUDE")
+crs_wgs84 <- CRS(SRS_string='EPSG:4326')
+proj4string(df_cat.sp) <- crs_wgs84
+
+# sf version of the catalogue
+df_cat.sf<- st_as_sf(df_cat.sp)
+```
+
+```{r}
+head(df_cat)
+```
+
+## Histogram of event depths
+
+```{r Depth histogram}
+ggplot(df_cat, aes( x=DEPTH )) + 
+  geom_histogram( binwidth=1 ) + 
+  coord_flip (xlim = c(40, 0) ) +
+  ggtitle("Hight res. histogram of event depths for depth inversion aretfacts")
+```
+## Plot of event magnitudes using natural time
+
+```{r}
+ggplot(df_cat, aes(x=event_num, y=MAG))  + geom_point(size = 0.1) 
+```
+
+## Plot of event magnitudes using date-time
+
+```{r Magnitude natural-time series}
+ggplot(df_cat, aes(x=dateTime, y=MAG)) + 
+  geom_point(size = 0.1) +
+  ggtitle("New Zealand magnitude time series")
+```
+
+```{r Magnitude time series}
+# Filtered for M>4
+ggplot(df_cat[df_cat$MAG>4,], aes(x=dateTime, y=MAG)) + 
+  geom_point(size = 0.1) +
+  ggtitle("New Zealand magnitude timeseries for M>4")
+
+```
+## Histogram of event depths
+
+```{r Depth histogram}
+ggplot(df_cat, aes( x=DEPTH )) + 
+  geom_histogram( binwidth=1 ) + 
+  coord_flip (xlim = c(350, 0) ) +
+  ggtitle("Hight res. histogram of event depths for depth inversion aretfacts")
+```
+## Plot of event magnitudes using natural time
+
+```{r}
+ggplot(df_cat, aes(x=event_num, y=MAG))  + geom_point(size = 0.1) 
+```
+
+## Plot of event magnitudes using date-time
+
+```{r Magnitude natural-time series}
+ggplot(df_cat, aes(x=dateTime, y=MAG)) + 
+  geom_point(size = 0.1) +
+  ggtitle("New Zealand magnitude time series")
+```
+
+```{r Magnitude time series}
+# Filtered for M>4
+ggplot(df_cat[df_cat$MAG>4,], aes(x=dateTime, y=MAG)) + 
+  geom_point(size = 0.1) +
+  ggtitle("New Zealand magnitude timeseries for M>4")
+
+```
+
+## Frequency-magnitude analysis for whole New Zealand
+
+```{r National GR Plot}
+minMag <- 1
+maxMag <- max(df_cat$MAG)
+
+mags <- df_cat[df_cat$MAG>minMag,]$MAG
+
+tmp <- hist(mags, breaks=seq(minMag-0.05,maxMag+0.1,0.1), plot=FALSE)
+
+N.counts <- length( tmp$counts)
+tmp$cumulativeCounts <- cumsum(tmp$counts[N.counts:1])[N.counts:1]
+
+m.min <- 4
+bin_m.min <- which(tmp$mids==m.min)
+freq_m.min <- tmp$counts[bin_m.min]
+b <- 1.1
+x <- tmp$mids
+y <- freq_m.min * 10^(-b*(x-m.min))
+y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b*(x-m.min))
+
+ggplot() +
+  geom_point( aes(x=tmp$mids, y=tmp$counts) ) +
+  geom_point( aes(x=tmp$mids, y=tmp$cumulativeCounts) , color='red', pch="+", size=2) +
+  scale_y_log10() +
+  ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
+  xlab("Magnitude") +
+  ylab("log10(Frequency)") +
+  geom_line(aes(x=x, y=y)) +
+  geom_line(aes(x=x, y=y.cum), color='red') +
+  geom_vline( xintercept=m.min, lty=2 )
+
+```
+
+```{r National b-value stability}
+b.stability.list <- c()
+b.error.list <- c()
+m.mean <- c()
+
+max.index.x <- length(x)-5
+
+for( i in 1:max.index.x ){
+  mag.threshold <- x[i]
+  N.events <- length(mags[mags > mag.threshold])
+  m.mean <- mean( mags[mags > mag.threshold] )
+  m.sd <- sd(mags[mags > mag.threshold])
+  b.stability.list[i] <- log10( exp(1) ) / (m.mean - mag.threshold - 0.05)
+  b.error.list[i] <- 2.3 * b.stability.list[i]^2 * m.sd / (sqrt(N.events*(N.events-1)))
+}
+
+ggplot() +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list) ) +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list+b.error.list), color=2, lty=2 ) +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list-b.error.list), color=2, lty=2 ) +
+  xlab("Magnitude threshold") +
+  ylab("Aki b-value estimate") +
+  geom_hline(yintercept = 1, lty=3) +
+  ggtitle("b-value stability plot for New Zealand")
+
+```
+
+
+## Various maps of the events
+
+```{r hexbin event density}
+ggplot() +
+  geom_hex(data = df_cat[df_cat$MAG>4,], aes(x = LONGITUDE, y = LATITUDE), bins = 50) +
+  scale_fill_continuous(type = "viridis") +
+  geom_sf(data = nz_cropped, fill=alpha("lightgrey", 0), color = 'orange', size=0.2) + 
+  ggtitle("Density plot for M>4 events") +
+  theme_bw()
+```
+
+
+
+
+```{r map of locations}
+ggplot() +
+  geom_sf(data = df_cat.sf[df_cat$MAG>4,], size = 0.05) +
+  #geom_sf(data = nz_cropped, fill=alpha("lightgrey", 0), color = 'green') +
+  geom_sf(data = df_cat.sf[df_cat$MAG>6,], size = 0.5, color='orange') +
+  geom_sf(data = df_cat.sf[df_cat$MAG>7,], size = 0.5, color='red') +
+  ggtitle("Map of event locations")
+  
+```
+
+```{r Alt map of locations}
+ggplot() +
+  #geom_sf(data = nz, fill = alpha("lightgrey", 0), colour = "green") +
+  geom_sf(data = df_cat.sf[df_cat$MAG>1,], size = 0.05) +
+  #geom_sf(data = nz, fill = alpha("lightgrey", 0), colour = "green") +
+  #annotation_north_arrow(location = "tl", which_north = "grid", style = north_arrow_orienteering, height=unit(1., "cm"), width=unit(1., "cm")) +
+ # annotation_scale(location = "br", unit_category = "metric") +
+  geom_sf(data = df_cat.sf[df_cat$MAG>4,], size = 0.5, color='orange') +
+  geom_sf(data = df_cat.sf[df_cat$MAG>6,], size = 0.5, color='red', show.legend=points) +
+  ggtitle("Map of event locations")
+```
+
+## Latitude-time plot for whole New Zealand
+
+```{r Latitude-time plot}
+ggplot() + 
+  geom_point(data=df_cat[df_cat$MAG>1,], aes(dateTime, LATITUDE), size=0.1) +
+  geom_point(data=df_cat[df_cat$MAG>4,], aes(dateTime, LATITUDE), size=1.2, color='orange') +
+  geom_point(data=df_cat[df_cat$MAG>6,], aes(dateTime, LATITUDE), size=1.5, color='red') +
+  ggtitle("New Zealand latitude-time plot")
+```
+
+# Extract subset around M7 event
+
+```{r}
+eventDate <- ymd_hms( '1999-07-15 09:22:29' )
+endDate <- eventDate + days(600)
+startDate <- eventDate - days(600)
+deltaLat <- 2.4
+latLims <- c( 33.7, 36)
+longLims <- c( -118, -114)
+
+minMAG <- 4
+
+# Subset the main catalogue
+df_cat.subset <- df_cat[df_cat$MAG >= minMAG, ]
+df_cat.subset <- df_cat.subset[ (df_cat.subset$LATITUDE>latLims[1]), ]
+df_cat.subset <- df_cat.subset[ (df_cat.subset$LATITUDE<latLims[2]), ]
+df_cat.subset <- df_cat.subset[ (df_cat.subset$LONGITUDE>longLims[1]), ]
+df_cat.subset <- df_cat.subset[ (df_cat.subset$LONGITUDE<longLims[2]), ]
+
+head(df_cat.subset)
+```
+
+
+```{r}
+ggplot() +
+  geom_sf(data = df_cat.sf[df_cat$MAG>2,], size = 0.05) +
+  #geom_sf(data = nz_cropped, fill=alpha("lightgrey", 0), color = 'green') +
+  geom_sf(data = df_cat.sf[df_cat$MAG>4,], size = 0.5, color='orange') +
+  geom_sf(data = df_cat.sf[df_cat$MAG>6,], size = 0.5, color='red') +
+  ggtitle("Map of event locations")+
+  geom_rect(aes(xmin=longLims[1], xmax=longLims[2], ymin=latLims[1], ymax=latLims[2]), color="blue",fill=NA)
+```
+
+
+```{r}
+ggplot() + 
+  geom_point(data=df_cat[df_cat$MAG>2,], aes(dateTime, LATITUDE), size=0.1) +
+  geom_point(data=df_cat[df_cat$MAG>4,], aes(dateTime, LATITUDE), size=1.2, color='orange') +
+  geom_point(data=df_cat[df_cat$MAG>6,], aes(dateTime, LATITUDE), size=1.5, color='red') +
+  ggtitle("New Zealand latitude-time plot") +
+  geom_rect(aes(xmin = as.POSIXct(ymd("1999-1-1")), xmax = as.POSIXct(ymd("2001-1-1")), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill='blue')
+  
+```
+
+```{r}
+ggplot() + 
+  geom_point(data=df_cat[df_cat$MAG>2,], aes(dateTime, LATITUDE), size=0.1) +
+  geom_point(data=df_cat[df_cat$MAG>4,], aes(dateTime, LATITUDE), size=1.2, color='orange') +
+  geom_point(data=df_cat[df_cat$MAG>6,], aes(dateTime, LATITUDE), size=1.5, color='red') +
+  ggtitle("New Zealand latitude-time plot") +
+  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill='blue')
+  
+```
+
+```{r}
+ggplot(df_cat.subset, aes(x=dateTime, y=MAG)) + 
+  geom_point(size = 0.1) +
+  ggtitle("New Zealand magnitude timeseries for M>4") +
+  geom_rect( aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = minMAG, ymax = max(df_cat.subset$MAG+0.2)), alpha = 0.4, fill=NA, color="blue" )
+
+```
+
+```{r regional GR Plot}
+minMag <- 4
+maxMag <- max(df_cat.subset$MAG)
+
+mags <- df_cat.subset[df_cat.subset$MAG>=minMag,]$MAG
+
+tmp <- hist(mags, breaks=seq(minMag-0.05,maxMag+0.1,0.1), plot=FALSE)
+
+N.counts <- length( tmp$counts)
+tmp$cumulativeCounts <- cumsum(tmp$counts[N.counts:1])[N.counts:1]
+
+m.min <- 4
+bin_m.min <- which(tmp$mids==m.min)
+freq_m.min <- tmp$counts[bin_m.min]
+b <- 1.1
+x <- tmp$mids
+y <- freq_m.min * 10^(-b*(x-m.min))
+y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b*(x-m.min))
+
+ggplot() +
+  geom_point( aes(x=tmp$mids, y=tmp$counts) ) +
+  geom_point( aes(x=tmp$mids, y=tmp$cumulativeCounts) , color='red', pch="+") +
+  scale_y_log10() +
+  ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
+  xlab("Magnitude") +
+  ylab("log10(Frequency)") +
+  geom_line(aes(x=x, y=y)) +
+  geom_line(aes(x=x, y=y.cum), color='red') +
+  geom_vline( xintercept=m.min, lty=2 )
+
+```
+```{r regional b-value stability}
+b.stability.list <- c()
+b.error.list <- c()
+m.mean <- c()
+
+max.index.x <- length(x)-5
+
+for( i in 1:max.index.x ){
+  mag.threshold <- x[i]
+  m.mean[i] <- mean( mags[mags > mag.threshold], na.rm=TRUE )
+  N.events <- sum(mags > mag.threshold)
+  b.stability.list[i] <- log10( exp(1) ) / (m.mean[i] - mag.threshold - 0.05)
+  b.error.list[i] <- 2.3 * b.stability.list[i]^2 * sd(mags[mags > mag.threshold]) / (sqrt(N.events*(N.events-1)))
+}
+
+ggplot() +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list) ) +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list+b.error.list), color=2, lty=2 ) +
+  geom_line( aes(x=x[1:max.index.x], y=b.stability.list-b.error.list), color=2, lty=2 ) +
+  xlab("Magnitude threshold") +
+  ylab("Aki b-value estimate") +
+  geom_hline(yintercept = 1, lty=3) +
+  ggtitle("b-value stability plot for catalogue subset")
+
+```

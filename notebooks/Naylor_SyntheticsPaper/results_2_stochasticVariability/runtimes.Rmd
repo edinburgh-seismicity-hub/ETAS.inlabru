@@ -1,0 +1,478 @@
+---
+title: "temporal_injection_ETAS_dev.Rmd"
+author: "Naylor"
+date: "2022-10-27"
+output: html_document
+---
+
+# Multiple analyses of two catalogues using different initial values
+
+The inlabru algorithm takes an initial guess on the mode of the parameters we are inverting for and iteratively updates this initial guess. There is the potential that there may be bad initial conditions such that they find different solutions and the runtime will differ depending upon how the solution converges.
+
+In this notebook, we explore the robustness of the posteriors on two synthetic catalogues where the true parameters are known. Both catalogues contain 2000 days of data. One catalogue does not contain a large event and the second contains a M6.7 event on day 1000.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ETAS.inlabru)
+
+library(tidyquant)
+library(gridExtra)
+library(grid)
+library(lemon)
+library(ggplot2)
+
+library(inlabru)
+library(INLA)
+
+library(dplyr)
+
+
+```
+
+
+## Define the parameters for the syntheirc catalogues and starting values for inversion
+
+```{r Create synthetic catalogue and plot}
+
+# Parameters we use to generate synthetics, which we will refer to as the 'true' parameters
+mu <- 0.1
+K <- 0.089
+alpha <- 2.29
+c <- 0.11
+p <- 1.08
+
+# Format the true ETAS parameters for code to generate the synthetics
+theta_etas <- data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)
+
+# A dataframe containing different starting values for the algorithm
+startingValues <- data.frame( mu=c( 0.3),
+                              K=c( 0.1),
+                              alpha=c( 1.),
+                              c=c( 0.2),
+                              p=c(1.01))
+nRealisations <- length(startingValues$mu)
+
+
+# Temporal duration of the synthetic catalogue in days
+modelledDuration = 3000  # [days]
+
+# The minimum magnitude that will be modelled
+M0 = 2.5
+
+```
+
+# Plot the priors
+
+```{r Plot the priors with true values}
+
+  # Load a set of parameters that we will need to tweak for this application
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+
+mu_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$mu(rnorm(100000))) ) +
+geom_vline(aes(xintercept = mu, color='True value')) +
+geom_vline(aes(xintercept = list.input$mu.init, color='Initial value')) +
+xlab("mu") +
+ggtitle("A.  mu prior")+
+    theme_bw() +
+       theme(legend.position = c(.7, .7))
+
+K_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$K(rnorm(100000))) , show.legend = FALSE) +
+geom_vline(aes(xintercept = K, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$K.init, color='Initial value'), show.legend = FALSE) +
+xlab("K") +
+    theme_bw() +
+ggtitle("B.  K prior")  
+
+alpha_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$alpha(rnorm(100000))) ) +
+geom_vline(aes(xintercept = alpha, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.legend = FALSE) + 
+  xlab("alpha") +
+    theme_bw() +
+ggtitle("C.  alpha prior")
+
+c_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
+geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
+  xlab("c") +
+    theme_bw() +
+  ggtitle("D.  c prior")
+
+p_priorPlot <- ggplot() +
+geom_density(aes(x = list.input$link.functions$p(rnorm(100000))) ) +
+geom_vline(aes(xintercept = p, color='True value'), show.legend = FALSE) +
+geom_vline(aes(xintercept = list.input$p.init, color='Initial value'), show.legend = FALSE) +
+  xlab("p") +
+  theme_bw() +
+ggtitle("E.  p prior")
+
+plt <- grid_arrange_shared_legend(mu_priorPlot, K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot, ncol=3, nrow=2, position='bottom', top="Samples from the priors")
+ggsave("priors.png", plt)
+ggsave("priors.pdf", plt)
+
+```
+
+
+## Generate new catalogues and save them
+
+```{r}
+############
+#### Generate the first catalogue with no large events
+
+Ht <- NULL   # Do not impose specific events
+nCats <- 20
+
+quiet.ETAS.cat.list <- list()
+
+Ht <- data.frame(ts=c(500), magnitudes=c(6.7))   # Impose a M6.7 event on day 1000
+
+for(i in 1:nCats){
+  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+                                  T1 = 0, T2 = modelledDuration, Ht=Ht)
+
+  quiet.ETAS.cat <- bind_rows(samp.etas.list)
+  quiet.ETAS.cat.list[[i]] <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts),]
+}
+```
+
+```{r}
+
+############
+#### Generate the second catalogue with a M6.7 event on day 1000
+
+Ht <- data.frame(ts=c(500), magnitudes=c(6.7))   # Impose a M6.7 event on day 1000
+
+M6p7.ETAS.cat.list <- list()
+
+for(i in 1:nCats){
+  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+                                  T1 = 0, T2 = modelledDuration, Ht=Ht)
+
+  M6p7.ETAS.cat <- bind_rows(samp.etas.list)
+  M6p7.ETAS.cat.list[[i]] <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts),]
+}
+```
+
+```{r}
+#save(M6p7.ETAS.cat,file="M6p7_ETAS_cat.Rda")
+#save(quiet.ETAS.cat,file="quiet.ETAS.cat.Rda")
+```
+
+# Present the catalogues
+
+## Load the catalogues
+
+```{r}
+#load("M6p7_ETAS_cat.Rda")
+#load("quiet.ETAS.cat.Rda")
+```
+
+## Plot properties of the catalogues
+
+```{r fig.height=5}
+## Seeded catalogues
+
+plots <-list()
+
+for( i in 1:10){
+plots[[i]] <- ggplot() + 
+  geom_point(data = M6p7.ETAS.cat.list[[i]], aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+  xlim(0, modelledDuration) +
+  ggtitle(paste("Seeded catalogue",i,", nEvents =", length(M6p7.ETAS.cat.list[[i]]$ts) )) +
+  ylim(2,7) +
+  theme_bw() +
+  xlab("Time [days]") +
+  ylab("Magnitude")
+}
+
+plt <- grid.arrange(plots[[1]], plots[[2]],plots[[3]], plots[[4]], plots[[5]], plots[[6]],plots[[7]], plots[[8]],plots[[9]], plots[[10]],nrow=5, ncol=2)
+
+
+ggsave("many_seeded_cats.png", plt)
+ggsave("many_seeded_cats.pdf", plt)
+
+```
+
+```{r fig.height=5}
+plots <-list()
+
+for( i in 1:10){
+plots[[i]] <- ggplot() + 
+  geom_point(data = quiet.ETAS.cat.list[[i]], aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
+  xlim(0, modelledDuration) +
+  ggtitle(paste("Quiet syntheic catalogue",i,", nEvents =", length(quiet.ETAS.cat.list[[i]]$ts) )) +
+  ylim(2,7) +
+  theme_bw() +
+  xlab("Time [days]") +
+  ylab("Magnitude")
+}
+
+plt <- grid.arrange(plots[[1]], plots[[2]],plots[[3]], plots[[4]], plots[[5]], plots[[6]],plots[[7]], plots[[8]],plots[[9]], plots[[10]],nrow=5, ncol=2)
+
+
+ggsave("many_unseeded_cats.png", plt)
+ggsave("many_unseeded_cats.pdf", plt)
+```
+
+# Analyse the sensitivity to starting conditions
+
+## Analysis of quiet catalogue
+
+```{r}
+list.output.quietScenario <-list()
+
+for (i in 1:nCats){
+  remove(list.input)
+
+  # Load a set of parameters that we will need to tweak for this application
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+  
+  ####################
+  # Tweak the variables laoded from the input file
+  list.input$M0 <- M0
+  list.input$time.int <- c(0, modelledDuration)
+  list.input$T12 <- c(0, modelledDuration)
+  
+  # Change the starting location, measured on the ETAS scale
+  list.input$mu.init <- startingValues$mu
+  list.input$alpha.init <- startingValues$alpha
+  list.input$K.init <- startingValues$K
+  list.input$c.init <- startingValues$c
+  list.input$p.init <- startingValues$p
+
+    link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
+                 K = \(x) loggaus.t(x, a_K, b_K), 
+                 alpha = \(x) unif.t(x, a_alpha, b_alpha), 
+                 c_ = \(x) unif.t(x, a_c, b_c), 
+                 p = \(x) unif.t(x, a_p, b_p))
+  
+  # initial value - convert from ETAS scale to internal scale
+  list.input$th.init <- list(th.mu = inv.gamma.t(list.input$mu.init, list.input$a_mu, list.input$b_mu),
+                  th.K = inv.loggaus.t(list.input$K.init, list.input$a_K, list.input$b_K),
+                  th.alpha = inv.unif.t(list.input$alpha.init, list.input$a_alpha, list.input$b_alpha),
+                  th.c = inv.unif.t(list.input$c.init, list.input$a_c, list.input$b_c),
+                  th.p = inv.unif.t(list.input$p.init, list.input$a_p, list.input$b_p) )
+
+  # Define options for inlabru 
+  if(is.null(list.input$max_step)){
+    list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
+                         bru_max_iter = list.input$max_iter, # maximum number of iterations
+                         num.threads = 5,
+                         #bru_method = list(max_step = 0.5),
+                         inla.mode = 'experimental', # type of inla algorithm
+                         bru_initial = list.input$th.init) # parameters initial values
+  } else {
+    list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
+                         bru_max_iter = list.input$max_iter, # maximum number of iterations
+                         bru_method = list(max_step = list.input$max_step),
+                         num.threads = 5,
+                         inla.mode = 'experimental', # type of inla algorithm
+                         bru_initial = list.input$th.init) # parameters initial values
+  }
+
+  ## Add out catalogue to the input list
+  quiet.ETAS.cat <- quiet.ETAS.cat.list[[i]]
+  
+  list.input$catalog <- data.frame( 
+      time_diff = quiet.ETAS.cat$ts,
+      magnitudes = quiet.ETAS.cat$magnitudes
+    )
+  
+  ## Add the catalogue formatted for bru
+  list.input$catalog.bru <- data.frame(
+    ts = quiet.ETAS.cat$ts,
+    magnitudes = quiet.ETAS.cat$magnitudes,
+    idx.p = seq_len(nrow(quiet.ETAS.cat))
+  )
+  
+  ## Input list is now formatted
+  ####################  
+  
+  ## Run the model according to the input list
+  ETAS.model.fit <- Temporal.ETAS.fit(list.input)
+
+  ## Small bit of post processing
+  list.output.quietScenario[[i]] <- append(list.input, list(model.fit = ETAS.model.fit))
+  list.output.quietScenario[[i]]$runtime <- sum(list.output.quietScenario[[i]]$model.fit$bru_timings$Time)
+  list.output.quietScenario[[i]]$nEvents <- length(list.output.quietScenario[[i]]$catalog[,1])
+}
+```
+
+## Analysis of M6.7 catalogue
+
+```{r}
+list.output.M6p7Scenario <-list()
+
+for (i in 1:nCats){
+  if(exists("list.input")) {remove(list.input)}
+
+  # Load a set of parameters that we will need to tweak for this application
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+  
+  ####################
+  # Tweak the variables laoded from the input file
+  list.input$M0 <- M0
+  list.input$time.int <- c(0, modelledDuration)
+  list.input$T12 <- c(0, modelledDuration)
+  
+  # Change the starting location, measured on the ETAS scale
+  list.input$mu.init <- startingValues$mu
+  list.input$alpha.init <- startingValues$alpha
+  list.input$K.init <- startingValues$K
+  list.input$c.init <- startingValues$c
+  list.input$p.init <- startingValues$p
+
+    link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
+                 K = \(x) loggaus.t(x, a_K, b_K), 
+                 alpha = \(x) unif.t(x, a_alpha, b_alpha), 
+                 c_ = \(x) unif.t(x, a_c, b_c), 
+                 p = \(x) unif.t(x, a_p, b_p))
+  
+  # initial value - convert from ETAS scale to internal scale
+  list.input$th.init <- list(th.mu = inv.gamma.t(list.input$mu.init, list.input$a_mu, list.input$b_mu),
+                  th.K = inv.loggaus.t(list.input$K.init, list.input$a_K, list.input$b_K),
+                  th.alpha = inv.unif.t(list.input$alpha.init, list.input$a_alpha, list.input$b_alpha),
+                  th.c = inv.unif.t(list.input$c.init, list.input$a_c, list.input$b_c),
+                  th.p = inv.unif.t(list.input$p.init, list.input$a_p, list.input$b_p) )
+
+  # Define options for inlabru 
+  if(is.null(list.input$max_step)){
+    list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
+                         bru_max_iter = list.input$max_iter, # maximum number of iterations
+                         num.threads = 5,
+                         #bru_method = list(max_step = 0.5),
+                         inla.mode = 'experimental', # type of inla algorithm
+                         bru_initial = list.input$th.init) # parameters initial values
+  } else {
+    list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
+                         bru_max_iter = list.input$max_iter, # maximum number of iterations
+                         bru_method = list(max_step = list.input$max_step),
+                         num.threads = 5,
+                         inla.mode = 'experimental', # type of inla algorithm
+                         bru_initial = list.input$th.init) # parameters initial values
+  }
+
+  ## Add out catalogue to the input list
+  M6p7.ETAS.cat <- M6p7.ETAS.cat.list[[i]]
+
+  list.input$catalog <- data.frame( 
+      time_diff = M6p7.ETAS.cat$ts,
+      magnitudes = M6p7.ETAS.cat$magnitudes
+    )
+  
+  ## Add the catalogue formatted for bru
+  list.input$catalog.bru <- data.frame(
+    ts = M6p7.ETAS.cat$ts,
+    magnitudes = M6p7.ETAS.cat$magnitudes,
+    idx.p = seq_len(nrow(M6p7.ETAS.cat))
+  )
+  
+  ## Input list is now formatted
+  ####################  
+  
+  ## Run the model according to the input list
+  ETAS.model.fit <- Temporal.ETAS.fit(list.input)
+
+  ## Small bit of post processing
+  list.output.M6p7Scenario[[i]] <- append(list.input, list(model.fit = ETAS.model.fit))
+  list.output.M6p7Scenario[[i]]$runtime <- sum(list.output.M6p7Scenario[[i]]$model.fit$bru_timings$Time)
+  list.output.M6p7Scenario[[i]]$nEvents <- length(list.output.M6p7Scenario[[i]]$catalog[,1])
+}
+```
+
+### Plot posteriors with corresponding starting values
+
+```{r}
+plots <- list()
+
+trueParas <- data.frame(value=c( mu, K, alpha,c, p), param=c( "mu", "K", "alpha","c", "p"))
+
+post.list <- get_posterior_param(input.list = list.output.quietScenario[[1]])
+post.df <-  post.list[[1]]
+post.df$id <-1
+ 
+for(i in 2:10){
+ post.list <- get_posterior_param(input.list = list.output.quietScenario[[i]])
+ post.df.tmp <-  post.list[[1]]
+ post.df.tmp$id <-i
+ 
+ post.df <- rbind(post.df,post.df.tmp)
+ }
+
+plots[[1]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=factor(id))) + 
+    geom_line() +
+  #scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) + 
+    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
+  geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
+  labs(color='Random catalogue number', linetype='Random catalogue number' ) +
+  ggtitle(paste("A. Impact of stochastic variability for 1000 day catalogue with no large events seeded") ) +
+  xlab("ETAS Posteriors") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust=1))+
+  theme(legend.position='hidden')
+
+```
+
+```{r}
+trueParas <- data.frame(value=c( mu, K, alpha,c, p), param=c( "mu", "K", "alpha","c", "p"))
+
+post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[2]])
+post.df <-  post.list[[1]]
+post.df$id <-2
+ 
+for(i in 2:10){
+ post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[i]])
+ post.df.tmp <-  post.list[[1]]
+ post.df.tmp$id <-i
+ 
+ post.df <- rbind(post.df,post.df.tmp)
+ }
+
+plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=factor(id))) + 
+    geom_line() +
+  #scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) + 
+    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
+  geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
+  labs(color='Random catalogue number', linetype='Random catalogue number' ) +
+  ggtitle(paste("B. Impact of stochastic variability for 1000 day catalogue with a M6.7 event seeded on day 500")) +
+  xlab("ETAS Posteriors") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust=1))+
+  theme(legend.position='hidden')
+
+```
+
+```{r fig.height=4, fig.width=4}
+grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
+
+ggsave("many_stochasticVariability_posteriors.png", plt)
+ggsave("many_stochasticVariability_posteriors.pdf", plt)
+```
+
+# Plot Runtimes
+
+```{r}
+runtimeList<-c()
+nEventsList<-c()
+
+
+for(i in 1:10){
+  nEventsList <- c(nEventsList, list.output.quietScenario[[i]]$nEvents, list.output.M6p7Scenario[[i]]$nEvents)
+  runtimeList <- c(runtimeList, list.output.quietScenario[[i]]$runtime, list.output.M6p7Scenario[[i]]$runtime)
+}
+
+df_runtime <- data.frame(nEvents = nEventsList, time=runtimeList)
+write.table(df_runtime, "runtimes_stoch_large.csv")
+
+plot(nEventsList, runtimeList/60, ylab="inlabru inversion runtime [min]", xlab="Number of events in catalogue")
+abline(lm(runtimeList/60 ~ nEventsList), lty=2, col='blue')
+```
+
+
+

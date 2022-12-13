@@ -4,7 +4,15 @@
 \alias{generate.temporal.ETAS.synthetic}
 \title{Generates a sythetic catalogue using the ETAS model}
 \usage{
-\method{generate}{temporal.ETAS.synthetic}(theta, beta.p, M0, T1, T2, Ht = NULL, ncore = 1)
+generate.temporal.ETAS.synthetic(
+  theta,
+  beta.p,
+  M0,
+  T1,
+  T2,
+  Ht = NULL,
+  ncore = 1
+)
 }
 \arguments{
 \item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}

@@ -1,6 +1,0 @@
-name	user	system	elapsed
-breaks_exp	0.001	0.001	0.000	
-create.input.list.temporal.noCatalogue	0	0	0	
-generate.temporal.ETAS.synthetic	0.441	0.046	0.491	
-sample.GR.magnitudes	0	0	0	
-sample.temporal.ETAS.generation	0.007	0.003	0.011	
