@@ -160,6 +160,56 @@ omori <- function(theta, t, ti){
 #' @examples
 omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
+  prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
+                       list.input$link.functions$K(rnorm(n.samp)),
+                       list.input$link.functions$alpha(rnorm(n.samp)),
+                       list.input$link.functions$c(rnorm(n.samp)),
+                       list.input$link.functions$p(rnorm(n.samp)))
+
+  omori.eval <- lapply(1:nrow(post.samp),
+                       \(x) omori(th = post.samp[x,],
+                                  t = t.eval,
+                                  ti = 0))
+  omori.cols <- as.matrix(bind_cols(omori.eval))
+  omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
+  omori.upper.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.975)))
+
+  #omori.eval <- bind_rows(omori.eval)
+  output.plot <- ggplot()
+  for(i in 1:ncol(omori.cols)){
+    omori.eval.i <- omori.cols[,i]
+    df.omori <- data.frame(t = t.eval,
+                           omori = omori.eval.i)
+    output.plot <- output.plot +
+      geom_line(data = df.omori,
+                aes(x = t, y = omori),
+                color= 'grey', alpha = 0.5)
+  }
+  output.plot +
+    geom_line(aes(x = t.eval, y = omori.lower.quant)) +
+    geom_line(aes(x = t.eval, y = omori.upper.quant)) +
+    theme_bw() +
+    xlab("Time") +
+    ylab("Event rate")
+}
+
+#' Function to plot the Omori's law corresponding to different posterior samples
+#'
+#' @param list.input structured input `list` with at least two elements:
+#' \itemize{
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' }
+#' @param n.samp Number of posterior samples, `integer` (`default = 10`).
+#' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
+#' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
+#'
+#' @return
+#' @export
+#'
+#' @examples
+omori_plot_priors <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
+  t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   post.samp <- generate(list.input$model.fit, data.frame(),
                         ~ c(list.input$link.functions$mu(th.mu),
                             list.input$link.functions$K(th.K),

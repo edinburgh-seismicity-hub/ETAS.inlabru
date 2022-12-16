@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head><title>R: This package uses inlabru to implement a Bayesian ETAS model for
+modelling seismic sequences</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+<h1> This package uses inlabru to implement a Bayesian ETAS model for
+modelling seismic sequences
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;ETAS.inlabru&rsquo; version 0.1.0</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table style="width: 100%;">
+<tr><td style="width: 25%;"><a href="breaks_exp.html">breaks_exp</a></td>
+<td>Find breaks point for 1D grid</td></tr>
+<tr><td style="width: 25%;"><a href="compute.grid.html">compute.grid</a></td>
+<td>Function to compute the integral of Omori's law efficiently</td></tr>
+<tr><td style="width: 25%;"><a href="cond.lambda.html">cond.lambda</a></td>
+<td>ETAS conditional intensity - used by 'inlabru'</td></tr>
+<tr><td style="width: 25%;"><a href="create.input.list.temporal.noCatalogue.html">create.input.list.temporal.noCatalogue</a></td>
+<td>Function to create a default input file for the ETAS Hawkes temporal model where no catalogue is specified in the input file</td></tr>
+<tr><td style="width: 25%;"><a href="create.input.list.temporal.withCatalogue.html">create.input.list.temporal.withCatalogue</a></td>
+<td>Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.</td></tr>
+<tr><td style="width: 25%;"><a href="exp.t.html">exp.t</a></td>
+<td>Copula tranformation from a standard Normal distribution to an Exponential distribution</td></tr>
+<tr><td style="width: 25%;"><a href="gamma.t.html">gamma.t</a></td>
+<td>Copula tranformation from a standard Normal distribution to a Gamma distribution</td></tr>
+<tr><td style="width: 25%;"><a href="generate.temporal.ETAS.synthetic.html">generate.temporal.ETAS.synthetic</a></td>
+<td>Generates a sythetic catalogue using the ETAS model</td></tr>
+<tr><td style="width: 25%;"><a href="get_posterior_N.html">get_posterior_N</a></td>
+<td>Plot the posterior distribution of the expected number of events</td></tr>
+<tr><td style="width: 25%;"><a href="get_posterior_param.html">get_posterior_param</a></td>
+<td>Retrieve posterior distribution of ETAS parameters</td></tr>
+<tr><td style="width: 25%;"><a href="gt.html">gt</a></td>
+<td>ETAS triggering function - used by 'inlabru'</td></tr>
+<tr><td style="width: 25%;"><a href="Int.ETAS.time.trig.function.html">Int.ETAS.time.trig.function</a></td>
+<td>Integrated Omori's law</td></tr>
+<tr><td style="width: 25%;"><a href="IntInjecIntensity.html">IntInjecIntensity</a></td>
+<td>Injection Rate function</td></tr>
+<tr><td style="width: 25%;"><a href="inv.exp.t.html">inv.exp.t</a></td>
+<td>Copula tranformation from an Exponential to a standard Normal distribution</td></tr>
+<tr><td style="width: 25%;"><a href="inv.gamma.t.html">inv.gamma.t</a></td>
+<td>Copula tranformation from an Gamma to a standard Normal distribution</td></tr>
+<tr><td style="width: 25%;"><a href="Inv.Int.ETAS.time.trig.function.html">Inv.Int.ETAS.time.trig.function</a></td>
+<td>Inverse of integrated Omori's law</td></tr>
+<tr><td style="width: 25%;"><a href="Inv.IntInjecIntensity.html">Inv.IntInjecIntensity</a></td>
+<td>Title</td></tr>
+<tr><td style="width: 25%;"><a href="inv.loggaus.t.html">inv.loggaus.t</a></td>
+<td>Copula tranformation from an Log-Normal to a standard Normal distribution</td></tr>
+<tr><td style="width: 25%;"><a href="inv.unif.t.html">inv.unif.t</a></td>
+<td>Copula tranformation from an Uniform to a standard Normal distribution</td></tr>
+<tr><td style="width: 25%;"><a href="It_df.html">It_df</a></td>
+<td>Function to calculate the integral of the Omori's law</td></tr>
+<tr><td style="width: 25%;"><a href="lambda.N.html">lambda.N</a></td>
+<td>Calculate the integral of the ETAS conditional intensity</td></tr>
+<tr><td style="width: 25%;"><a href="log.Lambda.h.html">log.Lambda.h</a></td>
+<td>Logarithm of the integral of the ETAS triggering function</td></tr>
+<tr><td style="width: 25%;"><a href="loggaus.t.html">loggaus.t</a></td>
+<td>Copula tranformation from a standard Normal distribution to a Log-Normal distribution</td></tr>
+<tr><td style="width: 25%;"><a href="omori.html">omori</a></td>
+<td>Function to calculate the omori's law</td></tr>
+<tr><td style="width: 25%;"><a href="omori_plot.html">omori_plot</a></td>
+<td>Function to plot the Omori's law corresponding to different posterior samples</td></tr>
+<tr><td style="width: 25%;"><a href="post_sampling.html">post_sampling</a></td>
+<td>Sample from the posterior of the ETAS parameters</td></tr>
+<tr><td style="width: 25%;"><a href="sample.GR.magnitudes.html">sample.GR.magnitudes</a></td>
+<td>Return a sample of magnitudes drawn from the GR distribution</td></tr>
+<tr><td style="width: 25%;"><a href="sample.temoral.ETAS.daughters.html">sample.temoral.ETAS.daughters</a></td>
+<td>Generate a sample of new events 'data.frame(t_i, M_i)' of length 'n.ev' for one parent event occuring at time 't_h' using the ETAS model.</td></tr>
+<tr><td style="width: 25%;"><a href="sample.temoral.injection.events.html">sample.temoral.injection.events</a></td>
+<td>Title</td></tr>
+<tr><td style="width: 25%;"><a href="sample.temporal.ETAS.generation.html">sample.temporal.ETAS.generation</a></td>
+<td>Take all previous parent events from 'Ht=data.frame[ts, magnitudes]' and generates their daughters events using the ETAS model</td></tr>
+<tr><td style="width: 25%;"><a href="sample.temporal.ETAS.times.html">sample.temporal.ETAS.times</a></td>
+<td>Sampling times for events triggered by a parent at th according to the ETAS triggering function</td></tr>
+<tr><td style="width: 25%;"><a href="Temporal.ETAS.html">Temporal.ETAS</a></td>
+<td>Function to fit Hawkes process model</td></tr>
+<tr><td style="width: 25%;"><a href="Temporal.ETAS.fit.html">Temporal.ETAS.fit</a></td>
+<td>Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the 'Hawkes.bru2" function.</td></tr>
+<tr><td style="width: 25%;"><a href="time.grid.html">time.grid</a></td>
+<td>Generate a set of time bins for a specific event.</td></tr>
+<tr><td style="width: 25%;"><a href="triggering_fun_plot.html">triggering_fun_plot</a></td>
+<td>Function to plot the ETAS triggering function corresponding to different posterior samples</td></tr>
+<tr><td style="width: 25%;"><a href="triggering_fun_plot_priors.html">triggering_fun_plot_priors</a></td>
+<td>Function to plot the ETAS triggering function corresponding to different posterior samples</td></tr>
+<tr><td style="width: 25%;"><a href="unif.t.html">unif.t</a></td>
+<td>Copula tranformation from a standard Normal distribution to a Uniform distribution</td></tr>
+</table>
+</div></body></html>
