@@ -73,7 +73,8 @@ geom_vline(aes(xintercept = mu, color='True value')) +
 geom_vline(aes(xintercept = list.input$mu.init, color='Initial value')) +
 xlab("mu") +
 ggtitle("A.  mu prior")+
-    theme_bw() +
+    theme_bw() + 
+  theme(plot.title = element_text(size = 9))+
        theme(legend.position = c(.7, .7))
 
 K_priorPlot <- ggplot() +
@@ -81,7 +82,8 @@ geom_density(aes(x = list.input$link.functions$K(rnorm(100000))) , show.legend =
 geom_vline(aes(xintercept = K, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$K.init, color='Initial value'), show.legend = FALSE) +
 xlab("K") +
-    theme_bw() +
+    theme_bw() + 
+  theme(plot.title = element_text(size = 9))+
 ggtitle("B.  K prior")  
 
 alpha_priorPlot <- ggplot() +
@@ -89,7 +91,8 @@ geom_density(aes(x = list.input$link.functions$alpha(rnorm(100000))) ) +
 geom_vline(aes(xintercept = alpha, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.legend = FALSE) + 
   xlab("alpha") +
-    theme_bw() +
+    theme_bw() + 
+  theme(plot.title = element_text(size = 9))+
 ggtitle("C.  alpha prior")
 
 c_priorPlot <- ggplot() +
@@ -97,7 +100,8 @@ geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
 geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
   xlab("c") +
-    theme_bw() +
+    theme_bw() + 
+  theme(plot.title = element_text(size = 9))+
   ggtitle("D.  c prior")
 
 p_priorPlot <- ggplot() +
@@ -105,7 +109,8 @@ geom_density(aes(x = list.input$link.functions$p(rnorm(100000))) ) +
 geom_vline(aes(xintercept = p, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$p.init, color='Initial value'), show.legend = FALSE) +
   xlab("p") +
-  theme_bw() +
+  theme_bw() + 
+  theme(plot.title = element_text(size = 9))+
 ggtitle("E.  p prior")
 
 plt <- grid_arrange_shared_legend(mu_priorPlot, K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot, ncol=3, nrow=2, position='bottom', top="Samples from the priors")
@@ -131,20 +136,20 @@ head(prior.samp)
 ```{r}
 plot_triggering <- list()
 plot_triggering[[1]] <- triggering_fun_plot_priors(list.input, magnitude = 4, n.samp = 1000) +
-  ggtitle("B. M4 triggering function") +    
+  ggtitle("G. M4 trig. func.") +    
   xlab("Time [days]")+
   theme_bw()  + 
-  theme(plot.title = element_text(size = 8))
+  theme(plot.title = element_text(size = 9))
 
 plot_triggering[[3]] <- triggering_fun_plot_priors(list.input, magnitude = 6.7, n.samp = 1000) +
-  ggtitle("C. M6.7 triggering function") +     
+  ggtitle("H. M6.7 trig. func.") +     
   xlab("Time [days]")+
   theme_bw() + 
-  theme(plot.title = element_text(size = 8))
+  theme(plot.title = element_text(size = 9))
 
 
 plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], ncol=2, nrow=1, top="Triggering function variability") + 
-  theme(plot.title = element_text(size = 8))
+  theme(plot.title = element_text(size = 9))
 
 #ggsave("trig_priorSamples.png", plt)
 #ggsave("trig_priorSamples.pdf", plt)
@@ -153,11 +158,11 @@ plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], ncol=2, nrow=1, 
 ```{r}
 plot_omori <- list()
 plot_omori[[1]] <- omori_plot(list.input, n.samp = 1000) +
-  ggtitle("A. Omori decay") +     
+  ggtitle("F. Omori decay") +     
   theme_bw()  + 
   xlab("Time [days]") +
   ylim(0,1) + 
-  theme(plot.title = element_text(size = 8))
+  theme(plot.title = element_text(size = 9))
 
 
 ```
@@ -172,7 +177,7 @@ ggsave("trigFuncVariability_priors.pdf", plt)
 
 ```{r}
 
-plt <- grid_arrange_shared_legend(mu_priorPlot, K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot, plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]], ncol=3, nrow=3, position='bottom', top="Samples from the priors and triggering functions")
+plt <- grid_arrange_shared_legend(mu_priorPlot, K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot, plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]], ncol=4, nrow=2, position='top')
 ggsave("priors_comb.png", plt)
 ggsave("priors_comb.pdf", plt)
 ```

@@ -1,4 +1,4 @@
-
+library(GGally)
 #' Retrieve posterior distribution of ETAS parameters
 #'
 #' @param input.list input.list structured input `list` with at least two elements:
@@ -95,14 +95,14 @@ post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
                               input.list$link.functions$alpha(th.alpha),
                               input.list$link.functions$c_(th.c),
                               input.list$link.functions$p(th.p)), n.samples = n.samp)
-    data.frame(mu = post.samp[1,],
-               K = post.samp[2,],
-               alpha = post.samp[3,],
-               c = post.samp[4,],
-               p = post.samp[5,])
+    post.samp.df <- data.frame(mu = post.samp[1,],
+                               K = post.samp[2,],
+                               alpha = post.samp[3,],
+                               c = post.samp[4,],
+                               p = post.samp[5,])
   }
-  pair.plot <- ggpairs(post.samp, labeller = label_parsed)
-  return(list(post.samp.df = post.samp,
+  pair.plot <- ggpairs(post.samp.df, labeller = label_parsed, lower=list(continuous='density'))
+  return(list(post.samp.df = post.samp.df,
               pair.plot = pair.plot))
 }
 

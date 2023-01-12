@@ -1,3 +1,9 @@
+
+
+
+
+
+
 #' Function to plot the ETAS triggering function corresponding to different posterior samples
 #'
 #' @param list.input structured input `list` with at least two elements:

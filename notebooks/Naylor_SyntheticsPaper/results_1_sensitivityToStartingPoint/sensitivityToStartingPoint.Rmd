@@ -21,6 +21,7 @@ library(grid)
 library(lemon)
 library(ggplot2)
 library(ggpubr)
+library(GGally)
 
 library(inlabru)
 library(INLA)
@@ -365,8 +366,8 @@ plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
 
 ```{r}
 plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
-ggsave("initialCondition_posteriors.png", plt)
-ggsave("initialCondition_posteriors.pdf", plt)
+#ggsave("initialCondition_posteriors.png", plt)
+#ggsave("initialCondition_posteriors.pdf", plt)
 ```
 
 ## Explore ETAS triggering function using posterior samples
@@ -402,8 +403,8 @@ plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magni
 plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]],plot_triggering[[2]], plot_triggering[[4]], ncol=2, nrow=2, top="Triggering function variability") + 
   theme(plot.title = element_text(size = 8))
 
-ggsave("trigFuncVariability_runin.png", plt)
-ggsave("trigFuncVariability_runin.pdf", plt)
+#ggsave("trigFuncVariability_runin.png", plt)
+#ggsave("trigFuncVariability_runin.pdf", plt)
 ```
 
 ```{r}
@@ -427,6 +428,21 @@ plot_omori[[2]] <- omori_plot(list.output.M6p7Scenario[[2]], n.samp = 100) +
 
 plt <- grid.arrange(plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]],plot_omori[[2]],plot_triggering[[2]], plot_triggering[[4]], ncol=3, nrow=2, top="Triggering  function variability", left="M6.7 baseline            Unseeded baseline")
 
-ggsave("trigFuncVariability_runin.png", plt)
-ggsave("trigFuncVariability_runin.pdf", plt)
+#ggsave("trigFuncVariability_runin.png", plt)
+#ggsave("trigFuncVariability_runin.pdf", plt)
 ```
+
+## Plot the samples from the joint posteriors as pairs plots
+
+
+```{r}
+post_pairs_plot(list.output.quietScenario[[2]], n.samp=1000)
+```
+```{r}
+post_pairs_plot(list.output.M6p7Scenario[[3]], n.samp=1000)
+```
+
+```{r}
+
+```
+

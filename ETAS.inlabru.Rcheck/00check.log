@@ -348,6 +348,9 @@ omori_plot_priors: no visible global function definition for ‘aes’
 omori_plot_priors: no visible global function definition for ‘theme_bw’
 omori_plot_priors: no visible global function definition for ‘xlab’
 omori_plot_priors: no visible global function definition for ‘ylab’
+post_pairs_plot: no visible global function definition for ‘generate’
+post_pairs_plot: no visible global function definition for ‘ggpairs’
+post_pairs_plot: no visible binding for global variable ‘label_parsed’
 post_sampling: no visible global function definition for ‘generate’
 sample.GR.magnitudes: no visible global function definition for ‘rexp’
 sample.temoral.injection.events: no visible global function definition
@@ -415,10 +418,10 @@ Undefined global functions or variables:
   alpha.init b_K b_alpha b_c b_mu b_p bind_cols bind_rows bru
   bru_forward_transformation c.init catalog.colnames catalog.header
   catalog.path catalog.sep catalog.skip coef.t facet_wrap filter
-  foreach generate geom_hline geom_line geom_ribbon geom_vline ggplot
-  idx injection_activityDecayRate injection_vol2activity inla.tmarginal
-  label_parsed magnitude.completeness magnitude.update magnitudes
-  max.latitude max.longitude max_iter max_step min.latitude
+  foreach generate geom_hline geom_line geom_ribbon geom_vline ggpairs
+  ggplot idx injection_activityDecayRate injection_vol2activity
+  inla.tmarginal label_parsed magnitude.completeness magnitude.update
+  magnitudes max.latitude max.longitude max_iter max_step min.latitude
   min.longitude mu.init mutate n.periods na.omit ncore output.name
   p.init param period.length pexp pgamma plnorm post.samp predict punif
   q0.025 q0.975 qexp qgamma qlnorm qnorm quantile qunif read.table rexp
@@ -481,7 +484,7 @@ Missing link or links in documentation object 'sample.temporal.ETAS.times.Rd':
 See section 'Cross-references' in the 'Writing R Extensions' manual.
 * checking for missing documentation entries ... WARNING
 Undocumented code objects:
-  ‘omori_plot_priors’
+  ‘omori_plot_priors’ ‘post_pairs_plot’
 All user-level objects in a package should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
