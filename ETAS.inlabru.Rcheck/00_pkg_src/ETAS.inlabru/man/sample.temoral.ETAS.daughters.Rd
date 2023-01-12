@@ -7,7 +7,7 @@
 sample.temoral.ETAS.daughters(theta, beta.p, th, n.ev, M0, T1, T2)
 }
 \arguments{
-\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
+\item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
 \item{beta.p}{Slope of GR relation: beta = b ln(10).}
 

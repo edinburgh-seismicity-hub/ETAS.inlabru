@@ -4,12 +4,12 @@
 \alias{compute.grid}
 \title{Function to compute the integral of Omori's law efficiently}
 \usage{
-\method{compute}{grid}(param., list.input_)
+compute.grid(param., list.input_)
 }
 \arguments{
 \item{param.}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}
 
-\item{list.input_}{\code{list} containing information to calculate the integrals efficiently. The list is created inside the \code{Temporal.ETAS} function.
+\item{list.input_}{\code{list} containing information to calculate the integrals efficiently. The list is created inside the \code{Temporal.ETAS} function
 Two elements are used
 \itemize{
 \item \code{time.sel} selection of rows of the output of \code{time.grid} with unique \code{t.ref_layer} value, \code{data.frame}.

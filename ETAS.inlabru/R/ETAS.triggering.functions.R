@@ -26,11 +26,26 @@
 #' Do not use if \eqn{t} and \eqn{t_h, m_h} are vectors of different lengths.
 #' @examples
 gt <- function(theta, t, th, mh, M0){
+  if(is.list(theta)){
+    mu <- theta$mu
+    alpha <- theta$alpha
+    K <- theta$K
+    c <- theta$c
+    p <- theta$p
+  } else {
+    mu <- theta[1]
+    K <- theta[2]
+    alpha <- theta[3]
+    c <- theta[4]
+    p <- theta[5]
+  }
+
   output <- rep(0,length(th))
   t.diff <- t - th
   neg <- t.diff <= 0
   if(sum(!neg) > 0){
-    log.out <- log(theta$K) + theta$alpha*(mh[!neg] - M0)  - theta$p*log(1 + t.diff[!neg]/theta$c)
+    log.out <- log(K) + alpha*(mh - M0)  - p*log(1 + t.diff[!neg]/c)
+    #log.out <- log(theta[2]) + theta[3]*(mh[!neg] - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
     output[!neg] <- exp(log.out)
   }
   else{
@@ -83,10 +98,10 @@ log.Lambda.h <- function(theta, th, mh, M0, T1, T2){
 
   gamma.l <- (T.low - th)/theta$c
   gamma.u <- (T2 - th)/theta$c
-  w.l <- (1 + gamma.l)^(1-th$p)
-  w.u <- (1 + gamma.u)^(1-th$p)
+  w.l <- (1 + gamma.l)^(1-theta$p)
+  w.u <- (1 + gamma.u)^(1-theta$p)
   # output
-  log(theta$K) + theta$alpha*(mi - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
+  log(theta$K) + theta$alpha*(mh - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
 }
 
 

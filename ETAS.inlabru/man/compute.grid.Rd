@@ -4,7 +4,7 @@
 \alias{compute.grid}
 \title{Function to compute the integral of Omori's law efficiently}
 \usage{
-\method{compute}{grid}(param., list.input_)
+compute.grid(param., list.input_)
 }
 \arguments{
 \item{param.}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}

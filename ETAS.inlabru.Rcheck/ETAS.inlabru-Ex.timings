@@ -1,13 +1,6 @@
 name	user	system	elapsed
-<<<<<<< HEAD
 breaks_exp	0	0	0	
 create.input.list.temporal.noCatalogue	0	0	0	
-generate.temporal.ETAS.synthetic	0.429	0.043	0.477	
-sample.GR.magnitudes	0.001	0.000	0.000	
-sample.temporal.ETAS.generation	0.008	0.003	0.011	
-=======
-create.input.list.temporal.noCatalogue	0	0	0	
-generate.temporal.ETAS.synthetic	0.446	0.047	0.498	
-sample.GR.magnitudes	0	0	0	
-sample.temporal.ETAS.generation	0.008	0.004	0.012	
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
+generate.temporal.ETAS.synthetic	0.454	0.045	0.511	
+sample.GR.magnitudes	0.000	0.000	0.001	
+sample.temporal.ETAS.generation	0.008	0.004	0.011	

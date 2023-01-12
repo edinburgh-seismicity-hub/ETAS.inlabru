@@ -1,9 +1,15 @@
 
-#' Generate summary information on the fitted ETAS model
+#' Retrieve posterior distribution of ETAS parameters
 #'
-#' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
-#'
-#' @return Data frame summary and summary plot
+#' @param input.list input.list structured input `list` with at least two elements:
+#' \itemize{
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' }
+#' @return A `list` of two elements:
+#' \itemize{
+#' \item `post.df` : `data.frame` with the posterior distributions of the parameters with columns `x` (value of the parameter), `y` (value of the posterior), `param` (parameter name)
+#' \item `post.plot` : `ggplot` object showing the posterior distribution of each parameter}
 #' @export
 #'
 #' @examples
@@ -34,12 +40,16 @@ get_posterior_param <- function(input.list){
 }
 
 
-#' Function to return a many (n.samp) samples from the posterior of the parameters
+#' Sample from the posterior of the ETAS parameters
 #'
-#' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
+#' @param input.list structured input `list` with at least two elements:
+#' \itemize{
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' }
 #' @param n.samp The number of samples to draw from the posteriors
 #'
-#' @return n.samp samples drawn from the posteriors.
+#' @return `data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters.
 #' @export
 #'
 #' @examples
@@ -61,18 +71,8 @@ post_sampling <- function(input.list, n.samp){
 ## MN: DESCRIPTION: Calculate the number of events in a time interval T1 to T2 given imposed events and ETAS
 ## MN: Arguments:
 ## MN: Returns: number of events
-#' Title
+#' Calculate the integral of the ETAS conditional intensity
 #'
-<<<<<<< HEAD
-#' @param th.mu
-#' @param th.K
-#' @param th.alpha
-#' @param th.c
-#' @param th.p
-#' @param T1
-#' @param T2
-#' @param M0
-=======
 #' @param th.mu Background rate, `mu`, on the internal parameter scale
 #' @param th.K ETAS triggering parameter `K` on the internal parameter scale
 #' @param th.alpha ETAS triggering parameter `alpha` on the internal parameter scale
@@ -81,28 +81,27 @@ post_sampling <- function(input.list, n.samp){
 #' @param T1 Start of temporal model domain.
 #' @param T2 End of temporal model domain.
 #' @param M0 Minimum magnitude threshold
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
-#' @param Ht
-#' @param link.functions
+#' @param Ht History of the process, or set of known events in the interval. It must be a `data.frame` with columns `ts` (time) and `magnitudes` (magnitudes).
+#' @param link.functions `list` of functions to trasnform the parameters from the internal scale to the ETAS scale
 #'
-#' @return
+#' @return Integral of the ETAS conditional intensity between `T1` and `T2` with minimum magnitude `M0`.
 #' @export
 #'
 #' @examples
 lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
                      link.functions){
-  theta_etas <- c(link.functions$mu(th.mu[1]),
-                  link.functions$K(th.K[1]),
-                  link.functions$alpha(th.alpha[1]),
-                  link.functions$c_(th.c[1]),
-                  link.functions$p(th.p[1]))
+  theta_etas <- list(mu = link.functions$mu(th.mu[1]),
+                     K = link.functions$K(th.K[1]),
+                     alpha = link.functions$alpha(th.alpha[1]),
+                     c = link.functions$c_(th.c[1]),
+                     p = link.functions$p(th.p[1]))
 
 
-  return( theta_etas[1]*(T2 - T1) + sum(exp(log.Lambda_h2(th = theta_etas,
-                                                          ti = Ht$ts,
-                                                          mi = Ht$magnitudes,
-                                                          M0 = M0,
-                                                          T1 = T1, T2 = T2))) )
+  return( theta_etas$mu*(T2 - T1) + sum(exp(log.Lambda.h(theta = theta_etas,
+                                                         th = Ht$ts,
+                                                         mh = Ht$magnitudes,
+                                                         M0 = M0,
+                                                         T1 = T1, T2 = T2))) )
 }
 
 #######
@@ -112,15 +111,15 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 ##              (ii) Plot of the expected number of events
 ##              (iii) Plot with shaded stack of all distributions of N and a normal about the mean model
 
-#' Title
+#' Plot the posterior distribution of the expected number of events
 #'
-<<<<<<< HEAD
-#' @param input.list
-=======
 #' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 #'
-#' @return
+#' @return A `list` of three objects:
+#' \itemize{
+#' \item `post.df`: `data.frame` containing posterior informations on the posterior distribution of the number of events
+#' \item `post.plot` : `ggplot` object showing the posterior distribution of the expected number of events
+#' \item `post.plot.shaded` : `ggplot` object showing the posterior distribution of the expected number of events, shaded region corresponds to the 0.025 and 0.975 quantiles of the distribution of the distribution of the number of events.}
 #' @export
 #'
 #' @examples

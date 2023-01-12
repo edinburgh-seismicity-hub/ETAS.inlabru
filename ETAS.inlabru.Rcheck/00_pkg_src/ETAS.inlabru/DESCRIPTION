@@ -3,8 +3,15 @@ Type: Package
 Title: This package uses inlabru to implement a Bayesian ETAS model for
         modelling seismic sequences
 Version: 0.1.0
-Author: Mark Naylor, Francesco Serafini, and Finn Lindgren
-Maintainer: The package maintainer <mark.naylor@ed.ac.ukt>
+Authors@R: 
+    c(
+    person("Francesco", "Serafini",email="francesco.serafini@ed.ac.uk", role = c("aut", "cre")),
+    person("Mark", "Naylor", email="mark.naylor@ed.ac.uk", role = c("aut", "ths"),
+           comment = c(ORCID = "0000-0002-3761-5522")),
+    person("Finn", "Lindgren",email="Finn.Lindgren@ed.ac.uk", role = c("ths"), 
+          comment = c(ORCID = "0000-0002-5833-2011"))
+          )
+Maintainer: The package maintainer <mark.naylor@ed.ac.uk>
 Description: Modelling and inversion of ETAS model of seismicity using inlabru
     The Epidemic Type Aftershock Sequence (ETAS) model is designed to 
     model earthquakes that are triggered by previous events. In statistics, this is
@@ -19,17 +26,12 @@ Description: Modelling and inversion of ETAS model of seismicity using inlabru
     and spatio-temporal evolution of seismic sequences.
 License: What license is it under?
 Encoding: UTF-8
-<<<<<<< HEAD
-LazyData: true
-=======
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
 RoxygenNote: 7.2.2
 Roxygen: list(markdown = TRUE)
 Imports: lemon, parallel, tidyquant, dplyr, ggplot2, foreach, INLA,
         inlabru
 NeedsCompilation: no
-<<<<<<< HEAD
-Packaged: 2022-11-16 21:42:52 UTC; mnaylor
-=======
-Packaged: 2022-11-16 13:02:02 UTC; mnaylor
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
+Packaged: 2022-12-16 12:34:30 UTC; mnaylor
+Author: Francesco Serafini [aut, cre],
+  Mark Naylor [aut, ths] (<https://orcid.org/0000-0002-3761-5522>),
+  Finn Lindgren [ths] (<https://orcid.org/0000-0002-5833-2011>)

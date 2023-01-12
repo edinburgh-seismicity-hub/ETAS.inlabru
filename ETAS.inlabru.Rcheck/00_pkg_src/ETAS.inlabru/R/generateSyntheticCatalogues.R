@@ -11,7 +11,7 @@
 
 #' Generates a sythetic catalogue using the ETAS model
 #'
-#' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p  Slope of GR relation: beta = b ln(10).
 #' @param M0  The minimum magnitude in the synthetic catalogue.
 #' @param T1 The start time for the synthetic catalogue [days].
@@ -23,13 +23,13 @@
 #' @examples
 #' ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 #'
-#' generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+#' generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
 #'
 #'
 #' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 #'
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 
 generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
                             Ht = NULL, ncore = 1){
@@ -67,7 +67,6 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
   ## MN: Combine imposed and background events and add 1st generation daughters of imposed event set
   # if known events are provided
   if(!is.null(Ht)){
-    #### TODO : the function has to generate all the points.
     # sample a generation from the known events
     gen.from.past <- sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore)
     # if at least an aftershock is produced
@@ -121,14 +120,14 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
   }
   Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
   Ht.to.gen$gen = -1
-  return( append(list(Ht), Gen.list) )
+  return( append(list(Ht.to.gen), Gen.list) )
 }
 
 
 
 #' Take all previous parent events from `Ht=data.frame[ts, magnitudes]` and generates their daughters events using the ETAS model
 #'
-#' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
 #' @param Ht The set of parent events in the form `data.frame[ts, magnitudes]`
 #' @param M0 The minimum earthquake magnitude in the synthetic catalogue.
@@ -142,14 +141,14 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @examples
 #' # The parents are specified in Ht
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
   n.parent <- nrow(Ht)
   # calculate the aftershock rate for each parent in history (i.e. mean number daughters)
-  trig.rates <- exp(log.Lambda_h2(th = theta,
-                                  ti = Ht$ts, mi = Ht$magnitudes,
+  trig.rates <- exp(log.Lambda.h(theta = theta,
+                                 th = Ht$ts, mh = Ht$magnitudes,
                                   M0 = M0, T1 = T1, T2 = T2))
   # extract number of aftershock for each parent (Sample poisson to deterime no daughters this realisation)
   n.ev.v <- sapply(1:n.parent, function(x) rpois(1, trig.rates[x]))
@@ -179,7 +178,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 ##
 #' Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for one parent event occuring at time `t_h` using the ETAS model.
 #'
-#' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
 #' @param th Time of parent event [days].
 #' @param n.ev The number of events to be placed.
@@ -188,7 +187,6 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T2 End time for synthetic catalogue [days].
 #'
 #' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
-#' @export
 #'
 #' @examples
 sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
@@ -222,7 +220,6 @@ sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 #' @param M0 Minimum magnitude for the sample.
 #'
 #' @return A list of magnitudes of length `n` drawn from a GR distribution.
-#' @export
 #'
 #' @examples
 #' sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
@@ -233,13 +230,12 @@ sample.GR.magnitudes <- function(n, beta.p, M0) {
 
 #' Sampling times for events triggered by a parent at th according to the ETAS triggering function
 #'
-#' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param n.ev Number of events to return in the sample in time domain (th, T2].
 #' @param th Time of the parent event producing n.ev daughters.
 #' @param T2 End time of model domain.
 #'
 #' @return t.sample A list of times in the interval [0, T2] distributed according to the ETAS triggering function.
-#' @export
 #'
 #' @examples
 sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
@@ -254,69 +250,37 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
   return( t.sample )
 }
 
-
-#############################
-#### Injection rate function
-## Forward time integrated function for exponential rate decay
-#' Title
+#' Integrated Omori's law
 #'
-#' @param a Event rate per unit volume injected
-#' @param V.i Injected volume
-#' @param tau Decau rate [days]
-#' @param T.i Time of injection event
-#' @param T2
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`
+#' @param th Time of past event [days] and start of temporal domain, `vector`.
+#' @param T2 End of temporal domain, `scalar`.
 #'
-#' @return
-#' @export
-#'
+#' @return Value of the integral of the Omori's law
+#' @details
+#' The function returns the integral of the Omori's law, namely
+#' \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 #' @examples
-IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
-  expected.injection.events <- - tau*V.i*a* ( exp(-(T2-T.i)/tau ) -1 )
-  return(expected.injection.events)
+Int.ETAS.time.trig.function <- function(theta, th, T2){
+  gamma.u <- (T2 - th)/theta$c
+  ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
 }
 
-## Returns end time given a ...
-#' Title
+
+#' Inverse of integrated Omori's law
 #'
-#' @param a Event rate per unit volume injected
-#' @param V.i Injected volume
-#' @param tau Decau rate [days]
-#' @param T.i Time of injection event
-#' @param number.injected.events
+#' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`
+#' @param omega Value of the integral to be inverted, `vector`
+#' @param th Time from which the integral is calculated `scalar`
 #'
-#' @return
-#' @export
-#'
+#' @return Value of the start of the temporal domain used to calculate the integral
+#' @details
+#' Considering the integral of the Omori's law
+#' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
+#' The function applied to the value \eqn{omega} returns the value of \eqn[t_h].
 #' @examples
-Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.events){
-  endTime <- T.i - tau*log(1 - number.injected.events / (tau*V.i*a))
-  return(endTime)
+Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
+  th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }
 
-#' Title
-#'
-#' @param a Induced event rate per unit volume.
-#' @param V.i Injected volume
-#' @param tau Decay rate [days].
-#' @param beta.p Related to the b-value via `b ln(10)`.
-#' @param M0 Minimum magnitude threshold.
-#' @param T.i Time of injection [days].
-#' @param T2 End of temporal model domain [days].
-#'
-#' @return Catalogue of parent events induced by injection data.frame(times, magnitudes)
-#' @export
-#'
-#' @examples
-sample.temoral.injection.events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
-  bound.l <- 0 #It(th.p, th, T)
-  bound.u <- IntInjecIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, T2=T2)
-  n.ev <- rpois( 1, bound.u  )
-  unif.s <- runif(n.ev, min = bound.l, max = bound.u)
-  sample.ts <- Inv.IntInjecIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, number.injected.events=unif.s)
-
-  samp.mags <- rexp(n.ev, rate = beta.p) + M0
-
-  samp.points <- data.frame(ts = sample.ts, magnitudes = samp.mags)
-  return(samp.points[!is.na(samp.points$ts),])
-}
 

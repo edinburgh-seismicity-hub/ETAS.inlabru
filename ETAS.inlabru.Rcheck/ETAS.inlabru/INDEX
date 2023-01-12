@@ -1,13 +1,11 @@
 Int.ETAS.time.trig.function
-                        Integrated ETAS time-triggering function
-IntInjecIntensity       Title
+                        Integrated Omori's law
+IntInjecIntensity       Injection Rate function
 Inv.Int.ETAS.time.trig.function
-                        Inverse of integrated ETAS time-triggering
-                        function
+                        Inverse of integrated Omori's law
 Inv.IntInjecIntensity   Title
 It_df                   Function to calculate the integral of the
                         Omori's law
-Plot_grid               Title
 Temporal.ETAS           Function to fit Hawkes process model
 Temporal.ETAS.fit       Fits the remporal ETAS model and returns the
                         results. This function decomposes the
@@ -15,6 +13,7 @@ Temporal.ETAS.fit       Fits the remporal ETAS model and returns the
 breaks_exp              Find breaks point for 1D grid
 compute.grid            Function to compute the integral of Omori's law
                         efficiently
+cond.lambda             ETAS conditional intensity - used by 'inlabru'
 create.input.list.temporal.noCatalogue
                         Function to create a default input file for the
                         ETAS Hawkes temporal model where no catalogue
@@ -23,40 +22,37 @@ create.input.list.temporal.withCatalogue
                         Function to create a default input file for the
                         ETAS Hawkes temporal model where a catalogue is
                         specified in the input file.
-gamma.t                 Gamma copula transformation: Conversion of ETAS
-                        para to internal scale
+exp.t                   Copula tranformation from a standard Normal
+                        distribution to an Exponential distribution
+gamma.t                 Copula tranformation from a standard Normal
+                        distribution to a Gamma distribution
 generate.temporal.ETAS.synthetic
                         Generates a sythetic catalogue using the ETAS
                         model
-get_posterior_N         Title
-get_posterior_param     Generate summary information on the fitted ETAS
-                        model
-gt                      Time triggering function - used by bayesianETAS
-                        Used for comparing output of inlabru with
-                        Bayesian ETAS MN: TODO Cross-reference the
-                        paper
-gt.2                    Time triggering function - used by Inlabru MN:
-                        TODO Cross-reference the paper
-inv.exp.t               Inverse exponential link function:
-inv.gamma.t             Inverse gamma copula transformation:
-inv.loggaus.t           Inverse log-gaussian copula transformation:
-inv.unif.t              Inverse uniform copula transformation:
-lambda.N                Title
-lambda_                 Conditional intensity - used by bayesianETAS
-                        Used for comparing output of inlabru with
-                        Bayesian ETAS
-lambda_2                conditional intensity (used by Inlabru)
-log.Lambda_h            integrated triggering function - used by
-                        bayesianETAS Used for comparing output of
-                        inlabru with Bayesian ETAS
-log.Lambda_h2           integrated triggering function - used by
-                        Inlabru ALSO USED IN GENERATION SAMPLES
-loggaus.t               Log-gaussian copula transformation: Conversion
-                        of ETAS para to internal scale
-omori_plot              Code to plot samples from the of posterior ETAS
+get_posterior_N         Plot the posterior distribution of the expected
+                        number of events
+get_posterior_param     Retrieve posterior distribution of ETAS
+                        parameters
+gt                      ETAS triggering function - used by 'inlabru'
+inv.exp.t               Copula tranformation from an Exponential to a
+                        standard Normal distribution
+inv.gamma.t             Copula tranformation from an Gamma to a
+                        standard Normal distribution
+inv.loggaus.t           Copula tranformation from an Log-Normal to a
+                        standard Normal distribution
+inv.unif.t              Copula tranformation from an Uniform to a
+                        standard Normal distribution
+lambda.N                Calculate the integral of the ETAS conditional
+                        intensity
+log.Lambda.h            Logarithm of the integral of the ETAS
                         triggering function
-post_sampling           Function to return a many (n.samp) samples from
-                        the posterior of the parameters
+loggaus.t               Copula tranformation from a standard Normal
+                        distribution to a Log-Normal distribution
+omori                   Function to calculate the omori's law
+omori_plot              Function to plot the Omori's law corresponding
+                        to different posterior samples
+post_sampling           Sample from the posterior of the ETAS
+                        parameters
 sample.GR.magnitudes    Return a sample of magnitudes drawn from the GR
                         distribution
 sample.temoral.ETAS.daughters
@@ -73,13 +69,12 @@ sample.temporal.ETAS.generation
 sample.temporal.ETAS.times
                         Sampling times for events triggered by a parent
                         at th according to the ETAS triggering function
-temporal.ETAS           Function to fit Hawkes process model
 time.grid               Generate a set of time bins for a specific
-<<<<<<< HEAD
                         event.
-=======
-                        event and return.
-trigger                 Title
->>>>>>> 4bbeeb6f841c44ff042a96c001abbec873906594
-unif.t                  Uniform copula transformation: Conversion of
-                        ETAS para to internal scale
+triggering_fun_plot     Function to plot the ETAS triggering function
+                        corresponding to different posterior samples
+triggering_fun_plot_priors
+                        Function to plot the ETAS triggering function
+                        corresponding to different posterior samples
+unif.t                  Copula tranformation from a standard Normal
+                        distribution to a Uniform distribution

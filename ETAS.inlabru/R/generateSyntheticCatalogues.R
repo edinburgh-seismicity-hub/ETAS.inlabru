@@ -141,7 +141,7 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @examples
 #' # The parents are specified in Ht
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
@@ -281,71 +281,6 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #' @examples
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
-}
-
-
-#############################
-#### Injection rate function
-## Forward time integrated function for exponential rate decay
-#' Title
-#'
-#' @param a Event rate per unit volume injected
-#' @param V.i Injected volume
-#' @param tau Decau rate [days]
-#' @param T.i Time of injection event
-#' @param T2
-#'
-#' @return
-#'
-#' @examples
-IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
-  expected.injection.events <- - tau*V.i*a* ( exp(-(T2-T.i)/tau ) -1 )
-  return(expected.injection.events)
-}
-
-## Returns end time given a ...
-#' Title
-#'
-#' @param a Event rate per unit volume injected
-#' @param V.i Injected volume
-#' @param tau Decau rate [days]
-#' @param T.i Time of injection event
-#' @param number.injected.events
-#'
-#' @return
-#' @export
-#'
-#' @examples
-Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.events){
-  endTime <- T.i - tau*log(1 - number.injected.events / (tau*V.i*a))
-  return(endTime)
-}
-
-#' Title
-#'
-#' @param a Induced event rate per unit volume.
-#' @param V.i Injected volume
-#' @param tau Decay rate [days].
-#' @param beta.p Related to the b-value via `b ln(10)`.
-#' @param M0 Minimum magnitude threshold.
-#' @param T.i Time of injection [days].
-#' @param T2 End of temporal model domain [days].
-#'
-#' @return Catalogue of parent events induced by injection data.frame(times, magnitudes)
-#' @export
-#'
-#' @examples
-sample.temoral.injection.events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
-  bound.l <- 0 #It(th.p, th, T)
-  bound.u <- IntInjecIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, T2=T2)
-  n.ev <- rpois( 1, bound.u  )
-  unif.s <- runif(n.ev, min = bound.l, max = bound.u)
-  sample.ts <- Inv.IntInjecIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, number.injected.events=unif.s)
-
-  samp.mags <- rexp(n.ev, rate = beta.p) + M0
-
-  samp.points <- data.frame(ts = sample.ts, magnitudes = samp.mags)
-  return(samp.points[!is.na(samp.points$ts),])
 }
 
 

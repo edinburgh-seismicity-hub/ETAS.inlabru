@@ -73,13 +73,13 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 
-generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
 
 
 ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-generate.temporal.ETAS.synthetic( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 
 
 
@@ -121,7 +121,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 # The parents are specified in Ht
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 
 
 

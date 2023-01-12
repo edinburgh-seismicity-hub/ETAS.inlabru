@@ -61,13 +61,20 @@ M0 = 2.5
 
 ```
 
+# Plot the priors
+
 ```{r Plot the priors with true values}
+
+  # Load a set of parameters that we will need to tweak for this application
+fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+list.input <- create.input.list.temporal.noCatalogue(fpath)
+
 mu_priorPlot <- ggplot() +
 geom_density(aes(x = list.input$link.functions$mu(rnorm(100000))) ) +
 geom_vline(aes(xintercept = mu, color='True value')) +
 geom_vline(aes(xintercept = list.input$mu.init, color='Initial value')) +
 xlab("mu") +
-ggtitle("mu prior")+
+ggtitle("A.  mu prior")+
     theme_bw() +
        theme(legend.position = c(.7, .7))
 
@@ -77,7 +84,7 @@ geom_vline(aes(xintercept = K, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$K.init, color='Initial value'), show.legend = FALSE) +
 xlab("K") +
     theme_bw() +
-ggtitle("K prior")  
+ggtitle("B.  K prior")  
 
 alpha_priorPlot <- ggplot() +
 geom_density(aes(x = list.input$link.functions$alpha(rnorm(100000))) ) +
@@ -85,7 +92,7 @@ geom_vline(aes(xintercept = alpha, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.legend = FALSE) + 
   xlab("alpha") +
     theme_bw() +
-ggtitle("alpha prior")
+ggtitle("C.  alpha prior")
 
 c_priorPlot <- ggplot() +
 geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
@@ -93,7 +100,7 @@ geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
   xlab("c") +
     theme_bw() +
-  ggtitle("c prior")
+  ggtitle("D.  c prior")
 
 p_priorPlot <- ggplot() +
 geom_density(aes(x = list.input$link.functions$p(rnorm(100000))) ) +
@@ -101,9 +108,12 @@ geom_vline(aes(xintercept = p, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$p.init, color='Initial value'), show.legend = FALSE) +
   xlab("p") +
   theme_bw() +
-ggtitle("p prior")
+ggtitle("E.  p prior")
 
-multiplot(mu_priorPlot,K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot,cols = 3)
+plt <- grid_arrange_shared_legend(mu_priorPlot, K_priorPlot,alpha_priorPlot,c_priorPlot,p_priorPlot, ncol=3, nrow=2, position='bottom', top="Samples from the priors")
+ggsave("priors.png", plt)
+ggsave("priors.pdf", plt)
+
 ```
 
 
@@ -146,8 +156,8 @@ for(i in 1:nCats){
 ```
 
 ```{r}
-save(M6p7.ETAS.cat,file="M6p7_ETAS_cat.Rda")
-save(quiet.ETAS.cat,file="quiet.ETAS.cat.Rda")
+save(M6p7.ETAS.cat.list,file="M6p7_ETAS_cat.Rda")
+save(quiet.ETAS.cat.list,file="quiet.ETAS.cat.Rda")
 ```
 
 # Present the catalogues
@@ -162,30 +172,27 @@ load("quiet.ETAS.cat.Rda")
 ## Plot properties of the catalogues
 
 ```{r fig.height=5}
+## Seeded catalogues
+
 plots <-list()
 
 for( i in 1:10){
 plots[[i]] <- ggplot() + 
   geom_point(data = M6p7.ETAS.cat.list[[i]], aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
   xlim(0, modelledDuration) +
-  ggtitle(paste("Quiet syntheic catalogue",i,", nEvents =", length(M6p7.ETAS.cat.list[[i]]$ts) )) +
+  ggtitle(paste("Seeded catalogue",i,", nEvents =", length(M6p7.ETAS.cat.list[[i]]$ts) )) +
   ylim(2,7) +
   theme_bw() +
   xlab("Time [days]") +
   ylab("Magnitude")
 }
 
-#plots[[2]] <- ggplot() + 
-#  geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
-#  xlim(0, modelledDuration) +
-#  ggtitle(paste("(b) Catalogue with M6.7 event on day 1000, nEvents =", length(M6p7.ETAS.cat$ts) )) +
-#  ylim(2,7) +
-#  xlab("Time [days]") +
-#  ylab("Magnitude")
+plt <- grid.arrange(plots[[1]], plots[[2]],plots[[3]], plots[[4]], plots[[5]], plots[[6]],plots[[7]], plots[[8]],plots[[9]], plots[[10]],nrow=5, ncol=2)
 
-marrangeGrob(plots, nrow=5, ncol=2)
 
-ggsave("Sipp_10M6p7Cats.png", marrangeGrob(plots, nrow=5, ncol=2))
+ggsave("ten_seeded_cats.png", plt)
+ggsave("ten_seeded_cats.pdf", plt)
+
 ```
 
 ```{r fig.height=5}
@@ -202,17 +209,11 @@ plots[[i]] <- ggplot() +
   ylab("Magnitude")
 }
 
-#plots[[2]] <- ggplot() + 
-#  geom_point(data = M6p7.ETAS.cat, aes(x=ts, y=magnitudes), size=0.1, alpha=0.5) +
-#  xlim(0, modelledDuration) +
-#  ggtitle(paste("(b) Catalogue with M6.7 event on day 1000, nEvents =", length(M6p7.ETAS.cat$ts) )) +
-#  ylim(2,7) +
-#  xlab("Time [days]") +
-#  ylab("Magnitude")
+plt <- grid.arrange(plots[[1]], plots[[2]],plots[[3]], plots[[4]], plots[[5]], plots[[6]],plots[[7]], plots[[8]],plots[[9]], plots[[10]],nrow=5, ncol=2)
 
-marrangeGrob(plots, nrow=5, ncol=2)
 
-ggsave("Sipp_10QuietCats.png", marrangeGrob(plots, nrow=5, ncol=2))
+ggsave("ten_unseeded_cats.png", plt)
+ggsave("ten_unseeded_cats.pdf", plt)
 ```
 
 # Analyse the sensitivity to starting conditions
@@ -408,7 +409,7 @@ plots[[1]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
     facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
   geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
   labs(color='Random catalogue number', linetype='Random catalogue number' ) +
-  ggtitle(paste("Impact of stochastic variability for 1000 day catalogue with no large events seeded") ) +
+  ggtitle(paste("A. Impact of stochastic variability for 1000 day catalogue with no large events seeded") ) +
   xlab("ETAS Posteriors") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust=1))+
@@ -437,7 +438,7 @@ plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
     facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed, nrow=2) +
   geom_vline(aes(xintercept = value ), data=trueParas, color='black', linetype=2, label="True value") + 
   labs(color='Random catalogue number', linetype='Random catalogue number' ) +
-  ggtitle(paste("Impact of stochastic variability for 1000 day catalogue with a M6.7 event seeded on day 500")) +
+  ggtitle(paste("B. Impact of stochastic variability for 1000 day catalogue with a M6.7 event seeded on day 500")) +
   xlab("ETAS Posteriors") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust=1))+
@@ -445,28 +446,31 @@ plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
 
 ```
 
-
-```{r}
-marrangeGrob(plots, nrow=2, ncol=1)
-
-ggsave("stochasticVariability_posteriors.png", marrangeGrob(plots, nrow=2, ncol=1))
-
-```
-
 ```{r fig.height=4, fig.width=4}
-grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
+plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
+
+ggsave("stochasticVariability_posteriors.png", plt)
+ggsave("stochasticVariability_posteriors.pdf", plt)
 ```
+
+# Plot Runtimes
 
 ```{r}
 runtimeList<-c()
 nEventsList<-c()
+
 
 for(i in 1:10){
   nEventsList <- c(nEventsList, list.output.quietScenario[[i]]$nEvents, list.output.M6p7Scenario[[i]]$nEvents)
   runtimeList <- c(runtimeList, list.output.quietScenario[[i]]$runtime, list.output.M6p7Scenario[[i]]$runtime)
 }
 
+df_runtime <- data.frame(nEvents = nEventsList, time=runtimeList)
+write.table(df_runtime, "runtimes_stoch.csv")
+
 plot(nEventsList, runtimeList/60, ylab="inlabru inversion runtime [min]", xlab="Number of events in catalogue")
 abline(lm(runtimeList/60 ~ nEventsList), lty=2, col='blue')
 ```
+
+
 

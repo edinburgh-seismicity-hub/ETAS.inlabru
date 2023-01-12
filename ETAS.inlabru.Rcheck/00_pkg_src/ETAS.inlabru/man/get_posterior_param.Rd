@@ -2,16 +2,23 @@
 % Please edit documentation in R/AnalysingPosteriors.R
 \name{get_posterior_param}
 \alias{get_posterior_param}
-\title{Generate summary information on the fitted ETAS model}
+\title{Retrieve posterior distribution of ETAS parameters}
 \usage{
 get_posterior_param(input.list)
 }
 \arguments{
-\item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
+\item{input.list}{input.list structured input \code{list} with at least two elements:
+\itemize{
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+}}
 }
 \value{
-Data frame summary and summary plot
+A \code{list} of two elements:
+\itemize{
+\item \code{post.df} : \code{data.frame} with the posterior distributions of the parameters with columns \code{x} (value of the parameter), \code{y} (value of the posterior), \code{param} (parameter name)
+\item \code{post.plot} : \code{ggplot} object showing the posterior distribution of each parameter}
 }
 \description{
-Generate summary information on the fitted ETAS model
+Retrieve posterior distribution of ETAS parameters
 }

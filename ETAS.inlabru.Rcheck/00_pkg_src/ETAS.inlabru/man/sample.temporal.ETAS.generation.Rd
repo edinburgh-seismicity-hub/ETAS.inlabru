@@ -7,7 +7,7 @@
 sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
 }
 \arguments{
-\item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
+\item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
 
 \item{beta.p}{Slope of GR relation: beta = b ln(10).}
 
@@ -30,5 +30,5 @@ Take all previous parent events from \code{Ht=data.frame[ts, magnitudes]} and ge
 \examples{
 # The parents are specified in Ht
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-sample.temporal.ETAS.generation( theta=data.frame(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
 }
