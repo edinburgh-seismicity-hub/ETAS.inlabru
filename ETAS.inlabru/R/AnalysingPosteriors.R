@@ -67,6 +67,46 @@ post_sampling <- function(input.list, n.samp){
              p = post.samp[5,])
 }
 
+
+#' Sample from the posterior of the ETAS parameters
+#'
+#' @param input.list structured input `list` with at least two elements:
+#' \itemize{
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' }
+#' @param n.samp The number of samples to draw from the posteriors for the plot
+#' @param post.samp : `data.frame` with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When `NULL` the function samples the joint posterior distribution `n.samp` times. The default is `NULL`.
+#' @return `list`: with elements
+#' \itemize{
+#' \item `post.samp.df`:`data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters. If `post.samp` is not `NULL` it returns `post.samp`}
+#' \item `pair.plot`: `ggplot` object reporting the pair plot between parameters samples. It is obtained using the `ggpairs` function of the `Ggally` library
+#' @export
+#'
+#' @examples
+post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
+  if(is.null(input.list$model.fit)){
+    stop('model.fit is missing, please provide a fitted model as bru object')
+  }
+  if(is.null(post.samp)){
+    post.samp <- generate(input.list$model.fit, data.frame(),
+                          ~ c(input.list$link.functions$mu(th.mu),
+                              input.list$link.functions$K(th.K),
+                              input.list$link.functions$alpha(th.alpha),
+                              input.list$link.functions$c_(th.c),
+                              input.list$link.functions$p(th.p)), n.samples = n.samp)
+    data.frame(mu = post.samp[1,],
+               K = post.samp[2,],
+               alpha = post.samp[3,],
+               c = post.samp[4,],
+               p = post.samp[5,])
+  }
+  pair.plot <- ggpairs(post.samp, labeller = label_parsed)
+  return(list(post.samp.df = post.samp,
+              pair.plot = pair.plot))
+}
+
+
 #######
 ## MN: DESCRIPTION: Calculate the number of events in a time interval T1 to T2 given imposed events and ETAS
 ## MN: Arguments:
