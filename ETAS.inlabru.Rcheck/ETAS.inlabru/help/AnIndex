@@ -23,6 +23,8 @@ log.Lambda.h	log.Lambda.h
 loggaus.t	loggaus.t
 omori	omori
 omori_plot	omori_plot
+omori_plot_priors	omori_plot_priors
+post_pairs_plot	post_pairs_plot
 post_sampling	post_sampling
 sample.GR.magnitudes	sample.GR.magnitudes
 sample.temoral.ETAS.daughters	sample.temoral.ETAS.daughters

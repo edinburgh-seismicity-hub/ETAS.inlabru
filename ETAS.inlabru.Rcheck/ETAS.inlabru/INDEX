@@ -51,6 +51,10 @@ loggaus.t               Copula tranformation from a standard Normal
 omori                   Function to calculate the omori's law
 omori_plot              Function to plot the Omori's law corresponding
                         to different posterior samples
+omori_plot_priors       Function to plot the Omori's law corresponding
+                        to different posterior samples
+post_pairs_plot         Sample from the posterior of the ETAS
+                        parameters
 post_sampling           Sample from the posterior of the ETAS
                         parameters
 sample.GR.magnitudes    Return a sample of magnitudes drawn from the GR
