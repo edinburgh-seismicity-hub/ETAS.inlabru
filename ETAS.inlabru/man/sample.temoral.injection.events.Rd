@@ -11,15 +11,15 @@ sample.temoral.injection.events(a = 50, V.i = 1, tau = 10, beta.p, M0, T.i, T2)
 
 \item{V.i}{Injected volume}
 
-\item{tau}{Decay rate \link{days}.}
+\item{tau}{Decay rate \verb{[days]}.}
 
 \item{beta.p}{Related to the b-value via \verb{b ln(10)}.}
 
 \item{M0}{Minimum magnitude threshold.}
 
-\item{T.i}{Time of injection \link{days}.}
+\item{T.i}{Time of injection \verb{[days]}.}
 
-\item{T2}{End of temporal model domain \link{days}.}
+\item{T2}{End of temporal model domain \verb{[days]}.}
 }
 \value{
 Catalogue of parent events induced by injection data.frame(times, magnitudes)

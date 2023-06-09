@@ -20,8 +20,9 @@ post_pairs_plot(input.list, n.samp, post.samp = NULL)
 \value{
 \code{list}: with elements
 \itemize{
-\item \code{post.samp.df}:\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters. If \code{post.samp} is not \code{NULL} it returns \code{post.samp}}
+\item \code{post.samp.df}:\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters. If \code{post.samp} is not \code{NULL} it returns \code{post.samp}
 \item \code{pair.plot}: \code{ggplot} object reporting the pair plot between parameters samples. It is obtained using the \code{ggpairs} function of the \code{Ggally} library
+}
 }
 \description{
 Sample from the posterior of the ETAS parameters

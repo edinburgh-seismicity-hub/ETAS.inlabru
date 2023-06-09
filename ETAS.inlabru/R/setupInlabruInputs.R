@@ -158,18 +158,19 @@ create.input.list.temporal.withCatalogue <- function(input_path){
   start.date <- as.POSIXct(start.date, format = '%Y-%m-%d %H:%M:%OS')
   end.date <- as.POSIXct(end.date)
   catalog <- catalog %>%
-    mutate(time_date = as.POSIXct(gsub(pattern = 'T',
-                                       replacement = ' ',
-                                       x = time_string),
-                                  format = '%Y-%m-%d %H:%M:%OS')) %>%
-    filter(time_date >= start.date,
+    dplyr::mutate(time_date = as.POSIXct(gsub(pattern = 'T',
+                                              replacement = ' ',
+                                              x = time_string),
+                                         format = '%Y-%m-%d %H:%M:%OS')) %>%
+    dplyr::filter(
+           time_date >= start.date,
            time_date <= end.date,
            Lon >= min.longitude,
            Lon <= max.longitude,
            Lat >= min.latitude,
            Lat <= max.latitude,
            magnitudes >= magnitude.completeness) %>%
-    mutate(time_diff = as.numeric(difftime(time_date, start.date, units = 'days')))
+    dplyr::mutate(time_diff = as.numeric(difftime(time_date, start.date, units = 'days')))
   cat('Finish loading & preparing catalog', '\n')
 
   # create data.frame for inlabru

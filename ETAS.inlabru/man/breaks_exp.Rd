@@ -31,4 +31,5 @@ where \eqn{t} is the \code{start.grid} argument, \eqn{T} is the \code{end.grid} 
 \examples{
 breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3)
 breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10)
+
 }

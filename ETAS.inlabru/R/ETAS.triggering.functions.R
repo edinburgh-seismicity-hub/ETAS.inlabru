@@ -9,7 +9,7 @@
 #' @description The function returns the value of the ETAS triggering function at a specified time `t` for the points in the history `th, mh`
 #' @param theta ETAS parameters as `list` with names `K`, `alpha`, `c`, `p`
 #' @param t Time at which the function is calculated, `scalar` or `vector`
-#' @param th  Time of events in the history in [days, months,...], `scalar` or `vector`
+#' @param th  Time of events in the history in `[days, months,...]`, `scalar` or `vector`
 #' @param mh Magnitude of events in the history, `scalar` or `vector`
 #' @param M0 Minimum magnitude threshold, `scalar`
 #'
@@ -55,7 +55,7 @@ gt <- function(theta, t, th, mh, M0){
 }
 
 
-#' ETAS conditional intensity - used by `inlabru`
+#' @title ETAS conditional intensity - used by `inlabru`
 #' @description Function to calculate the value of the ETAS model conditional intensity at a specified time given the history of the process.
 #' @param theta ETAS parameters as `list` with names `mu`, `K`, `alpha`, `c`, `p`
 #' @param t Time at which the conditional intensity is evaluated, `scalar`
@@ -68,10 +68,9 @@ gt <- function(theta, t, th, mh, M0){
 #' @details
 #' The function takes a single value `t` and returns the ETAS conditional intensity calculated at `t`
 #' with history `th, mh`. The ETAS conditional intensity is given by
-#' \deqn{\lambda(t | \mathcal H_t} = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
+#' \deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
 #'
 #' Do not use when `t` is a vector.
-#' @examples
 cond.lambda <- function(theta, t, th, mh, M0){
   if(is.null(th) | all(th > t)){
     theta$mu
@@ -90,7 +89,7 @@ cond.lambda <- function(theta, t, th, mh, M0){
 #' @param T2 End of temporal model domain.
 #'
 #' @return
-#' @export
+#' @export log.Lambda.h
 #'
 #' @examples
 log.Lambda.h <- function(theta, th, mh, M0, T1, T2){

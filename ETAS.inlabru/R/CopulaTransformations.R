@@ -1,12 +1,11 @@
-
-#' Copula tranformation from a standard Normal distribution to a Gamma distribution
+#' Copula transformation from a standard Normal distribution to a Gamma distribution
 #'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param a shape parameter of the gamma distribution `scalar`.
 #' @param b rate parameter of the gamma distribution `scalar`.
 #'
 #' @return values from a Gamma distribution with shape `a` and rate `b`, `vector` same length as `x`.
-#' @export
+#' @export gamma.t
 #'
 #' @examples
 gamma.t <- function(x, a, b){
@@ -47,7 +46,7 @@ loggaus.t <- function(x, m, s){
 #' @param r rate of the exponential distribution, `scalar`.
 #'
 #' @return values from an Exponential distribution with rate `r`, `vector` same length as `x`.
-#' @export
+#' @export exp.t
 #'
 #' @examples
 exp.t <- function(x, r){

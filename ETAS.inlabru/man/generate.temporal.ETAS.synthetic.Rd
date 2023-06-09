@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateSyntheticCatalogues.R
 \name{generate.temporal.ETAS.synthetic}
 \alias{generate.temporal.ETAS.synthetic}
-\title{Generates a sythetic catalogue using the ETAS model}
+\title{Generates a synthetic catalogue using the ETAS model}
 \usage{
 generate.temporal.ETAS.synthetic(
   theta,
@@ -21,9 +21,9 @@ generate.temporal.ETAS.synthetic(
 
 \item{M0}{The minimum magnitude in the synthetic catalogue.}
 
-\item{T1}{The start time for the synthetic catalogue \link{days}.}
+\item{T1}{The start time for the synthetic catalogue \verb{[days]}.}
 
-\item{T2}{The end time for the synthetic catalogue \link{days}.}
+\item{T2}{The end time for the synthetic catalogue \verb{[days]}.}
 
 \item{Ht}{A catalogue history to impose on the synthetic sequence.}
 
@@ -34,16 +34,26 @@ A data.frame of the temporal catalogue with columns \verb{[t_i, M_i, gen_i]}
 where, \code{t_i} are the times,  \code{M_i} the magnitudes, \code{gen_i} includes information about the generation number
 }
 \description{
-Generates a sythetic catalogue using the ETAS model
+Generates a synthetic catalogue using the ETAS model
 }
 \examples{
 ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 
-generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+generate.temporal.ETAS.synthetic(
+  theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+  beta.p = log(10),
+  M0 = 2.5,
+  T1 = 0, T2 = 1000 )
 
 
 ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 
-Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
+generate.temporal.ETAS.synthetic(
+  theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+  beta.p = log(10),
+  M0 = 2.5,
+  T1 = 0, T2 = 1000,
+  Ht = Ht )
+
 }

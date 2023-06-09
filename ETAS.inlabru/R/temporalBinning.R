@@ -15,6 +15,8 @@
 #' @examples
 #' breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3)
 #' breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10)
+#'
+#' @export
 breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 
   # Generate the breaks for each event
@@ -57,7 +59,7 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 #' \item `idx.p` : identifier provided in `data.point`
 #' }
 #' The bins are only between `T1.` and `T2.` or containing `T1.`
-#' @export
+#' @export time.grid
 #'
 #' @examples
 #' ## EXAMPLE 1
@@ -79,7 +81,7 @@ time.grid <- function(data.point, coef.t, delta.t, N.exp.,
   # create data.frame with t.start (bin starting time), t.end (bin end time) and t.bin.name (unique name for each bin)
   time.bins <- data.frame(t.start = t_b[-length(t_b)],
                           t.end = t_b[-1]) %>%
-    mutate(t.bin.name = paste0(round(t.start,3),'-',round(t.end,3)))
+    dplyr::mutate(t.bin.name = paste0(round(t.start,3),'-',round(t.end,3)))
   # if there is only 1 bin than it is the last
   if(nrow(time.bins) - 1 == 0){
     time.bins$t.ref_layer = paste0('last-',idx.p)

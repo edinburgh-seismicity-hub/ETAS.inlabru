@@ -1,4 +1,3 @@
-library(GGally)
 #' Retrieve posterior distribution of ETAS parameters
 #'
 #' @param input.list input.list structured input `list` with at least two elements:
@@ -14,27 +13,29 @@ library(GGally)
 #'
 #' @examples
 get_posterior_param <- function(input.list){
-  post.mu <- data.frame(inla.tmarginal(input.list$link.functions$mu,
+  post.mu <- data.frame(INLA::inla.tmarginal(input.list$link.functions$mu,
                                        input.list$model.fit$marginals.fixed$th.mu),
                         param = 'mu')
-  post.K <- data.frame(inla.tmarginal(input.list$link.functions$K,
+  post.K <- data.frame(INLA::inla.tmarginal(input.list$link.functions$K,
                                       input.list$model.fit$marginals.fixed$th.K),
                        param = 'K')
-  post.alpha <- data.frame(inla.tmarginal(input.list$link.functions$alpha,
+  post.alpha <- data.frame(INLA::inla.tmarginal(input.list$link.functions$alpha,
                                           input.list$model.fit$marginals.fixed$th.alpha),
                            param = 'alpha')
-  post.c <- data.frame(inla.tmarginal(input.list$link.functions$c_,
+  post.c <- data.frame(INLA::inla.tmarginal(input.list$link.functions$c_,
                                       input.list$model.fit$marginals.fixed$th.c),
                        param = 'c')
-  post.p <- data.frame(inla.tmarginal(input.list$link.functions$p,
+  post.p <- data.frame(INLA::inla.tmarginal(input.list$link.functions$p,
                                       input.list$model.fit$marginals.fixed$th.p),
                        param = 'p')
   post.df <- rbind(post.mu, post.K, post.alpha, post.c, post.p)
-  post.plot <- ggplot(post.df, aes(x,y)) +
-    geom_line() +
-    facet_wrap(facets = vars(param), scales = 'free', labeller = label_parsed)+
-    xlab('param') +
-    ylab('pdf')
+  post.plot <- ggplot2::ggplot(post.df, ggplot2::aes(x,y)) +
+    ggplot2::geom_line() +
+    ggplot2::facet_wrap(facets = ggplot2::vars(param),
+                        scales = 'free',
+                        labeller = ggplot2::label_parsed)+
+    ggplot2::xlab('param') +
+    ggplot2::ylab('pdf')
   list(post.df = post.df,
        post.plot = post.plot)
 }
@@ -54,12 +55,15 @@ get_posterior_param <- function(input.list){
 #'
 #' @examples
 post_sampling <- function(input.list, n.samp){
-  post.samp <- generate(input.list$model.fit, data.frame(),
-                        ~ c(input.list$link.functions$mu(th.mu),
-                            input.list$link.functions$K(th.K),
-                            input.list$link.functions$alpha(th.alpha),
-                            input.list$link.functions$c_(th.c),
-                            input.list$link.functions$p(th.p)), n.samples = n.samp)
+  post.samp <- inlabru::generate(
+    input.list$model.fit,
+    data.frame(),
+    ~ c(input.list$link.functions$mu(th.mu),
+        input.list$link.functions$K(th.K),
+        input.list$link.functions$alpha(th.alpha),
+        input.list$link.functions$c_(th.c),
+        input.list$link.functions$p(th.p)),
+    n.samples = n.samp)
   data.frame(mu = post.samp[1,],
              K = post.samp[2,],
              alpha = post.samp[3,],
@@ -79,8 +83,9 @@ post_sampling <- function(input.list, n.samp){
 #' @param post.samp : `data.frame` with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When `NULL` the function samples the joint posterior distribution `n.samp` times. The default is `NULL`.
 #' @return `list`: with elements
 #' \itemize{
-#' \item `post.samp.df`:`data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters. If `post.samp` is not `NULL` it returns `post.samp`}
+#' \item `post.samp.df`:`data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters. If `post.samp` is not `NULL` it returns `post.samp`
 #' \item `pair.plot`: `ggplot` object reporting the pair plot between parameters samples. It is obtained using the `ggpairs` function of the `Ggally` library
+#' }
 #' @export
 #'
 #' @examples
@@ -89,19 +94,22 @@ post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
     stop('model.fit is missing, please provide a fitted model as bru object')
   }
   if(is.null(post.samp)){
-    post.samp <- generate(input.list$model.fit, data.frame(),
-                          ~ c(input.list$link.functions$mu(th.mu),
-                              input.list$link.functions$K(th.K),
-                              input.list$link.functions$alpha(th.alpha),
-                              input.list$link.functions$c_(th.c),
-                              input.list$link.functions$p(th.p)), n.samples = n.samp)
+    post.samp <- inlabru::generate(
+      input.list$model.fit,
+      data.frame(),
+      ~ c(input.list$link.functions$mu(th.mu),
+          input.list$link.functions$K(th.K),
+          input.list$link.functions$alpha(th.alpha),
+          input.list$link.functions$c_(th.c),
+          input.list$link.functions$p(th.p)),
+      n.samples = n.samp)
     post.samp.df <- data.frame(mu = post.samp[1,],
                                K = post.samp[2,],
                                alpha = post.samp[3,],
                                c = post.samp[4,],
                                p = post.samp[5,])
   }
-  pair.plot <- ggpairs(post.samp.df, labeller = label_parsed, lower=list(continuous='density'))
+  pair.plot <- GGally::ggpairs(post.samp.df, labeller = label_parsed, lower=list(continuous='density'))
   return(list(post.samp.df = post.samp.df,
               pair.plot = pair.plot))
 }
@@ -179,14 +187,15 @@ get_posterior_N <- function(input.list){
                                                          input.list$T12[1], input.list$T12[2], input.list$M0,
                                                          input.list$catalog.bru,
                                                          input.list$link.functions))))
-  N.post.plot <- ggplot(N.post.df, aes(x = N, y = mean)) +
-    geom_line() +
-    geom_vline(xintercept = nrow(input.list$catalog.bru), linetype = 2) +
-    ylab('pdf')
+  N.post.plot <- ggplot2::ggplot(N.post.df, ggplot2::aes(x = N, y = mean)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_vline(xintercept = nrow(input.list$catalog.bru), linetype = 2) +
+    ggplot2::ylab('pdf')
 
   N.post.plot.shaded <- N.post.plot +
-    geom_ribbon(aes(xmax = N, xmin = N, ymin = q0.025, ymax = q0.975), alpha = 0.2,
-                fill = 'blue')
+    ggplot2::geom_ribbon(ggplot2::aes(xmax = N, xmin = N, ymin = q0.025, ymax = q0.975),
+                         alpha = 0.2,
+                         fill = 'blue')
   list(post.df = N.post.df,
        post.plot = N.post.plot,
        post.plot.shaded = N.post.plot.shaded)

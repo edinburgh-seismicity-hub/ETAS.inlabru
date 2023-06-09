@@ -32,8 +32,8 @@ Temporal.ETAS.fit <- function(input.list){
 #' @description function to fit a temporal ETAS model using `inlabru`.
 #' @param total.data Observed events: `data.frame` with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.
 #' @param M0 Minimum magnitude threshold, `scalar`
-#' @param T1 Start of temporal model domain, `scalar` [measure unit of sample.s$ts].
-#' @param T2 End of temporal model domain, `scalar` [measure unit of sample.s$ts].
+#' @param T1 Start of temporal model domain, `scalar` `[measure unit of sample.s$ts]`.
+#' @param T2 End of temporal model domain, `scalar` `[measure unit of sample.s$ts]`.
 #' @param link.functions Functions to transform the parameters from the internal INLA scale to the ETAS scale. It must be a `list` of functions with names (mu, K, alpha, c_, p)
 #' @param coef.t. TimeBinning parameter: parameter regulating the relative length of successive bins, `scalar`.
 #' @param delta.t. TimeBinning parameter: parameter regulating the bins' width, `scalar`.
@@ -67,7 +67,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
   ## Create the grid for the XX integration
   cat('Start creating grid...', '\n')
   time.g.st <- Sys.time()
-  df.j <- foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
+  df.j <- foreach::foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
     time.grid(data.point = total.data[idx,],
               coef.t = coef.t.,
               delta.t = delta.t.,
@@ -137,7 +137,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
 
   list.input <- list(df_grid = df.j, M0 = M0, Imapping = Imapping, time.sel = time.sel,
                      sample.s = sample.s, total.data = total.data)
-  data.input = bind_rows(df.0, df.s, df.j)      ## Combine
+  data.input = dplyr::bind_rows(df.0, df.s, df.j)      ## Combine
   list.input <- append(list.input,
                        list(idx.bkg = data.input$part == 'background',
                             idx.trig = data.input$part == 'triggered',

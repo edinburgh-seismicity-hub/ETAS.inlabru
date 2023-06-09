@@ -9,7 +9,7 @@ Int.ETAS.time.trig.function(theta, th, T2)
 \arguments{
 \item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}}
 
-\item{th}{Time of past event \link{days} and start of temporal domain, \code{vector}.}
+\item{th}{Time of past event \verb{[days]} and start of temporal domain, \code{vector}.}
 
 \item{T2}{End of temporal domain, \code{scalar}.}
 }

@@ -9,13 +9,13 @@
 ##                gen_i = 2 for first order daughters of background or second order daughters historic
 ##                gen_i = increments for successive generations
 
-#' Generates a sythetic catalogue using the ETAS model
+#' Generates a synthetic catalogue using the ETAS model
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p  Slope of GR relation: beta = b ln(10).
 #' @param M0  The minimum magnitude in the synthetic catalogue.
-#' @param T1 The start time for the synthetic catalogue [days].
-#' @param T2 The end time for the synthetic catalogue [days].
+#' @param T1 The start time for the synthetic catalogue `[days]`.
+#' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param Ht A catalogue history to impose on the synthetic sequence.
 #' @param ncore Integer number of compute cores to use.
 #' @return A data.frame of the temporal catalogue with columns `[t_i, M_i, gen_i]`
@@ -23,13 +23,24 @@
 #' @examples
 #' ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 #'
-#' generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000 )
+#' generate.temporal.ETAS.synthetic(
+#'   theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+#'   beta.p = log(10),
+#'   M0 = 2.5,
+#'   T1 = 0, T2 = 1000 )
 #'
 #'
 #' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 #'
-#' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' generate.temporal.ETAS.synthetic( theta= list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
+#' generate.temporal.ETAS.synthetic(
+#'   theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+#'   beta.p = log(10),
+#'   M0 = 2.5,
+#'   T1 = 0, T2 = 1000,
+#'   Ht = Ht )
+#'
+#' @export
 
 generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
                             Ht = NULL, ncore = 1){
@@ -131,8 +142,8 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @param beta.p Slope of GR relation: beta = b ln(10).
 #' @param Ht The set of parent events in the form `data.frame[ts, magnitudes]`
 #' @param M0 The minimum earthquake magnitude in the synthetic catalogue.
-#' @param T1 The start time for the synthetic catalogue [days].
-#' @param T2 The end time for the synthetic catalogue [days].
+#' @param T1 The start time for the synthetic catalogue `[days]`.
+#' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param ncore The number of compute cores to use
 #'
 #' @return Return one generation of daughters from the parents in `Ht` in the form `data.frame(t_i, M_i)`.
@@ -141,7 +152,12 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @examples
 #' # The parents are specified in Ht
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+#' sample.temporal.ETAS.generation(
+#'   theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+#'   beta.p=log(10),
+#'   M0=2.5,
+#'   T1=0, T2=1000,
+#'   Ht=Ht )
 sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
@@ -180,11 +196,11 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
-#' @param th Time of parent event [days].
+#' @param th Time of parent event `[days]`.
 #' @param n.ev The number of events to be placed.
 #' @param M0 Minimum magnitude in synthetic catalogue.
-#' @param T1 Start time for synthetic catalogue [days].
-#' @param T2 End time for synthetic catalogue [days].
+#' @param T1 Start time for synthetic catalogue `[days]`.
+#' @param T2 End time for synthetic catalogue `[days]`.
 #'
 #' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
 #'
@@ -223,6 +239,8 @@ sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 #'
 #' @examples
 #' sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
+#'
+#' @export
 sample.GR.magnitudes <- function(n, beta.p, M0) {
   return(rexp(n, beta.p) + M0)
   }
@@ -231,11 +249,11 @@ sample.GR.magnitudes <- function(n, beta.p, M0) {
 #' Sampling times for events triggered by a parent at th according to the ETAS triggering function
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
-#' @param n.ev Number of events to return in the sample in time domain (th, T2].
-#' @param th Time of the parent event producing n.ev daughters.
+#' @param n.ev Number of events to return in the sample in time domain `(th, T2]`.
+#' @param th Time of the parent event producing `n.ev` daughters.
 #' @param T2 End time of model domain.
 #'
-#' @return t.sample A list of times in the interval [0, T2] distributed according to the ETAS triggering function.
+#' @return t.sample A list of times in the interval `[0, T2]` distributed according to the ETAS triggering function.
 #'
 #' @examples
 sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
@@ -253,7 +271,7 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
 #' Integrated Omori's law
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`
-#' @param th Time of past event [days] and start of temporal domain, `vector`.
+#' @param th Time of past event `[days]` and start of temporal domain, `vector`.
 #' @param T2 End of temporal domain, `scalar`.
 #'
 #' @return Value of the integral of the Omori's law
@@ -277,7 +295,7 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #' @details
 #' Considering the integral of the Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-#' The function applied to the value \eqn{omega} returns the value of \eqn[t_h].
+#' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
 #' @examples
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)

@@ -21,4 +21,5 @@ Return a sample of magnitudes drawn from the GR distribution
 }
 \examples{
 sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
+
 }

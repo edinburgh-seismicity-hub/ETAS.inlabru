@@ -24,13 +24,16 @@
 #' @examples
 triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
-  post.samp <- generate(list.input$model.fit, data.frame(),
-                        ~ c(list.input$link.functions$mu(th.mu),
-                            list.input$link.functions$K(th.K),
-                            list.input$link.functions$alpha(th.alpha),
-                            list.input$link.functions$c_(th.c),
-                            list.input$link.functions$p(th.p)
-                        ), n.samples = n.samp)
+  post.samp <- inlabru::generate(
+    list.input$model.fit,
+    data.frame(),
+    ~ c(list.input$link.functions$mu(th.mu),
+        list.input$link.functions$K(th.K),
+        list.input$link.functions$alpha(th.alpha),
+        list.input$link.functions$c_(th.c),
+        list.input$link.functions$p(th.p)
+    ),
+    n.samples = n.samp)
   post.samp <- t(post.samp)
 
   trig.eval <- lapply(1:nrow(post.samp),
@@ -39,30 +42,30 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
                               th = 0,
                               mh = magnitude,
                               M0 = list.input$M0))
-  trig.cols <- as.matrix(bind_cols(trig.eval))
+  trig.cols <- as.matrix(dplyr::bind_cols(trig.eval))
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))
   mu.lower.quant <- quantile(post.samp[,1], 0.025)
   mu.upper.quant <- quantile(post.samp[,1], 0.975)
-  #omori.eval <- bind_rows(omori.eval)
-  output.plot <- ggplot()
+  #omori.eval <- dplyr::bind_rows(omori.eval)
+  output.plot <- ggplot2::ggplot()
   for(i in 1:ncol(trig.cols)){
     trig.eval.i <- trig.cols[,i]
     df.trig <- data.frame(t = t.eval,
                           trig = trig.eval.i)
     output.plot <- output.plot +
-      geom_line(data = df.trig,
-                aes(x = t, y = trig),
-                color= 'grey', alpha = 0.5)
+      ggplot2::geom_line(data = df.trig,
+                         ggplot2::aes(x = .data$t, y = .data$trig),
+                         color= 'grey', alpha = 0.5)
   }
   output.plot +
-    geom_line(aes(x = t.eval, y = trig.lower.quant)) +
-    geom_line(aes(x = t.eval, y = trig.upper.quant)) +
-    geom_hline(yintercept = mu.lower.quant, color = 'red') +
-    geom_hline(yintercept = mu.upper.quant, color = 'red') +
-    theme_bw() +
-    xlab("Time") +
-    ylab("Event rate")
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.lower.quant)) +
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.upper.quant)) +
+    ggplot2::geom_hline(yintercept = mu.lower.quant, color = 'red') +
+    ggplot2::geom_hline(yintercept = mu.upper.quant, color = 'red') +
+    ggplot2::theme_bw() +
+    ggplot2::xlab("Time") +
+    ggplot2::ylab("Event rate")
 }
 
 
@@ -98,30 +101,30 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
                               th = 0,
                               mh = magnitude,
                               M0 = list.input$M0))
-  trig.cols <- as.matrix(bind_cols(trig.eval))
+  trig.cols <- as.matrix(dplyr::bind_cols(trig.eval))
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))
   mu.lower.quant <- quantile(prior.samp[,1], 0.025)
   mu.upper.quant <- quantile(prior.samp[,1], 0.975)
-  #omori.eval <- bind_rows(omori.eval)
-  output.plot <- ggplot()
+  #omori.eval <- dplyr::bind_rows(omori.eval)
+  output.plot <- ggplot2::ggplot()
   for(i in 1:ncol(trig.cols)){
     trig.eval.i <- trig.cols[,i]
     df.trig <- data.frame(t = t.eval,
                           trig = trig.eval.i)
     output.plot <- output.plot +
-      geom_line(data = df.trig,
-                aes(x = t, y = trig),
-                color= 'grey', alpha = 0.5)
+      ggplot2::geom_line(data = df.trig,
+                         ggplot2::aes(x = .data$t, y = .data$trig),
+                         color= 'grey', alpha = 0.5)
   }
   output.plot +
-    geom_line(aes(x = t.eval, y = trig.lower.quant)) +
-    geom_line(aes(x = t.eval, y = trig.upper.quant)) +
-    geom_hline(yintercept = mu.lower.quant, color = 'red') +
-    geom_hline(yintercept = mu.upper.quant, color = 'red') +
-    theme_bw() +
-    xlab("Time") +
-    ylab("Event rate")
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.lower.quant)) +
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.upper.quant)) +
+    ggplot2::geom_hline(yintercept = mu.lower.quant, color = 'red') +
+    ggplot2::geom_hline(yintercept = mu.upper.quant, color = 'red') +
+    ggplot2::theme_bw() +
+    ggplot2::xlab("Time") +
+    ggplot2::ylab("Event rate")
 }
 
 
@@ -173,30 +176,30 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
                        list.input$link.functions$p(rnorm(n.samp)))
 
   omori.eval <- lapply(1:nrow(post.samp),
-                       \(x) omori(th = post.samp[x,],
+                       \(x) omori(theta = post.samp[x,],
                                   t = t.eval,
                                   ti = 0))
-  omori.cols <- as.matrix(bind_cols(omori.eval))
+  omori.cols <- as.matrix(dplyr::bind_cols(omori.eval))
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
   omori.upper.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.975)))
 
-  #omori.eval <- bind_rows(omori.eval)
-  output.plot <- ggplot()
+  #omori.eval <- dplyr::bind_rows(omori.eval)
+  output.plot <- ggplot2::ggplot()
   for(i in 1:ncol(omori.cols)){
     omori.eval.i <- omori.cols[,i]
     df.omori <- data.frame(t = t.eval,
                            omori = omori.eval.i)
     output.plot <- output.plot +
-      geom_line(data = df.omori,
-                aes(x = t, y = omori),
-                color= 'grey', alpha = 0.5)
+      ggplot2::geom_line(data = df.omori,
+                         ggplot2::aes(x = t, y = omori),
+                         color= 'grey', alpha = 0.5)
   }
   output.plot +
-    geom_line(aes(x = t.eval, y = omori.lower.quant)) +
-    geom_line(aes(x = t.eval, y = omori.upper.quant)) +
-    theme_bw() +
-    xlab("Time") +
-    ylab("Event rate")
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.lower.quant)) +
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.upper.quant)) +
+    ggplot2::theme_bw() +
+    ggplot2::xlab("Time") +
+    ggplot2::ylab("Event rate")
 }
 
 #' Function to plot the Omori's law corresponding to different posterior samples
@@ -216,38 +219,41 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
 #' @examples
 omori_plot_priors <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
-  post.samp <- generate(list.input$model.fit, data.frame(),
-                        ~ c(list.input$link.functions$mu(th.mu),
-                            list.input$link.functions$K(th.K),
-                            list.input$link.functions$alpha(th.alpha),
-                            list.input$link.functions$c_(th.c),
-                            list.input$link.functions$p(th.p)
-                        ), n.samples = n.samp)
+  post.samp <- inlabru::generate(
+    list.input$model.fit,
+    data.frame(),
+    ~ c(list.input$link.functions$mu(th.mu),
+        list.input$link.functions$K(th.K),
+        list.input$link.functions$alpha(th.alpha),
+        list.input$link.functions$c_(th.c),
+        list.input$link.functions$p(th.p)
+    ),
+    n.samples = n.samp)
   post.samp <- t(post.samp)
 
   omori.eval <- lapply(1:nrow(post.samp),
-                       \(x) omori(th = post.samp[x,],
+                       \(x) omori(theta = post.samp[x,],
                                   t = t.eval,
                                   ti = 0))
-  omori.cols <- as.matrix(bind_cols(omori.eval))
+  omori.cols <- as.matrix(dplyr::bind_cols(omori.eval))
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
   omori.upper.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.975)))
 
-  #omori.eval <- bind_rows(omori.eval)
-  output.plot <- ggplot()
+  #omori.eval <- dplyr::bind_rows(omori.eval)
+  output.plot <- ggplot2::ggplot()
   for(i in 1:ncol(omori.cols)){
     omori.eval.i <- omori.cols[,i]
     df.omori <- data.frame(t = t.eval,
                            omori = omori.eval.i)
     output.plot <- output.plot +
-      geom_line(data = df.omori,
-                aes(x = t, y = omori),
-                color= 'grey', alpha = 0.5)
+      ggplot2::geom_line(data = df.omori,
+                         ggplot2::aes(x = t, y = omori),
+                         color= 'grey', alpha = 0.5)
   }
   output.plot +
-    geom_line(aes(x = t.eval, y = omori.lower.quant)) +
-    geom_line(aes(x = t.eval, y = omori.upper.quant)) +
-    theme_bw() +
-    xlab("Time") +
-    ylab("Event rate")
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.lower.quant)) +
+    ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.upper.quant)) +
+    ggplot2::theme_bw() +
+    ggplot2::xlab("Time") +
+    ggplot2::ylab("Event rate")
 }

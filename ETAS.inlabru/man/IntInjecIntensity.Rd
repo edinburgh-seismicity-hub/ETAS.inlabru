@@ -11,12 +11,12 @@ IntInjecIntensity(a = 50, V.i = 1, tau = 10, T.i, T2)
 
 \item{V.i}{Injected volume}
 
-\item{tau}{Decau rate \link{days}}
+\item{tau}{Decau rate \verb{[days]}}
 
 \item{T.i}{Time of injection event}
 
-\item{T2}{}
+\item{T2}{TODO}
 }
 \description{
-Injection Rate function
+Forward time integrated function for exponential rate decay
 }

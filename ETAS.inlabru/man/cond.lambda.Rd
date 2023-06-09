@@ -24,5 +24,9 @@ Value of the ETAS conditional intensity calculated at \code{t} with history \ver
 Function to calculate the value of the ETAS model conditional intensity at a specified time given the history of the process.
 }
 \details{
+The function takes a single value \code{t} and returns the ETAS conditional intensity calculated at \code{t}
+with history \verb{th, mh}. The ETAS conditional intensity is given by
+\deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
 
+Do not use when \code{t} is a vector.
 }

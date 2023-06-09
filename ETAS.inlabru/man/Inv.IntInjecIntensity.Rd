@@ -2,7 +2,7 @@
 % Please edit documentation in R/InjectionCode.R
 \name{Inv.IntInjecIntensity}
 \alias{Inv.IntInjecIntensity}
-\title{Title}
+\title{Returns end time given a ...}
 \usage{
 Inv.IntInjecIntensity(a = 50, V.i = 1, tau = 10, T.i, number.injected.events)
 }
@@ -11,12 +11,12 @@ Inv.IntInjecIntensity(a = 50, V.i = 1, tau = 10, T.i, number.injected.events)
 
 \item{V.i}{Injected volume}
 
-\item{tau}{Decau rate \link{days}}
+\item{tau}{Decay rate \verb{[days]}}
 
 \item{T.i}{Time of injection event}
 
-\item{number.injected.events}{}
+\item{number.injected.events}{TODO}
 }
 \description{
-Title
+Returns end time given a ...
 }

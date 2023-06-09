@@ -15,9 +15,9 @@ sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
 
 \item{M0}{The minimum earthquake magnitude in the synthetic catalogue.}
 
-\item{T1}{The start time for the synthetic catalogue \link{days}.}
+\item{T1}{The start time for the synthetic catalogue \verb{[days]}.}
 
-\item{T2}{The end time for the synthetic catalogue \link{days}.}
+\item{T2}{The end time for the synthetic catalogue \verb{[days]}.}
 
 \item{ncore}{The number of compute cores to use}
 }
@@ -30,5 +30,10 @@ Take all previous parent events from \code{Ht=data.frame[ts, magnitudes]} and ge
 \examples{
 # The parents are specified in Ht
 Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-sample.temporal.ETAS.generation( theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08), beta.p=log(10), M0=2.5, T1=0, T2=1000, Ht=Ht )
+sample.temporal.ETAS.generation(
+  theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+  beta.p=log(10),
+  M0=2.5,
+  T1=0, T2=1000,
+  Ht=Ht )
 }

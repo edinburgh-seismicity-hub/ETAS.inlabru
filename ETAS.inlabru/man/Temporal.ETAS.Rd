@@ -21,9 +21,9 @@ Temporal.ETAS(
 
 \item{M0}{Minimum magnitude threshold, \code{scalar}}
 
-\item{T1}{Start of temporal model domain, \code{scalar} \link{measure unit of sample.s$ts}.}
+\item{T1}{Start of temporal model domain, \code{scalar} \verb{[measure unit of sample.s$ts]}.}
 
-\item{T2}{End of temporal model domain, \code{scalar} \link{measure unit of sample.s$ts}.}
+\item{T2}{End of temporal model domain, \code{scalar} \verb{[measure unit of sample.s$ts]}.}
 
 \item{link.functions}{Functions to transform the parameters from the internal INLA scale to the ETAS scale. It must be a \code{list} of functions with names (mu, K, alpha, c_, p)}
 

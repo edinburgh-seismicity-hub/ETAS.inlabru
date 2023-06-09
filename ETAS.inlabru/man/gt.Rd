@@ -11,7 +11,7 @@ gt(theta, t, th, mh, M0)
 
 \item{t}{Time at which the function is calculated, \code{scalar} or \code{vector}}
 
-\item{th}{Time of events in the history in \link{days, months,...}, \code{scalar} or \code{vector}}
+\item{th}{Time of events in the history in \verb{[days, months,...]}, \code{scalar} or \code{vector}}
 
 \item{mh}{Magnitude of events in the history, \code{scalar} or \code{vector}}
 

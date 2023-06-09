@@ -1,14 +1,16 @@
 
 #############################
 #### Injection rate function
-## Forward time integrated function for exponential rate decay
-#' Injection Rate function
+#' @title Injection Rate function
+#'
+#' @description
+#' Forward time integrated function for exponential rate decay
 #'
 #' @param a Event rate per unit volume injected
 #' @param V.i Injected volume
-#' @param tau Decau rate [days]
+#' @param tau Decau rate `[days]`
 #' @param T.i Time of injection event
-#' @param T2
+#' @param T2 TODO
 #'
 #' @return
 #'
@@ -18,14 +20,16 @@ IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
   return(expected.injection.events)
 }
 
-## Returns end time given a ...
-#' Title
+#' @title Returns end time given a ...
+#'
+#' @description
+#' Returns end time given a ...
 #'
 #' @param a Event rate per unit volume injected
 #' @param V.i Injected volume
-#' @param tau Decau rate [days]
+#' @param tau Decay rate `[days]`
 #' @param T.i Time of injection event
-#' @param number.injected.events
+#' @param number.injected.events TODO
 #'
 #' @return
 #' @export
@@ -40,11 +44,11 @@ Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.even
 #'
 #' @param a Induced event rate per unit volume.
 #' @param V.i Injected volume
-#' @param tau Decay rate [days].
+#' @param tau Decay rate `[days]`.
 #' @param beta.p Related to the b-value via `b ln(10)`.
 #' @param M0 Minimum magnitude threshold.
-#' @param T.i Time of injection [days].
-#' @param T2 End of temporal model domain [days].
+#' @param T.i Time of injection `[days]`.
+#' @param T2 End of temporal model domain `[days]`.
 #'
 #' @return Catalogue of parent events induced by injection data.frame(times, magnitudes)
 #' @export
