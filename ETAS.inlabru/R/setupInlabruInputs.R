@@ -11,124 +11,125 @@ create.input.list.temporal.withCatalogue <- function(input_path){
   for(i in 1:length(par.raw)){
     row.i <- par.raw[[i]]
     if(grepl('start.date', row.i)){
-      eval(parse(text = row.i))
+      # Do explicit assignment of the eval-result, to avoid package check warnings
+      start.date <- eval(parse(text = row.i))
     }
     else if(grepl('end.date', row.i)){
-      eval(parse(text = row.i))
+      end.date <- eval(parse(text = row.i))
     }
     else if(grepl('magnitude.completeness', row.i)){
-      eval(parse(text = row.i))
+      magnitude.completeness <- eval(parse(text = row.i))
     }
     else if(grepl('min.longitude', row.i)){
-      eval(parse(text = row.i))
+      min.longitude <- eval(parse(text = row.i))
     }
     else if(grepl('max.longitude', row.i)){
-      eval(parse(text = row.i))
+      max.longitude <- eval(parse(text = row.i))
     }
     else if(grepl('min.latitude', row.i)){
-      eval(parse(text = row.i))
+      min.latitude <- eval(parse(text = row.i))
     }
     else if(grepl('max.latitude', row.i)){
-      eval(parse(text = row.i))
+      max.latitude <- eval(parse(text = row.i))
     }
     else if(grepl('catalog.path', row.i)){
-      eval(parse(text = row.i))
+      catalog.path <- eval(parse(text = row.i))
     }
     else if(grepl('catalog.header', row.i)){
-      eval(parse(text = row.i))
+      catalog.header <- eval(parse(text = row.i))
     }
     else if(grepl('catalog.sep', row.i)){
-      eval(parse(text = row.i))
+      catalog.sep <- eval(parse(text = row.i))
     }
     else if(grepl('catalog.skip', row.i)){
-      eval(parse(text = row.i))
+      catalog.skip <- eval(parse(text = row.i))
     }
     else if(grepl('catalog.colnames', row.i)){
-      eval(parse(text = row.i))
+      catalog.colnames <- eval(parse(text = row.i))
     }
     else if(grepl('a_mu', row.i)){
-      eval(parse(text = row.i))
+      a_mu <- eval(parse(text = row.i))
     }
     else if(grepl('b_mu', row.i)){
-      eval(parse(text = row.i))
+      b_mu <- eval(parse(text = row.i))
     }
     else if(grepl('a_K', row.i)){
-      eval(parse(text = row.i))
+      a_K <- eval(parse(text = row.i))
     }
     else if(grepl('b_K', row.i)){
-      eval(parse(text = row.i))
+      b_K <- eval(parse(text = row.i))
     }
     else if(grepl('a_alpha', row.i)){
-      eval(parse(text = row.i))
+      a_alpha <- eval(parse(text = row.i))
     }
     else if(grepl('b_alpha', row.i)){
-      eval(parse(text = row.i))
+      b_alpha <- eval(parse(text = row.i))
     }
     else if(grepl('a_c', row.i)){
-      eval(parse(text = row.i))
+      a_c <- eval(parse(text = row.i))
     }
     else if(grepl('b_c', row.i)){
-      eval(parse(text = row.i))
+      b_c <- eval(parse(text = row.i))
     }
     else if(grepl('a_p', row.i)){
-      eval(parse(text = row.i))
+      a_p <- eval(parse(text = row.i))
     }
     else if(grepl('b_p', row.i)){
-      eval(parse(text = row.i))
+      b_p <- eval(parse(text = row.i))
     }
     else if(grepl('mu.init', row.i)){
-      eval(parse(text = row.i))
+      mu.init <- eval(parse(text = row.i))
     }
     else if(grepl('K.init', row.i)){
-      eval(parse(text = row.i))
+      K.init <- eval(parse(text = row.i))
     }
     else if(grepl('alpha.init', row.i)){
-      eval(parse(text = row.i))
+      alpha.init <- eval(parse(text = row.i))
     }
     else if(grepl('c.init', row.i)){
-      eval(parse(text = row.i))
+      c.init <- eval(parse(text = row.i))
     }
     else if(grepl('p.init', row.i)){
-      eval(parse(text = row.i))
+      p.init <- eval(parse(text = row.i))
     }
     else if(grepl('max_iter', row.i)){
-      eval(parse(text = row.i))
+      max_iter <- eval(parse(text = row.i))
     }
     else if(grepl('max_step', row.i)){
-      eval(parse(text = row.i))
+      max_step <- eval(parse(text = row.i))
     }
     else if(grepl('coef.t', row.i)){
-      eval(parse(text = row.i))
+      coef.t <- eval(parse(text = row.i))
     }
     else if(grepl('DELTA', row.i)){
-      eval(parse(text = row.i))
+      DELTA <- eval(parse(text = row.i))
     }
     else if(grepl('Nmax', row.i)){
-      eval(parse(text = row.i))
+      Nmax <- eval(parse(text = row.i))
     }
     else if(grepl('n.periods', row.i)){
-      eval(parse(text = row.i))
+      n.periods <- eval(parse(text = row.i))
     }
     else if(grepl('period.length', row.i)){
-      eval(parse(text = row.i))
+      period.length <- eval(parse(text = row.i))
     }
     else if(grepl('start.date.fore', row.i)){
-      eval(parse(text = row.i))
+      start.date.fore <- eval(parse(text = row.i))
     }
     else if(grepl('magnitude.update', row.i)){
-      eval(parse(text = row.i))
+      magnitude.update <- eval(parse(text = row.i))
     }
     else if(grepl('output.name', row.i)){
-      eval(parse(text = row.i))
+      output.name <- eval(parse(text = row.i))
     }
     else if(grepl('injection_vol2activity', row.i)){
-      eval(parse(text = row.i))
+      injection_vol2activity <- eval(parse(text = row.i))
     }
     else if(grepl('injection_activityDecayRate', row.i)){
-      eval(parse(text = row.i))
+      injection_activityDecayRate <- eval(parse(text = row.i))
     }
     else if(grepl('scenario', row.i)){
-      eval(parse(text = row.i))
+      scenario <- eval(parse(text = row.i))
     }
   }
   # loading catalog
@@ -143,13 +144,13 @@ create.input.list.temporal.withCatalogue <- function(input_path){
     stop('Error in the catalog column names: please set the column name of the observed time equal to "time_string"')
   }
   if(!('Lon' %in% colnames(catalog))){
-    stop('Error in the catalog column names: please set the column name of the observed longitudes equal to "time_string"')
+    stop('Error in the catalog column names: please set the column name of the observed longitudes equal to "Lon"')
   }
   if(!('Lat' %in% colnames(catalog))){
-    stop('Error in the catalog column names: please set the column name of the observed latitude equal to "time_string"')
+    stop('Error in the catalog column names: please set the column name of the observed latitude equal to "Lat"')
   }
   if(!('magnitudes' %in% colnames(catalog))){
-    stop('Error in the catalog column names: please set the column name of the observed magnitudes equal to "time_string"')
+    stop('Error in the catalog column names: please set the column name of the observed magnitudes equal to "magnitudes"')
   }
   #
   # catalog preparation
@@ -158,17 +159,17 @@ create.input.list.temporal.withCatalogue <- function(input_path){
   catalog <- catalog %>%
     dplyr::mutate(time_date = as.POSIXct(gsub(pattern = 'T',
                                               replacement = ' ',
-                                              x = time_string),
+                                              x = .data$time_string),
                                          format = '%Y-%m-%d %H:%M:%OS')) %>%
     dplyr::filter(
-           time_date >= start.date,
-           time_date <= end.date,
-           Lon >= min.longitude,
-           Lon <= max.longitude,
-           Lat >= min.latitude,
-           Lat <= max.latitude,
-           magnitudes >= magnitude.completeness) %>%
-    dplyr::mutate(time_diff = as.numeric(difftime(time_date, start.date, units = 'days')))
+           .data$time_date >= start.date,
+           .data$time_date <= end.date,
+           .data$Lon >= min.longitude,
+           .data$Lon <= max.longitude,
+           .data$Lat >= min.latitude,
+           .data$Lat <= max.latitude,
+           .data$magnitudes >= magnitude.completeness) %>%
+    dplyr::mutate(time_diff = as.numeric(difftime(.data$time_date, start.date, units = 'days')))
   cat('Finish loading & preparing catalog', '\n')
 
   # create data.frame for inlabru
@@ -258,7 +259,7 @@ create.input.list.temporal.withCatalogue <- function(input_path){
 }
 
 
-#' Function to create a default input file for the ETAS Hawkes temporal model where no catalogue is specified in the input file
+#' Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file
 #'
 #' @param input_path Input file and path as a string
 #'
@@ -266,8 +267,8 @@ create.input.list.temporal.withCatalogue <- function(input_path){
 #' @export
 #'
 #' @examples
-#' # HOW DO WE REFERENCE A FILE IN THE data DIRECTORY?
-#' #create.input.list.temporal.noCatalogue('data/user_input_synthetic_noCatalog.txt')
+#' create.input.list.temporal.noCatalogue(
+#'   system.file('extdata/user_input_synthetic_noCatalogue.txt', package = "ETAS.inlabru"))
 create.input.list.temporal.noCatalogue <- function(input_path){
 
   con <- file(input_path)
@@ -278,79 +279,80 @@ create.input.list.temporal.noCatalogue <- function(input_path){
     row.i <- par.raw[[i]]
 
     if(grepl('a_mu', row.i)){
-      eval(parse(text = row.i))
+      # Do explicit assignment of the eval-result, to avoid package check warnings
+      a_mu <- eval(parse(text = row.i))
     }
     else if(grepl('b_mu', row.i)){
-      eval(parse(text = row.i))
+      b_mu <- eval(parse(text = row.i))
     }
     else if(grepl('a_K', row.i)){
-      eval(parse(text = row.i))
+      a_K <- eval(parse(text = row.i))
     }
     else if(grepl('b_K', row.i)){
-      eval(parse(text = row.i))
+      b_K <- eval(parse(text = row.i))
     }
     else if(grepl('a_alpha', row.i)){
-      eval(parse(text = row.i))
+      a_alpha <- eval(parse(text = row.i))
     }
     else if(grepl('b_alpha', row.i)){
-      eval(parse(text = row.i))
+      b_alpha <- eval(parse(text = row.i))
     }
     else if(grepl('a_c', row.i)){
-      eval(parse(text = row.i))
+      a_c <- eval(parse(text = row.i))
     }
     else if(grepl('b_c', row.i)){
-      eval(parse(text = row.i))
+      b_c <- eval(parse(text = row.i))
     }
     else if(grepl('a_p', row.i)){
-      eval(parse(text = row.i))
+      a_p <- eval(parse(text = row.i))
     }
     else if(grepl('b_p', row.i)){
-      eval(parse(text = row.i))
+      b_p <- eval(parse(text = row.i))
     }
     else if(grepl('mu.init', row.i)){
-      eval(parse(text = row.i))
+      mu.init <- eval(parse(text = row.i))
     }
     else if(grepl('K.init', row.i)){
-      eval(parse(text = row.i))
+      K.init <- eval(parse(text = row.i))
     }
     else if(grepl('alpha.init', row.i)){
-      eval(parse(text = row.i))
+      alpha.init <- eval(parse(text = row.i))
     }
     else if(grepl('c.init', row.i)){
-      eval(parse(text = row.i))
+      c.init <- eval(parse(text = row.i))
     }
     else if(grepl('p.init', row.i)){
-      eval(parse(text = row.i))
+      p.init <- eval(parse(text = row.i))
     }
     else if(grepl('max_iter', row.i)){
-      eval(parse(text = row.i))
+      max_iter <- eval(parse(text = row.i))
     }
     else if(grepl('max_step', row.i)){
-      eval(parse(text = row.i))
+      max_step <- eval(parse(text = row.i))
     }
     else if(grepl('coef.t', row.i)){
-      eval(parse(text = row.i))
+      coef.t <- eval(parse(text = row.i))
     }
     else if(grepl('DELTA', row.i)){
-      eval(parse(text = row.i))
+      DELTA <- eval(parse(text = row.i))
     }
     else if(grepl('Nmax', row.i)){
-      eval(parse(text = row.i))
+      Nmax <- eval(parse(text = row.i))
     }
     else if(grepl('n.periods', row.i)){
-      eval(parse(text = row.i))
+      n.periods <- eval(parse(text = row.i))
     }
     else if(grepl('period.length', row.i)){
-      eval(parse(text = row.i))
+      period.length <- eval(parse(text = row.i))
     }
     else if(grepl('magnitude.update', row.i)){
-      eval(parse(text = row.i))
+      magnitude.update <- eval(parse(text = row.i))
     }
     else if(grepl('output.name', row.i)){
-      eval(parse(text = row.i))
+      output.name <- eval(parse(text = row.i))
     }
     else if(grepl('scenario', row.i)){
-      eval(parse(text = row.i))
+      scenario <- eval(parse(text = row.i))
     }
   }
   # priors

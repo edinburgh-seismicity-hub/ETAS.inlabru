@@ -2,7 +2,7 @@
 % Please edit documentation in R/setupInlabruInputs.R
 \name{create.input.list.temporal.noCatalogue}
 \alias{create.input.list.temporal.noCatalogue}
-\title{Function to create a default input file for the ETAS Hawkes temporal model where no catalogue is specified in the input file}
+\title{Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file}
 \usage{
 create.input.list.temporal.noCatalogue(input_path)
 }
@@ -13,9 +13,9 @@ create.input.list.temporal.noCatalogue(input_path)
 The formatted input.list with the elements required for the temporal Hawkes model
 }
 \description{
-Function to create a default input file for the ETAS Hawkes temporal model where no catalogue is specified in the input file
+Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file
 }
 \examples{
-# HOW DO WE REFERENCE A FILE IN THE data DIRECTORY?
-#create.input.list.temporal.noCatalogue('data/user_input_synthetic_noCatalog.txt')
+create.input.list.temporal.noCatalogue(
+  system.file('extdata/user_input_synthetic_noCatalogue.txt', package = "ETAS.inlabru"))
 }

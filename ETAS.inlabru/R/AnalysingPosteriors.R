@@ -27,9 +27,9 @@ get_posterior_param <- function(input.list){
                                       input.list$model.fit$marginals.fixed$th.p),
                        param = 'p')
   post.df <- rbind(post.mu, post.K, post.alpha, post.c, post.p)
-  post.plot <- ggplot2::ggplot(post.df, ggplot2::aes(x,y)) +
+  post.plot <- ggplot2::ggplot(post.df, ggplot2::aes(.data$x, .data$y)) +
     ggplot2::geom_line() +
-    ggplot2::facet_wrap(facets = ggplot2::vars(param),
+    ggplot2::facet_wrap(facets = ggplot2::vars(.data$param),
                         scales = 'free',
                         labeller = ggplot2::label_parsed)+
     ggplot2::xlab('param') +
@@ -103,7 +103,9 @@ post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
                                c = post.samp[4,],
                                p = post.samp[5,])
   }
-  pair.plot <- GGally::ggpairs(post.samp.df, labeller = label_parsed, lower=list(continuous='density'))
+  pair.plot <- GGally::ggpairs(post.samp.df,
+                               labeller = ggplot2::label_parsed,
+                               lower=list(continuous='density'))
   return(list(post.samp.df = post.samp.df,
               pair.plot = pair.plot))
 }
@@ -172,18 +174,26 @@ get_posterior_N <- function(input.list){
   N.post.df <- predict(input.list$model.fit, data.frame(),
                        ~ data.frame(N = N.seq,
                                     pdf = dpois(N.seq,
-                                                lambda.N(th.mu, th.K,
-                                                         th.alpha, th.c, th.p,
-                                                         input.list$T12[1], input.list$T12[2], input.list$M0,
-                                                         input.list$catalog.bru,
-                                                         input.list$link.functions))))
-  N.post.plot <- ggplot2::ggplot(N.post.df, ggplot2::aes(x = N, y = mean)) +
+                                                lambda.N(th.mu = th.mu,
+                                                         th.K = th.K,
+                                                         th.alpha = th.alpha,
+                                                         th.c = th.c,
+                                                         th.p = th.p,
+                                                         T1 = input.list$T12[1],
+                                                         T2 = input.list$T12[2],
+                                                         M0 = input.list$M0,
+                                                         Ht = input.list$catalog.bru,
+                                                         link.functions = input.list$link.functions))))
+  N.post.plot <- ggplot2::ggplot(N.post.df, ggplot2::aes(x = .data$N, y = .data$mean)) +
     ggplot2::geom_line() +
     ggplot2::geom_vline(xintercept = nrow(input.list$catalog.bru), linetype = 2) +
     ggplot2::ylab('pdf')
 
   N.post.plot.shaded <- N.post.plot +
-    ggplot2::geom_ribbon(ggplot2::aes(xmax = N, xmin = N, ymin = q0.025, ymax = q0.975),
+    ggplot2::geom_ribbon(ggplot2::aes(xmax = .data$N,
+                                      xmin = .data$N,
+                                      ymin = .data$q0.025,
+                                      ymax = .data$q0.975),
                          alpha = 0.2,
                          fill = 'blue')
   list(post.df = N.post.df,

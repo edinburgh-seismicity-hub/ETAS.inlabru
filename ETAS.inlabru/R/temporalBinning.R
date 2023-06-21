@@ -81,7 +81,7 @@ time.grid <- function(data.point, coef.t, delta.t, N.exp.,
   # create data.frame with t.start (bin starting time), t.end (bin end time) and t.bin.name (unique name for each bin)
   time.bins <- data.frame(t.start = t_b[-length(t_b)],
                           t.end = t_b[-1]) %>%
-    dplyr::mutate(t.bin.name = paste0(round(t.start,3),'-',round(t.end,3)))
+    dplyr::mutate(t.bin.name = paste0(round(.data$t.start,3),'-',round(.data$t.end,3)))
   # if there is only 1 bin than it is the last
   if(nrow(time.bins) - 1 == 0){
     time.bins$t.ref_layer = paste0('last-',idx.p)
