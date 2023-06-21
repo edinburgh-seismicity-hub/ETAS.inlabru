@@ -182,7 +182,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
   #print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
   # sample (in parallel) the aftershocks for each parent
   sample.list <- parallel::mclapply(idx.p, function(idx)
-    sample.temoral.ETAS.daughters(theta = theta, beta.p = beta.p, th = Ht$ts[idx],
+    sample.temporal.ETAS.daughters(theta = theta, beta.p = beta.p, th = Ht$ts[idx],
                      n.ev = n.ev.v[idx], M0, T1, T2), mc.cores = ncore)
 
   # bind the data.frame in the list and return
@@ -203,9 +203,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T2 End time for synthetic catalogue `[days]`.
 #'
 #' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
-#'
-#' @examples
-sample.temoral.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
+sample.temporal.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
   # if the number of events to be placed is zero returns an empty data.frame
   if(n.ev == 0){
     samp.points <- data.frame(x = 1, y = 1, ts = 1, magnitudes = 1)
@@ -254,8 +252,6 @@ sample.GR.magnitudes <- function(n, beta.p, M0) {
 #' @param T2 End time of model domain.
 #'
 #' @return t.sample A list of times in the interval `[0, T2]` distributed according to the ETAS triggering function.
-#'
-#' @examples
 sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
   if(n.ev == 0){
     df <- data.frame(ts = 1, x = 1, y = 1, magnitudes = 1, gen = 0)
@@ -278,7 +274,6 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
 #' @details
 #' The function returns the integral of the Omori's law, namely
 #' \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-#' @examples
 Int.ETAS.time.trig.function <- function(theta, th, T2){
   gamma.u <- (T2 - th)/theta$c
   ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
@@ -296,7 +291,6 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #' Considering the integral of the Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 #' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
-#' @examples
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }

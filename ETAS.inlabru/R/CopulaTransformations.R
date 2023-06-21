@@ -6,8 +6,6 @@
 #'
 #' @return values from a Gamma distribution with shape `a` and rate `b`, `vector` same length as `x`.
 #' @export gamma.t
-#'
-#' @examples
 gamma.t <- function(x, a, b){
   bru_forward_transformation(qgamma, x, a, b)
 }
@@ -20,8 +18,6 @@ gamma.t <- function(x, a, b){
 #'
 #' @return values from a Uniform distribution between `a` and `b`, `vector` same length as `x`.
 #' @export
-#'
-#' @examples
 unif.t <- function(x, a, b){
   bru_forward_transformation(qunif, x, min = a, max = b)
 }
@@ -34,8 +30,6 @@ unif.t <- function(x, a, b){
 #'
 #' @return Values from a Log-Normal distribution with logarithmic mean `m` and standard deviation `s`, `vector` same length as `x`.
 #' @export
-#'
-#' @examples
 loggaus.t <- function(x, m, s){
   bru_forward_transformation(qlnorm, x, meanlog = m, sdlog = s)
 }
@@ -47,8 +41,6 @@ loggaus.t <- function(x, m, s){
 #'
 #' @return values from an Exponential distribution with rate `r`, `vector` same length as `x`.
 #' @export exp.t
-#'
-#' @examples
 exp.t <- function(x, r){
   bru_forward_transformation(qexp, x, r)
 }
@@ -60,8 +52,6 @@ exp.t <- function(x, r){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-#'
-#' @examples
 inv.exp.t <- function(x, rate){
   qnorm(pexp(x, rate))
 }
@@ -75,8 +65,6 @@ inv.exp.t <- function(x, rate){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-#'
-#' @examples
 inv.gamma.t <- function(x, a, b){
   qnorm(pgamma(x, a, b))
 }
@@ -89,8 +77,6 @@ inv.gamma.t <- function(x, a, b){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-#'
-#' @examples
 inv.unif.t <- function(x, a, b){
   qnorm(punif(x, a, b))
 }
@@ -103,8 +89,6 @@ inv.unif.t <- function(x, a, b){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-#'
-#' @examples
 inv.loggaus.t <- function(x, m, s){
   qnorm(plnorm(x, meanlog = m, sdlog = s))
 }

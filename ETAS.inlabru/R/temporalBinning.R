@@ -108,8 +108,6 @@ time.grid <- function(data.point, coef.t, delta.t, N.exp.,
 #' @param time.df output of the function [time.grid()]
 #'
 #' @return `vector` of integral values between each bin provided in `time.df`
-#'
-#' @examples
 It_df <- function(param_, time.df){
   tth <- as.numeric(time.df$ts)
   T1b <- as.numeric(time.df$t.start)
@@ -133,8 +131,6 @@ It_df <- function(param_, time.df){
 #' \item `Imapping` mapper between the unique names provided in `time.sel` and original rows of the output of `time.grid()`, `vector`.
 #' }
 #' @return `vector` with same length as `list.input_$Imapping` with the integral of the Omori's law for each bin.
-#'
-#' @examples
 compute.grid <- function(param., list.input_){
 
   It.vec <- It_df(param_ = param., time.df = list.input_$time.sel)

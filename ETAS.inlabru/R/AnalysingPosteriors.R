@@ -10,8 +10,6 @@
 #' \item `post.df` : `data.frame` with the posterior distributions of the parameters with columns `x` (value of the parameter), `y` (value of the posterior), `param` (parameter name)
 #' \item `post.plot` : `ggplot` object showing the posterior distribution of each parameter}
 #' @export
-#'
-#' @examples
 get_posterior_param <- function(input.list){
   post.mu <- data.frame(INLA::inla.tmarginal(input.list$link.functions$mu,
                                        input.list$model.fit$marginals.fixed$th.mu),
@@ -52,8 +50,6 @@ get_posterior_param <- function(input.list){
 #'
 #' @return `data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters.
 #' @export
-#'
-#' @examples
 post_sampling <- function(input.list, n.samp){
   post.samp <- inlabru::generate(
     input.list$model.fit,
@@ -87,8 +83,6 @@ post_sampling <- function(input.list, n.samp){
 #' \item `pair.plot`: `ggplot` object reporting the pair plot between parameters samples. It is obtained using the `ggpairs` function of the `Ggally` library
 #' }
 #' @export
-#'
-#' @examples
 post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
   if(is.null(input.list$model.fit)){
     stop('model.fit is missing, please provide a fitted model as bru object')
@@ -134,8 +128,6 @@ post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
 #'
 #' @return Integral of the ETAS conditional intensity between `T1` and `T2` with minimum magnitude `M0`.
 #' @export
-#'
-#' @examples
 lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
                      link.functions){
   theta_etas <- list(mu = link.functions$mu(th.mu[1]),
@@ -169,8 +161,6 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 #' \item `post.plot` : `ggplot` object showing the posterior distribution of the expected number of events
 #' \item `post.plot.shaded` : `ggplot` object showing the posterior distribution of the expected number of events, shaded region corresponds to the 0.025 and 0.975 quantiles of the distribution of the distribution of the number of events.}
 #' @export
-#'
-#' @examples
 get_posterior_N <- function(input.list){
   lambda.N.post <- predict(input.list$model.fit, # model fit
                            data.frame(), # data (empty because the history of the process is passed to the function below directly)

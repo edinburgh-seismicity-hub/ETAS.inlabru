@@ -20,8 +20,6 @@
 #' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
 #' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
 #' @export
-#'
-#' @examples
 triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   post.samp <- inlabru::generate(
@@ -85,8 +83,6 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
 #' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
 #' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
 #' @export
-#'
-#' @examples
 triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
@@ -136,8 +132,6 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
 #' @param ti Time of the event in the history
 #'
 #' @return Value of the Omori's law at point `t` for and event happened in `ti`
-#'
-#' @examples
 omori <- function(theta, t, ti){
   output <- rep(0,length(t))
   t.diff <- t - ti
@@ -163,10 +157,8 @@ omori <- function(theta, t, ti){
 #' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
-#' @return
+#' @return A ggplot object
 #' @export
-#'
-#' @examples
 omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
@@ -213,10 +205,8 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
 #' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
-#' @return
+#' @return A ggplot object
 #' @export
-#'
-#' @examples
 omori_plot_priors <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   post.samp <- inlabru::generate(

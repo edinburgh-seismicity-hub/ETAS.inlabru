@@ -8,8 +8,6 @@
 #'
 #' @return The fitted model as a `bru` object, which is a list
 #' @export
-#'
-#' @examples
 Temporal.ETAS.fit <- function(input.list){
   cat('Start model fitting', '\n')
   fit_etas <- Temporal.ETAS(total.data = input.list$catalog.bru, # data
@@ -42,8 +40,6 @@ Temporal.ETAS.fit <- function(input.list){
 #'
 #' @return The fitted model as a 'bru' object, which is a list
 #' @export
-#'
-#' @examples
 Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
                           coef.t., delta.t., N.max., bru.opt){
 

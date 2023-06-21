@@ -24,7 +24,6 @@
 #' same if \eqn{t} is a vector and \eqn{t_h, m_h} are scalars, or if \eqn{t, t_h, m_h} are vectors of the same length.
 #'
 #' Do not use if \eqn{t} and \eqn{t_h, m_h} are vectors of different lengths.
-#' @examples
 gt <- function(theta, t, th, mh, M0){
   if(is.list(theta)){
     mu <- theta$mu
@@ -88,10 +87,8 @@ cond.lambda <- function(theta, t, th, mh, M0){
 #' @param T1 Start of temporal model domain.
 #' @param T2 End of temporal model domain.
 #'
-#' @return
+#' @return Logarithm of the integral of the ETAS triggering function
 #' @export log.Lambda.h
-#'
-#' @examples
 log.Lambda.h <- function(theta, th, mh, M0, T1, T2){
   T.low <- pmax(T1, th)
 

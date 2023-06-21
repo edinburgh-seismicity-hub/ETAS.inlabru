@@ -8,13 +8,11 @@
 #'
 #' @param a Event rate per unit volume injected
 #' @param V.i Injected volume
-#' @param tau Decau rate `[days]`
+#' @param tau Decay rate `[days]`
 #' @param T.i Time of injection event
-#' @param T2 TODO
+#' @param T2 End of temporal model domain
 #'
-#' @return
-#'
-#' @examples
+#' @return Forward time integrated function for exponential rate decay
 IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
   expected.injection.events <- - tau*V.i*a* ( exp(-(T2-T.i)/tau ) -1 )
   return(expected.injection.events)
@@ -31,10 +29,8 @@ IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, T2){
 #' @param T.i Time of injection event
 #' @param number.injected.events TODO
 #'
-#' @return
+#' @return An end time
 #' @export
-#'
-#' @examples
 Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.events){
   endTime <- T.i - tau*log(1 - number.injected.events / (tau*V.i*a))
   return(endTime)
@@ -52,9 +48,7 @@ Inv.IntInjecIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.even
 #'
 #' @return Catalogue of parent events induced by injection data.frame(times, magnitudes)
 #' @export
-#'
-#' @examples
-sample.temoral.injection.events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
+sample.temporal.injection.events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
   bound.l <- 0 #It(th.p, th, T)
   bound.u <- IntInjecIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, T2=T2)
   n.ev <- rpois( 1, bound.u  )

@@ -4,8 +4,6 @@
 #'
 #' @return The formatted input.list with the elements required for the temporal Hawkes model
 #' @export
-#'
-#' @examples
 create.input.list.temporal.withCatalogue <- function(input_path){
   con <- file(input_path)
   on.exit(close(con))

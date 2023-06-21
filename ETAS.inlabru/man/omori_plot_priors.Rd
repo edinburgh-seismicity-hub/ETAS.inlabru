@@ -19,6 +19,9 @@ omori_plot_priors(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 
 \item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the function, \code{integer} (\code{default = 100}).}
 }
+\value{
+A ggplot object
+}
 \description{
 Function to plot the Omori's law corresponding to different posterior samples
 }

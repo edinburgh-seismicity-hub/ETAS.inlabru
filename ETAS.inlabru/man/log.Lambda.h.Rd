@@ -19,6 +19,9 @@
 
 \item{T2}{End of temporal model domain.}
 }
+\value{
+Logarithm of the integral of the ETAS triggering function
+}
 \description{
 Logarithm of the integral of the ETAS triggering function
 }

@@ -17,6 +17,9 @@ Inv.IntInjecIntensity(a = 50, V.i = 1, tau = 10, T.i, number.injected.events)
 
 \item{number.injected.events}{TODO}
 }
+\value{
+An end time
+}
 \description{
 Returns end time given a ...
 }

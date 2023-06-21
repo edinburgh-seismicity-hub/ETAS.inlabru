@@ -1,7 +1,7 @@
 Package: ETAS.inlabru
 Type: Package
 Title: This package uses inlabru to implement a Bayesian ETAS model for modelling seismic sequences
-Version: 1.1.0
+Version: 1.1.0.9000
 Authors@R: 
     c(
     person("Francesco", "Serafini",email="francesco.serafini@ed.ac.uk", role = c("aut", "cre")),
@@ -29,9 +29,7 @@ LazyData: true
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Imports: 
-    lemon,
     parallel,
-    tidyquant,
     dplyr,
     ggplot2,
     GGally,
@@ -42,4 +40,7 @@ Imports:
     rlang,
     stats,
     utils
+Suggests:
+    lemon,
+    tidyquant
 Additional_repositories: https://inla.r-inla-download.org/R/testing
