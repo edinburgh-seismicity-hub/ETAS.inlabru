@@ -13,7 +13,7 @@
 #' }
 #' @param magnitude Magnitude of the event for which the triggering function is calculated, `scalar` (`default = 4`).
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
-#' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
+#' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`)
 #'
 #' @return `ggplot` object with grey lines representing the triggering function for each posterior sample.
@@ -146,11 +146,10 @@ omori <- function(theta, t, ti){
   output
 }
 
-#' Function to plot the Omori's law corresponding to different posterior samples
+#' Function to plot the Omori's law corresponding to different prior samples
 #'
-#' @param list.input structured input `list` with at least two elements:
+#' @param list.input structured input `list` with at least one element:
 #' \itemize{
-#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
@@ -159,7 +158,7 @@ omori <- function(theta, t, ti){
 #'
 #' @return A ggplot object
 #' @export
-omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
+omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
                        list.input$link.functions$K(rnorm(n.samp)),
@@ -167,8 +166,8 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
                        list.input$link.functions$c(rnorm(n.samp)),
                        list.input$link.functions$p(rnorm(n.samp)))
 
-  omori.eval <- lapply(1:nrow(post.samp),
-                       \(x) omori(theta = post.samp[x,],
+  omori.eval <- lapply(1:nrow(prior.samp),
+                       \(x) omori(theta = prior.samp[x,],
                                   t = t.eval,
                                   ti = 0))
   omori.cols <- as.matrix(dplyr::bind_cols(omori.eval))
@@ -202,12 +201,12 @@ omori_plot <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
-#' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
+#' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
 #' @export
-omori_plot_priors <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
+omori_plot_posterior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   post.samp <- inlabru::generate(
     list.input$model.fit,

@@ -84,7 +84,8 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
 
   # MN: Define local function to calculate log-likelihood triggered contribution of one event to each bin.
   # MN: h is to denote it is from past events
-  logLambda.h.inla <- function(th.K, th.alpha, th.c, th.p, list.input_, ncore_ = ncore){
+  # FL: ncore_ was set to ncore but that doesn't exist, and ncore_ is unused here
+  logLambda.h.inla <- function(th.K, th.alpha, th.c, th.p, list.input_, ncore_ = NULL){
     theta_ <- c(0,
                 link.functions$K(th.K[1]),
                 link.functions$alpha(th.alpha[1]),
@@ -165,8 +166,15 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
     th.c(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
     th.p(1, model = 'linear', mean.linear = 0, prec.linear = 1)
 
-  return( bru(formula = merged.form, components = cmp.part, data = data.input, family = 'Poisson',
-              options = append(bru.opt, list(E = data.input$exposure))) )
+  return(
+    inlabru::bru(
+      formula = merged.form,
+      components = cmp.part,
+      data = data.input,
+      family = 'Poisson',
+      options = append(bru.opt, list(E = data.input$exposure))
+    )
+  )
 
 }
 
