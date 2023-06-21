@@ -4,7 +4,7 @@
 \alias{log.Lambda.h}
 \title{Logarithm of the integral of the ETAS triggering function}
 \usage{
-\method{log}{Lambda.h}(theta, th, mh, M0, T1, T2)
+log.Lambda.h(theta, th, mh, M0, T1, T2)
 }
 \arguments{
 \item{theta}{ETAS parameters \code{data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}

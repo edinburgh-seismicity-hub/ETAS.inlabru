@@ -4,7 +4,7 @@
 \alias{gamma.t}
 \title{Copula transformation from a standard Normal distribution to a Gamma distribution}
 \usage{
-\method{gamma}{t}(x, a, b)
+gamma.t(x, a, b)
 }
 \arguments{
 \item{x}{values from a standard Normal distribution, \code{vector}.}

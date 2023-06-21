@@ -2,7 +2,7 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{loggaus.t}
 \alias{loggaus.t}
-\title{Copula tranformation from a standard Normal distribution to a Log-Normal distribution}
+\title{Copula transformation from a standard Normal distribution to a Log-Normal distribution}
 \usage{
 loggaus.t(x, m, s)
 }
@@ -17,5 +17,5 @@ loggaus.t(x, m, s)
 Values from a Log-Normal distribution with logarithmic mean \code{m} and standard deviation \code{s}, \code{vector} same length as \code{x}.
 }
 \description{
-Copula tranformation from a standard Normal distribution to a Log-Normal distribution
+Copula transformation from a standard Normal distribution to a Log-Normal distribution
 }

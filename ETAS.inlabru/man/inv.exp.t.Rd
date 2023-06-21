@@ -2,7 +2,7 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{inv.exp.t}
 \alias{inv.exp.t}
-\title{Copula tranformation from an Exponential to a standard Normal distribution}
+\title{Copula transformation from an Exponential to a standard Normal distribution}
 \usage{
 inv.exp.t(x, rate)
 }
@@ -15,5 +15,5 @@ inv.exp.t(x, rate)
 values from a standard Normal distribution, \code{vector} same length as \code{x}
 }
 \description{
-Copula tranformation from an Exponential to a standard Normal distribution
+Copula transformation from an Exponential to a standard Normal distribution
 }

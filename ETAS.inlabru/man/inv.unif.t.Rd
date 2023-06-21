@@ -2,7 +2,7 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{inv.unif.t}
 \alias{inv.unif.t}
-\title{Copula tranformation from an Uniform to a standard Normal distribution}
+\title{Copula transformation from an Uniform to a standard Normal distribution}
 \usage{
 inv.unif.t(x, a, b)
 }
@@ -17,5 +17,5 @@ inv.unif.t(x, a, b)
 values from a standard Normal distribution, \code{vector} same length as \code{x}
 }
 \description{
-Copula tranformation from an Uniform to a standard Normal distribution
+Copula transformation from an Uniform to a standard Normal distribution
 }

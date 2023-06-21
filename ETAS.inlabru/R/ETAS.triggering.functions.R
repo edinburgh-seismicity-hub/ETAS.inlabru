@@ -80,6 +80,8 @@ cond.lambda <- function(theta, t, th, mh, M0){
 
 #' Logarithm of the integral of the ETAS triggering function
 #'
+#' @usage log.Lambda.h(theta, th, mh, M0, T1, T2)
+#'
 #' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param th Time of parent event.
 #' @param mh Magnitude of parent event

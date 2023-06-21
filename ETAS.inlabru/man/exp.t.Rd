@@ -2,9 +2,9 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{exp.t}
 \alias{exp.t}
-\title{Copula tranformation from a standard Normal distribution to an Exponential distribution}
+\title{Copula transformation from a standard Normal distribution to an Exponential distribution}
 \usage{
-\method{exp}{t}(x, r)
+exp.t(x, r)
 }
 \arguments{
 \item{x}{values from a standard Normal distribution, \code{vector}.}
@@ -15,5 +15,5 @@
 values from an Exponential distribution with rate \code{r}, \code{vector} same length as \code{x}.
 }
 \description{
-Copula tranformation from a standard Normal distribution to an Exponential distribution
+Copula transformation from a standard Normal distribution to an Exponential distribution
 }

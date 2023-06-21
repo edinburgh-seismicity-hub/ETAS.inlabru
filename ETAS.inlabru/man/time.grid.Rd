@@ -4,10 +4,12 @@
 \alias{time.grid}
 \title{Generate a set of time bins for a specific event.}
 \usage{
-\method{time}{grid}(data.point, coef.t, delta.t, N.exp., T1., T2.)
+time.grid(data.point, coef.t, delta.t, N.exp, T1., T2.)
 }
 \arguments{
-\item{data.point}{Point for which the binning is calculated, \code{list} with elements time (\verb{ts, scalar}), event index (\verb{idx.p, scalar}). Names are mandatory and should not be changed}
+\item{data.point}{Point for which the binning is calculated, \code{list} with
+elements time (\verb{ts, scalar}), event index (\verb{idx.p, scalar}). Names are
+mandatory and should not be changed}
 
 \item{coef.t}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
 

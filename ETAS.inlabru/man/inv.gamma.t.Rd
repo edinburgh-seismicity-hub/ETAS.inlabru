@@ -2,7 +2,7 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{inv.gamma.t}
 \alias{inv.gamma.t}
-\title{Copula tranformation from an Gamma to a standard Normal distribution}
+\title{Copula transformation from an Gamma to a standard Normal distribution}
 \usage{
 inv.gamma.t(x, a, b)
 }
@@ -17,5 +17,5 @@ inv.gamma.t(x, a, b)
 values from a standard Normal distribution, \code{vector} same length as \code{x}
 }
 \description{
-Copula tranformation from an Gamma to a standard Normal distribution
+Copula transformation from an Gamma to a standard Normal distribution
 }

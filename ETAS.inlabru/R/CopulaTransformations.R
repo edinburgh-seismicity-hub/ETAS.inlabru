@@ -1,5 +1,7 @@
 #' Copula transformation from a standard Normal distribution to a Gamma distribution
 #'
+#' @usage gamma.t(x, a, b)
+#'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param a shape parameter of the gamma distribution `scalar`.
 #' @param b rate parameter of the gamma distribution `scalar`.
@@ -10,7 +12,7 @@ gamma.t <- function(x, a, b){
   bru_forward_transformation(qgamma, x, a, b)
 }
 
-#' Copula tranformation from a standard Normal distribution to a Uniform distribution
+#' Copula transformation from a standard Normal distribution to a Uniform distribution
 #'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param a minimum value for the Uniform distribution, `scalar`.
@@ -22,7 +24,7 @@ unif.t <- function(x, a, b){
   bru_forward_transformation(qunif, x, min = a, max = b)
 }
 
-#' Copula tranformation from a standard Normal distribution to a Log-Normal distribution
+#' Copula transformation from a standard Normal distribution to a Log-Normal distribution
 #'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param m mean of the logarithm of the Log-Normal distribution, `scalar`.
@@ -34,7 +36,9 @@ loggaus.t <- function(x, m, s){
   bru_forward_transformation(qlnorm, x, meanlog = m, sdlog = s)
 }
 
-#' Copula tranformation from a standard Normal distribution to an Exponential distribution
+#' Copula transformation from a standard Normal distribution to an Exponential distribution
+#'
+#' @usage exp.t(x, r)
 #'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param r rate of the exponential distribution, `scalar`.
@@ -45,7 +49,7 @@ exp.t <- function(x, r){
   bru_forward_transformation(qexp, x, r)
 }
 
-#' Copula tranformation from an Exponential to a standard Normal distribution
+#' Copula transformation from an Exponential to a standard Normal distribution
 #'
 #' @param x values from an Exponential distribution, `vector`.
 #' @param rate rate of the Exponential distribution, `scalar`.
@@ -57,7 +61,7 @@ inv.exp.t <- function(x, rate){
 }
 
 
-#' Copula tranformation from an Gamma to a standard Normal distribution
+#' Copula transformation from an Gamma to a standard Normal distribution
 #'
 #' @param x values from a Gamma distribution, `vector`.
 #' @param a shape parameter of the Gamma distribution, `scalar`.
@@ -69,7 +73,7 @@ inv.gamma.t <- function(x, a, b){
   qnorm(pgamma(x, a, b))
 }
 
-#' Copula tranformation from an Uniform to a standard Normal distribution
+#' Copula transformation from an Uniform to a standard Normal distribution
 #'
 #' @param x values from an Uniform distribution, `vector`.
 #' @param a minimum of the Uniform distribution, `scalar`.
@@ -81,7 +85,7 @@ inv.unif.t <- function(x, a, b){
   qnorm(punif(x, a, b))
 }
 
-#' Copula tranformation from an Log-Normal to a standard Normal distribution
+#' Copula transformation from an Log-Normal to a standard Normal distribution
 #'
 #' @param x values from a Log-Normal distribution, `vector`.
 #' @param m mean of the logarithm of the Log-Normal distribution, `scalar`.
