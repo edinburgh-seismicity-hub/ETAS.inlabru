@@ -88,7 +88,7 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
                       list.input$link.functions$K(rnorm(n.samp)),
                       list.input$link.functions$alpha(rnorm(n.samp)),
-                      list.input$link.functions$c(rnorm(n.samp)),
+                      list.input$link.functions$c_(rnorm(n.samp)),
                       list.input$link.functions$p(rnorm(n.samp)))
 
   trig.eval <- lapply(1:nrow(prior.samp),
@@ -164,28 +164,35 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
                        list.input$link.functions$K(rnorm(n.samp)),
                        list.input$link.functions$alpha(rnorm(n.samp)),
-                       list.input$link.functions$c(rnorm(n.samp)),
+                       list.input$link.functions$c_(rnorm(n.samp)),
                        list.input$link.functions$p(rnorm(n.samp)))
 
   omori.eval <- lapply(1:nrow(prior.samp),
                        \(x) omori(theta = prior.samp[x,],
                                   t = t.eval,
                                   ti = 0))
-  omori.cols <- as.matrix(dplyr::bind_cols(omori.eval))
+  omori.cols <- do.call(cbind, omori.eval)
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
   omori.upper.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.975)))
 
-  #omori.eval <- dplyr::bind_rows(omori.eval)
+  omori.eval <- lapply(
+    seq_along(omori.eval),
+    function(k) {
+      data.frame(
+        sample = k,
+        t = t.eval,
+        omori = omori.eval[[k]]
+      )
+    }
+  )
+  omori.eval <- dplyr::bind_rows(omori.eval)
+
   output.plot <- ggplot2::ggplot()
-  for(i in 1:ncol(omori.cols)){
-    omori.eval.i <- omori.cols[,i]
-    df.omori <- data.frame(t = t.eval,
-                           omori = omori.eval.i)
-    output.plot <- output.plot +
-      ggplot2::geom_line(data = df.omori,
-                         ggplot2::aes(x = t, y = omori),
-                         color= 'grey', alpha = 0.5)
-  }
+  output.plot <- output.plot +
+    ggplot2::geom_line(data = omori.eval,
+                       ggplot2::aes(x = t, y = omori, group = factor(sample)),
+                       color= 'grey', alpha = 0.5)
+
   output.plot +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.lower.quant)) +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.upper.quant)) +
@@ -226,21 +233,27 @@ omori_plot_posterior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 
                        \(x) omori(theta = post.samp[x,],
                                   t = t.eval,
                                   ti = 0))
-  omori.cols <- as.matrix(dplyr::bind_cols(omori.eval))
+  omori.cols <- do.call(cbind, omori.eval)
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
   omori.upper.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.975)))
 
-  #omori.eval <- dplyr::bind_rows(omori.eval)
+  omori.eval <- lapply(
+    seq_along(omori.eval),
+    function(k) {
+      data.frame(
+        sample = k,
+        t = t.eval,
+        omori = omori.eval[[k]]
+      )
+    }
+  )
+  omori.eval <- dplyr::bind_rows(omori.eval)
+
   output.plot <- ggplot2::ggplot()
-  for(i in 1:ncol(omori.cols)){
-    omori.eval.i <- omori.cols[,i]
-    df.omori <- data.frame(t = t.eval,
-                           omori = omori.eval.i)
-    output.plot <- output.plot +
-      ggplot2::geom_line(data = df.omori,
-                         ggplot2::aes(x = t, y = omori),
-                         color= 'grey', alpha = 0.5)
-  }
+  output.plot <- output.plot +
+    ggplot2::geom_line(data = omori.eval,
+                       ggplot2::aes(x = t, y = omori, group = factor(sample)),
+                       color= 'grey', alpha = 0.5)
   output.plot +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.lower.quant)) +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.upper.quant)) +
