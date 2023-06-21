@@ -95,7 +95,7 @@ geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.
 ggtitle("C.  alpha prior")
 
 c_priorPlot <- ggplot() +
-geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
+geom_density(aes(x = list.input$link.functions$c_(rnorm(100000))) ) +
 geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
   xlab("c") +

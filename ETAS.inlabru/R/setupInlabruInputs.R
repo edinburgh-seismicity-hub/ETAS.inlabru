@@ -268,7 +268,7 @@ create.input.list.temporal.withCatalogue <- function(input_path){
 #'
 #' @examples
 #' create.input.list.temporal.noCatalogue(
-#'   system.file('extdata/user_input_synthetic_noCatalogue.txt', package = "ETAS.inlabru"))
+#'   system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru"))
 create.input.list.temporal.noCatalogue <- function(input_path){
 
   con <- file(input_path)

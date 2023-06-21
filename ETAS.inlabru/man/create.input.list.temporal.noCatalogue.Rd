@@ -17,5 +17,5 @@ Function to create a default input list for the ETAS Hawkes temporal model where
 }
 \examples{
 create.input.list.temporal.noCatalogue(
-  system.file('extdata/user_input_synthetic_noCatalogue.txt', package = "ETAS.inlabru"))
+  system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru"))
 }

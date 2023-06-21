@@ -14,7 +14,7 @@ omori_plot_prior(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 
 \item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
 
-\item{t.end}{Upper bund of the x-axis, \code{scalar} (\code{default = 1}).}
+\item{t.end}{Upper bound of the x-axis, \code{scalar} (\code{default = 1}).}
 
 \item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the function, \code{integer} (\code{default = 100}).}
 }

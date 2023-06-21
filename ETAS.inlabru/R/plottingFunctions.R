@@ -40,22 +40,37 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
                               th = 0,
                               mh = magnitude,
                               M0 = list.input$M0))
-  trig.cols <- as.matrix(dplyr::bind_cols(trig.eval))
+  trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))
   mu.lower.quant <- quantile(post.samp[,1], 0.025)
   mu.upper.quant <- quantile(post.samp[,1], 0.975)
-  #omori.eval <- dplyr::bind_rows(omori.eval)
+
+  trig.eval <- lapply(
+    seq_along(trig.eval),
+    function(k) {
+      data.frame(
+        sample = k,
+        t = t.eval,
+        trig = trig.eval[[k]]
+      )
+    }
+  )
+  trig.eval <- dplyr::bind_rows(trig.eval)
+
   output.plot <- ggplot2::ggplot()
-  for (i in seq_len(ncol(trig.cols))) {
-    trig.eval.i <- trig.cols[,i]
-    df.trig <- data.frame(t = t.eval,
-                          trig = trig.eval.i)
-    output.plot <- output.plot +
-      ggplot2::geom_line(data = df.trig,
-                         ggplot2::aes(x = .data$t, y = .data$trig),
-                         color= 'grey', alpha = 0.5)
-  }
+  output.plot <- output.plot +
+    ggplot2::geom_line(
+      data = trig.eval,
+      ggplot2::aes(
+        x = .data$t,
+        y = .data$trig,
+        group = factor(.data$sample)
+      ),
+      color = 'grey',
+      alpha = 0.5
+    )
+
   output.plot +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.lower.quant)) +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.upper.quant)) +
@@ -67,23 +82,22 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
 }
 
 
-#' Function to plot the ETAS triggering function corresponding to different posterior samples
+#' Function to plot the ETAS triggering function corresponding to different prior samples
 #'
-#' @param list.input structured input `list` with at least two elements:
+#' @param list.input structured input `list` with at least one element:
 #' \itemize{
-#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param magnitude Magnitude of the event for which the triggering function is calculated, `scalar` (`default = 4`).
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
-#' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
+#' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`)
 #'
 #' @return `ggplot` object with grey lines representing the triggering function for each posterior sample.
 #' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
 #' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
 #' @export
-triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
+triggering_fun_plot_prior <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
                       list.input$link.functions$K(rnorm(n.samp)),
@@ -97,22 +111,37 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
                               th = 0,
                               mh = magnitude,
                               M0 = list.input$M0))
-  trig.cols <- as.matrix(dplyr::bind_cols(trig.eval))
+  trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))
   mu.lower.quant <- quantile(prior.samp[,1], 0.025)
   mu.upper.quant <- quantile(prior.samp[,1], 0.975)
-  #omori.eval <- dplyr::bind_rows(omori.eval)
+
+  trig.eval <- lapply(
+    seq_along(trig.eval),
+    function(k) {
+      data.frame(
+        sample = k,
+        t = t.eval,
+        trig = trig.eval[[k]]
+      )
+    }
+  )
+  trig.eval <- dplyr::bind_rows(trig.eval)
+
   output.plot <- ggplot2::ggplot()
-  for (i in seq_len(ncol(trig.cols))) {
-    trig.eval.i <- trig.cols[,i]
-    df.trig <- data.frame(t = t.eval,
-                          trig = trig.eval.i)
-    output.plot <- output.plot +
-      ggplot2::geom_line(data = df.trig,
-                         ggplot2::aes(x = .data$t, y = .data$trig),
-                         color= 'grey', alpha = 0.5)
-  }
+  output.plot <- output.plot +
+    ggplot2::geom_line(
+      data = trig.eval,
+      ggplot2::aes(
+        x = .data$t,
+        y = .data$trig,
+        group = factor(.data$sample)
+      ),
+      color = 'grey',
+      alpha = 0.5
+    )
+
   output.plot +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.lower.quant)) +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = trig.upper.quant)) +
@@ -153,7 +182,7 @@ omori <- function(theta, t, ti){
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
-#' @param t.end Upper bund of the x-axis, `scalar` (`default = 1`).
+#' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
@@ -189,9 +218,16 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 
   output.plot <- ggplot2::ggplot()
   output.plot <- output.plot +
-    ggplot2::geom_line(data = omori.eval,
-                       ggplot2::aes(x = t, y = omori, group = factor(sample)),
-                       color= 'grey', alpha = 0.5)
+    ggplot2::geom_line(
+      data = omori.eval,
+      ggplot2::aes(
+        x = .data$t,
+        y = .data$omori,
+        group = factor(.data$sample)
+      ),
+      color = 'grey',
+      alpha = 0.5
+    )
 
   output.plot +
     ggplot2::geom_line(ggplot2::aes(x = t.eval, y = omori.lower.quant)) +

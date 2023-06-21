@@ -96,7 +96,7 @@ geom_vline(aes(xintercept = list.input$alpha.init, color='Initial value'), show.
 ggtitle("C.  alpha prior")
 
 c_priorPlot <- ggplot() +
-geom_density(aes(x = list.input$link.functions$c(rnorm(100000))) ) +
+geom_density(aes(x = list.input$link.functions$c_(rnorm(100000))) ) +
 geom_vline(aes(xintercept = c, color='True value'), show.legend = FALSE) +
 geom_vline(aes(xintercept = list.input$c.init, color='Initial value'), show.legend = FALSE) +
   xlab("c") +
@@ -126,7 +126,7 @@ n.samp <- 1000
 prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
 list.input$link.functions$K(rnorm(n.samp)),
 list.input$link.functions$alpha(rnorm(n.samp)),
-list.input$link.functions$c(rnorm(n.samp)),
+list.input$link.functions$c_(rnorm(n.samp)),
 list.input$link.functions$p(rnorm(n.samp)))
 
 head(prior.samp)
@@ -135,13 +135,13 @@ head(prior.samp)
 
 ```{r}
 plot_triggering <- list()
-plot_triggering[[1]] <- triggering_fun_plot_priors(list.input, magnitude = 4, n.samp = 1000) +
+plot_triggering[[1]] <- triggering_fun_plot_prior(list.input, magnitude = 4, n.samp = 1000) +
   ggtitle("G. M4 trig. func.") +    
   xlab("Time [days]")+
   theme_bw()  + 
   theme(plot.title = element_text(size = 9))
 
-plot_triggering[[3]] <- triggering_fun_plot_priors(list.input, magnitude = 6.7, n.samp = 1000) +
+plot_triggering[[3]] <- triggering_fun_plot_prior(list.input, magnitude = 6.7, n.samp = 1000) +
   ggtitle("H. M6.7 trig. func.") +     
   xlab("Time [days]")+
   theme_bw() + 
@@ -157,7 +157,7 @@ plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], ncol=2, nrow=1, 
 
 ```{r}
 plot_omori <- list()
-plot_omori[[1]] <- omori_plot(list.input, n.samp = 1000) +
+plot_omori[[1]] <- omori_plot_prior(list.input, n.samp = 1000) +
   ggtitle("F. Omori decay") +     
   theme_bw()  + 
   xlab("Time [days]") +
