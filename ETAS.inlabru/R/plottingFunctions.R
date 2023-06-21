@@ -157,6 +157,7 @@ omori <- function(theta, t, ti){
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
+#' @seealso [create.input.list.temporal.noCatalogue()], [create.input.list.temporal.withCatalogue()]
 #' @export
 omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
@@ -205,6 +206,7 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 #' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
+#' @seealso [create.input.list.temporal.noCatalogue()], [create.input.list.temporal.withCatalogue()]
 #' @export
 omori_plot_posterior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)

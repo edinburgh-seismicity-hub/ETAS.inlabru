@@ -24,3 +24,6 @@ A ggplot object
 \description{
 Function to plot Omori's law corresponding to different prior samples
 }
+\seealso{
+\code{\link[=create.input.list.temporal.noCatalogue]{create.input.list.temporal.noCatalogue()}}, \code{\link[=create.input.list.temporal.withCatalogue]{create.input.list.temporal.withCatalogue()}}
+}
