@@ -163,7 +163,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
   # number of parents
   n.parent <- nrow(Ht)
   # calculate the aftershock rate for each parent in history (i.e. mean number daughters)
-  trig.rates <- exp(log.Lambda.h(theta = theta,
+  trig.rates <- exp(log_Lambda_h(theta = theta,
                                  th = Ht$ts, mh = Ht$magnitudes,
                                   M0 = M0, T1 = T1, T2 = T2))
   # extract number of aftershock for each parent (Sample poisson to deterime no daughters this realisation)

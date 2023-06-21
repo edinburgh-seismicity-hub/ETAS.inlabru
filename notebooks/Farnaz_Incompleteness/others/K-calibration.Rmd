@@ -116,18 +116,18 @@ list.input_1$K.init <- startingValues$K[i]
 list.input_1$c.init <- startingValues$c[i]
 list.input_1$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_1$th.init <- list(th.mu = inv.gamma.t(list.input_1$mu.init, list.input_1$a_mu, list.input_1$b_mu),
-                           th.K = inv.loggaus.t(list.input_1$K.init, list.input_1$a_K, list.input_1$b_K),
-                           th.alpha = inv.unif.t(list.input_1$alpha.init, list.input_1$a_alpha, list.input_1$b_alpha),
-                           th.c = inv.unif.t(list.input_1$c.init, list.input_1$a_c, list.input_1$b_c),
-                           th.p = inv.unif.t(list.input_1$p.init, list.input_1$a_p, list.input_1$b_p) )
+list.input_1$th.init <- list(th.mu = inv_gamma_t(list.input_1$mu.init, list.input_1$a_mu, list.input_1$b_mu),
+                           th.K = inv_loggaus_t(list.input_1$K.init, list.input_1$a_K, list.input_1$b_K),
+                           th.alpha = inv_unif_t(list.input_1$alpha.init, list.input_1$a_alpha, list.input_1$b_alpha),
+                           th.c = inv_unif_t(list.input_1$c.init, list.input_1$a_c, list.input_1$b_c),
+                           th.p = inv_unif_t(list.input_1$p.init, list.input_1$a_p, list.input_1$b_p) )
 
 startTime <- 0
 list.input_1$time.int <- c(startTime, modelledDuration)
@@ -166,18 +166,18 @@ list.input_1.5$K.init <- startingValues$K[i]
 list.input_1.5$c.init <- startingValues$c[i]
 list.input_1.5$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_1.5$th.init <- list(th.mu = inv.gamma.t(list.input_1.5$mu.init, list.input_1.5$a_mu, list.input_1.5$b_mu),
-                           th.K = inv.loggaus.t(list.input_1.5$K.init, list.input_1.5$a_K, list.input_1.5$b_K),
-                           th.alpha = inv.unif.t(list.input_1.5$alpha.init, list.input_1.5$a_alpha, list.input_1.5$b_alpha),
-                           th.c = inv.unif.t(list.input_1.5$c.init, list.input_1.5$a_c, list.input_1.5$b_c),
-                           th.p = inv.unif.t(list.input_1.5$p.init, list.input_1.5$a_p, list.input_1.5$b_p) )
+list.input_1.5$th.init <- list(th.mu = inv_gamma_t(list.input_1.5$mu.init, list.input_1.5$a_mu, list.input_1.5$b_mu),
+                           th.K = inv_loggaus_t(list.input_1.5$K.init, list.input_1.5$a_K, list.input_1.5$b_K),
+                           th.alpha = inv_unif_t(list.input_1.5$alpha.init, list.input_1.5$a_alpha, list.input_1.5$b_alpha),
+                           th.c = inv_unif_t(list.input_1.5$c.init, list.input_1.5$a_c, list.input_1.5$b_c),
+                           th.p = inv_unif_t(list.input_1.5$p.init, list.input_1.5$a_p, list.input_1.5$b_p) )
 
 startTime <- 0
 list.input_1.5$time.int <- c(startTime, modelledDuration)
@@ -216,18 +216,18 @@ list.input_2$K.init <- startingValues$K[i]
 list.input_2$c.init <- startingValues$c[i]
 list.input_2$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_2$th.init <- list(th.mu = inv.gamma.t(list.input_2$mu.init, list.input_2$a_mu, list.input_2$b_mu),
-                           th.K = inv.loggaus.t(list.input_2$K.init, list.input_2$a_K, list.input_2$b_K),
-                           th.alpha = inv.unif.t(list.input_2$alpha.init, list.input_2$a_alpha, list.input_2$b_alpha),
-                           th.c = inv.unif.t(list.input_2$c.init, list.input_2$a_c, list.input_2$b_c),
-                           th.p = inv.unif.t(list.input_2$p.init, list.input_2$a_p, list.input_2$b_p) )
+list.input_2$th.init <- list(th.mu = inv_gamma_t(list.input_2$mu.init, list.input_2$a_mu, list.input_2$b_mu),
+                           th.K = inv_loggaus_t(list.input_2$K.init, list.input_2$a_K, list.input_2$b_K),
+                           th.alpha = inv_unif_t(list.input_2$alpha.init, list.input_2$a_alpha, list.input_2$b_alpha),
+                           th.c = inv_unif_t(list.input_2$c.init, list.input_2$a_c, list.input_2$b_c),
+                           th.p = inv_unif_t(list.input_2$p.init, list.input_2$a_p, list.input_2$b_p) )
 
 startTime <- 0
 list.input_2$time.int <- c(startTime, modelledDuration)
@@ -266,18 +266,18 @@ list.input_2.5$K.init <- startingValues$K[i]
 list.input_2.5$c.init <- startingValues$c[i]
 list.input_2.5$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_2.5$th.init <- list(th.mu = inv.gamma.t(list.input_2.5$mu.init, list.input_2.5$a_mu, list.input_2.5$b_mu),
-                           th.K = inv.loggaus.t(list.input_2.5$K.init, list.input_2.5$a_K, list.input_2.5$b_K),
-                           th.alpha = inv.unif.t(list.input_2.5$alpha.init, list.input_2.5$a_alpha, list.input_2.5$b_alpha),
-                           th.c = inv.unif.t(list.input_2.5$c.init, list.input_2.5$a_c, list.input_2.5$b_c),
-                           th.p = inv.unif.t(list.input_2.5$p.init, list.input_2.5$a_p, list.input_2.5$b_p) )
+list.input_2.5$th.init <- list(th.mu = inv_gamma_t(list.input_2.5$mu.init, list.input_2.5$a_mu, list.input_2.5$b_mu),
+                           th.K = inv_loggaus_t(list.input_2.5$K.init, list.input_2.5$a_K, list.input_2.5$b_K),
+                           th.alpha = inv_unif_t(list.input_2.5$alpha.init, list.input_2.5$a_alpha, list.input_2.5$b_alpha),
+                           th.c = inv_unif_t(list.input_2.5$c.init, list.input_2.5$a_c, list.input_2.5$b_c),
+                           th.p = inv_unif_t(list.input_2.5$p.init, list.input_2.5$a_p, list.input_2.5$b_p) )
 
 startTime <- 0
 list.input_2.5$time.int <- c(startTime, modelledDuration)
@@ -316,18 +316,18 @@ list.input_3$K.init <- startingValues$K[i]
 list.input_3$c.init <- startingValues$c[i]
 list.input_3$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_3$th.init <- list(th.mu = inv.gamma.t(list.input_3$mu.init, list.input_3$a_mu, list.input_3$b_mu),
-                           th.K = inv.loggaus.t(list.input_3$K.init, list.input_3$a_K, list.input_3$b_K),
-                           th.alpha = inv.unif.t(list.input_3$alpha.init, list.input_3$a_alpha, list.input_3$b_alpha),
-                           th.c = inv.unif.t(list.input_3$c.init, list.input_3$a_c, list.input_3$b_c),
-                           th.p = inv.unif.t(list.input_3$p.init, list.input_3$a_p, list.input_3$b_p) )
+list.input_3$th.init <- list(th.mu = inv_gamma_t(list.input_3$mu.init, list.input_3$a_mu, list.input_3$b_mu),
+                           th.K = inv_loggaus_t(list.input_3$K.init, list.input_3$a_K, list.input_3$b_K),
+                           th.alpha = inv_unif_t(list.input_3$alpha.init, list.input_3$a_alpha, list.input_3$b_alpha),
+                           th.c = inv_unif_t(list.input_3$c.init, list.input_3$a_c, list.input_3$b_c),
+                           th.p = inv_unif_t(list.input_3$p.init, list.input_3$a_p, list.input_3$b_p) )
 
 startTime <- 0
 list.input_3$time.int <- c(startTime, modelledDuration)
@@ -367,18 +367,18 @@ list.input_3.5$K.init <- startingValues$K[i]
 list.input_3.5$c.init <- startingValues$c[i]
 list.input_3.5$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_3.5$th.init <- list(th.mu = inv.gamma.t(list.input_3.5$mu.init, list.input_3.5$a_mu, list.input_3.5$b_mu),
-                           th.K = inv.loggaus.t(list.input_3.5$K.init, list.input_3.5$a_K, list.input_3.5$b_K),
-                           th.alpha = inv.unif.t(list.input_3.5$alpha.init, list.input_3.5$a_alpha, list.input_3.5$b_alpha),
-                           th.c = inv.unif.t(list.input_3.5$c.init, list.input_3.5$a_c, list.input_3.5$b_c),
-                           th.p = inv.unif.t(list.input_3.5$p.init, list.input_3.5$a_p, list.input_3.5$b_p) )
+list.input_3.5$th.init <- list(th.mu = inv_gamma_t(list.input_3.5$mu.init, list.input_3.5$a_mu, list.input_3.5$b_mu),
+                           th.K = inv_loggaus_t(list.input_3.5$K.init, list.input_3.5$a_K, list.input_3.5$b_K),
+                           th.alpha = inv_unif_t(list.input_3.5$alpha.init, list.input_3.5$a_alpha, list.input_3.5$b_alpha),
+                           th.c = inv_unif_t(list.input_3.5$c.init, list.input_3.5$a_c, list.input_3.5$b_c),
+                           th.p = inv_unif_t(list.input_3.5$p.init, list.input_3.5$a_p, list.input_3.5$b_p) )
 
 startTime <- 0
 list.input_3.5$time.int <- c(startTime, modelledDuration)
@@ -417,18 +417,18 @@ list.input_4$K.init <- startingValues$K[i]
 list.input_4$c.init <- startingValues$c[i]
 list.input_4$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_4$th.init <- list(th.mu = inv.gamma.t(list.input_4$mu.init, list.input_4$a_mu, list.input_4$b_mu),
-                           th.K = inv.loggaus.t(list.input_4$K.init, list.input_4$a_K, list.input_4$b_K),
-                           th.alpha = inv.unif.t(list.input_4$alpha.init, list.input_4$a_alpha, list.input_4$b_alpha),
-                           th.c = inv.unif.t(list.input_4$c.init, list.input_4$a_c, list.input_4$b_c),
-                           th.p = inv.unif.t(list.input_4$p.init, list.input_4$a_p, list.input_4$b_p) )
+list.input_4$th.init <- list(th.mu = inv_gamma_t(list.input_4$mu.init, list.input_4$a_mu, list.input_4$b_mu),
+                           th.K = inv_loggaus_t(list.input_4$K.init, list.input_4$a_K, list.input_4$b_K),
+                           th.alpha = inv_unif_t(list.input_4$alpha.init, list.input_4$a_alpha, list.input_4$b_alpha),
+                           th.c = inv_unif_t(list.input_4$c.init, list.input_4$a_c, list.input_4$b_c),
+                           th.p = inv_unif_t(list.input_4$p.init, list.input_4$a_p, list.input_4$b_p) )
 
 startTime <- 0
 list.input_4$time.int <- c(startTime, modelledDuration)
@@ -467,18 +467,18 @@ list.input_4.5$K.init <- startingValues$K[i]
 list.input_4.5$c.init <- startingValues$c[i]
 list.input_4.5$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_4.5$th.init <- list(th.mu = inv.gamma.t(list.input_4.5$mu.init, list.input_4.5$a_mu, list.input_4.5$b_mu),
-                           th.K = inv.loggaus.t(list.input_4.5$K.init, list.input_4.5$a_K, list.input_4.5$b_K),
-                           th.alpha = inv.unif.t(list.input_4.5$alpha.init, list.input_4.5$a_alpha, list.input_4.5$b_alpha),
-                           th.c = inv.unif.t(list.input_4.5$c.init, list.input_4.5$a_c, list.input_4.5$b_c),
-                           th.p = inv.unif.t(list.input_4.5$p.init, list.input_4.5$a_p, list.input_4.5$b_p) )
+list.input_4.5$th.init <- list(th.mu = inv_gamma_t(list.input_4.5$mu.init, list.input_4.5$a_mu, list.input_4.5$b_mu),
+                           th.K = inv_loggaus_t(list.input_4.5$K.init, list.input_4.5$a_K, list.input_4.5$b_K),
+                           th.alpha = inv_unif_t(list.input_4.5$alpha.init, list.input_4.5$a_alpha, list.input_4.5$b_alpha),
+                           th.c = inv_unif_t(list.input_4.5$c.init, list.input_4.5$a_c, list.input_4.5$b_c),
+                           th.p = inv_unif_t(list.input_4.5$p.init, list.input_4.5$a_p, list.input_4.5$b_p) )
 
 startTime <- 0
 list.input_4.5$time.int <- c(startTime, modelledDuration)
@@ -517,18 +517,18 @@ list.input_5$K.init <- startingValues$K[i]
 list.input_5$c.init <- startingValues$c[i]
 list.input_5$p.init <- startingValues$p[i]
 
-link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu), 
-               K = \(x) loggaus.t(x, a_K, b_K), 
-               alpha = \(x) unif.t(x, a_alpha, b_alpha), 
-               c_ = \(x) unif.t(x, a_c, b_c), 
-               p = \(x) unif.t(x, a_p, b_p))
+link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu), 
+               K = \(x) loggaus_t(x, a_K, b_K), 
+               alpha = \(x) unif_t(x, a_alpha, b_alpha), 
+               c_ = \(x) unif_t(x, a_c, b_c), 
+               p = \(x) unif_t(x, a_p, b_p))
   
 # initial value - convert from ETAS scale to internal scale
-list.input_5$th.init <- list(th.mu = inv.gamma.t(list.input_5$mu.init, list.input_5$a_mu, list.input_5$b_mu),
-                           th.K = inv.loggaus.t(list.input_5$K.init, list.input_5$a_K, list.input_5$b_K),
-                           th.alpha = inv.unif.t(list.input_5$alpha.init, list.input_5$a_alpha, list.input_5$b_alpha),
-                           th.c = inv.unif.t(list.input_5$c.init, list.input_5$a_c, list.input_5$b_c),
-                           th.p = inv.unif.t(list.input_5$p.init, list.input_5$a_p, list.input_5$b_p) )
+list.input_5$th.init <- list(th.mu = inv_gamma_t(list.input_5$mu.init, list.input_5$a_mu, list.input_5$b_mu),
+                           th.K = inv_loggaus_t(list.input_5$K.init, list.input_5$a_K, list.input_5$b_K),
+                           th.alpha = inv_unif_t(list.input_5$alpha.init, list.input_5$a_alpha, list.input_5$b_alpha),
+                           th.c = inv_unif_t(list.input_5$c.init, list.input_5$a_c, list.input_5$b_c),
+                           th.p = inv_unif_t(list.input_5$p.init, list.input_5$a_p, list.input_5$b_p) )
 
 startTime <- 0
 list.input_5$time.int <- c(startTime, modelledDuration)

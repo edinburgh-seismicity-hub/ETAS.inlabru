@@ -4,7 +4,7 @@
 \alias{time.grid}
 \title{Generate a set of time bins for a specific event.}
 \usage{
-time.grid(data.point, coef.t, delta.t, N.exp, T1., T2.)
+time.grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
 }
 \arguments{
 \item{data.point}{Point for which the binning is calculated, \code{list} with

@@ -139,7 +139,7 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
                      p = link.functions$p(th.p[1]))
 
 
-  return( theta_etas$mu*(T2 - T1) + sum(exp(log.Lambda.h(theta = theta_etas,
+  return( theta_etas$mu*(T2 - T1) + sum(exp(log_Lambda_h(theta = theta_etas,
                                                          th = Ht$ts,
                                                          mh = Ht$magnitudes,
                                                          M0 = M0,

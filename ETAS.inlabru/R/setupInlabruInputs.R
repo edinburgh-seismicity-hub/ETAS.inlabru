@@ -182,18 +182,18 @@ create.input.list.temporal.withCatalogue <- function(input_path){
   M0 <- magnitude.completeness
 
   # priors
-  link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu),
-                 K = \(x) loggaus.t(x, a_K, b_K),
-                 alpha = \(x) unif.t(x, a_alpha, b_alpha),
-                 c_ = \(x) unif.t(x, a_c, b_c),
-                 p = \(x) unif.t(x, a_p, b_p))
+  link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu),
+                 K = \(x) loggaus_t(x, a_K, b_K),
+                 alpha = \(x) unif_t(x, a_alpha, b_alpha),
+                 c_ = \(x) unif_t(x, a_c, b_c),
+                 p = \(x) unif_t(x, a_p, b_p))
 
   # initial value - convert from ETAS scale to internal scale
-  th.init <- list(th.mu = inv.gamma.t(mu.init, a_mu, b_mu),
-                  th.K = inv.loggaus.t(K.init, a_K, b_K),
-                  th.alpha = inv.unif.t(alpha.init, a_alpha, b_alpha),
-                  th.c = inv.unif.t(c.init, a_c, b_c),
-                  th.p = inv.unif.t(p.init, a_p, b_p) )
+  th.init <- list(th.mu = inv_gamma_t(mu.init, a_mu, b_mu),
+                  th.K = inv_loggaus_t(K.init, a_K, b_K),
+                  th.alpha = inv_unif_t(alpha.init, a_alpha, b_alpha),
+                  th.c = inv_unif_t(c.init, a_c, b_c),
+                  th.p = inv_unif_t(p.init, a_p, b_p) )
 
   # options for inlabru
   if(is.null(max_step)){
@@ -356,18 +356,18 @@ create.input.list.temporal.noCatalogue <- function(input_path){
     }
   }
   # priors
-  link.f <- list(mu = \(x) gamma.t(x, a_mu, b_mu),
-                 K = \(x) loggaus.t(x, a_K, b_K),
-                 alpha = \(x) unif.t(x, a_alpha, b_alpha),
-                 c_ = \(x) unif.t(x, a_c, b_c),
-                 p = \(x) unif.t(x, a_p, b_p))
+  link.f <- list(mu = \(x) gamma_t(x, a_mu, b_mu),
+                 K = \(x) loggaus_t(x, a_K, b_K),
+                 alpha = \(x) unif_t(x, a_alpha, b_alpha),
+                 c_ = \(x) unif_t(x, a_c, b_c),
+                 p = \(x) unif_t(x, a_p, b_p))
 
   # initial value - convert from ETAS scale to internal scale
-  th.init <- list(th.mu = inv.gamma.t(mu.init, a_mu, b_mu),
-                  th.K = inv.loggaus.t(K.init, a_K, b_K),
-                  th.alpha = inv.unif.t(alpha.init, a_alpha, b_alpha),
-                  th.c = inv.unif.t(c.init, a_c, b_c),
-                  th.p = inv.unif.t(p.init, a_p, b_p) )
+  th.init <- list(th.mu = inv_gamma_t(mu.init, a_mu, b_mu),
+                  th.K = inv_loggaus_t(K.init, a_K, b_K),
+                  th.alpha = inv_unif_t(alpha.init, a_alpha, b_alpha),
+                  th.c = inv_unif_t(c.init, a_c, b_c),
+                  th.p = inv_unif_t(p.init, a_p, b_p) )
 
   # options for inlabru
   if(is.null(max_step)){

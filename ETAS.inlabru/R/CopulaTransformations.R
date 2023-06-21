@@ -1,14 +1,12 @@
 #' Copula transformation from a standard Normal distribution to a Gamma distribution
 #'
-#' @usage gamma.t(x, a, b)
-#'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param a shape parameter of the gamma distribution `scalar`.
 #' @param b rate parameter of the gamma distribution `scalar`.
 #'
 #' @return values from a Gamma distribution with shape `a` and rate `b`, `vector` same length as `x`.
-#' @export gamma.t
-gamma.t <- function(x, a, b){
+#' @export gamma_t
+gamma_t <- function(x, a, b){
   bru_forward_transformation(qgamma, x, a, b)
 }
 
@@ -20,7 +18,7 @@ gamma.t <- function(x, a, b){
 #'
 #' @return values from a Uniform distribution between `a` and `b`, `vector` same length as `x`.
 #' @export
-unif.t <- function(x, a, b){
+unif_t <- function(x, a, b){
   bru_forward_transformation(qunif, x, min = a, max = b)
 }
 
@@ -32,20 +30,18 @@ unif.t <- function(x, a, b){
 #'
 #' @return Values from a Log-Normal distribution with logarithmic mean `m` and standard deviation `s`, `vector` same length as `x`.
 #' @export
-loggaus.t <- function(x, m, s){
+loggaus_t <- function(x, m, s){
   bru_forward_transformation(qlnorm, x, meanlog = m, sdlog = s)
 }
 
 #' Copula transformation from a standard Normal distribution to an Exponential distribution
 #'
-#' @usage exp.t(x, r)
-#'
 #' @param x values from a standard Normal distribution, `vector`.
 #' @param r rate of the exponential distribution, `scalar`.
 #'
 #' @return values from an Exponential distribution with rate `r`, `vector` same length as `x`.
-#' @export exp.t
-exp.t <- function(x, r){
+#' @export
+exp_t <- function(x, r){
   bru_forward_transformation(qexp, x, r)
 }
 
@@ -56,7 +52,7 @@ exp.t <- function(x, r){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-inv.exp.t <- function(x, rate){
+inv_exp_t <- function(x, rate){
   qnorm(pexp(x, rate))
 }
 
@@ -69,7 +65,7 @@ inv.exp.t <- function(x, rate){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-inv.gamma.t <- function(x, a, b){
+inv_gamma_t <- function(x, a, b){
   qnorm(pgamma(x, a, b))
 }
 
@@ -81,7 +77,7 @@ inv.gamma.t <- function(x, a, b){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-inv.unif.t <- function(x, a, b){
+inv_unif_t <- function(x, a, b){
   qnorm(punif(x, a, b))
 }
 
@@ -93,6 +89,6 @@ inv.unif.t <- function(x, a, b){
 #'
 #' @return values from a standard Normal distribution, `vector` same length as `x`
 #' @export
-inv.loggaus.t <- function(x, m, s){
+inv_loggaus_t <- function(x, m, s){
   qnorm(plnorm(x, meanlog = m, sdlog = s))
 }

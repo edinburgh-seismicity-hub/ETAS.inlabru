@@ -41,7 +41,7 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 
 #' Generate a set of time bins for a specific event.
 #'
-#' @usage time.grid(data.point, coef.t, delta.t, N.exp, T1., T2.)
+#' @usage time.grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
 #'
 #' @param data.point Point for which the binning is calculated, `list` with
 #' elements time (`ts, scalar`), event index (`idx.p, scalar`). Names are

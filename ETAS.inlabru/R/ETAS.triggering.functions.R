@@ -80,7 +80,7 @@ cond.lambda <- function(theta, t, th, mh, M0){
 
 #' Logarithm of the integral of the ETAS triggering function
 #'
-#' @usage log.Lambda.h(theta, th, mh, M0, T1, T2)
+#' @usage log_Lambda_h(theta, th, mh, M0, T1, T2)
 #'
 #' @param theta ETAS parameters `data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param th Time of parent event.
@@ -90,8 +90,8 @@ cond.lambda <- function(theta, t, th, mh, M0){
 #' @param T2 End of temporal model domain.
 #'
 #' @return Logarithm of the integral of the ETAS triggering function
-#' @export log.Lambda.h
-log.Lambda.h <- function(theta, th, mh, M0, T1, T2){
+#' @export log_Lambda_h
+log_Lambda_h <- function(theta, th, mh, M0, T1, T2){
   T.low <- pmax(T1, th)
 
   gamma.l <- (T.low - th)/theta$c
