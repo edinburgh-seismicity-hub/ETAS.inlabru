@@ -20,7 +20,7 @@ Value of the start of the temporal domain used to calculate the integral
 Inverse of integrated Omori's law
 }
 \details{
-Considering the integral of the Omori's law
+Considering the integral of Omori's law
 \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
 }

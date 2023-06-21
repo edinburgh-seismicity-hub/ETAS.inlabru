@@ -125,13 +125,13 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
 
 
 
-#' Function to calculate the omori's law
+#' Function to calculate Omori's law
 #'
 #' @param theta ETAS parameters (`list(mu = mu, K = K, alpha = alpha, c = c, p = p`), only parameters `c` and `p` are used
-#' @param t Time at which the Omori's law is evaluated
+#' @param t Time at which Omori's law is evaluated
 #' @param ti Time of the event in the history
 #'
-#' @return Value of the Omori's law at point `t` for and event happened in `ti`
+#' @return Value of Omori's law at point `t` for and event happened in `ti`
 omori <- function(theta, t, ti){
   output <- rep(0,length(t))
   t.diff <- t - ti
@@ -146,7 +146,7 @@ omori <- function(theta, t, ti){
   output
 }
 
-#' Function to plot the Omori's law corresponding to different prior samples
+#' Function to plot Omori's law corresponding to different prior samples
 #'
 #' @param list.input structured input `list` with at least one element:
 #' \itemize{
@@ -193,7 +193,7 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
     ggplot2::ylab("Event rate")
 }
 
-#' Function to plot the Omori's law corresponding to different posterior samples
+#' Function to plot Omori's law corresponding to different posterior samples
 #'
 #' @param list.input structured input `list` with at least two elements:
 #' \itemize{

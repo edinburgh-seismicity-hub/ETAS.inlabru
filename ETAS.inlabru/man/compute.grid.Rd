@@ -17,7 +17,7 @@ Two elements are used
 }}
 }
 \value{
-\code{vector} with same length as \code{list.input_$Imapping} with the integral of the Omori's law for each bin.
+\code{vector} with same length as \code{list.input_$Imapping} with the integral of Omori's law for each bin.
 }
 \description{
 Function to compute the integral of Omori's law efficiently

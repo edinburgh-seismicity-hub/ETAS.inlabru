@@ -2,7 +2,7 @@
 % Please edit documentation in R/plottingFunctions.R
 \name{omori_plot_prior}
 \alias{omori_plot_prior}
-\title{Function to plot the Omori's law corresponding to different prior samples}
+\title{Function to plot Omori's law corresponding to different prior samples}
 \usage{
 omori_plot_prior(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 }
@@ -22,5 +22,5 @@ omori_plot_prior(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 A ggplot object
 }
 \description{
-Function to plot the Omori's law corresponding to different prior samples
+Function to plot Omori's law corresponding to different prior samples
 }

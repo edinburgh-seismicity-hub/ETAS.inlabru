@@ -14,12 +14,12 @@ Int.ETAS.time.trig.function(theta, th, T2)
 \item{T2}{End of temporal domain, \code{scalar}.}
 }
 \value{
-Value of the integral of the Omori's law
+Value of the integral of Omori's law
 }
 \description{
 Integrated Omori's law
 }
 \details{
-The function returns the integral of the Omori's law, namely
+The function returns the integral of Omori's law, namely
 \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 }

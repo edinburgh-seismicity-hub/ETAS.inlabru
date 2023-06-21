@@ -270,9 +270,9 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
 #' @param th Time of past event `[days]` and start of temporal domain, `vector`.
 #' @param T2 End of temporal domain, `scalar`.
 #'
-#' @return Value of the integral of the Omori's law
+#' @return Value of the integral of Omori's law
 #' @details
-#' The function returns the integral of the Omori's law, namely
+#' The function returns the integral of Omori's law, namely
 #' \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 Int.ETAS.time.trig.function <- function(theta, th, T2){
   gamma.u <- (T2 - th)/theta$c
@@ -288,7 +288,7 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #'
 #' @return Value of the start of the temporal domain used to calculate the integral
 #' @details
-#' Considering the integral of the Omori's law
+#' Considering the integral of Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 #' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
 Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){

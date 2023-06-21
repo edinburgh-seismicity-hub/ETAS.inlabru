@@ -2,20 +2,20 @@
 % Please edit documentation in R/plottingFunctions.R
 \name{omori}
 \alias{omori}
-\title{Function to calculate the omori's law}
+\title{Function to calculate Omori's law}
 \usage{
 omori(theta, t, ti)
 }
 \arguments{
 \item{theta}{ETAS parameters (\verb{list(mu = mu, K = K, alpha = alpha, c = c, p = p}), only parameters \code{c} and \code{p} are used}
 
-\item{t}{Time at which the Omori's law is evaluated}
+\item{t}{Time at which Omori's law is evaluated}
 
 \item{ti}{Time of the event in the history}
 }
 \value{
-Value of the Omori's law at point \code{t} for and event happened in \code{ti}
+Value of Omori's law at point \code{t} for and event happened in \code{ti}
 }
 \description{
-Function to calculate the omori's law
+Function to calculate Omori's law
 }
