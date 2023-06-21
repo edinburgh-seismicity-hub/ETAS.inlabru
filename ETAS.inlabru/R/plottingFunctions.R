@@ -34,7 +34,7 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
     n.samples = n.samp)
   post.samp <- t(post.samp)
 
-  trig.eval <- lapply(1:nrow(post.samp),
+  trig.eval <- lapply(seq_len(nrow(post.samp)),
                       \(x) gt(theta = post.samp[x,],
                               t = t.eval,
                               th = 0,
@@ -47,7 +47,7 @@ triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 
   mu.upper.quant <- quantile(post.samp[,1], 0.975)
   #omori.eval <- dplyr::bind_rows(omori.eval)
   output.plot <- ggplot2::ggplot()
-  for(i in 1:ncol(trig.cols)){
+  for (i in seq_len(ncol(trig.cols))) {
     trig.eval.i <- trig.cols[,i]
     df.trig <- data.frame(t = t.eval,
                           trig = trig.eval.i)
@@ -91,7 +91,7 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
                       list.input$link.functions$c_(rnorm(n.samp)),
                       list.input$link.functions$p(rnorm(n.samp)))
 
-  trig.eval <- lapply(1:nrow(prior.samp),
+  trig.eval <- lapply(seq_len(nrow(prior.samp)),
                       \(x) gt(theta = prior.samp[x,],
                               t = t.eval,
                               th = 0,
@@ -104,7 +104,7 @@ triggering_fun_plot_priors <- function(list.input, magnitude = 4, n.samp = 10, t
   mu.upper.quant <- quantile(prior.samp[,1], 0.975)
   #omori.eval <- dplyr::bind_rows(omori.eval)
   output.plot <- ggplot2::ggplot()
-  for(i in 1:ncol(trig.cols)){
+  for (i in seq_len(ncol(trig.cols))) {
     trig.eval.i <- trig.cols[,i]
     df.trig <- data.frame(t = t.eval,
                           trig = trig.eval.i)
@@ -167,7 +167,7 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
                        list.input$link.functions$c_(rnorm(n.samp)),
                        list.input$link.functions$p(rnorm(n.samp)))
 
-  omori.eval <- lapply(1:nrow(prior.samp),
+  omori.eval <- lapply(seq_len(nrow(prior.samp)),
                        \(x) omori(theta = prior.samp[x,],
                                   t = t.eval,
                                   ti = 0))
@@ -229,7 +229,7 @@ omori_plot_posterior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 
     n.samples = n.samp)
   post.samp <- t(post.samp)
 
-  omori.eval <- lapply(1:nrow(post.samp),
+  omori.eval <- lapply(seq_len(nrow(post.samp)),
                        \(x) omori(theta = post.samp[x,],
                                   t = t.eval,
                                   ti = 0))
