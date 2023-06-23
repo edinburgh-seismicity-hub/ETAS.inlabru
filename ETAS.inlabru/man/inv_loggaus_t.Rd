@@ -19,3 +19,14 @@ values from a standard Normal distribution, \code{vector} same length as \code{x
 \description{
 Copula transformation from an Log-Normal to a standard Normal distribution
 }
+\seealso{
+Other copula-transformations: 
+\code{\link{exp_t}()},
+\code{\link{gamma_t}()},
+\code{\link{inv_exp_t}()},
+\code{\link{inv_gamma_t}()},
+\code{\link{inv_unif_t}()},
+\code{\link{loggaus_t}()},
+\code{\link{unif_t}()}
+}
+\concept{copula-transformations}

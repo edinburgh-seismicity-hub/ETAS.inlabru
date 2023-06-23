@@ -17,3 +17,14 @@ values from an Exponential distribution with rate \code{r}, \code{vector} same l
 \description{
 Copula transformation from a standard Normal distribution to an Exponential distribution
 }
+\seealso{
+Other copula-transformations: 
+\code{\link{gamma_t}()},
+\code{\link{inv_exp_t}()},
+\code{\link{inv_gamma_t}()},
+\code{\link{inv_loggaus_t}()},
+\code{\link{inv_unif_t}()},
+\code{\link{loggaus_t}()},
+\code{\link{unif_t}()}
+}
+\concept{copula-transformations}

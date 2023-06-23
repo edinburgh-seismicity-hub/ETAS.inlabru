@@ -19,3 +19,14 @@ values from a Uniform distribution between \code{a} and \code{b}, \code{vector} 
 \description{
 Copula transformation from a standard Normal distribution to a Uniform distribution
 }
+\seealso{
+Other copula-transformations: 
+\code{\link{exp_t}()},
+\code{\link{gamma_t}()},
+\code{\link{inv_exp_t}()},
+\code{\link{inv_gamma_t}()},
+\code{\link{inv_loggaus_t}()},
+\code{\link{inv_unif_t}()},
+\code{\link{loggaus_t}()}
+}
+\concept{copula-transformations}

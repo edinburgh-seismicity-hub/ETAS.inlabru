@@ -19,3 +19,14 @@ values from a Gamma distribution with shape \code{a} and rate \code{b}, \code{ve
 \description{
 Copula transformation from a standard Normal distribution to a Gamma distribution
 }
+\seealso{
+Other copula-transformations: 
+\code{\link{exp_t}()},
+\code{\link{inv_exp_t}()},
+\code{\link{inv_gamma_t}()},
+\code{\link{inv_loggaus_t}()},
+\code{\link{inv_unif_t}()},
+\code{\link{loggaus_t}()},
+\code{\link{unif_t}()}
+}
+\concept{copula-transformations}

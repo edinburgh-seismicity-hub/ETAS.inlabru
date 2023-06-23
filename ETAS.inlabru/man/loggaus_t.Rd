@@ -19,3 +19,14 @@ Values from a Log-Normal distribution with logarithmic mean \code{m} and standar
 \description{
 Copula transformation from a standard Normal distribution to a Log-Normal distribution
 }
+\seealso{
+Other copula-transformations: 
+\code{\link{exp_t}()},
+\code{\link{gamma_t}()},
+\code{\link{inv_exp_t}()},
+\code{\link{inv_gamma_t}()},
+\code{\link{inv_loggaus_t}()},
+\code{\link{inv_unif_t}()},
+\code{\link{unif_t}()}
+}
+\concept{copula-transformations}

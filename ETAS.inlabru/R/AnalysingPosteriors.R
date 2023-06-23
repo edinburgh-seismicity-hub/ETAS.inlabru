@@ -126,7 +126,7 @@ post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
 #' @param T2 End of temporal model domain.
 #' @param M0 Minimum magnitude threshold
 #' @param Ht History of the process, or set of known events in the interval. It must be a `data.frame` with columns `ts` (time) and `magnitudes` (magnitudes).
-#' @param link.functions `list` of functions to trasnform the parameters from the internal scale to the ETAS scale
+#' @param link.functions `list` of functions to transform the parameters from the internal scale to the ETAS scale
 #'
 #' @return Integral of the ETAS conditional intensity between `T1` and `T2` with minimum magnitude `M0`.
 #' @export
