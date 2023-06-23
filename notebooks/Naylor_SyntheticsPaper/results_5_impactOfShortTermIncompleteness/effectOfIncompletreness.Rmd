@@ -435,14 +435,14 @@ plot_triggering[[4]] <- triggering_fun_plot(list.output.incompleteness[[2]], mag
 
 ```{r}
 plot_omori <- list()
-plot_omori[[1]] <- omori_plot(list.output.incompleteness[[1]], n.samp = 100) +
+plot_omori[[1]] <- omori_plot_posterior(list.output.incompleteness[[1]], n.samp = 100) +
   ggtitle("A. Omori decay for complete") +     
   theme_bw()  + 
   ylim(0,1) + 
   theme(plot.title = element_text(size = 8))
 
 
-plot_omori[[2]] <- omori_plot(list.output.incompleteness[[2]], n.samp = 100) +
+plot_omori[[2]] <- omori_plot_posterior(list.output.incompleteness[[2]], n.samp = 100) +
   ggtitle("B. Omori decay for incomplete")+     
   theme_bw()  + 
   ylim(0,1) + 

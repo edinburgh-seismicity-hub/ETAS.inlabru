@@ -25,6 +25,7 @@ library(GGally)
 
 library(inlabru)
 library(INLA)
+library(ETAS.inlabru)
 
 #inla.setOption(pardiso.license="~/sys/licences/paradiso.lic")
                
@@ -409,14 +410,14 @@ plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]],plot_triggering[[
 
 ```{r}
 plot_omori <- list()
-plot_omori[[1]] <- omori_plot(list.output.quietScenario[[2]], n.samp = 100) +
+plot_omori[[1]] <- omori_plot_posterior(list.output.quietScenario[[2]], n.samp = 100) +
   ggtitle("A. Omori decay") +     
   theme_bw()  + 
   ylim(0,1) + 
   theme(plot.title = element_text(size = 8))
 
 
-plot_omori[[2]] <- omori_plot(list.output.M6p7Scenario[[2]], n.samp = 100) +
+plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[2]], n.samp = 100) +
   ggtitle("B. Omori decay")+     
   theme_bw()  + 
   ylim(0,1) + 
