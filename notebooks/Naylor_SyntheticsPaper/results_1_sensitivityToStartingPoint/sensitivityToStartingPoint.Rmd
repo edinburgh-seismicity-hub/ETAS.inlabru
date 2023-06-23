@@ -145,14 +145,14 @@ ggsave("initialConditionCats.pdf", plt)
 list.output.quietScenario <-list()
 
 for (i in 1:nRealisations){
-  remove(list.input)
-
+  if (exists("list.input")) remove("list.input")
+  
   # Load a set of parameters that we will need to tweak for this application
-fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+  fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
+  list.input <- create.input.list.temporal.noCatalogue(fpath)
   
   ####################
-  # Tweak the variables laoded from the input file
+  # Tweak the variables loaded from the input file
   list.input$M0 <- M0
   list.input$time.int <- c(0, modelledDuration)
   list.input$T12 <- c(0, modelledDuration)
