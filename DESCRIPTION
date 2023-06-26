@@ -46,3 +46,4 @@ Suggests:
 Additional_repositories: https://inla.r-inla-download.org/R/testing
 URL: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/, https://github.com/edinburgh-seismicity-hub/ETAS.inlabru
 BugReports: https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/issues
+Config/Needs/website: rmarkdown
