@@ -7,7 +7,7 @@ Authors@R:
     person("Francesco", "Serafini",email="francesco.serafini@ed.ac.uk", role = c("aut", "cre")),
     person("Mark", "Naylor", email="mark.naylor@ed.ac.uk", role = c("aut", "ths"),
            comment = c(ORCID = "0000-0002-3761-5522")),
-    person("Finn", "Lindgren",email="Finn.Lindgren@ed.ac.uk", role = c("ths"), 
+    person("Finn", "Lindgren",email="Finn.Lindgren@ed.ac.uk", role = c("aut", "ths"), 
           comment = c(ORCID = "0000-0002-5833-2011"))
           )
 Maintainer: The package maintainer <mark.naylor@ed.ac.uk>
