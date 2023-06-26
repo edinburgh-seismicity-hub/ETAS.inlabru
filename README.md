@@ -9,6 +9,9 @@
 R package that implements the ETAS Hawkes process for modelling
 seismicity
 
+Online documentation:
+<https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/>
+
 ## Authors
 
 - Francesco Serafini
