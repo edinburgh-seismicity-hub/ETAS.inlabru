@@ -36,10 +36,12 @@ jobs:
         with:
           extra-packages: any::pkgdown, local::.
           needs: website
+          working-directory: ./ETAS.inlabru
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
+          working-directory: ./ETAS.inlabru
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
@@ -48,3 +50,4 @@ jobs:
           clean: false
           branch: gh-pages
           folder: docs
+          working-directory: ./ETAS.inlabru
