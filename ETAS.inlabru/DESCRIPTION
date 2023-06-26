@@ -44,3 +44,4 @@ Suggests:
     lemon,
     tidyquant
 Additional_repositories: https://inla.r-inla-download.org/R/testing
+URL: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/
