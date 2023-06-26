@@ -1,3 +1,5 @@
+^ETAS\.inlabru$
+^ETAS\.inlabru_
 ^renv$
 ^renv\.lock$
 ^.*\.Rproj$
@@ -5,4 +7,7 @@
 ^docs$
 ^_pkgdown\.yml$
 ^pkgdown$
+^.*.html$
 ^\.github$
+^notebooks$
+^README\.Rmd$

@@ -11,10 +11,6 @@ on:
 
 name: pkgdown
 
-defaults:
-  run:
-    working-directory: ETAS.inlabru
-
 jobs:
   pkgdown:
     runs-on: ubuntu-latest

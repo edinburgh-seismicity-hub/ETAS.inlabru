@@ -8,6 +8,13 @@
 \description{
 Modelling and inversion of ETAS model of seismicity using inlabru The Epidemic Type Aftershock Sequence (ETAS) model is designed to model earthquakes that are triggered by previous events. In statistics, this is referred to as a Hawkes process. The code can be used to generate synthetic ETAS catalogues which can also include some seeded events to model specific sequences. We also implement a Bayesian inversion scheme using the Integrated Nested Laplace Approximation (INLA) using inlabru. For the temporal model, given a training catalogue of times and magnitudes, the code returns the joint posteriors for all the ETAS parameters. In the future roadmap, we will include tools to model the spatial distribution and spatio-temporal evolution of seismic sequences.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/}
+}
+
+}
 \author{
 \strong{Maintainer}: Francesco Serafini \email{francesco.serafini@ed.ac.uk}
 
