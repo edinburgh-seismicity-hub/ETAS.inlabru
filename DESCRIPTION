@@ -1,6 +1,6 @@
 Package: ETAS.inlabru
 Type: Package
-Title: This package uses inlabru to implement a Bayesian ETAS model for modelling seismic sequences
+Title: Bayesian ETAS model for modelling seismic sequences with inlabru
 Version: 1.1.0.9000
 Authors@R: 
     c(
