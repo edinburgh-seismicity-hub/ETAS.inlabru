@@ -129,9 +129,18 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
       gen = gen + 1
     }
   }
-  Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
-  Ht.to.gen$gen = -1
-  return( append(list(Ht.to.gen), Gen.list) )
+  if(!is.null(Ht)){
+    if(sum(Ht$ts >= T1 & Ht$ts <= T2) == 0){
+      return(Gen.list)
+    } else {
+      Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
+      Ht.to.gen$gen = -1
+      return( append(list(Ht.to.gen), Gen.list) )
+    }
+  } else {
+    return(Gen.list)
+  }
+
 }
 
 
