@@ -156,21 +156,22 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 #' Plot the posterior distribution of the expected number of events
 #'
 #' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
-#'
+#' @param domain.extension Percentage of posterior quantiles to extend the domain specified as `scalar`. Default is set to 0.10. 
+#' 
 #' @return A `list` of three objects:
 #' \itemize{
 #' \item `post.df`: `data.frame` containing posterior informations on the posterior distribution of the number of events
 #' \item `post.plot` : `ggplot` object showing the posterior distribution of the expected number of events
 #' \item `post.plot.shaded` : `ggplot` object showing the posterior distribution of the expected number of events, shaded region corresponds to the 0.025 and 0.975 quantiles of the distribution of the distribution of the number of events.}
 #' @export
-get_posterior_N <- function(input.list){
+get_posterior_N <- function(input.list, domain.extension = 0.10){
   lambda.N.post <- predict(input.list$model.fit, # model fit
                            data.frame(), # data (empty because the history of the process is passed to the function below directly)
                            ~ lambda.N(th.mu, th.K, th.alpha, th.c, th.p,
                                       input.list$T12[1], input.list$T12[2], input.list$M0,
                                       input.list$catalog.bru,
                                       input.list$link.functions)) # target function
-  N.seq <- floor(lambda.N.post$q0.025 - lambda.N.post$q0.025*0.10):ceiling(lambda.N.post$q0.975 + lambda.N.post$q0.975*0.10)
+  N.seq <- floor(lambda.N.post$q0.025 - lambda.N.post$q0.025*domain.extension):ceiling(lambda.N.post$q0.975 + lambda.N.post$q0.975*domain.extension)
   N.post.df <- predict(input.list$model.fit, data.frame(),
                        ~ data.frame(N = N.seq,
                                     pdf = dpois(N.seq,
