@@ -92,7 +92,7 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
 
 #' Function to plot the ETAS triggering function corresponding to different prior samples
 #'
-#' @param list.input structured input `list` with at least one element:
+#' @param input.list structured input `list` with at least one element:
 #' \itemize{
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
@@ -105,20 +105,20 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
 #' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
 #' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
 #' @export
-triggering_fun_plot_prior <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
+triggering_fun_plot_prior <- function(input.list, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
-  prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
-                      list.input$link.functions$K(rnorm(n.samp)),
-                      list.input$link.functions$alpha(rnorm(n.samp)),
-                      list.input$link.functions$c_(rnorm(n.samp)),
-                      list.input$link.functions$p(rnorm(n.samp)))
+  prior.samp <- cbind( input.list$link.functions$mu(rnorm(n.samp)),
+                      input.list$link.functions$K(rnorm(n.samp)),
+                      input.list$link.functions$alpha(rnorm(n.samp)),
+                      input.list$link.functions$c_(rnorm(n.samp)),
+                      input.list$link.functions$p(rnorm(n.samp)))
 
   trig.eval <- lapply(seq_len(nrow(prior.samp)),
                       \(x) gt(theta = prior.samp[x,],
                               t = t.eval,
                               th = 0,
                               mh = magnitude,
-                              M0 = list.input$M0))
+                              M0 = input.list$M0))
   trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))
@@ -185,7 +185,7 @@ omori <- function(theta, t, ti){
 
 #' Function to plot Omori's law corresponding to different prior samples
 #'
-#' @param list.input structured input `list` with at least one element:
+#' @param input.list structured input `list` with at least one element:
 #' \itemize{
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
@@ -196,13 +196,13 @@ omori <- function(theta, t, ti){
 #' @return A ggplot object
 #' @seealso [create.input.list.temporal.noCatalogue()], [create.input.list.temporal.withCatalogue()]
 #' @export
-omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
+omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
-  prior.samp <- cbind( list.input$link.functions$mu(rnorm(n.samp)),
-                       list.input$link.functions$K(rnorm(n.samp)),
-                       list.input$link.functions$alpha(rnorm(n.samp)),
-                       list.input$link.functions$c_(rnorm(n.samp)),
-                       list.input$link.functions$p(rnorm(n.samp)))
+  prior.samp <- cbind( input.list$link.functions$mu(rnorm(n.samp)),
+                       input.list$link.functions$K(rnorm(n.samp)),
+                       input.list$link.functions$alpha(rnorm(n.samp)),
+                       input.list$link.functions$c_(rnorm(n.samp)),
+                       input.list$link.functions$p(rnorm(n.samp)))
 
   omori.eval <- lapply(seq_len(nrow(prior.samp)),
                        \(x) omori(theta = prior.samp[x,],
@@ -247,7 +247,7 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 
 #' Function to plot Omori's law corresponding to different posterior samples
 #'
-#' @param list.input structured input `list` with at least two elements:
+#' @param input.list structured input `list` with at least two elements:
 #' \itemize{
 #' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
@@ -259,16 +259,16 @@ omori_plot_prior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
 #' @return A ggplot object
 #' @seealso [create.input.list.temporal.noCatalogue()], [create.input.list.temporal.withCatalogue()]
 #' @export
-omori_plot_posterior <- function(list.input, n.samp = 10, t.end = 1, n.breaks = 100){
+omori_plot_posterior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   post.samp <- inlabru::generate(
-    list.input$model.fit,
+    input.list$model.fit,
     data.frame(),
-    ~ c(list.input$link.functions$mu(th.mu),
-        list.input$link.functions$K(th.K),
-        list.input$link.functions$alpha(th.alpha),
-        list.input$link.functions$c_(th.c),
-        list.input$link.functions$p(th.p)
+    ~ c(input.list$link.functions$mu(th.mu),
+        input.list$link.functions$K(th.K),
+        input.list$link.functions$alpha(th.alpha),
+        input.list$link.functions$c_(th.c),
+        input.list$link.functions$p(th.p)
     ),
     n.samples = n.samp)
   post.samp <- t(post.samp)

@@ -5,7 +5,7 @@
 \title{Function to plot the ETAS triggering function corresponding to different prior samples}
 \usage{
 triggering_fun_plot_prior(
-  list.input,
+  input.list,
   magnitude = 4,
   n.samp = 10,
   t.end = 1,
@@ -13,7 +13,7 @@ triggering_fun_plot_prior(
 )
 }
 \arguments{
-\item{list.input}{structured input \code{list} with at least one element:
+\item{input.list}{structured input \code{list} with at least one element:
 \itemize{
 \item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 }}

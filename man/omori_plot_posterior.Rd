@@ -4,10 +4,10 @@
 \alias{omori_plot_posterior}
 \title{Function to plot Omori's law corresponding to different posterior samples}
 \usage{
-omori_plot_posterior(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
+omori_plot_posterior(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 }
 \arguments{
-\item{list.input}{structured input \code{list} with at least two elements:
+\item{input.list}{structured input \code{list} with at least two elements:
 \itemize{
 \item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
 \item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale

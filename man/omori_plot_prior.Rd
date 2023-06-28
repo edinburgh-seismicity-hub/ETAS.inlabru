@@ -4,10 +4,10 @@
 \alias{omori_plot_prior}
 \title{Function to plot Omori's law corresponding to different prior samples}
 \usage{
-omori_plot_prior(list.input, n.samp = 10, t.end = 1, n.breaks = 100)
+omori_plot_prior(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 }
 \arguments{
-\item{list.input}{structured input \code{list} with at least one element:
+\item{input.list}{structured input \code{list} with at least one element:
 \itemize{
 \item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 }}
