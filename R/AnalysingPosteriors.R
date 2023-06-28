@@ -100,37 +100,29 @@ post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = 1){
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp The number of samples to draw from the posteriors for the plot
-#' @param post.samp : `data.frame` with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When `NULL` the function samples the joint posterior distribution `n.samp` times. The default is `NULL`.
+#' @param post.samp `data.frame` with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When `NULL` the function samples the joint posterior distribution `n.samp` times. The default is `NULL`.
+#' @param max.batch parameter of [post_sampling] function to be used in case `post.samp = NULL`
 #' @return `list`: with elements
 #' \itemize{
 #' \item `post.samp.df`:`data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters. If `post.samp` is not `NULL` it returns `post.samp`
 #' \item `pair.plot`: `ggplot` object reporting the pair plot between parameters samples. It is obtained using the `ggpairs` function of the `Ggally` library
 #' }
 #' @export
-post_pairs_plot <- function(input.list, n.samp, post.samp = NULL){
-  if(is.null(input.list$model.fit)){
-    stop('model.fit is missing, please provide a fitted model as bru object')
+post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
+                            post.samp = NULL, max.batch = 1000){
+  if(is.null(input.list) & is.null(post.samp)){
+    stop('input.list and post.samp are missing, please provide at least one of the two')
   }
   if(is.null(post.samp)){
-    post.samp <- inlabru::generate(
-      input.list$model.fit,
-      data.frame(),
-      ~ c(input.list$link.functions$mu(th.mu),
-          input.list$link.functions$K(th.K),
-          input.list$link.functions$alpha(th.alpha),
-          input.list$link.functions$c_(th.c),
-          input.list$link.functions$p(th.p)),
-      n.samples = n.samp)
-    post.samp.df <- data.frame(mu = post.samp[1,],
-                               K = post.samp[2,],
-                               alpha = post.samp[3,],
-                               c = post.samp[4,],
-                               p = post.samp[5,])
+    if(is.null(n.samp)){
+      stop('n.samp is missing, please provide a number of samples from the posterior')
+    }
+    post.samp <- post_sampling_2(input.list, n.samp, max.batch)
   }
-  pair.plot <- GGally::ggpairs(post.samp.df,
+  pair.plot <- GGally::ggpairs(post.samp,
                                labeller = ggplot2::label_parsed,
                                lower=list(continuous='density'))
-  return(list(post.samp.df = post.samp.df,
+  return(list(post.samp.df = post.samp,
               pair.plot = pair.plot))
 }
 

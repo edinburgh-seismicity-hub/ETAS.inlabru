@@ -4,7 +4,12 @@
 \alias{post_pairs_plot}
 \title{Sample from the posterior of the ETAS parameters}
 \usage{
-post_pairs_plot(input.list, n.samp, post.samp = NULL)
+post_pairs_plot(
+  input.list = NULL,
+  n.samp = NULL,
+  post.samp = NULL,
+  max.batch = 1000
+)
 }
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
@@ -15,7 +20,9 @@ post_pairs_plot(input.list, n.samp, post.samp = NULL)
 
 \item{n.samp}{The number of samples to draw from the posteriors for the plot}
 
-\item{post.samp}{: \code{data.frame} with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When \code{NULL} the function samples the joint posterior distribution \code{n.samp} times. The default is \code{NULL}.}
+\item{post.samp}{\code{data.frame} with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When \code{NULL} the function samples the joint posterior distribution \code{n.samp} times. The default is \code{NULL}.}
+
+\item{max.batch}{parameter of \link{post_sampling} function to be used in case \code{post.samp = NULL}}
 }
 \value{
 \code{list}: with elements
