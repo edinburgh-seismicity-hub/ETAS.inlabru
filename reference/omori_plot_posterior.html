@@ -54,12 +54,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">omori_plot_posterior</span><span class="op">(</span><span class="va">list.input</span>, n.samp <span class="op">=</span> <span class="fl">10</span>, t.end <span class="op">=</span> <span class="fl">1</span>, n.breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">omori_plot_posterior</span><span class="op">(</span><span class="va">input.list</span>, n.samp <span class="op">=</span> <span class="fl">10</span>, t.end <span class="op">=</span> <span class="fl">1</span>, n.breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>list.input</dt>
+    <dl><dt>input.list</dt>
 <dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
 <li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
 </ul></dd>
