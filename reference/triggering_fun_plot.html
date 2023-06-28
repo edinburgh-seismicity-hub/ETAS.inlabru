@@ -55,9 +55,10 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">triggering_fun_plot</span><span class="op">(</span></span>
-<span>  <span class="va">list.input</span>,</span>
-<span>  magnitude <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  <span class="va">input.list</span>,</span>
+<span>  post.samp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  n.samp <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  magnitude <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  t.end <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  n.breaks <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -65,18 +66,23 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>list.input</dt>
+    <dl><dt>input.list</dt>
 <dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
 <li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
 </ul></dd>
 
 
-<dt>magnitude</dt>
-<dd><p>Magnitude of the event for which the triggering function is calculated, <code>scalar</code> (<code>default = 4</code>).</p></dd>
+<dt>post.samp</dt>
+<dd><p><code>data.frame</code> containing posterior samples of the parameters. If <code>NULL</code>, then <code>n.samp</code> samples are
+generated. If <code>n.samp</code> is different from <code>nrow(post.samp)</code> then <code>n.samp</code> rows are uniformly sampled from <code>post.samp</code>. Default is <code>NULL</code></p></dd>
 
 
 <dt>n.samp</dt>
 <dd><p>Number of posterior samples, <code>integer</code> (<code>default = 10</code>).</p></dd>
+
+
+<dt>magnitude</dt>
+<dd><p>Magnitude of the event for which the triggering function is calculated, <code>scalar</code> (<code>default = 4</code>).</p></dd>
 
 
 <dt>t.end</dt>
