@@ -4,7 +4,7 @@
 \alias{post_sampling}
 \title{Sample from the posterior of the ETAS parameters}
 \usage{
-post_sampling(input.list, n.samp)
+post_sampling(input.list, n.samp, max.batch = 1000, ncore = 1)
 }
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
@@ -14,6 +14,10 @@ post_sampling(input.list, n.samp)
 }}
 
 \item{n.samp}{The number of samples to draw from the posteriors}
+
+\item{max.batch}{Maximum number of posterior samples to be generated simultaneously. Default is 1000.}
+
+\item{ncore}{Number of cores to be used if \code{n.samp} exceeds \code{max.batch}. Default is 1}
 }
 \value{
 \code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters.

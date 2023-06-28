@@ -47,19 +47,43 @@ get_posterior_param <- function(input.list){
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp The number of samples to draw from the posteriors
+#' @param max.batch Maximum number of posterior samples to be generated simultaneously. Default is 1000.
+#' @param ncore Number of cores to be used if `n.samp` exceeds `max.batch`. Default is 1
 #'
 #' @return `data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters.
 #' @export
-post_sampling <- function(input.list, n.samp){
-  post.samp <- inlabru::generate(
-    input.list$model.fit,
-    data.frame(),
-    ~ c(input.list$link.functions$mu(th.mu),
-        input.list$link.functions$K(th.K),
-        input.list$link.functions$alpha(th.alpha),
-        input.list$link.functions$c_(th.c),
-        input.list$link.functions$p(th.p)),
-    n.samples = n.samp)
+post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = 1){
+  if(n.samp > max.batch){
+    n.batch <- floor(n.samp/max.batch)
+    if(n.samp - max.batch*n.batch == 0){
+      n.samp.per.batch = rep(max.batch, n.batch)
+    } else{
+      n.samp.per.batch = c(rep(max.batch, n.batch), n.samp - max.batch*n.batch)
+    }
+    post.samp.list <- parallel::mclapply(n.samp.per.batch, \(n.samp.batch)
+                             inlabru::generate(
+                               input.list$model.fit,
+                               data.frame(),
+                               ~ c(input.list$link.functions$mu(th.mu),
+                                   input.list$link.functions$K(th.K),
+                                   input.list$link.functions$alpha(th.alpha),
+                                   input.list$link.functions$c_(th.c),
+                                   input.list$link.functions$p(th.p)),
+                               n.samples = n.samp.batch),
+                             mc.cores = ncore)
+    post.samp <- do.call(cbind, post.samp.list)
+  }
+  else{
+    post.samp <- inlabru::generate(
+      input.list$model.fit,
+      data.frame(),
+      ~ c(input.list$link.functions$mu(th.mu),
+          input.list$link.functions$K(th.K),
+          input.list$link.functions$alpha(th.alpha),
+          input.list$link.functions$c_(th.c),
+          input.list$link.functions$p(th.p)),
+      n.samples = n.samp)
+  }
   data.frame(mu = post.samp[1,],
              K = post.samp[2,],
              alpha = post.samp[3,],
@@ -156,8 +180,8 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 #' Plot the posterior distribution of the expected number of events
 #'
 #' @param input.list Which has combined the input file (for link functions) and bru output (for marginals)
-#' @param domain.extension Percentage of posterior quantiles to extend the domain specified as `scalar`. Default is set to 0.10. 
-#' 
+#' @param domain.extension Percentage of posterior quantiles to extend the domain specified as `scalar`. Default is set to 0.10.
+#'
 #' @return A `list` of three objects:
 #' \itemize{
 #' \item `post.df`: `data.frame` containing posterior informations on the posterior distribution of the number of events
