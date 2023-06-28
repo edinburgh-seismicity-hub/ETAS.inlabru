@@ -261,7 +261,8 @@ omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 #' @return A ggplot object
 #' @seealso [create.input.list.temporal.noCatalogue()], [create.input.list.temporal.withCatalogue()]
 #' @export
-omori_plot_posterior <- function(input.list, post.samp = NULL, n.samp = 10, t.end = 1, n.breaks = 100){
+omori_plot_posterior <- function(input.list, post.samp = NULL,
+                                 n.samp = 10, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   if(is.null(post.samp)){
     post.samp <- inlabru::generate(
@@ -283,7 +284,7 @@ omori_plot_posterior <- function(input.list, post.samp = NULL, n.samp = 10, t.en
     }
   }
   omori.eval <- lapply(seq_len(nrow(post.samp)),
-                       \(x) omori(theta = post.samp[x,],
+                       \(x) omori(theta = as.numeric(post.samp[x,]),
                                   t = t.eval,
                                   ti = 0))
   omori.cols <- do.call(cbind, omori.eval)
