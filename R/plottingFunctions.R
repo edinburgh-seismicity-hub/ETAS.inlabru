@@ -2,15 +2,15 @@
 
 
 
-
-
 #' Function to plot the ETAS triggering function corresponding to different posterior samples
 #'
-#' @param list.input structured input `list` with at least two elements:
+#' @param input.list structured input `list` with at least two elements:
 #' \itemize{
 #' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
+#' @param post.samp `data.frame` containing posterior samples of the parameters. If `NULL`, then `n.samp` samples are
+#' generated. If `n.samp` is different from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from `post.samp`. Default is `NULL`
 #' @param magnitude Magnitude of the event for which the triggering function is calculated, `scalar` (`default = 4`).
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
@@ -20,26 +20,34 @@
 #' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
 #' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
 #' @export
-triggering_fun_plot <- function(list.input, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100){
+triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
+                                magnitude = 4, t.end = 1, n.breaks = 100){
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
-  post.samp <- inlabru::generate(
-    list.input$model.fit,
-    data.frame(),
-    ~ c(list.input$link.functions$mu(th.mu),
-        list.input$link.functions$K(th.K),
-        list.input$link.functions$alpha(th.alpha),
-        list.input$link.functions$c_(th.c),
-        list.input$link.functions$p(th.p)
-    ),
-    n.samples = n.samp)
-  post.samp <- t(post.samp)
-
+  if(is.null(post.samp)){
+    post.samp <- inlabru::generate(
+      input.list$model.fit,
+      data.frame(),
+      ~ c(input.list$link.functions$mu(th.mu),
+          input.list$link.functions$K(th.K),
+          input.list$link.functions$alpha(th.alpha),
+          input.list$link.functions$c_(th.c),
+          input.list$link.functions$p(th.p)
+      ),
+      n.samples = n.samp)
+    post.samp <- t(post.samp)
+  }
+  if((!is.null(post.samp))&(!is.null(n.samp))){
+    if(nrow(post.samp) != n.samp){
+      idx.samp <- sample(1:nrow(post.samp), n.samp, replace = TRUE)
+      post.samp <- post.samp[idx.samp,]
+    }
+  }
   trig.eval <- lapply(seq_len(nrow(post.samp)),
                       \(x) gt(theta = post.samp[x,],
                               t = t.eval,
                               th = 0,
                               mh = magnitude,
-                              M0 = list.input$M0))
+                              M0 = input.list$M0))
   trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
   trig.upper.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.975)))

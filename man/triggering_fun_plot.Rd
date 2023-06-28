@@ -5,23 +5,27 @@
 \title{Function to plot the ETAS triggering function corresponding to different posterior samples}
 \usage{
 triggering_fun_plot(
-  list.input,
-  magnitude = 4,
+  input.list,
+  post.samp = NULL,
   n.samp = 10,
+  magnitude = 4,
   t.end = 1,
   n.breaks = 100
 )
 }
 \arguments{
-\item{list.input}{structured input \code{list} with at least two elements:
+\item{input.list}{structured input \code{list} with at least two elements:
 \itemize{
 \item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
 \item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 }}
 
-\item{magnitude}{Magnitude of the event for which the triggering function is calculated, \code{scalar} (\code{default = 4}).}
+\item{post.samp}{\code{data.frame} containing posterior samples of the parameters. If \code{NULL}, then \code{n.samp} samples are
+generated. If \code{n.samp} is different from \code{nrow(post.samp)} then \code{n.samp} rows are uniformly sampled from \code{post.samp}. Default is \code{NULL}}
 
 \item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
+
+\item{magnitude}{Magnitude of the event for which the triggering function is calculated, \code{scalar} (\code{default = 4}).}
 
 \item{t.end}{Upper bound of the x-axis, \code{scalar} (\code{default = 1}).}
 
