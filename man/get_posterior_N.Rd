@@ -4,10 +4,12 @@
 \alias{get_posterior_N}
 \title{Plot the posterior distribution of the expected number of events}
 \usage{
-get_posterior_N(input.list)
+get_posterior_N(input.list, domain.extension = 0.1)
 }
 \arguments{
 \item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
+
+\item{domain.extension}{Percentage of posterior quantiles to extend the domain specified as \code{scalar}. Default is set to 0.10.}
 }
 \value{
 A \code{list} of three objects:
