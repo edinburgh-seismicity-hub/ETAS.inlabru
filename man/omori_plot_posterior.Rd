@@ -4,14 +4,22 @@
 \alias{omori_plot_posterior}
 \title{Function to plot Omori's law corresponding to different posterior samples}
 \usage{
-omori_plot_posterior(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
+omori_plot_posterior(
+  input.list,
+  post.samp = NULL,
+  n.samp = 10,
+  t.end = 1,
+  n.breaks = 100
+)
 }
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
 \itemize{
 \item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
 \item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
-}}
+}
+#' @param post.samp \code{data.frame} containing posterior samples of the parameters. If \code{NULL}, then \code{n.samp} samples are
+generated. If \code{n.samp} is different from \code{nrow(post.samp)} then \code{n.samp} rows are uniformly sampled from \code{post.samp}. Default is \code{NULL}.}
 
 \item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
 
