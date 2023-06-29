@@ -65,7 +65,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
   time.g.st <- Sys.time()
   idx <- NULL # Dummy assignment to avoid global variable warning.
   df.j <- foreach::foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
-    time.grid(data.point = total.data[idx,],
+    time_grid(data.point = total.data[idx,],
               coef.t = coef.t.,
               delta.t = delta.t.,
               T1. = T1,
@@ -94,7 +94,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
                 link.functions$p(th.p[1]))
 
     #cat('theta - LogL', theta_, '\n')
-    comp. <- compute.grid(param. = theta_, list.input_ = list.input_)
+    comp. <- compute_grid(param. = theta_, list.input_ = list.input_)
     #print(sum(is.na(comp.list$It)))
     #print(sum(is.infinite(comp.list$It)))
     out <- theta_[3]*(list.input_$df_grid$magnitudes - list.input_$M0) + log(theta_[2] + 1e-100) + log(comp. + 1e-100)

@@ -41,7 +41,7 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 
 #' Generate a set of time bins for a specific event.
 #'
-#' @usage time.grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
+#' @usage time_grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
 #'
 #' @param data.point Point for which the binning is calculated, `list` with
 #' elements time (`ts, scalar`), event index (`idx.p, scalar`). Names are
@@ -64,13 +64,13 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 #' \item `idx.p` : identifier provided in `data.point`
 #' }
 #' The bins are only between `T1.` and `T2.` or containing `T1.`
-#' @export time.grid
+#' @export time_grid
 #'
 #' @examples
 #' ## EXAMPLE 1
 #' event <- list( ts= 0, idx.p= 1 )
-#' time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
-time.grid <- function(data.point, coef.t, delta.t, N.exp.,
+#' time_grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
+time_grid <- function(data.point, coef.t, delta.t, N.exp.,
                       T1., T2.){
   # extract point information
   tt. <- data.point$ts
@@ -110,7 +110,7 @@ time.grid <- function(data.point, coef.t, delta.t, N.exp.,
 #' Function to calculate the integral of Omori's law
 #'
 #' @param param_ ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.
-#' @param time.df output of the function [time.grid()]
+#' @param time.df output of the function [time_grid()]
 #'
 #' @return `vector` of integral values between each bin provided in `time.df`
 It_df <- function(param_, time.df){
@@ -132,11 +132,11 @@ It_df <- function(param_, time.df){
 #' @param list.input_ `list` containing information to calculate the integrals efficiently. The list is created inside the `Temporal.ETAS` function
 #' Two elements are used
 #' \itemize{
-#' \item `time.sel` selection of rows of the output of `time.grid` with unique `t.ref_layer` value, `data.frame`.
-#' \item `Imapping` mapper between the unique names provided in `time.sel` and original rows of the output of `time.grid()`, `vector`.
+#' \item `time.sel` selection of rows of the output of `time_grid` with unique `t.ref_layer` value, `data.frame`.
+#' \item `Imapping` mapper between the unique names provided in `time.sel` and original rows of the output of `time_grid()`, `vector`.
 #' }
 #' @return `vector` with same length as `list.input_$Imapping` with the integral of Omori's law for each bin.
-compute.grid <- function(param., list.input_){
+compute_grid <- function(param., list.input_){
 
   It.vec <- It_df(param_ = param., time.df = list.input_$time.sel)
 

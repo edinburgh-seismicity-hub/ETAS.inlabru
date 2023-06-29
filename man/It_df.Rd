@@ -9,7 +9,7 @@ It_df(param_, time.df)
 \arguments{
 \item{param_}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}
 
-\item{time.df}{output of the function \code{\link[=time.grid]{time.grid()}}}
+\item{time.df}{output of the function \code{\link[=time_grid]{time_grid()}}}
 }
 \value{
 \code{vector} of integral values between each bin provided in \code{time.df}

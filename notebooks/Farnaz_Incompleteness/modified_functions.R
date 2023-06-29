@@ -110,7 +110,7 @@ modified_It_df <- function(param_, time.df, M0, G, H, b){
 
 
 # Computing the integral of the Omori's law efficiently
-modified_compute.grid <- function(param., list.input_, M0, G, H, b){
+modified_compute_grid <- function(param., list.input_, M0, G, H, b){
   It.vec <- modified_It_df(param_=param., time.df=list.input_$time.sel, M0=M0, G=G, H=H, b=b)
   It.vec[list.input_$Imapping]
 }
@@ -166,7 +166,7 @@ modified_Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL
   cat('Start creating grid...', '\n')
   time.g.st <- Sys.time()
   df.j <- foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
-    time.grid(data.point = total.data[idx,],
+    time_grid(data.point = total.data[idx,],
               coef.t = coef.t.,
               delta.t = delta.t.,
               T1. = T1,
@@ -194,7 +194,7 @@ modified_Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL
                 link.functions$p(th.p[1]))
 
     #cat('theta - LogL', theta_, '\n')
-    comp. <- modified_compute.grid(param. = theta_, list.input_ = list.input_, M0=M0, G=G, H=H, b=b)
+    comp. <- modified_compute_grid(param. = theta_, list.input_ = list.input_, M0=M0, G=G, H=H, b=b)
     #print(sum(is.na(comp.list$It)))
     #print(sum(is.infinite(comp.list$It)))
     out <- theta_[3]*(list.input_$df_grid$magnitudes - list.input_$M0) + log(theta_[2] + 1e-100) + log(comp. + 1e-100)
