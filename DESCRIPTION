@@ -43,6 +43,7 @@ Imports:
 Suggests:
     ggpubr,
     lemon,
+    patchwork,
     sn,
     tidyquant
 Additional_repositories: https://inla.r-inla-download.org/R/testing
