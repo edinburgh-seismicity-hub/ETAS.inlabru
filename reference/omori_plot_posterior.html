@@ -68,7 +68,11 @@
     <dl><dt>input.list</dt>
 <dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
 <li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
-</ul><p>#' @param post.samp <code>data.frame</code> containing posterior samples of the parameters. If <code>NULL</code>, then <code>n.samp</code> samples are
+</ul></dd>
+
+
+<dt>post.samp</dt>
+<dd><p><code>data.frame</code> containing posterior samples of the parameters. If <code>NULL</code>, then <code>n.samp</code> samples are
 generated. If <code>n.samp</code> is different from <code>nrow(post.samp)</code> then <code>n.samp</code> rows are uniformly sampled from <code>post.samp</code>. Default is <code>NULL</code>.</p></dd>
 
 
