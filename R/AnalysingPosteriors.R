@@ -92,7 +92,7 @@ post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = 1){
 }
 
 
-#' Sample from the posterior of the ETAS parameters
+#' Plot the posterior densities of the ETAS parameters
 #'
 #' @param input.list structured input `list` with at least two elements:
 #' \itemize{

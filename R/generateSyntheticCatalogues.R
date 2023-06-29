@@ -40,7 +40,7 @@
 #'   T1 = 0, T2 = 1000,
 #'   Ht = Ht )
 #'
-#' @export
+#' @export generate.temporal.ETAS.synthetic
 
 generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
                             Ht = NULL, ncore = 1){

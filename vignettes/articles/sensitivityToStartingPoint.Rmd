@@ -1,9 +1,19 @@
 ---
-title: "temporal_injection_ETAS_dev.Rmd"
-author: "Naylor"
+title: "Sensitivity to starting point"
+author: "Mark Naylor"
 date: "2022-10-27"
 output: html_document
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  echo = TRUE
+)
+```
 
 # Multiple analyses of two catalogues using different initial values
 
@@ -12,7 +22,6 @@ The inlabru algorithm takes an initial guess on the mode of the parameters we ar
 In this notebook, we explore the robustness of the posteriors on two synthetic catalogues where the true parameters are known. Both catalogues contain 2000 days of data. One catalogue does not contain a large event and the second contains a M6.7 event on day 1000.
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(ETAS.inlabru)
 
 library(tidyquant)
@@ -27,7 +36,7 @@ library(inlabru)
 library(INLA)
 library(ETAS.inlabru)
 
-#inla.setOption(pardiso.license="~/sys/licences/paradiso.lic")
+#inla.setOption(pardiso.license="~/sys/licences/pardiso.lic")
                
 library(dplyr)
 
@@ -93,18 +102,20 @@ M6p7.ETAS.cat <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts),]
 
 ```
 
+In this vignette we use Rmd caching, but you can save the catalogues in files explicitly:
 ```{r}
-save(M6p7.ETAS.cat,file="M6p7_ETAS_cat.Rda")
-save(quiet.ETAS.cat,file="quiet.ETAS.cat.Rda")
+# save(M6p7.ETAS.cat,file="M6p7_ETAS_cat.Rda")
+# save(quiet.ETAS.cat,file="quiet.ETAS.cat.Rda")
 ```
 
 # Present the catalogues
 
 ## Load the catalogues
 
+To read from saved object files:
 ```{r}
-load("M6p7_ETAS_cat.Rda")
-load("quiet.ETAS.cat.Rda")
+# load("M6p7_ETAS_cat.Rda")
+# load("quiet.ETAS.cat.Rda")
 ```
 
 ## Plot properties of the catalogues
@@ -133,8 +144,8 @@ plots[[2]] <- ggplot() +
 
 plt <- grid.arrange(plots[[1]], plots[[2]], ncol=1, nrow=2) 
 
-ggsave("initialConditionCats.png", plt)
-ggsave("initialConditionCats.pdf", plt)
+# ggsave("initialConditionCats.png", plt)
+# ggsave("initialConditionCats.pdf", plt)
 ```
 
 # Analyse the sensitivity to starting conditions
@@ -367,8 +378,8 @@ plots[[2]] <- ggplot(post.df, aes(x=x,y=y, group=id, color=factor(id), lty=facto
 
 ```{r}
 plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol=1, nrow=2, position='bottom')
-#ggsave("initialCondition_posteriors.png", plt)
-#ggsave("initialCondition_posteriors.pdf", plt)
+# ggsave("initialCondition_posteriors.png", plt)
+# ggsave("initialCondition_posteriors.pdf", plt)
 ```
 
 ## Explore ETAS triggering function using posterior samples
@@ -404,8 +415,8 @@ plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magni
 plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]],plot_triggering[[2]], plot_triggering[[4]], ncol=2, nrow=2, top="Triggering function variability") + 
   theme(plot.title = element_text(size = 8))
 
-#ggsave("trigFuncVariability_runin.png", plt)
-#ggsave("trigFuncVariability_runin.pdf", plt)
+# ggsave("trigFuncVariability_runin.png", plt)
+# ggsave("trigFuncVariability_runin.pdf", plt)
 ```
 
 ```{r}
@@ -443,7 +454,16 @@ post_pairs_plot(list.output.quietScenario[[2]], n.samp=1000)$pair.plot
 post_pairs_plot(list.output.M6p7Scenario[[3]], n.samp=1000)$pair_plot
 ```
 
-```{r}
+## inlabru convergence diagnostics
 
+We can also assess the convergence of the inlabru method itself, using the `bru_convergence_plot()`
+function. This can reveal if the starting values for the inlabru estimation are unreasonable, and better
+starting values for the nonlinear iterations might speed up the computations.
+
+```{r warning=FALSE}
+bru_convergence_plot(list.output.quietScenario[[2]]$model.fit)
+```
+```{r warning=FALSE}
+bru_convergence_plot(list.output.M6p7Scenario[[3]]$model.fit)
 ```
 

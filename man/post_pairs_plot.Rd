@@ -2,7 +2,7 @@
 % Please edit documentation in R/AnalysingPosteriors.R
 \name{post_pairs_plot}
 \alias{post_pairs_plot}
-\title{Sample from the posterior of the ETAS parameters}
+\title{Plot the posterior densities of the ETAS parameters}
 \usage{
 post_pairs_plot(
   input.list = NULL,
@@ -32,5 +32,5 @@ post_pairs_plot(
 }
 }
 \description{
-Sample from the posterior of the ETAS parameters
+Plot the posterior densities of the ETAS parameters
 }
