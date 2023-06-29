@@ -69,7 +69,7 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10){
 #' @examples
 #' ## EXAMPLE 1
 #' event <- list( ts= 0, idx.p= 1 )
-#' time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1 = 1, T2 = 20)
+#' time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
 time.grid <- function(data.point, coef.t, delta.t, N.exp.,
                       T1., T2.){
   # extract point information
