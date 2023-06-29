@@ -131,13 +131,17 @@ generate.temporal.ETAS.synthetic <- function(theta, beta.p, M0, T1, T2,
   }
   if(!is.null(Ht)){
     if(sum(Ht$ts >= T1 & Ht$ts <= T2) == 0){
+      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
       return(Gen.list)
     } else {
       Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
       Ht.to.gen$gen = -1
+      Ht.to.gen <- Ht.to.gen[,c('ts', 'magnitudes', 'gen')]
+      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
       return( append(list(Ht.to.gen), Gen.list) )
     }
   } else {
+    Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
     return(Gen.list)
   }
 
