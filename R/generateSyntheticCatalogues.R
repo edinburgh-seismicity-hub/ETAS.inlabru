@@ -229,7 +229,7 @@ sample.temporal.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
     samp.ts <- sample.temporal.ETAS.times(theta, n.ev, th, T2)
 
     # Generate the magnitude sample
-    samp.mags <- sample.GR.magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
+    samp.mags <- sample_GR_magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
 
     # Combine to build output synthetic catalogue for single parent
     samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
@@ -249,10 +249,10 @@ sample.temporal.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 #' @return A list of magnitudes of length `n` drawn from a GR distribution.
 #'
 #' @examples
-#' sample.GR.magnitudes(n=100, beta.p=log(10), M0=2.5)
+#' sample_GR_magnitudes(n=100, beta.p=log(10), M0=2.5)
 #'
 #' @export
-sample.GR.magnitudes <- function(n, beta.p, M0) {
+sample_GR_magnitudes <- function(n, beta.p, M0) {
   return(rexp(n, beta.p) + M0)
   }
 
