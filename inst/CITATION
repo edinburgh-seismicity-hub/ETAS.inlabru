@@ -10,7 +10,9 @@ citEntry(
   url      = "https://doi.org/10.5281/zenodo.7515785",
   doi      = "10.5281/zenodo.7515785",
   textVersion = paste(
-"Mark Naylor, & Francesco Serafini. (2023). edinburgh-seismicity-hub/ETAS.inlabru: Temporal Hawkes (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.7515785"
+    "Mark Naylor, & Francesco Serafini (2023).",
+    "edinburgh-seismicity-hub/ETAS.inlabru: Temporal Hawkes (v1.0.1).",
+    " Zenodo. https://doi.org/10.5281/zenodo.7515785"
   )
 )
 
@@ -22,5 +24,10 @@ citEntry(
   journal  = "arXiv",
   year     = 2022,
   doi      = "10.48550/ARXIV.2212.06077",
-  url      = "https://arxiv.org/abs/2212.06077"
+  url      = "https://arxiv.org/abs/2212.06077",
+  textVersion = paste(
+    "Francesco Serafini, Finn Lindgren, and Mark Naylor (2022).",
+    "doi:10.48550/ARXIV.2212.06077,",
+    "https://arxiv.org/abs/2212.06077"
+  )
 )
