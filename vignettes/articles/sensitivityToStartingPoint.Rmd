@@ -11,7 +11,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   dev = "png",
   dev.args = list(type = "cairo-png"),
-  echo = TRUE
+  echo = TRUE,
+  cache = TRUE
 )
 ```
 
@@ -192,7 +193,7 @@ for (i in 1:nRealisations){
   if(is.null(list.input$max_step)){
     list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
                          bru_max_iter = list.input$max_iter, # maximum number of iterations
-                         num.threads = 5,
+                         num.threads = 2,
                          #bru_method = list(max_step = 0.5),
                          inla.mode = 'experimental', # type of inla algorithm
                          bru_initial = list.input$th.init) # parameters initial values
@@ -200,7 +201,7 @@ for (i in 1:nRealisations){
     list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
                          bru_max_iter = list.input$max_iter, # maximum number of iterations
                          bru_method = list(max_step = list.input$max_step),
-                         num.threads = 5,
+                         num.threads = 2,
                          inla.mode = 'experimental', # type of inla algorithm
                          bru_initial = list.input$th.init) # parameters initial values
   }
@@ -273,7 +274,7 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
   if(is.null(list.input$max_step)){
     list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
                          bru_max_iter = list.input$max_iter, # maximum number of iterations
-                         num.threads = 5,
+                         num.threads = 2,
                          #bru_method = list(max_step = 0.5),
                          inla.mode = 'experimental', # type of inla algorithm
                          bru_initial = list.input$th.init) # parameters initial values
@@ -281,7 +282,7 @@ list.input <- create.input.list.temporal.noCatalogue(fpath)
     list.input$bru.opt.list <- list(bru_verbose = 3, # type of visual output 
                          bru_max_iter = list.input$max_iter, # maximum number of iterations
                          bru_method = list(max_step = list.input$max_step),
-                         num.threads = 5,
+                         num.threads = 2,
                          inla.mode = 'experimental', # type of inla algorithm
                          bru_initial = list.input$th.init) # parameters initial values
   }
@@ -462,6 +463,12 @@ starting values for the nonlinear iterations might speed up the computations.
 
 ```{r warning=FALSE}
 bru_convergence_plot(list.output.quietScenario[[2]]$model.fit)
+```
+```{r warning=FALSE}
+bru_convergence_plot(list.output.quietScenario[[3]]$model.fit)
+```
+```{r warning=FALSE}
+bru_convergence_plot(list.output.M6p7Scenario[[2]]$model.fit)
 ```
 ```{r warning=FALSE}
 bru_convergence_plot(list.output.M6p7Scenario[[3]]$model.fit)
