@@ -8,7 +8,8 @@ Temporal.ETAS.forecast(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1)
 }
 \arguments{
 \item{post.samp}{a \code{data.frame} containing samples from the posterior distribution of ETAS parameters.
-Each row of the \code{data.frame} corresponds to a different sample and the parameters are in the order $\mu, K, \alpha, c, p$.}
+Each row of the \code{data.frame} corresponds to a different sample and the parameters are in the order
+\eqn{\mu}{mu}, \eqn{K}{K}, \eqn{\alpha}{alpha}, \eqn{c}{c}, \eqn{p}{p}.}
 
 \item{n.cat}{number of synthetic catalogues composing the forecast. If \code{n.cat} is greater than \code{nrow(post.samp)}, then,
 \code{n.cat} rows are sampled uniformly and with replacement from the \code{post.samp}. If \code{n.cat} is smaller than \code{nrow(post.samp)}, then,
@@ -24,7 +25,7 @@ Each row of the \code{data.frame} corresponds to a different sample and the para
 
 \item{Ht}{set of known events}
 
-\item{ncore}{number of cores to be used to generate the syntehtic catalogues in parallel.}
+\item{ncore}{number of cores to be used to generate the synthetic catalogues in parallel.}
 }
 \value{
 a \code{list} with two elements: \code{fore.df} is a \code{data.frame} containing all the synthetic catalogues composing the forecast.

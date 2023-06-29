@@ -253,7 +253,7 @@ omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 #' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
 #' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
 #' }
-#' #' @param post.samp `data.frame` containing posterior samples of the parameters. If `NULL`, then `n.samp` samples are
+#' @param post.samp `data.frame` containing posterior samples of the parameters. If `NULL`, then `n.samp` samples are
 #' generated. If `n.samp` is different from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from `post.samp`. Default is `NULL`.
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
