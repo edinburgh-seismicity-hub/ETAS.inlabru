@@ -98,8 +98,9 @@ Each row of the <code>data.frame</code> corresponds to a different sample and th
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a <code>data.frame</code> containing all the synthetic catalogues composing the forecast.
-The <code>data.frame</code> has four columns: <code>ts</code> for the occurence time, <code>magnitudes</code> for the magnitude, <code>gen</code> with the generation of the event, and <code>cat.idx</code> with the catalogue identifier</p>
+<p>a <code>list</code> with two elements: <code>fore.df</code> is a <code>data.frame</code> containing all the synthetic catalogues composing the forecast.
+The <code>data.frame</code> has four columns, <code>ts</code> for the occurrence time, <code>magnitudes</code> for the magnitude, <code>gen</code> with the generation of the event, and <code>cat.idx</code> with the catalogue identifier
+The second element of the output <code>list</code> is <code>n.cat</code> which is the number of synthetic catalogues generated.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

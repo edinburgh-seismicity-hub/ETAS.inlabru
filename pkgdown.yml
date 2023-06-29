@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   generateSyntheticCatalogues: generateSyntheticCatalogues.html
-last_built: 2023-06-29T11:19Z
+last_built: 2023-06-29T12:25Z
 urls:
   reference: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference
   article: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles
