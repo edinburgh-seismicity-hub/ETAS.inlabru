@@ -117,11 +117,11 @@ post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
     if(is.null(n.samp)){
       stop('n.samp is missing, please provide a number of samples from the posterior')
     }
-    post.samp <- post_sampling(input.list, n.samp, max.batch)
+    post.samp <- post_sampling(input.list, n.samp = n.samp, max.batch = max.batch)
   }
   pair.plot <- GGally::ggpairs(post.samp,
                                labeller = ggplot2::label_parsed,
-                               lower=list(continuous='density'))
+                               lower = list(continuous='density'))
   return(list(post.samp.df = post.samp,
               pair.plot = pair.plot))
 }
