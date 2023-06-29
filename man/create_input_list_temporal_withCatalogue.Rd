@@ -4,10 +4,12 @@
 \alias{create_input_list_temporal_withCatalogue}
 \title{Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.}
 \usage{
-create_input_list_temporal_withCatalogue(input_path)
+create_input_list_temporal_withCatalogue(input_path, num.threads = NULL)
 }
 \arguments{
 \item{input_path}{path of the \code{txt} file containing experiment's information}
+
+\item{num.threads}{Optional argument for the number of threads to be used by parallel processing}
 }
 \value{
 The formatted input.list with the elements required for the temporal Hawkes model

@@ -34,7 +34,7 @@ Imports:
     ggplot2,
     GGally,
     foreach,
-    INLA,
+    INLA (>= 23.01.31),
     inlabru,
     magrittr,
     rlang,

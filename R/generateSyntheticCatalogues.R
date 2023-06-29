@@ -24,52 +24,56 @@
 #' ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 #'
 #' generate_temporal_ETAS_synthetic(
-#'   theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+#'   theta = list(mu = 0.1, K = 0.089, alpha = 2.29, c = 0.11, p = 1.08),
 #'   beta.p = log(10),
 #'   M0 = 2.5,
-#'   T1 = 0, T2 = 1000 )
+#'   T1 = 0, T2 = 1000
+#' )
 #'
 #'
 #' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 #'
 #' Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 #' generate_temporal_ETAS_synthetic(
-#'   theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+#'   theta = list(mu = 0.1, K = 0.089, alpha = 2.29, c = 0.11, p = 1.08),
 #'   beta.p = log(10),
 #'   M0 = 2.5,
 #'   T1 = 0, T2 = 1000,
-#'   Ht = Ht )
+#'   Ht = Ht
+#' )
 #'
 #' @export generate_temporal_ETAS_synthetic
 
 generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
-                            Ht = NULL, ncore = 1){
-  #sample.ETAS <- function(theta, beta.p, M0, T1, T2,
+                                             Ht = NULL, ncore = 1) {
+  # sample.ETAS <- function(theta, beta.p, M0, T1, T2,
 
   # Check that the end time is greater than the start time
-  if(T2 < T1){
-    stop('Error - right-end of time interval greater than left-end')
+  if (T2 < T1) {
+    stop("Error - right-end of time interval greater than left-end")
   }
 
   #########
   ### Background events
   # Expected number of background events
-  n.bkg <- rpois(1, theta$mu*(T2 - T1))
+  n.bkg <- rpois(1, theta$mu * (T2 - T1))
 
-  #cat('Background : ', n.bkg, '\n')
+  # cat('Background : ', n.bkg, '\n')
   # if no background events are generated initialize an empty data.frame
-  if(n.bkg == 0){
+  if (n.bkg == 0) {
     bkg.df <- data.frame(ts = 1, magnitudes = 1, gen = 0)
-    bkg.df <- bkg.df[-1,]
+    bkg.df <- bkg.df[-1, ]
   } else {
     # sample bkg events
     # if no bk.field.list element is passed it assumes uniform background rate
 
     # otherwise it samples using the information provided
 
-    bkg.df <- data.frame(ts = runif(n.bkg, T1, T2),
-                         magnitudes = rexp(n.bkg, beta.p) + M0,
-                         gen = 1)
+    bkg.df <- data.frame(
+      ts = runif(n.bkg, T1, T2),
+      magnitudes = rexp(n.bkg, beta.p) + M0,
+      gen = 1
+    )
   }
 
   #########
@@ -77,74 +81,72 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 
   ## MN: Combine imposed and background events and add 1st generation daughters of imposed event set
   # if known events are provided
-  if(!is.null(Ht)){
+  if (!is.null(Ht)) {
     # sample a generation from the known events
     gen.from.past <- sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore)
     # if at least an aftershock is produced
-    if(nrow(gen.from.past) > 0){
+    if (nrow(gen.from.past) > 0) {
       # set generation
-      gen.from.past$gen = 0
+      gen.from.past$gen <- 0
       # Merge first generation and background events
       Gen.list <- list(rbind(gen.from.past, bkg.df))
-    }
-    else{
+    } else {
       Gen.list <- list(bkg.df)
     }
-
-  }
-  else{
+  } else {
     Gen.list <- list(bkg.df)
   }
   # stop if we have no background events and no events generated from known observations
-  if(nrow(Gen.list[[1]]) == 0){
-    #print(exp(theta.v[1])*(T2 - T1)*(area(bdy)/1000000))
-    #stop('No events generated - increase theta1')
+  if (nrow(Gen.list[[1]]) == 0) {
+    # print(exp(theta.v[1])*(T2 - T1)*(area(bdy)/1000000))
+    # stop('No events generated - increase theta1')
     return(Gen.list)
   }
 
   ## MN: Generate the daughters of backgorund and 1st daughters of imposed event set
   # initialize flag and gen counter
-  flag = TRUE
-  gen = 1
+  flag <- TRUE
+  gen <- 1
   # this goes until the condition inside the loop is met
-  while(flag){
+  while (flag) {
     # set parents
     parents <- Gen.list[[gen]]
-    #cat('Gen : ', nrow(parents), '\n')
-    #print(c(T1,T2))
-    #print(range(parents$ts))
+    # cat('Gen : ', nrow(parents), '\n')
+    # print(c(T1,T2))
+    # print(range(parents$ts))
     # generate aftershocks
-    triggered <- sample_temporal_ETAS_generation(theta, beta.p, parents,
-                                   M0, T1, T2, ncore)
-    #print(nrow(triggered))
+    triggered <- sample_temporal_ETAS_generation(
+      theta, beta.p, parents,
+      M0, T1, T2, ncore
+    )
+    # print(nrow(triggered))
     # stop the loop if there are no more aftershocks
-    if(nrow(triggered) == 0){
-      flag = FALSE}
-    else{
+    if (nrow(triggered) == 0) {
+      flag <- FALSE
+    } else {
       # set generations
-      triggered$gen = gen + 1
+      triggered$gen <- gen + 1
       # store new generation
-      Gen.list[[gen + 1]] = triggered
+      Gen.list[[gen + 1]] <- triggered
       # update generation counter
-      gen = gen + 1
+      gen <- gen + 1
     }
   }
-  if(!is.null(Ht)){
-    if(sum(Ht$ts >= T1 & Ht$ts <= T2) == 0){
-      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
+  if (!is.null(Ht)) {
+    if (sum(Ht$ts >= T1 & Ht$ts <= T2) == 0) {
+      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
       return(Gen.list)
     } else {
       Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
-      Ht.to.gen$gen = -1
-      Ht.to.gen <- Ht.to.gen[,c('ts', 'magnitudes', 'gen')]
-      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
-      return( append(list(Ht.to.gen), Gen.list) )
+      Ht.to.gen$gen <- -1
+      Ht.to.gen <- Ht.to.gen[, c("ts", "magnitudes", "gen")]
+      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
+      return(append(list(Ht.to.gen), Gen.list))
     }
   } else {
-    Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts>= T1 & gen.df$ts <= T2,])
+    Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
     return(Gen.list)
   }
-
 }
 
 
@@ -164,39 +166,44 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #'
 #' @examples
 #' # The parents are specified in Ht
-#' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
+#' Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 #' sample_temporal_ETAS_generation(
-#'   theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
-#'   beta.p=log(10),
-#'   M0=2.5,
-#'   T1=0, T2=1000,
-#'   Ht=Ht )
-sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
-
+#'   theta = list(mu = 0.1, K = 0.089, alpha = 2.29, c = 0.11, p = 1.08),
+#'   beta.p = log(10),
+#'   M0 = 2.5,
+#'   T1 = 0, T2 = 1000,
+#'   Ht = Ht
+#' )
+sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1) {
   # number of parents
   n.parent <- nrow(Ht)
   # calculate the aftershock rate for each parent in history (i.e. mean number daughters)
-  trig.rates <- exp(log_Lambda_h(theta = theta,
-                                 th = Ht$ts, mh = Ht$magnitudes,
-                                  M0 = M0, T1 = T1, T2 = T2))
+  trig.rates <- exp(log_Lambda_h(
+    theta = theta,
+    th = Ht$ts, mh = Ht$magnitudes,
+    M0 = M0, T1 = T1, T2 = T2
+  ))
   # extract number of aftershock for each parent (Sample poisson to deterime no daughters this realisation)
   n.ev.v <- sapply(1:n.parent, function(x) rpois(1, trig.rates[x]))
 
   # if no aftershock has to be generated returns empty data.frame
-  if(sum(n.ev.v) == 0){
+  if (sum(n.ev.v) == 0) {
     app <- data.frame(x = 1, y = 1, ts = 1, magnitudes = 1)
-    app <- app[-1,]
+    app <- app[-1, ]
     return(app)
   }
 
   # identify parent events with the number of aftershocks > 0
   idx.p <- which(n.ev.v > 0)
 
-  #print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
+  # print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
   # sample (in parallel) the aftershocks for each parent
-  sample.list <- parallel::mclapply(idx.p, function(idx)
-    sample_temporal_ETAS_daughters(theta = theta, beta.p = beta.p, th = Ht$ts[idx],
-                     n.ev = n.ev.v[idx], M0, T1, T2), mc.cores = ncore)
+  sample.list <- parallel::mclapply(idx.p, function(idx) {
+    sample_temporal_ETAS_daughters(
+      theta = theta, beta.p = beta.p, th = Ht$ts[idx],
+      n.ev = n.ev.v[idx], M0, T1, T2
+    )
+  }, mc.cores = ncore)
 
   # bind the data.frame in the list and return
   sample.pts <- dplyr::bind_rows(sample.list)
@@ -216,26 +223,24 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T2 End time for synthetic catalogue `[days]`.
 #'
 #' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
-sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
+sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2) {
   # if the number of events to be placed is zero returns an empty data.frame
-  if(n.ev == 0){
+  if (n.ev == 0) {
     samp.points <- data.frame(x = 1, y = 1, ts = 1, magnitudes = 1)
-    samp.points <- samp.points[-1,]
+    samp.points <- samp.points[-1, ]
     return(samp.points)
-  }
-  else{
-
+  } else {
     # Generate the time sample
     samp.ts <- sample_temporal_ETAS_times(theta, n.ev, th, T2)
 
     # Generate the magnitude sample
-    samp.mags <- sample_GR_magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
+    samp.mags <- sample_GR_magnitudes(n = n.ev, beta.p = beta.p, M0 = M0)
 
     # Combine to build output synthetic catalogue for single parent
     samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
     # return only the ones with time different from NA (the one with NA are outside the interval T1, T2)
     # even though it should not happen given how we built sample.omori
-    return(samp.points[!is.na(samp.points$ts),])
+    return(samp.points[!is.na(samp.points$ts), ])
   }
 }
 
@@ -249,12 +254,12 @@ sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
 #' @return A list of magnitudes of length `n` drawn from a GR distribution.
 #'
 #' @examples
-#' sample_GR_magnitudes(n=100, beta.p=log(10), M0=2.5)
+#' sample_GR_magnitudes(n = 100, beta.p = log(10), M0 = 2.5)
 #'
 #' @export
 sample_GR_magnitudes <- function(n, beta.p, M0) {
   return(rexp(n, beta.p) + M0)
-  }
+}
 
 
 #' Sampling times for events triggered by a parent at th according to the ETAS triggering function
@@ -265,16 +270,16 @@ sample_GR_magnitudes <- function(n, beta.p, M0) {
 #' @param T2 End time of model domain.
 #'
 #' @return t.sample A list of times in the interval `[0, T2]` distributed according to the ETAS triggering function.
-sample_temporal_ETAS_times <- function(theta, n.ev, th, T2){
-  if(n.ev == 0){
+sample_temporal_ETAS_times <- function(theta, n.ev, th, T2) {
+  if (n.ev == 0) {
     df <- data.frame(ts = 1, x = 1, y = 1, magnitudes = 1, gen = 0)
-    return(df[-1,])
+    return(df[-1, ])
   }
-  bound.l <- 0 #Int_ETAS_time_trig_function(th.p, th, T)
+  bound.l <- 0 # Int_ETAS_time_trig_function(th.p, th, T)
   bound.u <- Int_ETAS_time_trig_function(theta, th, T2)
   unif.s <- runif(n.ev, min = bound.l, max = bound.u)
   t.sample <- Inv_Int_ETAS_time_trig_function(theta, unif.s, th)
-  return( t.sample )
+  return(t.sample)
 }
 
 #' Integrated Omori's law
@@ -287,9 +292,9 @@ sample_temporal_ETAS_times <- function(theta, n.ev, th, T2){
 #' @details
 #' The function returns the integral of Omori's law, namely
 #' \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-Int_ETAS_time_trig_function <- function(theta, th, T2){
-  gamma.u <- (T2 - th)/theta$c
-  ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
+Int_ETAS_time_trig_function <- function(theta, th, T2) {
+  gamma.u <- (T2 - th) / theta$c
+  (theta$c / (theta$p - 1)) * (1 - (gamma.u + 1)^(1 - theta$p))
 }
 
 
@@ -304,8 +309,6 @@ Int_ETAS_time_trig_function <- function(theta, th, T2){
 #' Considering the integral of Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 #' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
-Inv_Int_ETAS_time_trig_function <- function(theta, omega, th){
-  th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
+Inv_Int_ETAS_time_trig_function <- function(theta, omega, th) {
+  th + theta$c * ((1 - omega * (1 / theta$c) * (theta$p - 1))^(-1 / (theta$p - 1)) - 1)
 }
-
-

@@ -1,5 +1,3 @@
-
-
 ##################################################################################
 ## Functions for ETAS conditional intensity and integrated conditional intensity
 #################################################################################
@@ -24,8 +22,8 @@
 #' same if \eqn{t} is a vector and \eqn{t_h, m_h} are scalars, or if \eqn{t, t_h, m_h} are vectors of the same length.
 #'
 #' Do not use if \eqn{t} and \eqn{t_h, m_h} are vectors of different lengths.
-gt <- function(theta, t, th, mh, M0){
-  if(is.list(theta)){
+gt <- function(theta, t, th, mh, M0) {
+  if (is.list(theta)) {
     mu <- theta$mu
     alpha <- theta$alpha
     K <- theta$K
@@ -39,15 +37,14 @@ gt <- function(theta, t, th, mh, M0){
     p <- theta[5]
   }
 
-  output <- rep(0,length(th))
+  output <- rep(0, length(th))
   t.diff <- t - th
   neg <- t.diff <= 0
-  if(sum(!neg) > 0){
-    log.out <- log(K) + alpha*(mh - M0)  - p*log(1 + t.diff[!neg]/c)
-    #log.out <- log(theta[2]) + theta[3]*(mh[!neg] - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
+  if (sum(!neg) > 0) {
+    log.out <- log(K) + alpha * (mh - M0) - p * log(1 + t.diff[!neg] / c)
+    # log.out <- log(theta[2]) + theta[3]*(mh[!neg] - M0)  - theta[5]*log(1 + t.diff[!neg]/theta[4])
     output[!neg] <- exp(log.out)
-  }
-  else{
+  } else {
     output
   }
   output
@@ -70,8 +67,8 @@ gt <- function(theta, t, th, mh, M0){
 #' \deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
 #'
 #' Do not use when `t` is a vector.
-cond_lambda <- function(theta, t, th, mh, M0){
-  if(is.null(th) | all(th > t)){
+cond_lambda <- function(theta, t, th, mh, M0) {
+  if (is.null(th) | all(th > t)) {
     theta$mu
   }
   theta$mu + sum(gt(theta, t, th, mh, M0))
@@ -91,15 +88,13 @@ cond_lambda <- function(theta, t, th, mh, M0){
 #'
 #' @return Logarithm of the integral of the ETAS triggering function
 #' @export log_Lambda_h
-log_Lambda_h <- function(theta, th, mh, M0, T1, T2){
+log_Lambda_h <- function(theta, th, mh, M0, T1, T2) {
   T.low <- pmax(T1, th)
 
-  gamma.l <- (T.low - th)/theta$c
-  gamma.u <- (T2 - th)/theta$c
-  w.l <- (1 + gamma.l)^(1-theta$p)
-  w.u <- (1 + gamma.u)^(1-theta$p)
+  gamma.l <- (T.low - th) / theta$c
+  gamma.u <- (T2 - th) / theta$c
+  w.l <- (1 + gamma.l)^(1 - theta$p)
+  w.u <- (1 + gamma.u)^(1 - theta$p)
   # output
-  log(theta$K) + theta$alpha*(mh - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u/w.l)
+  log(theta$K) + theta$alpha * (mh - M0) + log(theta$c) - log(theta$p - 1) + log1p(w.l - 1) + log1p(-w.u / w.l)
 }
-
-

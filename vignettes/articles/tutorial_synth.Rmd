@@ -5,10 +5,15 @@ date: "2023-06-29"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup0, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+```{r setup}
 library(ETAS.inlabru)
 library(ggplot2)
+
+# Increase num.threads if you have more cores on your computer
+INLA::inla.setOption(num.threads = 2)
 ```
 
 # Introduction
@@ -39,19 +44,21 @@ true.param <- list(mu = 0.30106014, K = 0.13611399, alpha = 2.43945301, c = 0.07
 # set magnitude distribution parameter
 beta.p <- 2.353157
 # set cutoff magnitude
-M0 = 2.5
+M0 <- 2.5
 # set starting time of the synthetic catalogue
-T1 = 0
+T1 <- 0
 # set end time of the synthetic catalogue
-T2 = 365
+T2 <- 365
 # generate the catalogue - it returns a list of data.frames
-synth.cat.list <- generate_temporal_ETAS_synthetic(theta = true.param,
-                                                   beta.p = beta.p,
-                                                   M0 = M0,
-                                                   T1 = T1,
-                                                   T2 = T2,
-                                                   Ht = NULL,
-                                                   ncore = 1)
+synth.cat.list <- generate_temporal_ETAS_synthetic(
+  theta = true.param,
+  beta.p = beta.p,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  Ht = NULL,
+  ncore = 1
+)
 ```
 
 The output of the function is a `list` of `data.frame`s and it is convenient to transform it in a single `data.frame` binding the rows of the `data.frame`s in the list.
@@ -70,16 +77,16 @@ c(N = nrow(synth.cat.df), N.bkg = sum(synth.cat.df$gen == 1), N.after = sum(synt
 The code below is to plot the occurrence time of the events against their magnitude with color indicating the generation of each event and the time evolution cumulative number of events. The `multiplot` function provided by the `inlabru` R-package can be used to combine the plots.
 
 ```{r}
-pl1 <- ggplot(synth.cat.df, aes(ts, magnitudes, color = as.factor(gen))) + 
-  geom_point() + 
-  labs(color = 'gen')
+pl1 <- ggplot(synth.cat.df, aes(ts, magnitudes, color = as.factor(gen))) +
+  geom_point() +
+  labs(color = "gen")
 
 t.breaks <- T1:T2
 N.cumsum <- vapply(t.breaks, \(x) sum(synth.cat.df$ts < x), 0)
 df.to.cumsum.plot <- data.frame(ts = t.breaks, N.cum = N.cumsum)
-pl2 <- ggplot(df.to.cumsum.plot, aes(ts, N.cum)) + 
-  geom_line() + 
-  ylab('cumulative number of events')
+pl2 <- ggplot(df.to.cumsum.plot, aes(ts, N.cum)) +
+  geom_line() +
+  ylab("cumulative number of events")
 
 inlabru::multiplot(pl1, pl2, cols = 2)
 ```
@@ -110,61 +117,63 @@ To `list` of link functions corresponding to the above priors is
 
 ```{r}
 # set copula transformations list
-link.f <- list(mu = \(x) gamma_t(x, 0.3, 0.6),
-               K = \(x) unif_t(x, 0, 10),
-               alpha = \(x) unif_t(x, 0, 10),
-               c_ = \(x) unif_t(x, 0, 10),
-               p = \(x) unif_t(x, 1, 10))
-
+link.f <- list(
+  mu = \(x) gamma_t(x, 0.3, 0.6),
+  K = \(x) unif_t(x, 0, 10),
+  alpha = \(x) unif_t(x, 0, 10),
+  c_ = \(x) unif_t(x, 0, 10),
+  p = \(x) unif_t(x, 1, 10)
+)
 ```
 
 The initial value of the parameters for the `inlabru` algorithm must be specified in the internal scale of the parameters. For this reason, it is useful to create a `list` of inverse link functions so that we can specify the initial value of the parameters in the ETAS scale and easily retrieve the corresponding value of the parameters in the internal scale. This can be done as shown below 
 
 ```{r}
 # set inverse copula transformations list
-inv.link.f <- list(mu = \(x) inv_gamma_t(x, 0.3, 0.6),
-               K = \(x) inv_unif_t(x, 0, 10),
-               alpha = \(x) inv_unif_t(x, 0, 10),
-               c_ = \(x) inv_unif_t(x, 0, 10),
-               p = \(x) inv_unif_t(x, 1, 10))
-
+inv.link.f <- list(
+  mu = \(x) inv_gamma_t(x, 0.3, 0.6),
+  K = \(x) inv_unif_t(x, 0, 10),
+  alpha = \(x) inv_unif_t(x, 0, 10),
+  c_ = \(x) inv_unif_t(x, 0, 10),
+  p = \(x) inv_unif_t(x, 1, 10)
+)
 ```
 
 The initial value of the parameters have to be specified as a `list` with names `th.mu`, `th.K`, `th.alpha`, `th.c`, and `th.p`, where, for example, `th.mu` corresponds to the initial value of parameter $\mu$ in the internal scale. The initial value of the parameters is important to ensure that the algorithm will be able to converge. Indeed, if we start the algorithm from values of the parameters causing numerical problems, we may prevent the algorithm to converge. In our experience, setting the initial values such that each parameter is not \emph{too close} (e.g. $< 10^{-5}$) or \emph{too far} (e.g. $> 10^2$) is a safe choice. The code below uses the following initial values of the parameters $\mu_{\text{init}} = 0.5, K_{\text{init}} = 0.1, \alpha_{\text{init}} = 1, c_{\text{init}} = 0.1, p_{\text{init}} = 1.1$
 
 ```{r}
 # set up list of initial values
-th.init <- list(th.mu = inv.link.f$mu(0.5),
-                th.K = inv.link.f$K(0.1),
-                th.alpha = inv.link.f$alpha(1),
-                th.c = inv.link.f$c_(0.1),
-                th.p = inv.link.f$p(1.1) )
+th.init <- list(
+  th.mu = inv.link.f$mu(0.5),
+  th.K = inv.link.f$K(0.1),
+  th.alpha = inv.link.f$alpha(1),
+  th.c = inv.link.f$c_(0.1),
+  th.p = inv.link.f$p(1.1)
+)
 ```
 
 Also the `inlabru` options have to be provided in a `list`, the main elements of the `list` are: 
 
 * `bru_verbose`: number indicating the type of visual output. Set it to 0 for no output.
 * `bru_max_iter`: maximum number of iterations. If we do not set `bru_method` the `inlabru` algorithm stops when the stopping criterion is met. However, if we set `bru_method` then the stopping criterion does not work and the algorithm runs for exactly `bru_max_iter` iterations.
-* `num.threads`: number of cores to be used in parallel.
 * `bru_method`: for what is relevant here, the only thing that we may need to set is the `max_step` argument. If the algorithm does not converge without fixing a `max_step` then we suggest to try to fix it to some value below 1, in our experience $0.5$ or $0.2$ works well. In the example below the line setting `bru_method` is commented.
-* `inla.mode`: type of INLA algorithm to be used. Always set it to `experimental`.
 * `bru_initial`: `list` of initial values created before.
 
 ```{r}
 # set up list of bru options
-bru.opt.list <- list(bru_verbose = 3, # type of visual output
-                     bru_max_iter = 70, # maximum number of iterations
-                     num.threads = 5,
-                     #bru_method = list(max_step = 0.5),
-                     inla.mode = 'experimental', # type of inla algorithm
-                     bru_initial = th.init) # parameters initial values
+bru.opt.list <- list(
+  bru_verbose = 3, # type of visual output
+  bru_max_iter = 70, # maximum number of iterations
+  # bru_method = list(max_step = 0.5),
+  bru_initial = th.init
+) # parameters initial values
 ```
 
-Lastly, we need to prepare the data from the model fitting. The data must be provided as a `data.frame` with at least 3 columns with names `ts` corresponding to the occurrence time of the events, `magnitudes` correponding to the magnitude, and `idx.p` with an event identifier. The events in the `data.frame` must be sorted with respect to the occurrence time. The synthetic catalogue we have generated at the beginning already has the columns `ts` and `magnitudes`, but it is sorted by generation and not time. The code below sort the rows of the `data.frame` and adds the event identifier
+Lastly, we need to prepare the data from the model fitting. The data must be provided as a `data.frame` with at least 3 columns with names `ts` corresponding to the occurrence time of the events, `magnitudes` corresponding to the magnitude, and `idx.p` with an event identifier. The events in the `data.frame` must be sorted with respect to the occurrence time. The synthetic catalogue we have generated at the beginning already has the columns `ts` and `magnitudes`, but it is sorted by generation and not time. The code below sort the rows of the `data.frame` and adds the event identifier
 
 ```{r}
 # sort catalogue by occurrence time
-synth.cat.df <- synth.cat.df[order(synth.cat.df$ts),]
+synth.cat.df <- synth.cat.df[order(synth.cat.df$ts), ]
 # add event identifier
 synth.cat.df$idx.p <- seq_len(nrow(synth.cat.df))
 ```
@@ -182,15 +191,17 @@ The function `Temporal.ETAS` fit the ETAS model and returns a `bru` object as ou
 * `bru.opt`: `list` of `inlabru` options as described in the previous Section.
 
 ```{r, message=FALSE}
-synth.fit <- Temporal.ETAS(total.data = synth.cat.df,
-                            M0 = M0,
-                            T1 = T1,
-                            T2 = T2,
-                            link.functions = link.f,
-                            coef.t. = 1,
-                            delta.t. = 0.1,
-                            N.max. = 5,
-                            bru.opt = bru.opt.list)
+synth.fit <- Temporal.ETAS(
+  total.data = synth.cat.df,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  link.functions = link.f,
+  coef.t. = 1,
+  delta.t. = 0.1,
+  N.max. = 5,
+  bru.opt = bru.opt.list
+)
 ```
 
 
@@ -200,9 +211,10 @@ In order to retrieve the marginal posterior distributions of the parameter we ne
 
 ```{r}
 # create input list to explore model output
-input_list <- list(model.fit = synth.fit,
-                   link.functions = link.f)
-
+input_list <- list(
+  model.fit = synth.fit,
+  link.functions = link.f
+)
 ```
 
 Once the `list` has been created, the function `get_posterior_param` returns the marginal posterior distribution of the parameters in the ETAS scale. The function returns a `list` with two elements: `post.df` is a `data.frame` with three columns, `x` indicating the value of the parameter, `y` indicating the corresponding value of the marginal posterior distribution, and `param` which is a parameter identifier. The output `list` also contains `post.plot` which is a `ggplot` object containing the plot of the marginal posterior distributions for each parameter. The code below retrieve the marginal posterior distribution of the parameters and plot them along with the true value of the parameters represented by the vertical dashed lines.
@@ -212,12 +224,16 @@ Once the `list` has been created, the function `get_posterior_param` returns the
 post.list <- get_posterior_param(input.list = input_list)
 
 # create data.frame of true value of parameters
-df.true.param <- data.frame(x = unlist(true.param),
-                            param = names(true.param))
+df.true.param <- data.frame(
+  x = unlist(true.param),
+  param = names(true.param)
+)
 # add to the marginal posterior distribution of the parameters the true value of the parameters.
-post.list$post.plot + 
-  geom_vline(data = df.true.param, 
-             mapping = aes(xintercept = x), linetype = 2)
+post.list$post.plot +
+  geom_vline(
+    data = df.true.param,
+    mapping = aes(xintercept = x), linetype = 2
+  )
 ```
 
 # Sampling the joint posterior distribution
@@ -232,10 +248,12 @@ The function `post_sampling` generate samples from the joint posterior of ETAS p
 The function returns a `data.frame` with columns corresponding to the ETAS parameters
 
 ```{r}
-post.samp <- post_sampling(input.list = input_list, 
-                           n.samp = 1000, 
-                           max.batch = 1000, 
-                           ncore = 1)
+post.samp <- post_sampling(
+  input.list = input_list,
+  n.samp = 1000,
+  max.batch = 1000,
+  ncore = 1
+)
 head(post.samp)
 ```
 
@@ -265,14 +283,16 @@ The function returns a `ggplot` object. For each sample of the parameters the tr
 The code below creates the plot of the posterior of the triggering function and adds the triggering function calculated with the true parameter values in blue. We need to add the argument `M0` to the `input_list` to use the function `triggering_fun_plot`.
 
 ```{r}
-# add cutoff magnitude to input_list 
+# add cutoff magnitude to input_list
 input_list$M0 <- M0
 
 # generate triggering function plot
-trig.plot <- triggering_fun_plot(input.list = input_list, 
-                                 post.samp = post.samp,
-                                 n.samp = NULL, magnitude = 4,
-                                 t.end = 5, n.breaks = 100) 
+trig.plot <- triggering_fun_plot(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL, magnitude = 4,
+  t.end = 5, n.breaks = 100
+)
 
 # set times at which calculate the true triggering function
 t.breaks <- seq(1e-6, 5, length.out = 100)
@@ -282,9 +302,11 @@ true.trig <- gt(unlist(true.param), t = t.breaks, th = 0, mh = 4, M0 = M0)
 true.trig.df <- data.frame(ts = t.breaks, trig.fun = true.trig)
 
 # add the true triggering function to the plot
-trig.plot + 
-  geom_line(data = true.trig.df, 
-            mapping = aes(x = ts, y = trig.fun), color = 'blue') 
+trig.plot +
+  geom_line(
+    data = true.trig.df,
+    mapping = aes(x = ts, y = trig.fun), color = "blue"
+  )
 ```
 
 The functions `omori_plot_posterior` does the same as the function `triggering_fun_plot` but considering only 
@@ -300,9 +322,11 @@ omori.plot <- omori_plot_posterior(input.list = input_list, post.samp = post.sam
 true.omori <- omori(theta = unlist(true.param), t = t.breaks, ti = 0)
 true.omori.df <- data.frame(ts = t.breaks, omori.fun = true.omori)
 
-omori.plot + 
-  geom_line(data = true.omori.df, 
-            mapping = aes(x = ts, y = omori.fun), color = 'blue') 
+omori.plot +
+  geom_line(
+    data = true.omori.df,
+    mapping = aes(x = ts, y = omori.fun), color = "blue"
+  )
 ```
 
 
@@ -314,17 +338,21 @@ The first step is to set the `data.frame` of known events and generate a second 
 
 ```{r}
 # set up data.frame of imposed events
-Ht.imposed <- data.frame(ts = mean(c(T1,T2)),
-                         magnitudes = 6)
+Ht.imposed <- data.frame(
+  ts = mean(c(T1, T2)),
+  magnitudes = 6
+)
 # generate second catalogue
 set.seed(1)
-synth.cat.list.2 <- generate_temporal_ETAS_synthetic(theta = true.param,
-                                                   beta.p = beta.p,
-                                                   M0 = M0,
-                                                   T1 = T1,
-                                                   T2 = T2,
-                                                   Ht = Ht.imposed,
-                                                   ncore = 1)
+synth.cat.list.2 <- generate_temporal_ETAS_synthetic(
+  theta = true.param,
+  beta.p = beta.p,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  Ht = Ht.imposed,
+  ncore = 1
+)
 # transform it in a data.frame
 synth.cat.df.2 <- do.call(rbind, synth.cat.list.2)
 ```
@@ -338,38 +366,46 @@ sum(synth.cat.df.2$gen == 0)
 Below the comparison between the number of events in the two catalogues. Notice that the background events are roughly the same which is expected given that the time interval is the same.
 
 ```{r}
-rbind(first = c(N = nrow(synth.cat.df), 
-                N.bkg = sum(synth.cat.df$gen == 1), 
-                N.after = sum(synth.cat.df$gen > 1)), 
-      second = c(N = nrow(synth.cat.df.2), 
-                 N.bkg = sum(synth.cat.df.2$gen == 1 | synth.cat.df.2$gen == -1), 
-                 N.after = sum(synth.cat.df.2$gen > 1 | synth.cat.df.2$gen == 0)))
-
+rbind(
+  first = c(
+    N = nrow(synth.cat.df),
+    N.bkg = sum(synth.cat.df$gen == 1),
+    N.after = sum(synth.cat.df$gen > 1)
+  ),
+  second = c(
+    N = nrow(synth.cat.df.2),
+    N.bkg = sum(synth.cat.df.2$gen == 1 | synth.cat.df.2$gen == -1),
+    N.after = sum(synth.cat.df.2$gen > 1 | synth.cat.df.2$gen == 0)
+  )
+)
 ```
 
 Then, we just need to set up the `data.frame` for model fitting. For all the other inputs we can use the ones created for the first model fit.
 
 ```{r, message=FALSE}
-synth.cat.df.2 <- synth.cat.df.2[order(synth.cat.df.2$ts),]
+synth.cat.df.2 <- synth.cat.df.2[order(synth.cat.df.2$ts), ]
 synth.cat.df.2$idx.p <- seq_len(nrow(synth.cat.df.2))
 
-synth.fit.2 <- Temporal.ETAS(total.data = synth.cat.df.2,
-                             M0 = M0,
-                             T1 = T1,
-                             T2 = T2,
-                             link.functions = link.f,
-                             coef.t. = 1,
-                             delta.t. = 0.1,
-                             N.max. = 5,
-                             bru.opt = bru.opt.list)
-
+synth.fit.2 <- Temporal.ETAS(
+  total.data = synth.cat.df.2,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  link.functions = link.f,
+  coef.t. = 1,
+  delta.t. = 0.1,
+  N.max. = 5,
+  bru.opt = bru.opt.list
+)
 ```
 
 Now, to extract the marginal posterior distributions, we need to create the `input_list` of the second model fit. 
 
 ```{r}
-input_list.2 <- list(model.fit = synth.fit.2,
-                     link.functions = link.f)
+input_list.2 <- list(
+  model.fit = synth.fit.2,
+  link.functions = link.f
+)
 ```
 
 Now, we can retrieve the marginal posterior distributions provided by the model fitted on the second catalogue and compare them with the ones obtained before.
@@ -379,21 +415,22 @@ Now, we can retrieve the marginal posterior distributions provided by the model 
 post.list.2 <- get_posterior_param(input.list = input_list.2)
 
 # set model identifier
-post.list$post.df$cat.used <- 'first catalogue'
-post.list.2$post.df$cat.used <- 'second catalogue'
+post.list$post.df$cat.used <- "first catalogue"
+post.list.2$post.df$cat.used <- "second catalogue"
 
 # bind marginal posterior data.frames
 bind.post.df <- rbind(post.list$post.df, post.list.2$post.df)
 
 # plot them
 ggplot(bind.post.df, aes(x = x, y = y, color = cat.used)) +
-  geom_line() + 
-  facet_wrap(facets = ~ param, scales = 'free') +
-  xlab('param') + 
-  ylab('pdf') + 
-  geom_vline(data = df.true.param, 
-             mapping = aes(xintercept = x), linetype = 2)
-
+  geom_line() +
+  facet_wrap(facets = ~param, scales = "free") +
+  xlab("param") +
+  ylab("pdf") +
+  geom_vline(
+    data = df.true.param,
+    mapping = aes(xintercept = x), linetype = 2
+  )
 ```
 
 The process shown here can be extended to multiple ($>2$) input catalogues in order to study if the parameters are identifiable. Also, using characteristics of the input catalogue as catalogue identifier we can study the change in the posterior distribution as the characteristic of the input catalogue changes. An interesting example is the number of events in the catalogue, and studying how the marginal posterior distributions change as we increase or decrease the number of events.

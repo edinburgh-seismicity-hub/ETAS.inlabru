@@ -4,10 +4,12 @@
 \alias{create_input_list_temporal_noCatalogue}
 \title{Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file}
 \usage{
-create_input_list_temporal_noCatalogue(input_path)
+create_input_list_temporal_noCatalogue(input_path, num.threads = NULL)
 }
 \arguments{
 \item{input_path}{Input file and path as a string}
+
+\item{num.threads}{Optional argument for the number of threads to be used by parallel processing}
 }
 \value{
 The formatted input.list with the elements required for the temporal Hawkes model
@@ -17,5 +19,6 @@ Function to create a default input list for the ETAS Hawkes temporal model where
 }
 \examples{
 create_input_list_temporal_noCatalogue(
-  system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru"))
+  system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru")
+)
 }

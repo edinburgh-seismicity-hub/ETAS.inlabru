@@ -18,34 +18,41 @@
 #' The second element of the output `list` is `n.cat` which is the number of synthetic catalogues generated.
 #' @seealso [generate_temporal_ETAS_synthetic()]
 #' @export
-Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1){
-  if(n.cat > nrow(post.samp)){
-    post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat, replace = TRUE),]
-  } else if(n.cat < nrow(post.samp)){
-    post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat),]
+Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1) {
+  if (n.cat > nrow(post.samp)) {
+    post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat, replace = TRUE), ]
+  } else if (n.cat < nrow(post.samp)) {
+    post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat), ]
   }
   n.cat <- nrow(post.samp)
   synth.cat.list <- parallel::mclapply(seq_len(n.cat), \(x)
-                                       generate_temporal_ETAS_synthetic(theta = post.samp[x,],
-                                                                        beta.p = beta.p,
-                                                                        M0 = M0,
-                                                                        T1 = T1,
-                                                                        T2 = T2,
-                                                                        Ht = Ht),
-                                       mc.cores = ncore)
+  generate_temporal_ETAS_synthetic(
+    theta = post.samp[x, ],
+    beta.p = beta.p,
+    M0 = M0,
+    T1 = T1,
+    T2 = T2,
+    Ht = Ht
+  ),
+  mc.cores = ncore
+  )
   synth.cat.list.df <- lapply(synth.cat.list, \(x) do.call(rbind, x))
   synth.cat.with.events <- vapply(synth.cat.list.df, \(x) nrow(x) > 0, TRUE)
   idx.cat.with.events <- seq_len(n.cat)[synth.cat.with.events]
-  if(length(idx.cat.with.events) == 0){
+  if (length(idx.cat.with.events) == 0) {
     df.out <- data.frame(ts = 0, magnitudes = 0, gen = 0, cat.idx = 0)
-    return(list(fore.df = df.out[-1,],
-                n.cat = n.cat))
+    return(list(
+      fore.df = df.out[-1, ],
+      n.cat = n.cat
+    ))
   } else {
     # set catalogue identifier
     synth.cat.list.df <- lapply(idx.cat.with.events, \(x) cbind(synth.cat.list.df[[x]],
-                                                                cat.idx = x))
-    return(list(fore.df = do.call(rbind, synth.cat.list.df),
-                n.cat = n.cat))
+      cat.idx = x
+    ))
+    return(list(
+      fore.df = do.call(rbind, synth.cat.list.df),
+      n.cat = n.cat
+    ))
   }
-
 }

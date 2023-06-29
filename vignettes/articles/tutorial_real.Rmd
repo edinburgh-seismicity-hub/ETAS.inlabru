@@ -5,11 +5,18 @@ date: "2023-06-27"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup0, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup}
 library(ETAS.inlabru)
 library(ggplot2)
+
+# Increase num.threads if you have more cores on your computer
+INLA::inla.setOption(num.threads = 2)
 ```
+
 
 # Introduction to ETAS model
 
@@ -64,22 +71,33 @@ exp.X <- exp_t(X, 1)
 loggaus.X <- loggaus_t(X, 0.5, 0.5)
 
 # build data.frame for plotting
-df.to.plot <- rbind(data.frame(value = X,
-                               distribution = 'Std Normal'),
-                    data.frame(value = gamma.X,
-                               distribution = 'Gamma'),
-                    data.frame(value = unif.X,
-                               distribution = 'Uniform'),
-                    data.frame(value = exp.X,
-                               distribution = 'Exponential'),
-                    data.frame(value = loggaus.X,
-                               distribution = 'Log-Gaussian'))
+df.to.plot <- rbind(
+  data.frame(
+    value = X,
+    distribution = "Std Normal"
+  ),
+  data.frame(
+    value = gamma.X,
+    distribution = "Gamma"
+  ),
+  data.frame(
+    value = unif.X,
+    distribution = "Uniform"
+  ),
+  data.frame(
+    value = exp.X,
+    distribution = "Exponential"
+  ),
+  data.frame(
+    value = loggaus.X,
+    distribution = "Log-Gaussian"
+  )
+)
 # plot them
-ggplot(df.to.plot, aes(value)) + 
-  geom_histogram() + 
-  theme_bw() + 
-  facet_wrap(facets = ~ distribution, scales = 'free')
-  
+ggplot(df.to.plot, aes(value)) +
+  geom_histogram() +
+  theme_bw() +
+  facet_wrap(facets = ~distribution, scales = "free")
 ```
 
 The package also provide inverse functions to retrieve the value of a parameter in the internal scale if the value in the ETAS scale is provided. Below an example
@@ -95,34 +113,39 @@ Once we have decided the priors that we are going to use in the analysis, we nee
 
 ```{r}
 # set copula transformations list
-link.f <- list(mu = \(x) gamma_t(x, 0.3, 0.6),
-               K = \(x) unif_t(x, 0, 10),
-               alpha = \(x) unif_t(x, 0, 10),
-               c_ = \(x) unif_t(x, 0, 10),
-               p = \(x) unif_t(x, 1, 10))
+link.f <- list(
+  mu = \(x) gamma_t(x, 0.3, 0.6),
+  K = \(x) unif_t(x, 0, 10),
+  alpha = \(x) unif_t(x, 0, 10),
+  c_ = \(x) unif_t(x, 0, 10),
+  p = \(x) unif_t(x, 1, 10)
+)
 
 # set inverse copula transformations list
-inv.link.f <- list(mu = \(x) inv_gamma_t(x, 0.3, 0.6),
-               K = \(x) inv_unif_t(x, 0, 10),
-               alpha = \(x) inv_unif_t(x, 0, 10),
-               c_ = \(x) inv_unif_t(x, 0, 10),
-               p = \(x) inv_unif_t(x, 1, 10))
-
+inv.link.f <- list(
+  mu = \(x) inv_gamma_t(x, 0.3, 0.6),
+  K = \(x) inv_unif_t(x, 0, 10),
+  alpha = \(x) inv_unif_t(x, 0, 10),
+  c_ = \(x) inv_unif_t(x, 0, 10),
+  p = \(x) inv_unif_t(x, 1, 10)
+)
 ```
 
 # L'Aquila seismic sequence
 
-Earthquake data is stored in the so-called earthquake catalogues. Many different catalogues exists for the same region and there is no easy way to decide which one is better. Here, we provide the HOmogenized instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It can be downloaded from [here](http://horus.bo.ingv.it/). The whole Horus catalogue can be loaded using
+Earthquake data is stored in the so-called earthquake catalogues. Many different catalogues exists for the same region and there is no easy way to decide which one is better. Here, we provide the HOmogenized instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It can be downloaded from [http://horus.bo.ingv.it/](http://horus.bo.ingv.it/). The whole Horus catalogue can be loaded using
 
 ```{r}
 # load ISIDE catalogue
-horus <- read.table(file = 'data/HORUS',
-                    header = TRUE,
-                    sep = ',')
+horus <- read.table(
+  file = "data/HORUS",
+  header = TRUE,
+  sep = ","
+)
 head(horus)
 ```
 
-The data reports for each earthaquake the longitude (`lon`) and latitude (`lat`) of the epicenter, the moment magnitude (`M`), the time as a string (`time_string`), the depth in kilometers (`depth`), and a catalogue and event IDs.   
+The data reports for each earthquake the longitude (`lon`) and latitude (`lat`) of the epicentre, the moment magnitude (`M`), the time as a string (`time_string`), the depth in kilometres (`depth`), and a catalogue and event IDs.   
 
 To focus on the L'Aquila seismic sequence is sufficient to retain only the observations in a specific space-time-magnitude region that include the sequence of interest. For the L'Aquila sequence, we retain all the events with magnitude greater or equal than $2.5$ happened during 2009 with longitude in $(10.5, 16)$ and latitude in $(40.5, 45)$. The L'Aquila sequence selected in this way should be composed by 1024 events. Any other seismic sequence can be selected similarly.
 
@@ -130,28 +153,29 @@ To do the selection is convenient to transform the time string in a `Date` objec
 
 ```{r}
 # transform time string in Date object
-time_string <- gsub('T', ' ', horus$time_string)
-horus$time_date <- as.POSIXct(time_string, 
-                              format = '%Y-%m-%d %H:%M:%OS')
+time_string <- gsub("T", " ", horus$time_string)
+horus$time_date <- as.POSIXct(time_string,
+  format = "%Y-%m-%d %H:%M:%OS"
+)
 
 # set up parameters for selection
-start.date = as.POSIXct('2009-01-01 00:00:00', format = '%Y-%m-%d %H:%M:%OS')
-end.date = as.POSIXct('2010-01-01 00:00:00', format = '%Y-%m-%d %H:%M:%OS')
-min.longitude = 10.5
-max.longitude = 16
-min.latitude = 40.5
-max.latitude = 45
-M0 = 2.5
+start.date <- as.POSIXct("2009-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%OS")
+end.date <- as.POSIXct("2010-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%OS")
+min.longitude <- 10.5
+max.longitude <- 16
+min.latitude <- 40.5
+max.latitude <- 45
+M0 <- 2.5
 
 # set up conditions for selection
-aquila.sel <- (horus$time_date >= start.date) & 
+aquila.sel <- (horus$time_date >= start.date) &
   (horus$time_date < end.date) &
-  (horus$lon >= min.longitude) & 
+  (horus$lon >= min.longitude) &
   (horus$lon <= max.longitude) &
   (horus$lat >= min.latitude) &
   (horus$lat <= max.latitude) &
   (horus$M >= M0)
-  
+
 # select
 aquila <- horus[aquila.sel, ]
 ```
@@ -159,7 +183,7 @@ aquila <- horus[aquila.sel, ]
 The data can be visually represented by plotting the time of each event against the magnitude. This shows the clustering of the observations in correspondance of high magnitude events.
 
 ```{r, fig.cap = "L'Aquila seismic sequence, times versus magnitudes"}
-ggplot(aquila, aes(time_date, M)) + 
+ggplot(aquila, aes(time_date, M)) +
   geom_point() +
   theme_bw()
 ```
@@ -170,26 +194,31 @@ We need to prepare a `data.frame` to be used as input data to fit the ETAS model
 
 ```{r}
 # set up data.frame for model fitting
-aquila.bru <- data.frame(ts = as.numeric(difftime(aquila$time_date, start.date,
-                                              units = 'days')),
-                     magnitudes = aquila$M,
-                     idx.p = 1:nrow(aquila))
+aquila.bru <- data.frame(
+  ts = as.numeric(difftime(aquila$time_date, start.date,
+    units = "days"
+  )),
+  magnitudes = aquila$M,
+  idx.p = 1:nrow(aquila)
+)
 ```
 
 After that, we need to set up the initial values of the parameters and the `list` containing the `inlabru` options to be used. The initial values should be stored in a `list` with elements `th.mu`, `th.K`, `th.alpha`, `th.c`, and `th.p` which corresponds to the ETAS parameters. The initial values must be provided in the internal scale and therefore it is useful to retrieve them using the inverse copula transformations that we set up before. In this way, we can find the values of the parameters in the internal scale given the value of the parameters in the ETAS scale. The example below uses $\mu = 0.5, K = 0.1, \alpha = 1, c = 0.1,$ and $p = 1.1$ as initial values. It is crucial to set initial values that do not cause numerical problems, in general this is achieved by setting initial values that are not \emph{too close} nor \emph{too far} from zero. The values provided below have worked well in various examples.  
 
 ```{r}
 # set up list of initial values
-th.init <- list(th.mu = inv.link.f$mu(0.5),
-                th.K = inv.link.f$K(0.1),
-                th.alpha = inv.link.f$alpha(1),
-                th.c = inv.link.f$c_(0.1),
-                th.p = inv.link.f$p(1.1) )
+th.init <- list(
+  th.mu = inv.link.f$mu(0.5),
+  th.K = inv.link.f$K(0.1),
+  th.alpha = inv.link.f$alpha(1),
+  th.c = inv.link.f$c_(0.1),
+  th.p = inv.link.f$p(1.1)
+)
 ```
 
 Lastly, we need to set the `list` of `inlabru` options. The main elements of the `list` are :
 
-* `bru_verbose`: number indicating the type of visual output. Set it to 0 for no output.
+* `bru_verbose`: number indicating the type of diagnostic output. Set it to 0 for no output.
 * `bru_max_iter`: maximum number of iterations. If we do not set `bru_method` the `inlabru` algorithm stops when the stopping criterion is met. However, if we set `bru_method` then the stopping criterion does not work and the algorithm runs for exactly `bru_max_iter` iterations.
 * `num.threads`: number of cores to be used in parallel.
 * `bru_method`: for what is relevant here, the only thing that we may need to set is the `max_step` argument. If the algorithm does not converge without fixing a `max_step` then we suggest to try to fix it to some value below 1, in our experience $0.5$ or $0.2$ works well. In the example below the line setting `bru_method` is commented.
@@ -198,12 +227,14 @@ Lastly, we need to set the `list` of `inlabru` options. The main elements of the
 
 ```{r}
 # set up list of bru options
-bru.opt.list <- list(bru_verbose = 3, # type of visual output
-                     bru_max_iter = 70, # maximum number of iterations
-                     num.threads = 5,
-                     #bru_method = list(max_step = 0.5),
-                     inla.mode = 'experimental', # type of inla algorithm
-                     bru_initial = th.init) # parameters initial values
+bru.opt.list <- list(
+  bru_verbose = 3, # type of visual output
+  bru_max_iter = 70, # maximum number of iterations
+  num.threads = 2, # Increase this if your computer has multiple cores
+  # bru_method = list(max_step = 0.5),
+  inla.mode = "experimental", # type of inla algorithm
+  bru_initial = th.init
+) # parameters initial values
 ```
 
 
@@ -220,19 +251,21 @@ The function `Temporal.ETAS` fit the ETAS model and returns a `bru` object as ou
 * `bru.opt`: `list` of `inlabru` options as described in the previous Section.
 
 ```{r, message=FALSE}
-# set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data. 
-T1 = 0
-T2 = max(aquila.bru$ts) + 0.2 
+# set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.
+T1 <- 0
+T2 <- max(aquila.bru$ts) + 0.2
 # fit the model
-aquila.fit <- Temporal.ETAS(total.data = aquila.bru,
-                            M0 = M0,
-                            T1 = T1,
-                            T2 = T2,
-                            link.functions = link.f,
-                            coef.t. = 1,
-                            delta.t. = 0.1,
-                            N.max. = 5,
-                            bru.opt = bru.opt.list)
+aquila.fit <- Temporal.ETAS(
+  total.data = aquila.bru,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  link.functions = link.f,
+  coef.t. = 1,
+  delta.t. = 0.1,
+  N.max. = 5,
+  bru.opt = bru.opt.list
+)
 ```
 
 
@@ -245,8 +278,10 @@ After a model has been fitted the package `ETAS.inlabru` offers various function
 
 ```{r}
 # create input list to explore model output
-input_list <- list(model.fit = aquila.fit,
-                   link.functions = link.f)
+input_list <- list(
+  model.fit = aquila.fit,
+  link.functions = link.f
+)
 ```
 
 # Check marginal posterior distributions
@@ -278,10 +313,12 @@ The function `post_sampling` generate samples from the joint posterior of ETAS p
 The function returns a `data.frame` with columns corresponding to the ETAS parameters
 
 ```{r}
-post.samp <- post_sampling(input.list = input_list,
-                           n.samp = 1000, 
-                           max.batch = 1000, 
-                           ncore = 1)
+post.samp <- post_sampling(
+  input.list = input_list,
+  n.samp = 1000,
+  max.batch = 1000,
+  ncore = 1
+)
 
 head(post.samp)
 ```
@@ -296,10 +333,12 @@ The posterior samples can be used to analyse the correlation between parameters.
 The function returns a `list` with two elements: `post.samp` with the posterior samples, and `pair.plot` which is a `ggplot` object containing the pair plot.
 
 ```{r}
-pair.plot <- post_pairs_plot(post.samp = post.samp, 
-                             input.list = NULL,
-                             n.samp = NULL, 
-                             max.batch = 1000)
+pair.plot <- post_pairs_plot(
+  post.samp = post.samp,
+  input.list = NULL,
+  n.samp = NULL,
+  max.batch = 1000
+)
 pair.plot$pair.plot
 ```
 
@@ -343,10 +382,12 @@ The function returns a `ggplot` object. For each sample of the parameters the tr
 The function `triggering_fun_plot_prior` does the same but the value of the parameters are sampled according to the prior distribution rather than the posterior, and therefore, we do not need to specify a posterior samples `data.frame`.
 
 ```{r}
-triggering_fun_plot(input.list = input_list, 
-                    post.samp = post.samp,
-                    n.samp = NULL, magnitude = 4,
-                    t.end = 5, n.breaks = 100)
+triggering_fun_plot(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL, magnitude = 4,
+  t.end = 5, n.breaks = 100
+)
 ```
 
 ```{r}
@@ -393,7 +434,7 @@ where $\bar m$ is the mean of the observed magnitudes values.
 
 ```{r}
 # maximum likelihood estimator for beta
-beta.p <- 1/(mean(aquila.bru$magnitudes) - M0)
+beta.p <- 1 / (mean(aquila.bru$magnitudes) - M0)
 ```
 
 The function returns a `list` of `data.frame`, each element of the output `list` corresponds to a different generation. The `data.frame` have three columns: occurence time (`ts`), magnitude (`magnitudes`), a the generation identifier (`gen`). The generation identifier uses the following convention, $-1$ indicates the events in `Ht` with time between `T1` and `T2`, $0$ indicates the first generation offspring of the events with `gen` equal $-1$, $1$ indicates background events, $2$ all the offspring of the events with `gen` equal $0$ or $1$, $3$ indicates all the offspring of the events with `gen` equal $2$, $4$ indicates all the offspring of the events with `gen` equal $3$, and so on. To obtain a unique `data.frame` containing all the simulated events it is sufficient to bind by rows all the generations.
@@ -401,19 +442,20 @@ The function returns a `list` of `data.frame`, each element of the output `list`
 Below an example in which we generate 1 synthetic catalogue using as parameters one of the posterior samples generated before. The catalogue covers the same time span as the L'Aquila catalogue and we impose the greatest event in the sequence. 
 
 ```{r}
-synth.cat.list <- generate_temporal_ETAS_synthetic(theta = post.samp[1,], #ETAS parameters
-                                                   beta.p = beta.p, #magnitude distribution parameter
-                                                   M0 = M0, # cutoff magnitude
-                                                   T1 = T1, # starting time
-                                                   T2 = T2, # end time
-                                                   Ht = aquila.bru[which.max(aquila.bru$magnitudes),] # known events
-                                                   ) 
+synth.cat.list <- generate_temporal_ETAS_synthetic(
+  theta = post.samp[1, ], # ETAS parameters
+  beta.p = beta.p, # magnitude distribution parameter
+  M0 = M0, # cutoff magnitude
+  T1 = T1, # starting time
+  T2 = T2, # end time
+  Ht = aquila.bru[which.max(aquila.bru$magnitudes), ] # known events
+)
 # merge into unique data.frame
 synth.cat.df <- do.call(rbind, synth.cat.list)
 # order events by time
-synth.cat.df <- synth.cat.df[order(synth.cat.df$ts),]
+synth.cat.df <- synth.cat.df[order(synth.cat.df$ts), ]
 
-ggplot(synth.cat.df, aes(ts,magnitudes,color = as.factor(gen))) + 
+ggplot(synth.cat.df, aes(ts, magnitudes, color = as.factor(gen))) +
   geom_point(size = 0.5)
 ```
 
@@ -423,36 +465,43 @@ We can easily generate multiple catalogues. The code below generates 8 catalogue
 set.seed(2)
 n.cat <- 8
 # generate catalogues as list of lists
-multi.synth.cat.list <- lapply(seq_len(n.cat), \(x) 
-                               generate_temporal_ETAS_synthetic(theta = post.samp[x,], 
-                                                   beta.p = beta.p, 
-                                                   M0 = M0, 
-                                                   T1 = T1, 
-                                                   T2 = T2, 
-                                                   Ht = aquila.bru[which.max(aquila.bru$magnitudes),]  
-                                                   ) )
+multi.synth.cat.list <- lapply(seq_len(n.cat), \(x)
+generate_temporal_ETAS_synthetic(
+  theta = post.samp[x, ],
+  beta.p = beta.p,
+  M0 = M0,
+  T1 = T1,
+  T2 = T2,
+  Ht = aquila.bru[which.max(aquila.bru$magnitudes), ]
+))
 
 # store catalogues as list of data.frames
 multi.synth.cat.list.df <- lapply(multi.synth.cat.list, \(x) do.call(rbind, x))
 # set catalogue identifier
 multi.synth.cat.list.df <- lapply(seq_len(n.cat), \(x) cbind(multi.synth.cat.list.df[[x]],
-                                                             cat.idx = x))
+  cat.idx = x
+))
 # merge catalogues in unique data.frame
 multi.synth.cat.df <- do.call(rbind, multi.synth.cat.list.df)
 
 # we need to bing the synthetics with the observed catalogue for plotting
-cat.df.for.plotting <- rbind(multi.synth.cat.df, 
-                             cbind(aquila.bru[,c('ts', 'magnitudes')],
-                                   gen = NA,
-                                   cat.idx = 'observed'))
+cat.df.for.plotting <- rbind(
+  multi.synth.cat.df,
+  cbind(aquila.bru[, c("ts", "magnitudes")],
+    gen = NA,
+    cat.idx = "observed"
+  )
+)
 
 # plot them
-ggplot(cat.df.for.plotting, aes(ts, magnitudes)) + 
-  geom_point(size = 0.5) + 
-  geom_point(data = aquila.bru[which.max(aquila.bru$magnitudes),], 
-             mapping = aes(ts, magnitudes),
-             color = 'red') + 
-  facet_wrap(facets = ~ cat.idx)
+ggplot(cat.df.for.plotting, aes(ts, magnitudes)) +
+  geom_point(size = 0.5) +
+  geom_point(
+    data = aquila.bru[which.max(aquila.bru$magnitudes), ],
+    mapping = aes(ts, magnitudes),
+    color = "red"
+  ) +
+  facet_wrap(facets = ~cat.idx)
 ```
 
 # Forecasting
@@ -471,7 +520,7 @@ The code below creates a daily forecast for the 24 hours starting 1 minute after
 
 ```{r}
 # express 1 minute in days
-min.in.days <- 1/(24*60)
+min.in.days <- 1 / (24 * 60)
 # find time of the event with the greatest magnitude
 t.max.mag <- aquila.bru$ts[which.max(aquila.bru$magnitudes)]
 # set starting time of the forecasting period
@@ -481,33 +530,36 @@ fore.length <- 1
 # set end time of the forecasting period
 T2.fore <- T1.fore + fore.length
 # set known data
-Ht.fore <- aquila.bru[aquila.bru$ts < T1.fore,]
+Ht.fore <- aquila.bru[aquila.bru$ts < T1.fore, ]
 
 # produce forecast
-daily.fore <- Temporal.ETAS.forecast(post.samp = post.samp, # ETAS parameters posterior samples 
-                                     n.cat = nrow(post.samp), # number of synthetic catalogues
-                                     beta.p = beta.p, # magnitude distribution parameter 
-                                     M0 = M0, # cutoff magnitude 
-                                     T1 = T1.fore, # forecast starting time
-                                     T2 = T2.fore, # forecast end time
-                                     Ht = Ht.fore, # known events
-                                     ncore = 3) # number of cores
+daily.fore <- Temporal.ETAS.forecast(
+  post.samp = post.samp, # ETAS parameters posterior samples
+  n.cat = nrow(post.samp), # number of synthetic catalogues
+  beta.p = beta.p, # magnitude distribution parameter
+  M0 = M0, # cutoff magnitude
+  T1 = T1.fore, # forecast starting time
+  T2 = T2.fore, # forecast end time
+  Ht = Ht.fore, # known events
+  ncore = 3
+) # number of cores
 ```
 
 We can easily retrieve the predictive distribution of the number of events in the forecasting period looking at the frequencies with which the catalogue identifiers appears in the `fore.df` element. Indeed, the number of rows of `fore.df` with the same `cat.idx` value represents the number of events in that synthetic catalogue. So, if the frequency with which each catalogue identifier appears in `fore.df$cat.idx` correspond to the number of events in that catalogue. This allows to easily retrieve the predictive distribution of the number of events using the code below. We remark that in this case we can not use the function `table` to find the frequencies of elements of `fore.df$cat.idx`. This is because the catalogue identifier of zero-events catalogues are not present in `fore.df$cat.idx`. So using `table` would lead to have zero probability of having zero events in a day, quantity that is crucial if we are intersted in the probability of earthquake activity (probability of having at least one event).
 
 ```{r}
 # find number of events per catalogue
-N.fore <- vapply(seq_len(daily.fore$n.cat), 
-                 \(x) sum(daily.fore$fore.df$cat.idx == x), 0)
+N.fore <- vapply(
+  seq_len(daily.fore$n.cat),
+  \(x) sum(daily.fore$fore.df$cat.idx == x), 0
+)
 # find number of observed events in the forecasting period
 N.obs <- sum(aquila.bru$ts >= T1.fore & aquila.bru$ts <= T2.fore)
 # plot the distribution
-ggplot() + 
-  geom_histogram(aes(x = N.fore, y = after_stat(density)), binwidth = 1) + 
-  geom_vline(xintercept = N.obs) + 
-  xlim(100,500)
-
+ggplot() +
+  geom_histogram(aes(x = N.fore, y = after_stat(density)), binwidth = 1) +
+  geom_vline(xintercept = N.obs) +
+  xlim(100, 500)
 ```
 
 

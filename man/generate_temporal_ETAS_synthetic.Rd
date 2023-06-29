@@ -40,20 +40,22 @@ Generates a synthetic catalogue using the ETAS model
 ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 
 generate_temporal_ETAS_synthetic(
-  theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+  theta = list(mu = 0.1, K = 0.089, alpha = 2.29, c = 0.11, p = 1.08),
   beta.p = log(10),
   M0 = 2.5,
-  T1 = 0, T2 = 1000 )
+  T1 = 0, T2 = 1000
+)
 
 
 ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
 
 Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 generate_temporal_ETAS_synthetic(
-  theta = list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
+  theta = list(mu = 0.1, K = 0.089, alpha = 2.29, c = 0.11, p = 1.08),
   beta.p = log(10),
   M0 = 2.5,
   T1 = 0, T2 = 1000,
-  Ht = Ht )
+  Ht = Ht
+)
 
 }
