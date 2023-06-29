@@ -36,5 +36,5 @@ The second element of the output \code{list} is \code{n.cat} which is the number
 Title
 }
 \seealso{
-\code{\link[=generate.temporal.ETAS.synthetic]{generate.temporal.ETAS.synthetic()}}
+\code{\link[=generate_temporal_ETAS_synthetic]{generate_temporal_ETAS_synthetic()}}
 }

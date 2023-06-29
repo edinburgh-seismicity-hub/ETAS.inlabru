@@ -73,7 +73,7 @@ Fistly, generate a 1000 day catalogue with an M6.7 event seeded on day 500.1.
 #### Generate the second catalogue with a M6.7 event on day 500.01
 
 Ht <- data.frame(ts=c(500.01), magnitudes=c(6.7))   # Impose a M6.7 event on day 500.01
-samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
                                   T1 = 0, T2 = modelledDuration, Ht=Ht)
 
 M6p7.ETAS.cat <- bind_rows(samp.etas.list)
@@ -179,9 +179,9 @@ list.output.quietRuninScenario_V2 <-list()
 
   # Load a set of parameters that we will need to tweak for this application
 #fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-#list.input <- create.input.list.temporal.noCatalogue(fpath)
+#list.input <- create_input_list_temporal_noCatalogue(fpath)
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   
   ####################
@@ -264,7 +264,7 @@ list.output.quietRuninScenario <-list()
   # Load a set of parameters that we will need to tweak for this application
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   
   ####################

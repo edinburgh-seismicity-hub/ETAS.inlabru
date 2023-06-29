@@ -35,5 +35,5 @@ A ggplot object
 Function to plot Omori's law corresponding to different posterior samples
 }
 \seealso{
-\code{\link[=create.input.list.temporal.noCatalogue]{create.input.list.temporal.noCatalogue()}}, \code{\link[=create.input.list.temporal.withCatalogue]{create.input.list.temporal.withCatalogue()}}
+\code{\link[=create_input_list_temporal_noCatalogue]{create_input_list_temporal_noCatalogue()}}, \code{\link[=create_input_list_temporal_withCatalogue]{create_input_list_temporal_withCatalogue()}}
 }

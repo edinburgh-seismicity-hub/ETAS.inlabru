@@ -50,7 +50,7 @@ theta <- list(mu=mu, K=K, alpha=alpha, c=c, p=p)
 # Simulating the synthetics
 modelledDuration = 100 
 Ht <- data.frame(ts=c(50), magnitudes=c(6.7)) 
-samp.etas.list <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=Ht)
+samp.etas.list <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=Ht)
 simulated.ETAS.catalogue <- bind_rows(samp.etas.list)
 simulated.ETAS.catalogue <- simulated.ETAS.catalogue[order(simulated.ETAS.catalogue$ts),]
 simulated.ETAS.catalogue$idx <- seq(1,length(simulated.ETAS.catalogue$ts))
@@ -72,7 +72,7 @@ startingValues <- data.frame( mu=c(0.3),
 
 # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 

@@ -67,7 +67,7 @@ M0 = 2.5
 
   # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
 
 mu_priorPlot <- ggplot() +
 geom_density(aes(x = list.input$link.functions$mu(rnorm(100000))) ) +
@@ -129,7 +129,7 @@ nCats <- 10
 quiet.ETAS.cat.list <- list()
 
 for(i in 1:nCats){
-  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+  samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
                                   T1 = 0, T2 = modelledDuration, Ht=Ht)
 
   quiet.ETAS.cat <- bind_rows(samp.etas.list)
@@ -147,7 +147,7 @@ Ht <- data.frame(ts=c(500), magnitudes=c(6.7))   # Impose a M6.7 event on day 10
 M6p7.ETAS.cat.list <- list()
 
 for(i in 1:nCats){
-  samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
+  samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, 
                                   T1 = 0, T2 = modelledDuration, Ht=Ht)
 
   M6p7.ETAS.cat <- bind_rows(samp.etas.list)
@@ -228,7 +228,7 @@ for (i in 1:nCats){
 
   # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   ####################
   # Tweak the variables laoded from the input file
@@ -311,7 +311,7 @@ for (i in 1:nCats){
 
   # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   ####################
   # Tweak the variables laoded from the input file

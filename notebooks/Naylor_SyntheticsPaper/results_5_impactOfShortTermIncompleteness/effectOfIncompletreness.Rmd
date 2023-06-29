@@ -72,7 +72,7 @@ M0 = 2.5
 #### Generate the second catalogue with a M6.7 event on day 500.01
 
 Ht <- data.frame(ts=c(500.0), magnitudes=c(6.7))   # Impose a M6.7 event on day 500.01
-samp.etas.list <- generate.temporal.ETAS.synthetic(theta = theta_etas, beta.p = log(10), M0 = M0,  T1 = 0, T2 = modelledDuration, Ht=Ht)
+samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0,  T1 = 0, T2 = modelledDuration, Ht=Ht)
 
 M6p7.ETAS.cat <- bind_rows(samp.etas.list)
 M6p7.ETAS.cat <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts),]
@@ -196,7 +196,7 @@ list.output.incompleteness <-list()
 
   # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   
   ####################
@@ -278,7 +278,7 @@ list.input$p.init <- startingValues$p[i]
 
   # Load a set of parameters that we will need to tweak for this application
   fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-  list.input <- create.input.list.temporal.noCatalogue(fpath)
+  list.input <- create_input_list_temporal_noCatalogue(fpath)
   
   ####################
   # Tweak the variables laoded from the input file

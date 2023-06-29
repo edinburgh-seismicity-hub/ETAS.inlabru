@@ -40,11 +40,11 @@ scenario_5_0 <- data.frame(ts=c(500, 1000, 1500), magnitudes=c(5.0, 5.0, 5.0))
 scenario_4_0 <- data.frame(ts=c(500, 1000, 1500), magnitudes=c(4.0, 4.0, 4.0))
 scenario_mix <- data.frame(ts=c(500, 1000, 1500), magnitudes=c(6.0, 5.0, 4.0))
 
-samp.scenario_6_5 <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_6_5)
-samp.scenario_6_0 <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_6_0)
-samp.scenario_5_0 <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_5_0)
-samp.scenario_4_0 <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_4_0)
-samp.scenario_mix <- generate.temporal.ETAS.synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_mix)
+samp.scenario_6_5 <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_6_5)
+samp.scenario_6_0 <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_6_0)
+samp.scenario_5_0 <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_5_0)
+samp.scenario_4_0 <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_4_0)
+samp.scenario_mix <- generate_temporal_ETAS_synthetic(theta=theta, beta.p=log(10), M0=M0, T1=0, T2=modelledDuration, Ht=scenario_mix)
 
 cat.scenario_6_5 <- bind_rows(samp.scenario_6_5)
 cat.scenario_6_0 <- bind_rows(samp.scenario_6_0)
@@ -150,7 +150,7 @@ startingValues <- data.frame( mu=c(0.3),
                               p=c(1.01))
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input_6_5 <- create.input.list.temporal.noCatalogue(fpath)
+list.input_6_5 <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 list.input_6_5$M0 <- M0
@@ -225,7 +225,7 @@ startingValues <- data.frame( mu=c(0.3),
                               p=c(1.01))
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input_6_0 <- create.input.list.temporal.noCatalogue(fpath)
+list.input_6_0 <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 list.input_6_0$M0 <- M0
@@ -301,7 +301,7 @@ startingValues <- data.frame( mu=c(0.3),
                               p=c(1.01))
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input_5_0 <- create.input.list.temporal.noCatalogue(fpath)
+list.input_5_0 <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 list.input_5_0$M0 <- M0
@@ -378,7 +378,7 @@ startingValues <- data.frame( mu=c(0.3),
                               p=c(1.01))
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input_4_0 <- create.input.list.temporal.noCatalogue(fpath)
+list.input_4_0 <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 list.input_4_0$M0 <- M0
@@ -454,7 +454,7 @@ startingValues <- data.frame( mu=c(0.3),
                               p=c(1.01))
 
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input_mix <- create.input.list.temporal.noCatalogue(fpath)
+list.input_mix <- create_input_list_temporal_noCatalogue(fpath)
 
 # Tweak the variables laoded from the input file
 list.input_mix$M0 <- M0

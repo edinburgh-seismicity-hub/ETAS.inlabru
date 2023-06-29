@@ -8,7 +8,7 @@ Temporal.ETAS.fit(input.list)
 }
 \arguments{
 \item{input.list}{All input data and parameters are passed to inlabru via this structured \code{list}.
-This is the output of the function \link{create.input.list.temporal.withCatalogue} or \link{create.input.list.temporal.noCatalogue}}
+This is the output of the function \link{create_input_list_temporal_withCatalogue} or \link{create_input_list_temporal_noCatalogue}}
 }
 \value{
 The fitted model as a \code{bru} object, which is a list

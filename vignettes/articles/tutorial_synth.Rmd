@@ -19,7 +19,7 @@ For a brief introduction to the ETAS model we refer to the tutorial on real eart
 
 # Generate a synthetic catalogue 
 
-The function `generate.temporal.ETAS.synthetic()` can be used to generate synthetic catalogues from a temporal ETAS model with fixed parameters spanning a given interval of time. The `generate.temporal.ETAS.synthetic()` takes as input 
+The function `generate_temporal_ETAS_synthetic()` can be used to generate synthetic catalogues from a temporal ETAS model with fixed parameters spanning a given interval of time. The `generate_temporal_ETAS_synthetic()` takes as input 
 
 * `theta`: a `list` of ETAS parameters with names `mu`, `K`, `alpha`, `c`, and `p`, corresponding to the ETAS parameters.
 * `beta.p`: the parameter of the magnitude distribution
@@ -45,7 +45,7 @@ T1 = 0
 # set end time of the synthetic catalogue
 T2 = 365
 # generate the catalogue - it returns a list of data.frames
-synth.cat.list <- generate.temporal.ETAS.synthetic(theta = true.param,
+synth.cat.list <- generate_temporal_ETAS_synthetic(theta = true.param,
                                                    beta.p = beta.p,
                                                    M0 = M0,
                                                    T1 = T1,
@@ -318,7 +318,7 @@ Ht.imposed <- data.frame(ts = mean(c(T1,T2)),
                          magnitudes = 6)
 # generate second catalogue
 set.seed(1)
-synth.cat.list.2 <- generate.temporal.ETAS.synthetic(theta = true.param,
+synth.cat.list.2 <- generate_temporal_ETAS_synthetic(theta = true.param,
                                                    beta.p = beta.p,
                                                    M0 = M0,
                                                    T1 = T1,

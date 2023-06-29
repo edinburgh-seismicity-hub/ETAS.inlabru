@@ -4,7 +4,7 @@
 #'
 #' @return The formatted input.list with the elements required for the temporal Hawkes model
 #' @export
-create.input.list.temporal.withCatalogue <- function(input_path){
+create_input_list_temporal_withCatalogue <- function(input_path){
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
@@ -267,9 +267,9 @@ create.input.list.temporal.withCatalogue <- function(input_path){
 #' @export
 #'
 #' @examples
-#' create.input.list.temporal.noCatalogue(
+#' create_input_list_temporal_noCatalogue(
 #'   system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru"))
-create.input.list.temporal.noCatalogue <- function(input_path){
+create_input_list_temporal_noCatalogue <- function(input_path){
 
   con <- file(input_path)
   on.exit(close(con))

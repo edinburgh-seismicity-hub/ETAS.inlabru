@@ -64,7 +64,7 @@ M0 = 2.5
 
   # Load a set of parameters that we will need to tweak for this application
 fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package="ETAS.inlabru")
-list.input <- create.input.list.temporal.noCatalogue(fpath)
+list.input <- create_input_list_temporal_noCatalogue(fpath)
 list.input$M0 <-M0
 
 mu_priorPlot <- ggplot() +

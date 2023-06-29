@@ -16,7 +16,7 @@
 #' @return a `list` with two elements: `fore.df` is a `data.frame` containing all the synthetic catalogues composing the forecast.
 #' The `data.frame` has four columns, `ts` for the occurrence time, `magnitudes` for the magnitude, `gen` with the generation of the event, and `cat.idx` with the catalogue identifier
 #' The second element of the output `list` is `n.cat` which is the number of synthetic catalogues generated.
-#' @seealso [generate.temporal.ETAS.synthetic()]
+#' @seealso [generate_temporal_ETAS_synthetic()]
 #' @export
 Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1){
   if(n.cat > nrow(post.samp)){
@@ -26,7 +26,7 @@ Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, nco
   }
   n.cat <- nrow(post.samp)
   synth.cat.list <- parallel::mclapply(seq_len(n.cat), \(x)
-                                       generate.temporal.ETAS.synthetic(theta = post.samp[x,],
+                                       generate_temporal_ETAS_synthetic(theta = post.samp[x,],
                                                                         beta.p = beta.p,
                                                                         M0 = M0,
                                                                         T1 = T1,
