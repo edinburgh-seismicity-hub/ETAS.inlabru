@@ -41,6 +41,7 @@ Imports:
     stats,
     utils
 Suggests:
+    ggpubr,
     lemon,
     tidyquant
 Additional_repositories: https://inla.r-inla-download.org/R/testing
