@@ -189,10 +189,10 @@ th <- list.input$catalog.bru$ts
 t <- seq(0, modelledDuration, length.out=modelledDuration*100)
 
 # Conditional intensity for full catalogue
-conditional_intensity <- function (t){cond.lambda(theta=theta, t=t, th=th, mh=mh, M0=M0)}
+conditional_intensity <- function (t){cond_lambda(theta=theta, t=t, th=th, mh=mh, M0=M0)}
 
 # Conditional intensity after rate modification
-modified_conditional_intensity <- function (t){modified_cond.lambda(theta=theta, t=t, th=th, mh=mh, M0=M0, G=G, H=H, b=b)}
+modified_conditional_intensity <- function (t){modified_cond_lambda(theta=theta, t=t, th=th, mh=mh, M0=M0, G=G, H=H, b=b)}
 
 # Values of the functions for a defined sequence of time
 cond_vals <- sapply(t , conditional_intensity)

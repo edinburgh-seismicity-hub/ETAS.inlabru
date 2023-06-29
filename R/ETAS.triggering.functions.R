@@ -70,7 +70,7 @@ gt <- function(theta, t, th, mh, M0){
 #' \deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
 #'
 #' Do not use when `t` is a vector.
-cond.lambda <- function(theta, t, th, mh, M0){
+cond_lambda <- function(theta, t, th, mh, M0){
   if(is.null(th) | all(th > t)){
     theta$mu
   }

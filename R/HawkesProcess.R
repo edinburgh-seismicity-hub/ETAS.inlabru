@@ -126,7 +126,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
     ## MN: Finn's trick for making more stable - QQ is this to avoid large numbers??
     out <- mean(unlist(lapply(tt, \(x) {
       th_x <- th < x
-      log(cond.lambda(theta = th.p, t = x, th = th[th_x],
+      log(cond_lambda(theta = th.p, t = x, th = th[th_x],
                      mh = mh[th_x], M0 = M0))
     })))#,
     #mc.cores = 5)))

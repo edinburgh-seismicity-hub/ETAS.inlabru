@@ -68,7 +68,7 @@ modified_gt <- function(theta, t, th, mh, M0, G, H, b){
 
 
 # ETAS conditional intensity
-modified_cond.lambda <- function(theta, t, th, mh, M0, G, H, b){
+modified_cond_lambda <- function(theta, t, th, mh, M0, G, H, b){
   if(is.null(th) | all(th > t)){
     theta$mu
   }
@@ -226,7 +226,7 @@ modified_Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL
     ## MN: Finn's trick for making more stable - QQ is this to avoid large numbers??
     out <- mean(unlist(lapply(tt, \(x) {
       th_x <- th < x
-      log(modified_cond.lambda(theta = th.p, t = x, th = th[th_x],
+      log(modified_cond_lambda(theta = th.p, t = x, th = th[th_x],
                       mh = mh[th_x], M0 = M0, G=G, H=H, b=b))
     })))#,
     #mc.cores = 5)))

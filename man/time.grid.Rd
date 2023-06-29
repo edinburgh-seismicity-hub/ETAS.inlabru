@@ -40,5 +40,5 @@ Generate a set of time bins for a specific event.
 \examples{
 ## EXAMPLE 1
 event <- list( ts= 0, idx.p= 1 )
-time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1 = 1, T2 = 20)
+time.grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
 }
