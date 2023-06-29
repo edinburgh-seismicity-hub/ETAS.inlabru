@@ -169,6 +169,7 @@ triggering_fun_plot_prior <- function(input.list, magnitude = 4, n.samp = 10, t.
 #' @param ti Time of the event in the history
 #'
 #' @return Value of Omori's law at point `t` for and event happened in `ti`
+#' @export
 omori <- function(theta, t, ti){
   output <- rep(0,length(t))
   t.diff <- t - ti
