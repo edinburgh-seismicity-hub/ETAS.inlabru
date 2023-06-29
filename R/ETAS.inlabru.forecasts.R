@@ -1,7 +1,8 @@
 #' Title
 #'
 #' @param post.samp a `data.frame` containing samples from the posterior distribution of ETAS parameters.
-#' Each row of the `data.frame` corresponds to a different sample and the parameters are in the order $\mu, K, \alpha, c, p$.
+#' Each row of the `data.frame` corresponds to a different sample and the parameters are in the order
+#' \eqn{\mu}{mu}, \eqn{K}{K}, \eqn{\alpha}{alpha}, \eqn{c}{c}, \eqn{p}{p}.
 #' @param n.cat number of synthetic catalogues composing the forecast. If `n.cat` is greater than `nrow(post.samp)`, then,
 #' `n.cat` rows are sampled uniformly and with replacement from the `post.samp`. If `n.cat` is smaller than `nrow(post.samp)`, then,
 #' `n.cat` rows are sampled uniformly and without replacement from the `post.samp`. If `n.cat` is `NULL` or equal to `nrow(post.samp)`, `post.samp` is used at it is and `nrow(post.samp)` catalogues are generated.
@@ -10,7 +11,7 @@
 #' @param T1 starting time of the forecast
 #' @param T2 end time of the forecast
 #' @param Ht set of known events
-#' @param ncore number of cores to be used to generate the syntehtic catalogues in parallel.
+#' @param ncore number of cores to be used to generate the synthetic catalogues in parallel.
 #'
 #' @return a `list` with two elements: `fore.df` is a `data.frame` containing all the synthetic catalogues composing the forecast.
 #' The `data.frame` has four columns, `ts` for the occurrence time, `magnitudes` for the magnitude, `gen` with the generation of the event, and `cat.idx` with the catalogue identifier
