@@ -46,7 +46,7 @@ Inv_IntInjectionIntensity <- function(a=50, V.i=1, tau=10, T.i, number.injected.
 #'
 #' @return Catalogue of parent events induced by injection; `data.frame(times, magnitudes)`
 #' @export
-sample.temporal.injection.events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
+sample_temporal_injection_events <- function(a=50, V.i=1, tau=10, beta.p, M0, T.i, T2){
   bound.l <- 0 #It(th.p, th, T)
   bound.u <- IntInjectionIntensity(a=a, V.i=V.i, tau=tau, T.i=T.i, T2=T2)
   n.ev <- rpois( 1, bound.u  )

@@ -79,7 +79,7 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   # if known events are provided
   if(!is.null(Ht)){
     # sample a generation from the known events
-    gen.from.past <- sample.temporal.ETAS.generation(theta, beta.p, Ht, M0, T1, T2, ncore)
+    gen.from.past <- sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore)
     # if at least an aftershock is produced
     if(nrow(gen.from.past) > 0){
       # set generation
@@ -114,7 +114,7 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
     #print(c(T1,T2))
     #print(range(parents$ts))
     # generate aftershocks
-    triggered <- sample.temporal.ETAS.generation(theta, beta.p, parents,
+    triggered <- sample_temporal_ETAS_generation(theta, beta.p, parents,
                                    M0, T1, T2, ncore)
     #print(nrow(triggered))
     # stop the loop if there are no more aftershocks
@@ -165,13 +165,13 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @examples
 #' # The parents are specified in Ht
 #' Ht <- data.frame(ts=c(500), magnitudes=c(6.7))
-#' sample.temporal.ETAS.generation(
+#' sample_temporal_ETAS_generation(
 #'   theta=list(mu=0.1, K=0.089, alpha=2.29, c=0.11, p=1.08),
 #'   beta.p=log(10),
 #'   M0=2.5,
 #'   T1=0, T2=1000,
 #'   Ht=Ht )
-sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
+sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1){
 
   # number of parents
   n.parent <- nrow(Ht)
@@ -195,7 +195,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
   #print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
   # sample (in parallel) the aftershocks for each parent
   sample.list <- parallel::mclapply(idx.p, function(idx)
-    sample.temporal.ETAS.daughters(theta = theta, beta.p = beta.p, th = Ht$ts[idx],
+    sample_temporal_ETAS_daughters(theta = theta, beta.p = beta.p, th = Ht$ts[idx],
                      n.ev = n.ev.v[idx], M0, T1, T2), mc.cores = ncore)
 
   # bind the data.frame in the list and return
@@ -216,7 +216,7 @@ sample.temporal.ETAS.generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T2 End time for synthetic catalogue `[days]`.
 #'
 #' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
-sample.temporal.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
+sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
   # if the number of events to be placed is zero returns an empty data.frame
   if(n.ev == 0){
     samp.points <- data.frame(x = 1, y = 1, ts = 1, magnitudes = 1)
@@ -226,7 +226,7 @@ sample.temporal.ETAS.daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2){
   else{
 
     # Generate the time sample
-    samp.ts <- sample.temporal.ETAS.times(theta, n.ev, th, T2)
+    samp.ts <- sample_temporal_ETAS_times(theta, n.ev, th, T2)
 
     # Generate the magnitude sample
     samp.mags <- sample_GR_magnitudes(n=n.ev, beta.p=beta.p, M0=M0)
@@ -265,15 +265,15 @@ sample_GR_magnitudes <- function(n, beta.p, M0) {
 #' @param T2 End time of model domain.
 #'
 #' @return t.sample A list of times in the interval `[0, T2]` distributed according to the ETAS triggering function.
-sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
+sample_temporal_ETAS_times <- function(theta, n.ev, th, T2){
   if(n.ev == 0){
     df <- data.frame(ts = 1, x = 1, y = 1, magnitudes = 1, gen = 0)
     return(df[-1,])
   }
-  bound.l <- 0 #Int.ETAS.time.trig.function(th.p, th, T)
-  bound.u <- Int.ETAS.time.trig.function(theta, th, T2)
+  bound.l <- 0 #Int_ETAS_time_trig_function(th.p, th, T)
+  bound.u <- Int_ETAS_time_trig_function(theta, th, T2)
   unif.s <- runif(n.ev, min = bound.l, max = bound.u)
-  t.sample <- Inv.Int.ETAS.time.trig.function(theta, unif.s, th)
+  t.sample <- Inv_Int_ETAS_time_trig_function(theta, unif.s, th)
   return( t.sample )
 }
 
@@ -287,7 +287,7 @@ sample.temporal.ETAS.times <- function(theta, n.ev, th, T2){
 #' @details
 #' The function returns the integral of Omori's law, namely
 #' \deqn{\int_{t_h}^{T_2} \left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-Int.ETAS.time.trig.function <- function(theta, th, T2){
+Int_ETAS_time_trig_function <- function(theta, th, T2){
   gamma.u <- (T2 - th)/theta$c
   ( theta$c/(theta$p - 1) )*(1 - (gamma.u + 1)^( 1-theta$p) )
 }
@@ -304,7 +304,7 @@ Int.ETAS.time.trig.function <- function(theta, th, T2){
 #' Considering the integral of Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
 #' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
-Inv.Int.ETAS.time.trig.function <- function(theta, omega, th){
+Inv_Int_ETAS_time_trig_function <- function(theta, omega, th){
   th + theta$c*( ( 1 - omega * (1/theta$c)*(theta$p - 1) )^( -1/(theta$p - 1) ) - 1)
 }
 

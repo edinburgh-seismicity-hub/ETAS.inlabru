@@ -128,10 +128,9 @@ post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
 
 
 #######
-## MN: DESCRIPTION: Calculate the number of events in a time interval T1 to T2 given imposed events and ETAS
-## MN: Arguments:
-## MN: Returns: number of events
 #' Calculate the integral of the ETAS conditional intensity
+#'
+#' @description Calculate the number of events in a time interval T1 to T2 given imposed events and ETAS
 #'
 #' @param th.mu Background rate, `mu`, on the internal parameter scale
 #' @param th.K ETAS triggering parameter `K` on the internal parameter scale
@@ -144,9 +143,10 @@ post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
 #' @param Ht History of the process, or set of known events in the interval. It must be a `data.frame` with columns `ts` (time) and `magnitudes` (magnitudes).
 #' @param link.functions `list` of functions to transform the parameters from the internal scale to the ETAS scale
 #'
-#' @return Integral of the ETAS conditional intensity between `T1` and `T2` with minimum magnitude `M0`.
+#' @return Integral of the ETAS conditional intensity between `T1` and `T2` with minimum magnitude `M0`,
+#' i.e. the expected number of events.
 #' @export
-lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
+lambda_N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
                      link.functions){
   theta_etas <- list(mu = link.functions$mu(th.mu[1]),
                      K = link.functions$K(th.K[1]),
@@ -183,7 +183,7 @@ lambda.N <- function(th.mu, th.K, th.alpha, th.c, th.p, T1, T2, M0, Ht,
 get_posterior_N <- function(input.list, domain.extension = 0.10){
   lambda.N.post <- predict(input.list$model.fit, # model fit
                            data.frame(), # data (empty because the history of the process is passed to the function below directly)
-                           ~ lambda.N(th.mu, th.K, th.alpha, th.c, th.p,
+                           ~ lambda_N(th.mu, th.K, th.alpha, th.c, th.p,
                                       input.list$T12[1], input.list$T12[2], input.list$M0,
                                       input.list$catalog.bru,
                                       input.list$link.functions)) # target function
@@ -191,7 +191,7 @@ get_posterior_N <- function(input.list, domain.extension = 0.10){
   N.post.df <- predict(input.list$model.fit, data.frame(),
                        ~ data.frame(N = N.seq,
                                     pdf = dpois(N.seq,
-                                                lambda.N(th.mu = th.mu,
+                                                lambda_N(th.mu = th.mu,
                                                          th.K = th.K,
                                                          th.alpha = th.alpha,
                                                          th.c = th.c,
