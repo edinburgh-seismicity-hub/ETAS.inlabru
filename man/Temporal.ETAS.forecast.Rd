@@ -27,8 +27,9 @@ Each row of the \code{data.frame} corresponds to a different sample and the para
 \item{ncore}{number of cores to be used to generate the syntehtic catalogues in parallel.}
 }
 \value{
-a \code{data.frame} containing all the synthetic catalogues composing the forecast.
-The \code{data.frame} has four columns: \code{ts} for the occurence time, \code{magnitudes} for the magnitude, \code{gen} with the generation of the event, and \code{cat.idx} with the catalogue identifier
+a \code{list} with two elements: \code{fore.df} is a \code{data.frame} containing all the synthetic catalogues composing the forecast.
+The \code{data.frame} has four columns, \code{ts} for the occurrence time, \code{magnitudes} for the magnitude, \code{gen} with the generation of the event, and \code{cat.idx} with the catalogue identifier
+The second element of the output \code{list} is \code{n.cat} which is the number of synthetic catalogues generated.
 }
 \description{
 Title
