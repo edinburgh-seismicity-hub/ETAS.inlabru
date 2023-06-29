@@ -3,6 +3,7 @@
 export(Inv.IntInjecIntensity)
 export(Temporal.ETAS)
 export(Temporal.ETAS.fit)
+export(Temporal.ETAS.forecast)
 export(breaks_exp)
 export(cond.lambda)
 export(create.input.list.temporal.noCatalogue)
