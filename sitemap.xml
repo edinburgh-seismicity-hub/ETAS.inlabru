@@ -10,25 +10,34 @@
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles/sensitivityToStartingPoint.html</loc>
+  </url>
+  <url>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles/tutorial_real.html</loc>
+  </url>
+  <url>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles/tutorial_synth.html</loc>
+  </url>
+  <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/authors.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/index.html</loc>
   </url>
   <url>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/news/index.html</loc>
+  </url>
+  <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/ETAS.inlabru-package.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/Int.ETAS.time.trig.function.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/IntInjectionIntensity.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/IntInjecIntensity.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/Int_ETAS_time_trig_function.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/Inv.Int.ETAS.time.trig.function.html</loc>
-  </url>
-  <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/Inv.IntInjecIntensity.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/Inv_Int_ETAS_time_trig_function.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/It_df.html</loc>
@@ -46,16 +55,16 @@
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/breaks_exp.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/compute.grid.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/compute_grid.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/cond.lambda.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/cond_lambda.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/create.input.list.temporal.noCatalogue.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/create_input_list_temporal_noCatalogue.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/create.input.list.temporal.withCatalogue.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/create_input_list_temporal_withCatalogue.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/exp_t.html</loc>
@@ -64,7 +73,7 @@
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/gamma_t.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/generate.temporal.ETAS.synthetic.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/generate_temporal_ETAS_synthetic.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/get_posterior_N.html</loc>
@@ -91,7 +100,7 @@
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/inv_unif_t.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/lambda.N.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/lambda_N.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/log_Lambda_h.html</loc>
@@ -115,22 +124,22 @@
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/post_sampling.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample.GR.magnitudes.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample_GR_magnitudes.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample.temporal.ETAS.daughters.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample_temporal_ETAS_daughters.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample.temporal.ETAS.generation.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample_temporal_ETAS_generation.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample.temporal.ETAS.times.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample_temporal_ETAS_times.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample.temporal.injection.events.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/sample_temporal_injection_events.html</loc>
   </url>
   <url>
-    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/time.grid.html</loc>
+    <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/time_grid.html</loc>
   </url>
   <url>
     <loc>https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference/triggering_fun_plot.html</loc>

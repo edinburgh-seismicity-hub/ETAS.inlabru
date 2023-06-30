@@ -3,7 +3,10 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   generateSyntheticCatalogues: generateSyntheticCatalogues.html
-last_built: 2023-06-29T15:28Z
+  sensitivityToStartingPoint: sensitivityToStartingPoint.html
+  tutorial_real: tutorial_real.html
+  tutorial_synth: tutorial_synth.html
+last_built: 2023-06-30T11:28Z
 urls:
   reference: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference
   article: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles
