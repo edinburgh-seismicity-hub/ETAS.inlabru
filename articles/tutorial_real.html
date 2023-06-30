@@ -287,15 +287,13 @@ distribution as prior with parameters <span class="math inline">\(0.3\)</span> a
 Many different catalogues exists for the same region and there is no
 easy way to decide which one is better. Here, we provide the HOmogenized
 instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It can be
-downloaded from <a href="http://horus.bo.ingv.it/" class="external-link">http://horus.bo.ingv.it/</a>. The whole
-Horus catalogue can be loaded using</p>
+downloaded from <a href="http://horus.bo.ingv.it/" class="external-link">http://horus.bo.ingv.it/</a>. A subset
+(see <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R" class="external-link">data-raw/horus.R</a>
+for how the the subset was created) of the information in the Horus
+catalogue can be loaded using</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load ISIDE catalogue</span></span>
-<span><span class="va">horus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span></span>
-<span>  file <span class="op">=</span> <span class="st">"data/HORUS.txt"</span>,</span>
-<span>  header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  sep <span class="op">=</span> <span class="st">","</span></span>
-<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">horus</span>, package <span class="op">=</span> <span class="st">"ETAS.inlabru"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       lon     lat    M            time_string depth catalog_id event_id</span></span>
 <span><span class="co">#&gt; 1 15.3000 39.3000 6.34 1960-01-03T20:19:34.00   290         -1       NA</span></span>
@@ -490,7 +488,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  3.453542</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.57083</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -573,12 +571,12 @@ corresponding to the ETAS parameters</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3371113 0.1628606 2.395887 0.05793316 1.151251</span></span>
-<span><span class="co">#&gt; 2 0.2802309 0.1231784 2.448602 0.07860345 1.196107</span></span>
-<span><span class="co">#&gt; 3 0.2604647 0.1825894 2.442851 0.04712678 1.141840</span></span>
-<span><span class="co">#&gt; 4 0.2741875 0.1436083 2.388715 0.07806933 1.179619</span></span>
-<span><span class="co">#&gt; 5 0.2740375 0.1404051 2.423026 0.06868827 1.180533</span></span>
-<span><span class="co">#&gt; 6 0.3305438 0.1121833 2.456883 0.08945747 1.218534</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2671849 0.1334894 2.434972 0.06188834 1.148706</span></span>
+<span><span class="co">#&gt; 2 0.2934680 0.1687942 2.421171 0.04342436 1.106319</span></span>
+<span><span class="co">#&gt; 3 0.2770358 0.1293886 2.436679 0.07739459 1.191919</span></span>
+<span><span class="co">#&gt; 4 0.2837259 0.1784848 2.415349 0.03984021 1.112583</span></span>
+<span><span class="co">#&gt; 5 0.2731871 0.1271996 2.468355 0.07079347 1.176416</span></span>
+<span><span class="co">#&gt; 6 0.2855212 0.1270135 2.484788 0.05918523 1.152930</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -958,7 +956,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 30 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 34 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
