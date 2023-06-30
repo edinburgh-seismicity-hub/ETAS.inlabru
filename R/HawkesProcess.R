@@ -188,11 +188,14 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
 
   return(
     inlabru::bru(
-      formula = merged.form,
       components = cmp.part,
-      data = data.input,
-      family = "Poisson",
-      options = append(bru.opt, list(E = data.input$exposure))
+      inlabru::like(
+        formula = merged.form,
+        data = data.input,
+        family = "poisson",
+        E = data.input$exposure
+      ),
+      options = bru.opt
     )
   )
 }
