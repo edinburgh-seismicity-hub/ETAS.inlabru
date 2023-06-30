@@ -20,14 +20,32 @@ citEntry(
 citEntry(
   entry    = "Article",
   title    = "Bayesian modelling of the temporal evolution of seismicity using the ETAS.inlabru R-package",
-  author   = "Francesco Serafini, Finn Lindgren, and Mark Naylor",
-  journal  = "arXiv",
-  year     = 2022,
-  doi      = "10.48550/ARXIV.2212.06077",
-  url      = "https://arxiv.org/abs/2212.06077",
+  author   = "Mark Naylor, Francesco Serafini, and Finn Lindgren",
+  journal  = "Frontiers in Applied Mathematics and Statistics",
+  year     = 2023,
+  doi      = "10.3389/fams.2023.1126759",
+  url      = "https://www.frontiersin.org/articles/10.3389/fams.2023.1126759",
   textVersion = paste(
-    "Francesco Serafini, Finn Lindgren, and Mark Naylor (2022).",
-    "doi:10.48550/ARXIV.2212.06077,",
-    "https://arxiv.org/abs/2212.06077"
+    "Mark Naylor, Francesco Serafini, and Finn Lindgren (2023).",
+    "doi:10.3389/fams.2023.1126759,",
+    "https://www.frontiersin.org/articles/10.3389/fams.2023.1126759"
   )
 )
+
+
+citEntry(
+  entry    = "Article",
+  title    = "Approximation of Bayesian Hawkes process with inlabru",
+  author   = "Serafini, Francesco and Lindgren, Finn and Naylor, Mark ",
+  journal  = "Environmetrics",
+  year     = 2023,
+  doi      = "10.1002/env.2798",
+  url      = "https://onlinelibrary.wiley.com/doi/abs/10.1002/env.2798",
+  textVersion = paste(
+    "Francesco Serafini, Finn Lindgren, and Mark Naylor (2023).",
+    "doi:10.1002/env.2798,",
+    "https://onlinelibrary.wiley.com/doi/abs/10.1002/env.2798"
+  )
+)
+
+
