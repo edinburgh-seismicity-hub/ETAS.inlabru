@@ -22,7 +22,7 @@ The inlabru algorithm takes an initial guess on the mode of the parameters we ar
 
 In this notebook, we explore the robustness of the posteriors on two synthetic catalogues where the true parameters are known. Both catalogues contain 2000 days of data. One catalogue does not contain a large event and the second contains a M6.7 event on day 1000.
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE,message=FALSE,warning=FALSE}
 library(ETAS.inlabru)
 
 library(tidyquant)
@@ -198,14 +198,14 @@ for (i in seq_len(nRealisations)) {
   # Define options for inlabru
   if (is.null(list.input$max_step)) {
     list.input$bru.opt.list <- list(
-      bru_verbose = 3, # type of visual output
+      bru_verbose = 0, # type of visual output
       bru_max_iter = list.input$max_iter, # maximum number of iterations
       # bru_method = list(max_step = 0.5),
       bru_initial = list.input$th.init
     ) # parameters initial values
   } else {
     list.input$bru.opt.list <- list(
-      bru_verbose = 3, # type of visual output
+      bru_verbose = 0, # type of visual output
       bru_max_iter = list.input$max_iter, # maximum number of iterations
       bru_method = list(max_step = list.input$max_step),
       bru_initial = list.input$th.init
