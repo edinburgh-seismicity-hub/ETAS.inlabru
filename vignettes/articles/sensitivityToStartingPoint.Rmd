@@ -348,7 +348,8 @@ plots[[1]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
   facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
-  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2, label = "True value") +
+  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2,
+             label = "True value") +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
   ggtitle(paste("A.  Inversion of a 1000 day catalogue with no large events, nEvents =", length(quiet.ETAS.cat$ts))) +
   xlab("ETAS Posteriors") +
@@ -361,11 +362,11 @@ plots[[1]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
 ```{r}
 trueParas <- data.frame(value = c(mu, K, alpha, c, p), param = c("mu", "K", "alpha", "c", "p"))
 
-post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[2]])
+post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[1]])
 post.df <- post.list[[1]]
 post.df$id <- 2
 
-for (i in 3:nRealisations) {
+for (i in 2:nRealisations) {
   post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[i]])
   post.df.tmp <- post.list[[1]]
   post.df.tmp$id <- i
@@ -377,7 +378,8 @@ plots[[2]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
   facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
-  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2, label = "True value") +
+  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2,
+             label = "True value") +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
   ggtitle(paste("B. Inversion of a 1000 day catalogue with a M6.7 on day 500, nEvents =", length(M6p7.ETAS.cat$ts))) +
   xlab("ETAS Posteriors") +
@@ -389,6 +391,7 @@ plots[[2]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
 
 ```{r}
 plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol = 1, nrow = 2, position = "bottom")
+plt
 # ggsave("initialCondition_posteriors.png", plt)
 # ggsave("initialCondition_posteriors.pdf", plt)
 ```
@@ -397,26 +400,26 @@ plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol = 1, nrow = 2, po
 
 ```{r}
 plot_triggering <- list()
-plot_triggering[[1]] <- triggering_fun_plot(list.output.quietScenario[[2]], magnitude = 4, n.samp = 100) +
+plot_triggering[[1]] <- triggering_fun_plot(list.output.quietScenario[[1]], magnitude = 4, n.samp = 100) +
   ggtitle("C. M4 triggering function") +
   theme_bw() +
   ylim(0, 5.5) +
   theme(plot.title = element_text(size = 8))
 
-plot_triggering[[2]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magnitude = 4, n.samp = 100) +
+plot_triggering[[2]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]], magnitude = 4, n.samp = 100) +
   ggtitle("D. M4 triggering function") +
   theme_bw() +
   ylim(0, 5.5) +
   theme(plot.title = element_text(size = 8))
 
-plot_triggering[[3]] <- triggering_fun_plot(list.output.quietScenario[[2]], magnitude = 6.7, n.samp = 100) +
+plot_triggering[[3]] <- triggering_fun_plot(list.output.quietScenario[[1]], magnitude = 6.7, n.samp = 100) +
   ggtitle("E. M6.7 triggering function") +
   theme_bw() +
   ylim(0, 1700) +
   theme(plot.title = element_text(size = 8))
 
 
-plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magnitude = 6.7, n.samp = 100) +
+plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]], magnitude = 6.7, n.samp = 100) +
   ggtitle("F. M6.7 triggering function") +
   theme_bw() +
   ylim(0, 1700) +
@@ -425,6 +428,7 @@ plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[2]], magni
 
 plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], plot_triggering[[2]], plot_triggering[[4]], ncol = 2, nrow = 2, top = "Triggering function variability") +
   theme(plot.title = element_text(size = 8))
+plt
 
 # ggsave("trigFuncVariability_runin.png", plt)
 # ggsave("trigFuncVariability_runin.pdf", plt)
@@ -432,14 +436,14 @@ plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], plot_triggering[
 
 ```{r}
 plot_omori <- list()
-plot_omori[[1]] <- omori_plot_posterior(list.output.quietScenario[[2]], n.samp = 100) +
+plot_omori[[1]] <- omori_plot_posterior(list.output.quietScenario[[1]], n.samp = 100) +
   ggtitle("A. Omori decay") +
   theme_bw() +
   ylim(0, 1) +
   theme(plot.title = element_text(size = 8))
 
 
-plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[2]], n.samp = 100) +
+plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[1]], n.samp = 100) +
   ggtitle("B. Omori decay") +
   theme_bw() +
   ylim(0, 1) +
@@ -448,6 +452,7 @@ plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[2]], n.samp = 
 
 ```{r}
 plt <- grid.arrange(plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]], plot_omori[[2]], plot_triggering[[2]], plot_triggering[[4]], ncol = 3, nrow = 2, top = "Triggering  function variability", left = "M6.7 baseline            Unseeded baseline")
+plt
 
 # ggsave("trigFuncVariability_runin.png", plt)
 # ggsave("trigFuncVariability_runin.pdf", plt)
@@ -457,10 +462,10 @@ plt <- grid.arrange(plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]],
 
 
 ```{r message=FALSE}
-post_pairs_plot(list.output.quietScenario[[2]], n.samp = 1000)$pair.plot
+post_pairs_plot(list.output.quietScenario[[1]], n.samp = 1000)$pair.plot
 ```
 ```{r}
-post_pairs_plot(list.output.M6p7Scenario[[3]], n.samp = 1000)$pair_plot
+post_pairs_plot(list.output.M6p7Scenario[[1]], n.samp = 1000)$pair_plot
 ```
 
 ## inlabru convergence diagnostics

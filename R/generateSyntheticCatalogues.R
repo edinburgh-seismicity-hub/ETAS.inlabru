@@ -42,7 +42,7 @@
 #'   Ht = Ht
 #' )
 #'
-#' @export generate_temporal_ETAS_synthetic
+#' @export
 
 generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
                                              Ht = NULL, ncore = 1) {

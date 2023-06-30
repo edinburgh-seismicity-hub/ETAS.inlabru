@@ -6,9 +6,15 @@ output: html_document
 ---
 
 ```{r setup0, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  echo = TRUE
+)
 ```
-```{r setup}
+```{r setup, include=FALSE}
 library(ETAS.inlabru)
 library(ggplot2)
 
