@@ -348,8 +348,10 @@ plots[[1]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
   facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
-  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2,
-             label = "True value") +
+  geom_vline(aes(xintercept = value),
+    data = trueParas, color = "black", linetype = 2,
+    label = "True value"
+  ) +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
   ggtitle(paste("A.  Inversion of a 1000 day catalogue with no large events, nEvents =", length(quiet.ETAS.cat$ts))) +
   xlab("ETAS Posteriors") +
@@ -378,8 +380,10 @@ plots[[2]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
   facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
-  geom_vline(aes(xintercept = value), data = trueParas, color = "black", linetype = 2,
-             label = "True value") +
+  geom_vline(aes(xintercept = value),
+    data = trueParas, color = "black", linetype = 2,
+    label = "True value"
+  ) +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
   ggtitle(paste("B. Inversion of a 1000 day catalogue with a M6.7 on day 500, nEvents =", length(M6p7.ETAS.cat$ts))) +
   xlab("ETAS Posteriors") +
