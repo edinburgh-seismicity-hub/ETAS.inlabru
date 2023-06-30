@@ -144,7 +144,7 @@ Earthquake data is stored in the so-called earthquake catalogues. Many different
 ```{r}
 # load ISIDE catalogue
 horus <- read.table(
-  file = "data/HORUS",
+  file = "data/HORUS.txt",
   header = TRUE,
   sep = ","
 )
@@ -225,10 +225,9 @@ th.init <- list(
 Lastly, we need to set the `list` of `inlabru` options. The main elements of the `list` are :
 
 * `bru_verbose`: number indicating the type of diagnostic output. Set it to 0 for no output.
-* `bru_max_iter`: maximum number of iterations. If we do not set `bru_method` the `inlabru` algorithm stops when the stopping criterion is met. However, if we set `bru_method` then the stopping criterion does not work and the algorithm runs for exactly `bru_max_iter` iterations.
+* `bru_max_iter`: maximum number of iterations. If we do not set `max_step` the `inlabru` algorithm stops when the stopping criterion is met. However, setting `max_step` to values smaller than 1 forces the algorithm to run for exactly `bru_max_iter` iterations.
 * `num.threads`: number of cores to be used in parallel.
 * `bru_method`: for what is relevant here, the only thing that we may need to set is the `max_step` argument. If the algorithm does not converge without fixing a `max_step` then we suggest to try to fix it to some value below 1, in our experience $0.5$ or $0.2$ works well. In the example below the line setting `bru_method` is commented.
-* `inla.mode`: type of INLA algorithm to be used. Always set it to `experimental`.
 * `bru_initial`: `list` of initial values created before.
 
 ```{r}
@@ -238,7 +237,6 @@ bru.opt.list <- list(
   bru_max_iter = 70, # maximum number of iterations
   num.threads = 2, # Increase this if your computer has multiple cores
   # bru_method = list(max_step = 0.5),
-  inla.mode = "experimental", # type of inla algorithm
   bru_initial = th.init
 ) # parameters initial values
 ```
@@ -253,7 +251,7 @@ The function `Temporal.ETAS` fit the ETAS model and returns a `bru` object as ou
 * `T1`: starting time of the time interval on which we want to fit the model.
 * `T2`: end time of the time interval on which we want to fit the model.
 * `link.functions`: `list` of copula transformation functions in the format described in previous sections.
-* `coef.t.`, `delta.t.`, `N.max.`: parameters of the temporal binning. The binning strategy is described in Appendix B of this [paper](https://onlinelibrary.wiley.com/doi/full/10.1002/env.2798). The parameters corresponds to `coef.t.`$=\delta$, `delta.t.`$=\Delta$, and `N.max.`$=n_{\max}$.
+* `coef.t.`, `delta.t.`, `N.max.`: parameters of the temporal binning. The binning strategy is described in Appendix B of the paper  [Approximation of Bayesian Hawkes process with `inlabru`](https://onlinelibrary.wiley.com/doi/full/10.1002/env.2798). The parameters corresponds to `coef.t.`$=\delta$, `delta.t.`$=\Delta$, and `N.max.`$=n_{\max}$.
 * `bru.opt`: `list` of `inlabru` options as described in the previous Section.
 
 ```{r, message=FALSE}
