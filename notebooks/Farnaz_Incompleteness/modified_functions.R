@@ -271,8 +271,18 @@ modified_Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL
     th.c(1, model = 'linear', mean.linear = 0, prec.linear = 1) +
     th.p(1, model = 'linear', mean.linear = 0, prec.linear = 1)
 
-  return( bru(formula = merged.form, components = cmp.part, data = data.input, family = 'Poisson',
-              options = append(bru.opt, list(E = data.input$exposure))) )
+  return(
+    bru(
+      components = cmp.part,
+      like(
+        formula = merged.form,
+        data = data.input,
+        family = 'Poisson',
+        E = data.input$exposures
+      ),
+      options = bru.opt
+    )
+  )
 
 }
 

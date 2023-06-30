@@ -193,7 +193,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
         formula = merged.form,
         data = data.input,
         family = "poisson",
-        E = data.input$exposure
+        E = data.input$exposures
       ),
       options = bru.opt
     )
