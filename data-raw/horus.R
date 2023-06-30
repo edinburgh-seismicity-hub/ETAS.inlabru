@@ -23,7 +23,26 @@ colnames(horus_orig)[ncol(horus_orig)] <- "Iside.n."
 
 # Convert to ETAS.inlabru subset format ####
 
-# ??? TODO: fill in this code
+# Convert time (Francesco)
+# pad 0 in front of single numbers
+month.string <- as.character(horus_orig$Mo)
+day.string <- as.character(horus_orig$Da)
+hour.string <- as.character(horus_orig$Ho)
+minute.string <- as.character(horus_orig$Mi)
+second.string <- as.character(horus_orig$Se)
+
+month.string[horus_orig$Mo < 10] <- paste0('0', month.string[horus_orig$Mo < 10])
+day.string[horus_orig$Da < 10] <- paste0('0', day.string[horus_orig$Da < 10])
+hour.string[horus_orig$Ho < 10] <- paste0('0', hour.string[horus_orig$Ho < 10])
+minute.string[horus_orig$Mi < 10] <- paste0('0', minute.string[horus_orig$Mi < 10])
+second.string[horus_orig$Se < 10] <- paste0('0', second.string[horus_orig$Se < 10])
+
+horus_orig$time_string <- paste0(horus_orig$Year,'-',
+                                 month.string,'-',
+                                 day.string,'T',
+                                 hour.string,':',
+                                 minute.string,':',
+                                 second.string)
 
 # Set as active data set in the package ####
 
