@@ -4,7 +4,8 @@ Title: Bayesian ETAS model for modelling seismic sequences with inlabru
 Version: 1.1.0.9000
 Authors@R: 
     c(
-    person("Francesco", "Serafini",email="francesco.serafini@ed.ac.uk", role = c("aut", "cre")),
+    person("Francesco", "Serafini",email="francesco.serafini@newcastle.ac.uk", role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-0154-6200")),
     person("Mark", "Naylor", email="mark.naylor@ed.ac.uk", role = c("aut", "ths"),
            comment = c(ORCID = "0000-0002-3761-5522")),
     person("Finn", "Lindgren",email="Finn.Lindgren@ed.ac.uk", role = c("aut", "ths"), 
