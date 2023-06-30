@@ -11,7 +11,6 @@ Authors@R:
     person("Finn", "Lindgren",email="Finn.Lindgren@ed.ac.uk", role = c("aut", "ths"), 
           comment = c(ORCID = "0000-0002-5833-2011"))
           )
-Maintainer: The package maintainer <mark.naylor@ed.ac.uk>
 Description: Modelling and inversion of ETAS model of seismicity using inlabru
     The Epidemic Type Aftershock Sequence (ETAS) model is designed to 
     model earthquakes that are triggered by previous events. In statistics, this is
