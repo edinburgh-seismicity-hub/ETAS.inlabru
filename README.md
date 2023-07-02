@@ -15,13 +15,13 @@ Online documentation:
 ## Authors
 
 - Francesco Serafini
-- [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/), School of GeoSciences, University of Edinburgh
+- [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/) , School of GeoSciences, University of Edinburgh
 - Prof Finn Lindgren, School of Mathematics, University of Edinburgh
 - Dr Kirsty Bayliss, Global Earthquake Model (GEM)
 
 ## Funding
 
-- This study was funded by yhe Real-Time Earthquake Risk Reduction for a Resilient Europe ([RISE project](http://www.rise-eu.org/home/)), which has received funding from the European Union's Horizon 2020 Research and Innovation Program under grant Agreement 821115. 
+- This study was funded by yhe Real-Time Earthquake Risk Reduction for a Resilient Europe [RISE project](http://www.rise-eu.org/home/) , which has received funding from the European Union's Horizon 2020 Research and Innovation Program under grant Agreement 821115. 
 - Naylor was additionally funded by the NSFGEO-NERC grant NE/R000794/1. 
 - Bayliss was funded by an EPSRC Studentship.
 
