@@ -3,7 +3,7 @@
 \docType{data}
 \name{horus}
 \alias{horus}
-\title{HOURS Ita Catalogue}
+\title{HORUS Ita Catalogue}
 \format{
 Original file format:
 \describe{
