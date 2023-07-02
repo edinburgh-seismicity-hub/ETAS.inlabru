@@ -488,7 +488,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.569268</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.799807</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -571,12 +571,12 @@ corresponding to the ETAS parameters</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3768182 0.1692115 2.441901 0.04524287 1.121663</span></span>
-<span><span class="co">#&gt; 2 0.2649694 0.1327542 2.419628 0.07328110 1.170722</span></span>
-<span><span class="co">#&gt; 3 0.3336394 0.1228850 2.395974 0.10756716 1.244615</span></span>
-<span><span class="co">#&gt; 4 0.3240704 0.1485059 2.439128 0.05362865 1.129319</span></span>
-<span><span class="co">#&gt; 5 0.3267632 0.1497352 2.455251 0.06347121 1.199290</span></span>
-<span><span class="co">#&gt; 6 0.2920085 0.1280860 2.437500 0.07423324 1.159560</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2904460 0.1738710 2.410110 0.06083343 1.167545</span></span>
+<span><span class="co">#&gt; 2 0.2661682 0.1462791 2.425208 0.05608443 1.152206</span></span>
+<span><span class="co">#&gt; 3 0.2830024 0.1563456 2.417076 0.05714968 1.152164</span></span>
+<span><span class="co">#&gt; 4 0.2921501 0.1138059 2.459591 0.07893441 1.178868</span></span>
+<span><span class="co">#&gt; 5 0.2614468 0.1480221 2.441586 0.05491800 1.135959</span></span>
+<span><span class="co">#&gt; 6 0.3262025 0.1552445 2.430648 0.05722099 1.164637</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -956,7 +956,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 37 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
