@@ -234,7 +234,7 @@ bru.opt.list <- list(
   bru_max_iter = 70, # maximum number of iterations
   # bru_method = list(max_step = 0.5),
   bru_initial = th.init # parameters' initial values
-) 
+)
 ```
 
 Note: In the option list, one can also set the number of threads allowed for
