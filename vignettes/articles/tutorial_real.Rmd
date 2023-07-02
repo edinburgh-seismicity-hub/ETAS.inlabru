@@ -144,11 +144,10 @@ catalogues exists for the same region and there is no easy way to decide which
 one is better. Here, we provide a subset of the HOmogenized instRUmental Seismic
 (HORUS) catalogue from 1960 to 2020. It can be downloaded from [http://horus.bo.ingv.it/](http://horus.bo.ingv.it/).
 See [data-raw/horus.R](https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R) for details on how the the subset was created from the original data set.
-This HORUS catalogue subset can be loaded using
+This HORUS catalogue subset can be accessed directly using `horus` or `ETAS.inlabru::horus`:
 
 ```{r}
 # load ISIDE catalogue
-data(horus, package = "ETAS.inlabru")
 head(horus)
 ```
 Further documentation of the data set is available via `?horus`.

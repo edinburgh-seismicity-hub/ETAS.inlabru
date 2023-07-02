@@ -41,7 +41,7 @@ ETAS.inlabru format:
 \url{http://horus.bo.ingv.it/}
 }
 \usage{
-data(horus, package = "ETAS.inlabru")
+horus
 }
 \description{
 The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present, limited

@@ -4,7 +4,6 @@
 #' @description The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present, limited
 #' to limited to 1960-2019.
 #'
-#' @usage data(horus, package = "ETAS.inlabru")
 #' @source <http://horus.bo.ingv.it/>
 #'
 #' @references
