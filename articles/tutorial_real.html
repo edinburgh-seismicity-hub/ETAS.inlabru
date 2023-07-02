@@ -132,9 +132,9 @@ Earthquakes are usually described and modelled as marked time points
 where the marking variable is the magnitude of the event. So the history
 of the process is composed by time-magnitude pairs, namely <span class="math inline">\(\mathcal H_t = \{(t_h,m_h), h =
 1,...,N_h\}\)</span>. Various slightly different ETAS formulations
-exists, usually characterized by slightly different triggering
-functions, the one that is implemented in the <code>ETAS.inlabru</code>
-R-package has conditional intensity given by</p>
+exist, usually characterized by slightly different triggering functions,
+the one that is implemented in the <code>ETAS.inlabru</code> R-package
+has conditional intensity given by</p>
 <p><span class="math display">\[
 \lambda(t | \mathcal H_t) = \mu + \sum_{t_h \in \mathcal H_t} K
 \exp\{\alpha(m_h - M_0)\}\left(\frac{t - t_h}{c} + 1\right)^{-p}
@@ -162,7 +162,7 @@ generate more aftershocks.</li>
 parameter, smaller values are associated with catalogues with fewer
 missing events.</li>
 <li>
-<span class="math inline">\(p \geq 1\)</span> an aftershock decay
+<span class="math inline">\(p &gt; 1\)</span> an aftershock decay
 parameter, it determines the rate at which the aftershock activity
 decreases over time. It has to be greater than 1 otherwise an event may
 generate an infinite number of aftershocks in an infinite interval of
@@ -172,7 +172,7 @@ time which is thought to be unphysical.</li>
 <div class="section level2">
 <h2 id="priors">Priors<a class="anchor" aria-label="anchor" href="#priors"></a>
 </h2>
-<p>As any other bayesian analysis we need to decide the priors of the
+<p>As any other Bayesian analysis we need to decide the priors of the
 parameters. The approximation method that we use considers the
 parameters in two different scales: the original ETAS scale, and the
 internal scale. The internal scale is used by the package to perform the
@@ -184,16 +184,15 @@ considering a copula transformation <span class="math inline">\(\eta(X)\)</span>
 functions corresponding to three different distributions:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>gamma_t(X, a, b)</code> for a Gamma distribution with shape
-parameter <code>a</code> and rate <code>b</code>. The distribution is
-such that the mean is <code>\texttt{a}/\texttt{b}</code> and the
-variance is <span class="math inline">\(\texttt{a}/\texttt{b}^2\)</span>.</p></li>
+parameter <span class="math inline">\(a\)</span> and rate <span class="math inline">\(b\)</span>. The distribution is such that the mean
+is <span class="math inline">\(a/b\)</span> and the variance is <span class="math inline">\(a/b^2\)</span>.</p></li>
 <li><p><code>unit_t(X, a, b)</code> for a Uniform distribution between
-<code>a</code> and <code>b</code>.</p></li>
+<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p></li>
 <li><p><code>exp_t(X, r)</code> for an Exponential distribution with
-rate <code>r</code>.</p></li>
+rate <span class="math inline">\(r\)</span>.</p></li>
 <li><p><code>loggaus_t(X, m ,s)</code> for a Log-Gaussian distribution
-with mean of the logarithm <code>m</code> and standard deviation of the
-logarithm <code>s</code>.</p></li>
+with mean of the logarithm <span class="math inline">\(m\)</span> and
+standard deviation of the logarithm <span class="math inline">\(s\)</span>.</p></li>
 </ol>
 <p>The code below generate 1000 observations from a normal distribution,
 transform them using the functions provided by the package, and shows
@@ -285,28 +284,28 @@ distribution as prior with parameters <span class="math inline">\(0.3\)</span> a
 </h2>
 <p>Earthquake data is stored in the so-called earthquake catalogues.
 Many different catalogues exists for the same region and there is no
-easy way to decide which one is better. Here, we provide the HOmogenized
-instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It can be
-downloaded from <a href="http://horus.bo.ingv.it/" class="external-link">http://horus.bo.ingv.it/</a>. A subset
-(see <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R" class="external-link">data-raw/horus.R</a>
-for how the the subset was created) of the information in the Horus
-catalogue can be loaded using</p>
+easy way to decide which one is better. Here, we provide a subset of the
+HOmogenized instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It
+can be downloaded from <a href="http://horus.bo.ingv.it/" class="external-link">http://horus.bo.ingv.it/</a>. See <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R" class="external-link">data-raw/horus.R</a>
+for details on how the the subset was created from the original data
+set. This HORUS catalogue subset can be loaded using</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load ISIDE catalogue</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">horus</span>, package <span class="op">=</span> <span class="st">"ETAS.inlabru"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       lon     lat    M            time_string depth catalog_id event_id</span></span>
-<span><span class="co">#&gt; 1 15.3000 39.3000 6.34 1960-01-03T20:19:34.00   290         -1       NA</span></span>
-<span><span class="co">#&gt; 2 13.1667 43.1333 3.94 1960-01-04T09:20:00.00     0         -1       NA</span></span>
-<span><span class="co">#&gt; 3 12.7000 46.4833 4.69 1960-01-06T15:17:34.00     4         -1       NA</span></span>
-<span><span class="co">#&gt; 4 12.7000 46.4667 4.14 1960-01-06T15:20:53.00     0         -1       NA</span></span>
-<span><span class="co">#&gt; 5 12.7500 46.4333 3.00 1960-01-06T15:31:00.00     0         -1       NA</span></span>
-<span><span class="co">#&gt; 6 12.7500 46.4333 3.00 1960-01-06T15:45:00.00     0         -1       NA</span></span></code></pre></div>
-<p>The data reports for each earthquake the longitude (<code>lon</code>)
-and latitude (<code>lat</code>) of the epicentre, the moment magnitude
-(<code>M</code>), the time as a string (<code>time_string</code>), the
-depth in kilometres (<code>depth</code>), and a catalogue and event
-IDs.</p>
+<span><span class="co">#&gt;           time_string     lon     lat depth    M</span></span>
+<span><span class="co">#&gt; 1 1960-01-03T20:19:34 15.3000 39.3000   290 6.34</span></span>
+<span><span class="co">#&gt; 2 1960-01-04T09:20:00 13.1667 43.1333     0 3.94</span></span>
+<span><span class="co">#&gt; 3 1960-01-06T15:17:34 12.7000 46.4833     4 4.69</span></span>
+<span><span class="co">#&gt; 4 1960-01-06T15:20:53 12.7000 46.4667     0 4.14</span></span>
+<span><span class="co">#&gt; 5 1960-01-06T15:31:00 12.7500 46.4333     0 3.00</span></span>
+<span><span class="co">#&gt; 6 1960-01-06T15:45:00 12.7500 46.4333     0 3.00</span></span></code></pre></div>
+<p>Further documentation of the data set is available via
+<code><a href="../reference/horus.html">?horus</a></code>.</p>
+<p>The data reports for each earthquake the time as a string
+(<code>time_string</code>), longitude (<code>lon</code>) and latitude
+(<code>lat</code>) of the epicentre, the depth in kilometres
+(<code>depth</code>), and the moment magnitude (<code>M</code>).</p>
 <p>To focus on the L’Aquila seismic sequence is sufficient to retain
 only the observations in a specific space-time-magnitude region that
 include the sequence of interest. For the L’Aquila sequence, we retain
@@ -319,14 +318,14 @@ seismic sequence can be selected similarly.</p>
 verifying the conditions.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># transform time string in Date object</span></span>
-<span><span class="va">time_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="st">" "</span>, <span class="va">horus</span><span class="op">$</span><span class="va">time_string</span><span class="op">)</span></span>
-<span><span class="va">horus</span><span class="op">$</span><span class="va">time_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="va">time_string</span>,</span>
-<span>  format <span class="op">=</span> <span class="st">"%Y-%m-%d %H:%M:%OS"</span></span>
+<span><span class="va">horus</span><span class="op">$</span><span class="va">time_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span></span>
+<span>  <span class="va">horus</span><span class="op">$</span><span class="va">time_string</span>,</span>
+<span>  format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%OS"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># set up parameters for selection</span></span>
-<span><span class="va">start.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2009-01-01 00:00:00"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%d %H:%M:%OS"</span><span class="op">)</span></span>
-<span><span class="va">end.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2010-01-01 00:00:00"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%d %H:%M:%OS"</span><span class="op">)</span></span>
+<span><span class="va">start.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2009-01-01T00:00:00"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%OS"</span><span class="op">)</span></span>
+<span><span class="va">end.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2010-01-01T00:00:00"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%OS"</span><span class="op">)</span></span>
 <span><span class="va">min.longitude</span> <span class="op">&lt;-</span> <span class="fl">10.5</span></span>
 <span><span class="va">max.longitude</span> <span class="op">&lt;-</span> <span class="fl">16</span></span>
 <span><span class="va">min.latitude</span> <span class="op">&lt;-</span> <span class="fl">40.5</span></span>
@@ -370,9 +369,9 @@ each event. The names are fixed and should not be changed</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up data.frame for model fitting</span></span>
 <span><span class="va">aquila.bru</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">$</span><span class="va">time_date</span>, <span class="va">start.date</span>,</span>
-<span>    units <span class="op">=</span> <span class="st">"days"</span></span>
-<span>  <span class="op">)</span><span class="op">)</span>,</span>
+<span>  ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">$</span><span class="va">time_date</span>, <span class="va">start.date</span>, units <span class="op">=</span> <span class="st">"days"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
 <span>  magnitudes <span class="op">=</span> <span class="va">aquila</span><span class="op">$</span><span class="va">M</span>,</span>
 <span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -413,9 +412,6 @@ when the stopping criterion is met. However, setting
 <code>max_step</code> to values smaller than 1 forces the algorithm to
 run for exactly <code>bru_max_iter</code> iterations.</li>
 <li>
-<code>num.threads</code>: number of cores to be used in
-parallel.</li>
-<li>
 <code>bru_method</code>: for what is relevant here, the only thing
 that we may need to set is the <code>max_step</code> argument. If the
 algorithm does not converge without fixing a <code>max_step</code> then
@@ -431,10 +427,14 @@ created before.</li>
 <span><span class="va">bru.opt.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  bru_verbose <span class="op">=</span> <span class="fl">3</span>, <span class="co"># type of visual output</span></span>
 <span>  bru_max_iter <span class="op">=</span> <span class="fl">70</span>, <span class="co"># maximum number of iterations</span></span>
-<span>  num.threads <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Increase this if your computer has multiple cores</span></span>
 <span>  <span class="co"># bru_method = list(max_step = 0.5),</span></span>
-<span>  bru_initial <span class="op">=</span> <span class="va">th.init</span></span>
-<span><span class="op">)</span> <span class="co"># parameters initial values</span></span></code></pre></div>
+<span>  bru_initial <span class="op">=</span> <span class="va">th.init</span> <span class="co"># parameters' initial values</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Note: In the option list, one can also set the number of threads
+allowed for INLA here, e.g. with <code>num.threads = 8</code>. This
+would override the global option that was set at the beginning of this
+tutorial. For code likely to be run on many different systems, using the
+global setting is easier to manage.</p>
 </div>
 <div class="section level2">
 <h2 id="model-fitting">Model fitting<a class="anchor" aria-label="anchor" href="#model-fitting"></a>
@@ -488,7 +488,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.931934</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  3.071187</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -570,13 +570,13 @@ corresponding to the ETAS parameters</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          mu          K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.2990805 0.13949969 2.424028 0.06946489 1.185944</span></span>
-<span><span class="co">#&gt; 2 0.2860917 0.09195097 2.433082 0.11427121 1.221701</span></span>
-<span><span class="co">#&gt; 3 0.3402980 0.13290160 2.440989 0.06545688 1.168804</span></span>
-<span><span class="co">#&gt; 4 0.3000236 0.17097384 2.383898 0.06833063 1.188854</span></span>
-<span><span class="co">#&gt; 5 0.2559626 0.16456810 2.385152 0.06995065 1.193914</span></span>
-<span><span class="co">#&gt; 6 0.2654373 0.17591492 2.414959 0.05521604 1.178278</span></span></code></pre></div>
+<span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
+<span><span class="co">#&gt; 1 0.2875381 0.1297894 2.442578 0.07528043 1.176927</span></span>
+<span><span class="co">#&gt; 2 0.2964809 0.1407247 2.454437 0.06276969 1.170890</span></span>
+<span><span class="co">#&gt; 3 0.2999463 0.1425696 2.456066 0.05683390 1.162561</span></span>
+<span><span class="co">#&gt; 4 0.3079564 0.1397565 2.442071 0.05668613 1.135177</span></span>
+<span><span class="co">#&gt; 5 0.2770126 0.1215546 2.440510 0.07311773 1.171568</span></span>
+<span><span class="co">#&gt; 6 0.2816262 0.0975546 2.449249 0.09279953 1.200078</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -956,7 +956,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 30 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 32 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
