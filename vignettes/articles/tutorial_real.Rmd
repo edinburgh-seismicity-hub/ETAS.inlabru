@@ -139,9 +139,12 @@ inv.link.f <- list(
 
 # L'Aquila seismic sequence
 
-Earthquake data is stored in the so-called earthquake catalogues. Many different catalogues exists for the same region and there is no easy way to decide which one is better. Here, we provide the HOmogenized instRUmental Seismic (HORUS) catalogue from 1960 to 2020. It can be downloaded from [http://horus.bo.ingv.it/](http://horus.bo.ingv.it/).
-A subset (see [data-raw/horus.R](https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R) for how the the subset was created)
-of the information in the Horus catalogue can be loaded using
+Earthquake data is stored in the so-called earthquake catalogues. Many different
+catalogues exists for the same region and there is no easy way to decide which
+one is better. Here, we provide a subset of the HOmogenized instRUmental Seismic
+(HORUS) catalogue from 1960 to 2020. It can be downloaded from [http://horus.bo.ingv.it/](http://horus.bo.ingv.it/).
+See [data-raw/horus.R](https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/R/AnalysingPosteriors.R) for details on how the the subset was created from the original data set.
+This HORUS catalogue subset can be loaded using
 
 ```{r}
 # load ISIDE catalogue

@@ -43,7 +43,7 @@ ETAS.inlabru format:
 data(horus, package = "ETAS.inlabru")
 }
 \description{
-The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present
+The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 through 2019.
 }
 \details{
 The original entire HORUS catalog is provided as a single tab separated ascii file:
@@ -51,7 +51,7 @@ in \code{HORUS_Ita_Catalog.txt} a random second decimal digit is added to ML and
 bulletin (ISIDe) before computing Mw proxies (Lolli et al., Seism. Res. Lett., 91,
 3208-3222, doi: 10.1785/0220200148), in \code{HORUS_Ita_Catalog_o.txt} the original ML and Md
 are used to compute Mw proxies. \code{ETAS.inlabru} includes a reformatted version
-of the data from \code{HORUS_Ita_Catalog.txt} as a \code{data.frame}.
+of the data from \code{HORUS_Ita_Catalog.txt} as a \code{data.frame}, limited to 1960-2019.
 
 The data are provided as they are, no express or implied warranty is given.
 }

@@ -1,7 +1,7 @@
 #' @name horus
 #' @title HORUS Ita Catalogue
 #' @docType data
-#' @description The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present
+#' @description The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 through 2019.
 #'
 #' @usage data(horus, package = "ETAS.inlabru")
 #' @source <http://horus.bo.ingv.it/>
@@ -20,7 +20,7 @@
 #' bulletin (ISIDe) before computing Mw proxies (Lolli et al., Seism. Res. Lett., 91,
 #' 3208-3222, doi: 10.1785/0220200148), in `HORUS_Ita_Catalog_o.txt` the original ML and Md
 #' are used to compute Mw proxies. `ETAS.inlabru` includes a reformatted version
-#' of the data from `HORUS_Ita_Catalog.txt` as a `data.frame`.
+#' of the data from `HORUS_Ita_Catalog.txt` as a `data.frame`, limited to 1960-2019.
 #'
 #' The data are provided as they are, no express or implied warranty is given.
 #'

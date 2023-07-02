@@ -53,7 +53,8 @@ horus <-
   horus_orig %>%
   dplyr::filter(
     # Only keep earthquakes:
-    Ev..type != "x"
+    Ev..type != "x",
+    as.numeric(Year) < 2020
   ) %>%
   dplyr::select(
     "time_string" = time_string,
