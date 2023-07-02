@@ -40,19 +40,18 @@
 #'   \item{`Geo.Ita`}{`"*"` indicates that the epicenter is within the Italian
 #'     mainland territory, otherwise `" "`}
 #'   \item{`Geo.CPTI15`}{`"*"` indicates that the epicenter is within the spatial
-#'     window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng, doi: 10.1007/s10518-020-00818-y)}
+#'     window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng,
+#'     doi: 10.1007/s10518-020-00818-y)}
 #'   \item{`Ev..type`}{`"x"` indicates that the event is not an earthquake
 #'     (e.g. explosion, eruption, landslide, ...) (only since May 1st 2012)}
 #'   \item{`Iside.n.`}{ISIDe id number (only since April 16th 2005)}
 #' }
 #' ETAS.inlabru format:
 #' \describe{
+#'   \item{`time_String`:}{Combination of original `Year`, `Mo`, `Da`, `Mi`, and `Se`}
 #'   \item{`lon`:}{Original `Lon`}
 #'   \item{`lat`:}{Original `Lat`}
-#'   \item{`M`:}{Original `Mw`}
-#'   \item{`time_String`:}{Combination of original `Year`, `Mo`, `Da`, `Mi`, and `Se`}
 #'   \item{`depth`}{Original `Depth`}
-#'   \item{`catalog_id`}{???}
-#'   \item{`event_id`}{???}
+#'   \item{`M`:}{Original `Mw`}
 #' }
 NULL

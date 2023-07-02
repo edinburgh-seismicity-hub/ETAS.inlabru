@@ -21,20 +21,19 @@ Original file format:
 \item{\code{Geo.Ita}}{\code{"*"} indicates that the epicenter is within the Italian
 mainland territory, otherwise \code{" "}}
 \item{\code{Geo.CPTI15}}{\code{"*"} indicates that the epicenter is within the spatial
-window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng, doi: 10.1007/s10518-020-00818-y)}
+window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng,
+doi: 10.1007/s10518-020-00818-y)}
 \item{\code{Ev..type}}{\code{"x"} indicates that the event is not an earthquake
 (e.g. explosion, eruption, landslide, ...) (only since May 1st 2012)}
 \item{\code{Iside.n.}}{ISIDe id number (only since April 16th 2005)}
 }
 ETAS.inlabru format:
 \describe{
+\item{\code{time_String}:}{Combination of original \code{Year}, \code{Mo}, \code{Da}, \code{Mi}, and \code{Se}}
 \item{\code{lon}:}{Original \code{Lon}}
 \item{\code{lat}:}{Original \code{Lat}}
-\item{\code{M}:}{Original \code{Mw}}
-\item{\code{time_String}:}{Combination of original \code{Year}, \code{Mo}, \code{Da}, \code{Mi}, and \code{Se}}
 \item{\code{depth}}{Original \code{Depth}}
-\item{\code{catalog_id}}{???}
-\item{\code{event_id}}{???}
+\item{\code{M}:}{Original \code{Mw}}
 }
 }
 \source{

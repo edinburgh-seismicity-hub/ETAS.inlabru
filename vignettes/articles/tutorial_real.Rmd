@@ -149,7 +149,7 @@ data(horus, package = "ETAS.inlabru")
 head(horus)
 ```
 
-The data reports for each earthquake the longitude (`lon`) and latitude (`lat`) of the epicentre, the moment magnitude (`M`), the time as a string (`time_string`), the depth in kilometres (`depth`), and a catalogue and event IDs.   
+The data reports for each earthquake the time as a string (`time_string`), longitude (`lon`) and latitude (`lat`) of the epicentre, the depth in kilometres (`depth`), and the moment magnitude (`M`).
 
 To focus on the L'Aquila seismic sequence is sufficient to retain only the observations in a specific space-time-magnitude region that include the sequence of interest. For the L'Aquila sequence, we retain all the events with magnitude greater or equal than $2.5$ happened during 2009 with longitude in $(10.5, 16)$ and latitude in $(40.5, 45)$. The L'Aquila sequence selected in this way should be composed by 1024 events. Any other seismic sequence can be selected similarly.
 
@@ -199,9 +199,9 @@ We need to prepare a `data.frame` to be used as input data to fit the ETAS model
 ```{r}
 # set up data.frame for model fitting
 aquila.bru <- data.frame(
-  ts = as.numeric(difftime(aquila$time_date, start.date,
-    units = "days"
-  )),
+  ts = as.numeric(
+    difftime(aquila$time_date, start.date, units = "days")
+  ),
   magnitudes = aquila$M,
   idx.p = 1:nrow(aquila)
 )
@@ -224,7 +224,6 @@ Lastly, we need to set the `list` of `inlabru` options. The main elements of the
 
 * `bru_verbose`: number indicating the type of diagnostic output. Set it to 0 for no output.
 * `bru_max_iter`: maximum number of iterations. If we do not set `max_step` the `inlabru` algorithm stops when the stopping criterion is met. However, setting `max_step` to values smaller than 1 forces the algorithm to run for exactly `bru_max_iter` iterations.
-* `num.threads`: number of cores to be used in parallel.
 * `bru_method`: for what is relevant here, the only thing that we may need to set is the `max_step` argument. If the algorithm does not converge without fixing a `max_step` then we suggest to try to fix it to some value below 1, in our experience $0.5$ or $0.2$ works well. In the example below the line setting `bru_method` is commented.
 * `bru_initial`: `list` of initial values created before.
 
@@ -233,11 +232,15 @@ Lastly, we need to set the `list` of `inlabru` options. The main elements of the
 bru.opt.list <- list(
   bru_verbose = 3, # type of visual output
   bru_max_iter = 70, # maximum number of iterations
-  num.threads = 2, # Increase this if your computer has multiple cores
   # bru_method = list(max_step = 0.5),
-  bru_initial = th.init
-) # parameters initial values
+  bru_initial = th.init # parameters' initial values
+) 
 ```
+
+Note: In the option list, one can also set the number of threads allowed for
+INLA here, e.g. with `num.threads = 8`.  This would override the global option
+that was set at the beginning of this tutorial.  For code likely to be run on
+many different systems, using the global setting is easier to manage.
 
 
 # Model fitting
