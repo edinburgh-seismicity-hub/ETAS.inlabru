@@ -14,10 +14,10 @@ Online documentation:
 
 ## Authors
 
-- Francesco Serafini
+- [Dr Francesco Serafini](https://scholar.google.com/citations?user=NVDOxTcAAAAJ&hl=en)
 - [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/) , School of GeoSciences, University of Edinburgh
-- Prof Finn Lindgren, School of Mathematics, University of Edinburgh
-- Dr Kirsty Bayliss, Global Earthquake Model (GEM)
+- [Prof Finn Lindgren](https://www.maths.ed.ac.uk/~flindgre/) , School of Mathematics, University of Edinburgh
+- [Dr Kirsty Bayliss](https://www.linkedin.com/in/kirsty-bayliss-9a6604a1/?originalSubdomain=uk) , Global Earthquake Model (GEM)
 
 ## Funding
 
@@ -104,7 +104,7 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 - Add inversion modelling based on original code
 - Modify the implementation so that the generic Hawkes code can go into
   inlabru and the ETAS triggering function code stay in this package
-- Implement time varying incompleteness model (Farnaz Kamranzad)
+- Implement time varying incompleteness model by [Farnaz Kamranzad] (https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
 
 ## Roadmap
 
