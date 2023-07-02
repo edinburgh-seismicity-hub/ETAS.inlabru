@@ -1,7 +1,8 @@
 #' @name horus
 #' @title HORUS Ita Catalogue
 #' @docType data
-#' @description The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 through 2019.
+#' @description The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present, limited
+#' to limited to 1960-2019.
 #'
 #' @usage data(horus, package = "ETAS.inlabru")
 #' @source <http://horus.bo.ingv.it/>
@@ -48,7 +49,8 @@
 #' }
 #' ETAS.inlabru format:
 #' \describe{
-#'   \item{`time_String`:}{Combination of original `Year`, `Mo`, `Da`, `Mi`, and `Se`}
+#'   \item{`time_string`:}{Data-time of the event, in ISO 8601 format;
+#'   `format = "%Y-%m-%dT%H:%M:%OS"` for use with `as.POSIXct()`}
 #'   \item{`lon`:}{Original `Lon`}
 #'   \item{`lat`:}{Original `Lat`}
 #'   \item{`depth`}{Original `Depth`}

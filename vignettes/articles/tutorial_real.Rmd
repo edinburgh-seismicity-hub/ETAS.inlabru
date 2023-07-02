@@ -151,6 +151,7 @@ This HORUS catalogue subset can be loaded using
 data(horus, package = "ETAS.inlabru")
 head(horus)
 ```
+Further documentation of the data set is available via `?horus`.
 
 The data reports for each earthquake the time as a string (`time_string`), longitude (`lon`) and latitude (`lat`) of the epicentre, the depth in kilometres (`depth`), and the moment magnitude (`M`).
 
@@ -160,14 +161,14 @@ To do the selection is convenient to transform the time string in a `Date` objec
 
 ```{r}
 # transform time string in Date object
-time_string <- gsub("T", " ", horus$time_string)
-horus$time_date <- as.POSIXct(time_string,
-  format = "%Y-%m-%d %H:%M:%OS"
+horus$time_date <- as.POSIXct(
+  horus$time_string,
+  format = "%Y-%m-%dT%H:%M:%OS"
 )
 
 # set up parameters for selection
-start.date <- as.POSIXct("2009-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%OS")
-end.date <- as.POSIXct("2010-01-01 00:00:00", format = "%Y-%m-%d %H:%M:%OS")
+start.date <- as.POSIXct("2009-01-01T00:00:00", format = "%Y-%m-%dT%H:%M:%OS")
+end.date <- as.POSIXct("2010-01-01T00:00:00", format = "%Y-%m-%dT%H:%M:%OS")
 min.longitude <- 10.5
 max.longitude <- 16
 min.latitude <- 40.5

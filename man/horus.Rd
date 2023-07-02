@@ -29,7 +29,8 @@ doi: 10.1007/s10518-020-00818-y)}
 }
 ETAS.inlabru format:
 \describe{
-\item{\code{time_String}:}{Combination of original \code{Year}, \code{Mo}, \code{Da}, \code{Mi}, and \code{Se}}
+\item{\code{time_string}:}{Data-time of the event, in ISO 8601 format;
+\code{format = "\%Y-\%m-\%dT\%H:\%M:\%OS"} for use with \code{as.POSIXct()}}
 \item{\code{lon}:}{Original \code{Lon}}
 \item{\code{lat}:}{Original \code{Lat}}
 \item{\code{depth}}{Original \code{Depth}}
@@ -43,7 +44,8 @@ ETAS.inlabru format:
 data(horus, package = "ETAS.inlabru")
 }
 \description{
-The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 through 2019.
+The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present, limited
+to limited to 1960-2019.
 }
 \details{
 The original entire HORUS catalog is provided as a single tab separated ascii file:
