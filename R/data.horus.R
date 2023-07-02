@@ -56,4 +56,4 @@
 #'   \item{`depth`}{Original `Depth`}
 #'   \item{`M`:}{Original `Mw`}
 #' }
-NULL
+"horus"
