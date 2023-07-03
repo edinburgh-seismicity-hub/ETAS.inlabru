@@ -1,5 +1,5 @@
 ---
-title: "Generating synthetic temporal ETAS catalogues"
+title: "2a Temporal Model: Generating synthetic temporal ETAS catalogues"
 ---
 
 ```{r, include = FALSE}

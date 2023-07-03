@@ -1,5 +1,5 @@
 ---
-title: "Exploratory Data Analysis: Italian Earthquake Catalogue - Horus"
+title: "1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus"
 author: "Mark Naylor"
 date: "2023-06-27"
 output: html_document

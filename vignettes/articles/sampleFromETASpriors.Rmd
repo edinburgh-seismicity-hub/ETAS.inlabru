@@ -1,0 +1,21 @@
+---
+title: "2b Temporal Model: Presenting samples drawn from the ETAS priors"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ETAS.inlabru)
+library(ggplot2)
+library(dplyr)
+#library(tidyquant)
+```
+
+# Sampling ETAS Priors
+
+It is important to check that the priors are broad enough that we expect the the model parameterisation to lie within them. This notebook shows how to draw samples from the priors and present them and the resulting triggering functions.

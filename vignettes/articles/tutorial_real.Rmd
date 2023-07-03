@@ -1,5 +1,5 @@
 ---
-title: "Tutorial on real data"
+title: "2d Temporal Model: Tutorial on real data"
 author: "Francesco Serafini"
 date: "2023-06-27"
 output: html_document

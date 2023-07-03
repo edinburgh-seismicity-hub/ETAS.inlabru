@@ -1,5 +1,5 @@
 ---
-title: "Tutorial on synthetic data"
+title: "2c Temporal Model: Tutorial on synthetic data"
 author: "Francesco Serafini"
 date: "2023-06-29"
 output: html_document
