@@ -87,6 +87,11 @@ ggplot() + geom_sf(data = italy.map) + theme_bw()
 
 ## Histogram of event depths
 
+```{r}
+hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths" )
+```
+
+
 ```{r Depth histogram, eval=FALSE, include=FALSE}
 ggplot(df_cat, aes( x="depth" )) + 
   geom_histogram( ) + 
