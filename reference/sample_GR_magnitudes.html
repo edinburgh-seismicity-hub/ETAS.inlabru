@@ -24,11 +24,12 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a>
-    <a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">Generating synthetic temporal ETAS catalogues</a>
+    <a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a>
+    <a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">2a Temporal Model: Generating synthetic temporal ETAS catalogues</a>
+    <a class="dropdown-item" href="../articles/sampleFromETASpriors.html">2b Temporal Model: Presenting samples drawn from the ETAS priors</a>
     <a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a>
-    <a class="dropdown-item" href="../articles/tutorial_real.html">Tutorial on real data</a>
-    <a class="dropdown-item" href="../articles/tutorial_synth.html">Tutorial on synthetic data</a>
+    <a class="dropdown-item" href="../articles/tutorial_real.html">2d Temporal Model: Tutorial on real data</a>
+    <a class="dropdown-item" href="../articles/tutorial_synth.html">2c Temporal Model: Tutorial on synthetic data</a>
   </div>
 </li>
 <li class="nav-item">
@@ -88,19 +89,19 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">sample_GR_magnitudes</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, beta.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, M0 <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 2.722849 2.582393 3.024660 2.733507 2.529267 2.698230 3.431753 3.260953</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [9] 2.650463 2.691704 2.576572 2.729816 3.235823 2.631213 2.829799 2.824295</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [17] 2.528455 2.806634 2.798741 3.505738 2.660921 3.158023 2.884738 2.638515</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] 2.556970 3.120169 2.838795 2.968702 2.558201 4.824592 2.782388 2.640655</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [33] 2.822370 2.752602 2.624318 2.881316 3.006883 2.599422 2.834572 2.738514</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] 4.328084 3.258951 3.127287 2.565637 2.626546 2.593538 2.800719 3.367017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] 2.553638 2.618945 3.648728 3.371058 2.781148 2.532806 3.708504 3.041621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] 3.056910 2.674339 2.550865 2.942504 2.736952 2.977078 2.935630 3.209564</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [65] 2.617963 2.838306 2.627278 2.535282 2.700256 2.583471 2.513518 2.576704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] 2.823953 2.868594 2.544217 4.260388 4.883589 3.171008 2.819100 2.605412</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] 2.976739 2.749235 2.823902 2.776735 2.640741 3.169122 3.706600 2.613261</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [89] 2.957361 2.809391 3.737236 3.012176 2.585299 2.574018 2.823521 4.432838</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] 2.598904 2.561152 2.601299 3.013012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] 3.782411 2.882975 2.636240 2.635088 3.051574 3.279676 2.523098 3.178869</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [9] 2.797164 2.577356 2.564729 2.541284 2.698569 3.200097 2.593103 3.997489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [17] 2.564679 2.535377 2.760022 3.384844 3.143720 2.724627 3.536243 4.099784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] 2.739050 2.923180 2.912347 2.779520 2.531256 2.506728 2.846683 2.928756</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [33] 2.986639 3.148837 2.781374 2.613431 2.780962 2.640830 2.761699 3.417692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] 2.509729 2.576234 2.512377 2.904925 2.917346 3.036495 2.593355 3.179065</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] 3.212861 2.692665 2.550265 2.995275 2.834230 2.539322 2.796439 2.758306</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] 3.002400 2.653811 3.037151 2.892939 3.818341 4.269291 2.856068 2.940818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [65] 2.649670 3.020772 2.630095 2.932609 3.060205 2.690585 2.912065 2.825443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] 2.857264 3.642672 3.073019 2.597036 2.629205 2.960152 3.195328 3.339618</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] 3.042801 3.200441 2.580331 2.740955 2.514472 4.817742 2.864164 3.016500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [89] 2.718052 2.528462 2.850257 3.029099 2.671009 2.937640 2.555874 2.669804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] 2.720096 3.014481 2.913222 2.652641</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
