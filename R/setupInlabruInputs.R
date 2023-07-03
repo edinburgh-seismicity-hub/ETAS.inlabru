@@ -117,17 +117,21 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
   }
   #
   # catalog preparation
-  start.date <- as.POSIXct(start.date, format = "%Y-%m-%d %H:%M:%OS")
-  end.date <- as.POSIXct(end.date)
+  start.date <- as.POSIXct(
+    start.date,
+    tryFormats = c("%Y-%m-%d %H:%M:%OS", "%Y-%m-%dT%H:%M:%OS")
+  )
+  end.date <- as.POSIXct(
+    end.date,
+    tryFormats = c("%Y-%m-%d %H:%M:%OS", "%Y-%m-%dT%H:%M:%OS")
+  )
   catalog <- catalog %>%
-    dplyr::mutate(time_date = as.POSIXct(
-      gsub(
-        pattern = "T",
-        replacement = " ",
-        x = .data$time_string
-      ),
-      format = "%Y-%m-%d %H:%M:%OS"
-    )) %>%
+    dplyr::mutate(
+      time_date = as.POSIXct(
+        .data$time_string,
+        tryFormats = c("%Y-%m-%d %H:%M:%OS", "%Y-%m-%dT%H:%M:%OS")
+      )
+    ) %>%
     dplyr::filter(
       .data$time_date >= start.date,
       .data$time_date <= end.date,

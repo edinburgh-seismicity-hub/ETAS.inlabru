@@ -3,7 +3,7 @@
 \docType{data}
 \name{horus}
 \alias{horus}
-\title{HOURS Ita Catalogue}
+\title{HORUS Ita Catalogue}
 \format{
 Original file format:
 \describe{
@@ -21,30 +21,31 @@ Original file format:
 \item{\code{Geo.Ita}}{\code{"*"} indicates that the epicenter is within the Italian
 mainland territory, otherwise \code{" "}}
 \item{\code{Geo.CPTI15}}{\code{"*"} indicates that the epicenter is within the spatial
-window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng, doi: 10.1007/s10518-020-00818-y)}
+window of the CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng,
+doi: 10.1007/s10518-020-00818-y)}
 \item{\code{Ev..type}}{\code{"x"} indicates that the event is not an earthquake
 (e.g. explosion, eruption, landslide, ...) (only since May 1st 2012)}
 \item{\code{Iside.n.}}{ISIDe id number (only since April 16th 2005)}
 }
 ETAS.inlabru format:
 \describe{
+\item{\code{time_string}:}{Data-time of the event, in ISO 8601 format;
+\code{format = "\%Y-\%m-\%dT\%H:\%M:\%OS"} for use with \code{as.POSIXct()}}
 \item{\code{lon}:}{Original \code{Lon}}
 \item{\code{lat}:}{Original \code{Lat}}
-\item{\code{M}:}{Original \code{Mw}}
-\item{\code{time_String}:}{Combination of original \code{Year}, \code{Mo}, \code{Da}, \code{Mi}, and \code{Se}}
 \item{\code{depth}}{Original \code{Depth}}
-\item{\code{catalog_id}}{???}
-\item{\code{event_id}}{???}
+\item{\code{M}:}{Original \code{Mw}}
 }
 }
 \source{
 \url{http://horus.bo.ingv.it/}
 }
 \usage{
-data(horus, package = "ETAS.inlabru")
+horus
 }
 \description{
-The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present
+The HOmogenized instRUmental Seismic catalog (HORUS) of Italy from 1960 to present, limited
+to limited to 1960-2019.
 }
 \details{
 The original entire HORUS catalog is provided as a single tab separated ascii file:
@@ -52,7 +53,7 @@ in \code{HORUS_Ita_Catalog.txt} a random second decimal digit is added to ML and
 bulletin (ISIDe) before computing Mw proxies (Lolli et al., Seism. Res. Lett., 91,
 3208-3222, doi: 10.1785/0220200148), in \code{HORUS_Ita_Catalog_o.txt} the original ML and Md
 are used to compute Mw proxies. \code{ETAS.inlabru} includes a reformatted version
-of the data from \code{HORUS_Ita_Catalog.txt} as a \code{data.frame}.
+of the data from \code{HORUS_Ita_Catalog.txt} as a \code{data.frame}, limited to 1960-2019.
 
 The data are provided as they are, no express or implied warranty is given.
 }
@@ -64,3 +65,4 @@ Seismol. Res. Lett, doi: 10.1785/0220200148.
 (1) Istituto Nazionale di Geofisica e Vulcanologia, Sezione di Bologna
 (2) Dipartimento di Fisica e Astronomia, Università di Bologna
 }
+\keyword{datasets}

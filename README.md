@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit the .Rmd file -->
 
 # ETAS.inlabru
 
@@ -14,15 +14,23 @@ Online documentation:
 
 ## Authors
 
-- [Dr Francesco Serafini](https://scholar.google.com/citations?user=NVDOxTcAAAAJ&hl=en)
-- [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/) , School of GeoSciences, University of Edinburgh
-- [Prof Finn Lindgren](https://www.maths.ed.ac.uk/~flindgre/) , School of Mathematics, University of Edinburgh
-- [Dr Kirsty Bayliss](https://www.linkedin.com/in/kirsty-bayliss-9a6604a1/?originalSubdomain=uk) , Global Earthquake Model (GEM)
+- [Dr Francesco
+  Serafini](https://scholar.google.com/citations?user=NVDOxTcAAAAJ&hl=en)
+- [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/) , School of
+  GeoSciences, University of Edinburgh
+- [Prof Finn Lindgren](https://www.maths.ed.ac.uk/~flindgre/) , School
+  of Mathematics, University of Edinburgh
+- [Dr Kirsty
+  Bayliss](https://www.linkedin.com/in/kirsty-bayliss-9a6604a1/?originalSubdomain=uk)
+  , Global Earthquake Model (GEM)
 
 ## Funding
 
-- This study was funded by yhe Real-Time Earthquake Risk Reduction for a Resilient Europe [RISE project](http://www.rise-eu.org/home/) , which has received funding from the European Union's Horizon 2020 Research and Innovation Program under grant Agreement 821115. 
-- Naylor was additionally funded by the NSFGEO-NERC grant NE/R000794/1. 
+- This study was funded by yhe Real-Time Earthquake Risk Reduction for a
+  Resilient Europe [RISE project](http://www.rise-eu.org/home/) , which
+  has received funding from the European Union’s Horizon 2020 Research
+  and Innovation Program under grant Agreement 821115.
+- Naylor was additionally funded by the NSFGEO-NERC grant NE/R000794/1.
 - Bayliss was funded by an EPSRC Studentship.
 
 ## Installation
@@ -104,7 +112,8 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 - Add inversion modelling based on original code
 - Modify the implementation so that the generic Hawkes code can go into
   inlabru and the ETAS triggering function code stay in this package
-- Implement time varying incompleteness model by [Farnaz Kamranzad](https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
+- Implement time varying incompleteness model by [Farnaz
+  Kamranzad](https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
 
 ## Roadmap
 

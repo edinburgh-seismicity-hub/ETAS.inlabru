@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit the .Rmd file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -20,20 +20,22 @@ knitr::opts_chunk$set(
 
 R package that implements the ETAS Hawkes process for modelling seismicity
 
-The Epidemic Type Aftershock Sequence Model (ETAS) models seismicity as a self exciting sequence where all earthquakes can trigger new events within a brancing sequence. It is widely used in seismology for modelling active earthquake sequences.
-
-One of the challenges with this model is fitting the model parameters. Most methods use Expectation Maximisation to obtain point estimates of the ETAS parameters. Instead, `ETAS.inlabru` is a Bayesian method which returns joint posteriors for the ETAS parameters - this makes it easier to explore how sources of uncertainty introduce systematic bias in parameter estimates. The method is fast, which make a playful exploration of different synthetic scenarios possible. Also, inlabru makes it easy to incorporate a range of spatial and temporal covariates to help condition the ETAS parameters.
-
-The current implementation focuses on the temporal model - but our roadmap is to implement spatial and spatio-temporal models based on recently published work.
-
 Online documentation: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/
 
 ## Authors
 
-- Francesco Serafini
-- Dr Mark Naylor, School of GeoSciences, University of Edinburgh
-- Prof Finn Lindgren, School of Mathematics, University of Edinburgh
-- Dr Kirsty Bayliss, Global Earthquake Model (GEM)
+- [Dr Francesco Serafini](https://scholar.google.com/citations?user=NVDOxTcAAAAJ&hl=en)
+- [Dr Mark Naylor](https://blogs.ed.ac.uk/mnaylor/) , School of GeoSciences, University of Edinburgh
+- [Prof Finn Lindgren](https://www.maths.ed.ac.uk/~flindgre/) , School of Mathematics, University of Edinburgh
+- [Dr Kirsty Bayliss](https://www.linkedin.com/in/kirsty-bayliss-9a6604a1/?originalSubdomain=uk) , Global Earthquake Model (GEM)
+
+## Funding
+
+- This study was funded by yhe Real-Time Earthquake Risk Reduction for a Resilient Europe
+  [RISE project](http://www.rise-eu.org/home/) , which has received funding from the European
+  Union's Horizon 2020 Research and Innovation Program under grant Agreement 821115. 
+- Naylor was additionally funded by the NSFGEO-NERC grant NE/R000794/1. 
+- Bayliss was funded by an EPSRC Studentship.
 
 ## Installation
 
@@ -94,13 +96,11 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 ## In development
 
 - Add inversion modelling based on original code
-- Modify the implementation so that the generic Hawkes code can go into inlabru and the ETAS triggering function code stay in this package
-- Develop and implement temporal incompleteness censoring model (Kanranzad)
-- Add article on exploratory data analysis of earthquake catalogues (Naylor)
-- Add article on preconditioning the model domain on historic earthquakes (Naylor)
+- Modify the implementation so that the generic Hawkes code can go into
+  inlabru and the ETAS triggering function code stay in this package
+- Implement time varying incompleteness model by [Farnaz Kamranzad](https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
 
 ## Roadmap
 
-- Anisotropic spatial kernels
-- Implementation of spatial model in `ETAS.inlabru` based on work of Bayliss
-- Implementation of spatio-temporal model in `ETAS.inlabru` based on work of Serafini
+- Implement incompleteness fix
+- Integrate spatial modelling
