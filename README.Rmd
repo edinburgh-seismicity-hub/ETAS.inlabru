@@ -20,6 +20,12 @@ knitr::opts_chunk$set(
 
 R package that implements the ETAS Hawkes process for modelling seismicity
 
+The Epidemic Type Aftershock Sequence Model (ETAS) models seismicity as a self exciting sequence where all earthquakes can trigger new events within a brancing sequence. It is widely used in seismology for modelling active earthquake sequences.
+
+One of the challenges with this model is fitting the model parameters. Most methods use Expectation Maximisation to obtain point estimates of the ETAS parameters. Instead, `ETAS.inlabru` is a Bayesian method which returns joint posteriors for the ETAS parameters - this makes it easier to explore how sources of uncertainty introduce systematic bias in parameter estimates. The method is fast, which make a playful exploration of different synthetic scenarios possible. Also, inlabru makes it easy to incorporate a range of spatial and temporal covariates to help condition the ETAS parameters.
+
+The current implementation focuses on the temporal model - but our roadmap is to implement spatial and spatio-temporal models based on recently published work.
+
 Online documentation: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/
 
 ## Authors
@@ -89,9 +95,12 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 
 - Add inversion modelling based on original code
 - Modify the implementation so that the generic Hawkes code can go into inlabru and the ETAS triggering function code stay in this package
+- Develop and implement temporal incompleteness censoring model (Kanranzad)
+- Add article on exploratory data analysis of earthquake catalogues (Naylor)
+- Add article on preconditioning the model domain on historic earthquakes (Naylor)
 
 ## Roadmap
 
-- Implement incompleteness fix
-- Implement pre-model domain history
-- Integrate spatial modelling
+- Anisotropic spatial kernels
+- Implementation of spatial model in `ETAS.inlabru` based on work of Bayliss
+- Implementation of spatio-temporal model in `ETAS.inlabru` based on work of Serafini
