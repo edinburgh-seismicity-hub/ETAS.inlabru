@@ -25,12 +25,11 @@ library(rnaturalearth)
 library(lubridate)
 library(raster)
 library(sf)
-library(sp)
 library(ggspatial)
 library(rnaturalearthdata)
 
 ## This is just the EPSG equivalent of WGS84
-crs_wgs84 <- CRS(SRS_string='EPSG:4326')
+crs_wgs84 <- st_crs('EPSG:4326')
 
 ```
 
@@ -45,9 +44,9 @@ of the information in the Horus catalogue can be loaded using
 data(horus, package = "ETAS.inlabru")
 
 # transform time string in Date object
-time_string <- gsub("T", " ", horus$time_string)
-horus$time_date <- as.POSIXct(time_string,
-  format = "%Y-%m-%d %H:%M:%OS"
+horus$time_date <- as.POSIXct(
+  horus$time_string,
+  format = "%Y-%m-%dT%H:%M:%OS"
 )
 
 head(horus)
@@ -57,19 +56,15 @@ df_cat <- horus
 # add event number
 df_cat$event_num <- seq.int(nrow(df_cat))
 
-# sp version of the catalogue
-df_cat.sp <- data.frame(df_cat)
-sp::coordinates(df_cat.sp) <- c("lon", "lat")
-crs_wgs84 <- CRS(SRS_string='EPSG:4326')
-proj4string(df_cat.sp) <- crs_wgs84
-
 # sf version of the catalogue
-df_cat.sf<- st_as_sf(df_cat.sp)
-
-
+df_cat.sf<- st_as_sf(df_cat,
+                     coords = c("lon", "lat"),
+                     crs = crs_wgs84)
 ```
 
-The data reports for each earthquake the longitude (`lon`) and latitude (`lat`) of the epicentre, the moment magnitude (`M`), the time as a string (`time_string`), the depth in kilometres (`depth`), and a catalogue and event IDs.   
+The data reports for each earthquake the time as a string (`time_string`),
+the longitude (`lon`) and latitude (`lat`) of the epicentre, the depth in
+kilometres (`depth`), and the moment magnitude (`M`).   
 
 
 # Whole Italy EDA
