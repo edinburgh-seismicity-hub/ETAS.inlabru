@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Setup
+
 ## Load Packages
 
 ```{r setup, include=TRUE,message=FALSE,warning=FALSE}
@@ -67,10 +69,7 @@ The data reports for each earthquake the time as a string (`time_string`),
 the longitude (`lon`) and latitude (`lat`) of the epicentre, the depth in
 kilometres (`depth`), and the moment magnitude (`M`).   
 
-
-# Whole Italy EDA
-
-# Get map and extract crs for the map
+## Get map and extract crs for the map
 
 ```{r}
 italy.map <- ne_countries(country = 'Italy', returnclass = "sf", scale = 'medium')
@@ -80,7 +79,8 @@ print(italy.crs)
 ggplot() + geom_sf(data = italy.map) + theme_bw()
 ```
 
-# EDA for the whole Mediteranian catalogue
+
+# Exploratory Data Analysis on the whole of Italy using the Horus catalogue
 
 ## Histogram of event depths
 
@@ -90,8 +90,22 @@ hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of dept
 
 ## Plot of event magnitudes using natural time
 
+Natural time refers to where we plot each event evenly spaced along the x-axis. The advantage of this is that data that occurs in periods of high activity are spread out, which means that we can see structure in the data when the rates are high.
+
+Below we plot the magnitude of the events on the y-axis and natural time on the horizontal.
+
+Some of the observations are:
+
+- There are over 40,000 events with magnitude data
+- There is a cluster of events with $M=0$ which is likely to be an artefact of how the catalogue is generated
+- There are period of time when the data are all rounded to 1 decimal place producing horizontal banding
+- At other times, some of the data is not rounded
+- The sensitivity at the lowest magnitudes varies in time as can be seen by the changes in the lowest magnitudes
+
 ```{r}
-ggplot(df_cat, aes(x=event_num, y=M))  + geom_point(size = 0.1) 
+ggplot(df_cat, aes(x=event_num, y=M))  + 
+  geom_point(size = 0.1) +
+  ggtitle('Magnitude timeseries using natural time')
 ```
 
 ## Plot of event magnitudes using date-time
@@ -144,7 +158,7 @@ ggplot() +
 
 ```
 
-## b-value stability plot for the events in the Horis catalogue
+## b-value stability plot for the events in the Horus catalogue
 
 ```{r National b-value stability}
 
@@ -219,7 +233,8 @@ ggplot() +
   geom_sf(data = df_cat.sf[df_cat$M>6,], size = 0.5, color='red') +
   ggtitle("Map of event locations")
 ```
-# L'Aquila Sequence
+
+# Analysis if the L'Aquila Sequence
 
 To focus on the L Aquila seismic sequence is sufficient to retain only the observations in a specific space-time-magnitude region that include the sequence of interest. For the L'Aquila sequence, we retain all the events with magnitude greater or equal than $2.5$ happened during 2009 with longitude in $(10.5, 16)$ and latitude in $(40.5, 45)$. The L'Aquila sequence selected in this way should be composed by 1024 events. Any other seismic sequence can be selected similarly.
 
