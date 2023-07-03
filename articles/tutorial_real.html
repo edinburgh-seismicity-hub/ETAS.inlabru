@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a>
     <a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">Generating synthetic temporal ETAS catalogues</a>
     <a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a>
     <a class="dropdown-item" href="../articles/tutorial_real.html">Tutorial on real data</a>
@@ -292,7 +293,7 @@ set. This HORUS catalogue subset can be accessed directly using
 <code>horus</code> or <code><a href="../reference/horus.html">ETAS.inlabru::horus</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load ISIDE catalogue</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           time_string     lon     lat depth    M</span></span>
 <span><span class="co">#&gt; 1 1960-01-03T20:19:34 15.3000 39.3000   290 6.34</span></span>
 <span><span class="co">#&gt; 2 1960-01-04T09:20:00 13.1667 43.1333     0 3.94</span></span>
@@ -373,7 +374,7 @@ each event. The names are fixed and should not be changed</p>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">$</span><span class="va">time_date</span>, <span class="va">start.date</span>, units <span class="op">=</span> <span class="st">"days"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  magnitudes <span class="op">=</span> <span class="va">aquila</span><span class="op">$</span><span class="va">M</span>,</span>
-<span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
+<span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>After that, we need to set up the initial values of the parameters
 and the <code>list</code> containing the <code>inlabru</code> options to
@@ -488,7 +489,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.799807</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.654968</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -569,14 +570,14 @@ corresponding to the ETAS parameters</p>
 <span>  ncore <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.2904460 0.1738710 2.410110 0.06083343 1.167545</span></span>
-<span><span class="co">#&gt; 2 0.2661682 0.1462791 2.425208 0.05608443 1.152206</span></span>
-<span><span class="co">#&gt; 3 0.2830024 0.1563456 2.417076 0.05714968 1.152164</span></span>
-<span><span class="co">#&gt; 4 0.2921501 0.1138059 2.459591 0.07893441 1.178868</span></span>
-<span><span class="co">#&gt; 5 0.2614468 0.1480221 2.441586 0.05491800 1.135959</span></span>
-<span><span class="co">#&gt; 6 0.3262025 0.1552445 2.430648 0.05722099 1.164637</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2670001 0.1385322 2.476418 0.06196270 1.171278</span></span>
+<span><span class="co">#&gt; 2 0.2973307 0.1577620 2.388355 0.06301957 1.163773</span></span>
+<span><span class="co">#&gt; 3 0.3119021 0.1560508 2.426703 0.07321235 1.203773</span></span>
+<span><span class="co">#&gt; 4 0.2619369 0.1491708 2.397766 0.06175443 1.142367</span></span>
+<span><span class="co">#&gt; 5 0.3282360 0.1248915 2.426635 0.09948135 1.258124</span></span>
+<span><span class="co">#&gt; 6 0.2894513 0.1105125 2.462798 0.08719585 1.204170</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -768,7 +769,7 @@ maximum likelihood estimator for <span class="math inline">\(\beta\)</span> whic
 of the observed magnitudes values.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># maximum likelihood estimator for beta</span></span>
-<span><span class="va">beta.p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span> <span class="op">-</span> <span class="va">M0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">beta.p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span> <span class="op">-</span> <span class="va">M0</span><span class="op">)</span></span></code></pre></div>
 <p>The function returns a <code>list</code> of <code>data.frame</code>,
 each element of the output <code>list</code> corresponds to a different
 generation. The <code>data.frame</code> have three columns: occurence
@@ -795,14 +796,14 @@ greatest event in the sequence.</p>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>, <span class="co"># cutoff magnitude</span></span>
 <span>  T1 <span class="op">=</span> <span class="va">T1</span>, <span class="co"># starting time</span></span>
 <span>  T2 <span class="op">=</span> <span class="va">T2</span>, <span class="co"># end time</span></span>
-<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># known events</span></span>
+<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># known events</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co"># merge into unique data.frame</span></span>
 <span><span class="va">synth.cat.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">synth.cat.list</span><span class="op">)</span></span>
 <span><span class="co"># order events by time</span></span>
 <span><span class="va">synth.cat.df</span> <span class="op">&lt;-</span> <span class="va">synth.cat.df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span>, <span class="op">]</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">synth.cat.df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gen</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">synth.cat.df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gen</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
 <p>We can easily generate multiple catalogues. The code below generates
@@ -820,7 +821,7 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>,</span>
 <span>  T1 <span class="op">=</span> <span class="va">T1</span>,</span>
 <span>  T2 <span class="op">=</span> <span class="va">T2</span>,</span>
-<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
+<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># store catalogues as list of data.frames</span></span>
@@ -845,7 +846,7 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cat.df.for.plotting</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span><span class="op">)</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"red"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
@@ -906,7 +907,7 @@ the forecasting period.</p>
 <code class="sourceCode R"><span><span class="co"># express 1 minute in days</span></span>
 <span><span class="va">min.in.days</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">24</span> <span class="op">*</span> <span class="fl">60</span><span class="op">)</span></span>
 <span><span class="co"># find time of the event with the greatest magnitude</span></span>
-<span><span class="va">t.max.mag</span> <span class="op">&lt;-</span> <span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">t.max.mag</span> <span class="op">&lt;-</span> <span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co"># set starting time of the forecasting period</span></span>
 <span><span class="va">T1.fore</span> <span class="op">&lt;-</span> <span class="va">t.max.mag</span> <span class="op">+</span> <span class="va">min.in.days</span></span>
 <span><span class="co"># set forecast length</span></span>
@@ -919,7 +920,7 @@ the forecasting period.</p>
 <span><span class="co"># produce forecast</span></span>
 <span><span class="va">daily.fore</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Temporal.ETAS.forecast.html">Temporal.ETAS.forecast</a></span><span class="op">(</span></span>
 <span>  post.samp <span class="op">=</span> <span class="va">post.samp</span>, <span class="co"># ETAS parameters posterior samples</span></span>
-<span>  n.cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span>, <span class="co"># number of synthetic catalogues</span></span>
+<span>  n.cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span>, <span class="co"># number of synthetic catalogues</span></span>
 <span>  beta.p <span class="op">=</span> <span class="va">beta.p</span>, <span class="co"># magnitude distribution parameter</span></span>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>, <span class="co"># cutoff magnitude</span></span>
 <span>  T1 <span class="op">=</span> <span class="va">T1.fore</span>, <span class="co"># forecast starting time</span></span>
@@ -956,7 +957,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 39 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
