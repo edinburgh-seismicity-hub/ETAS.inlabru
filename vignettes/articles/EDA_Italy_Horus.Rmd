@@ -180,7 +180,6 @@ max.index.x <- length(x)-5
 
 for( i in 1:max.index.x ){
   mag.threshold <- x[i]
-  print(mag.threshold)
   mags.subset <- mags[mags > mag.threshold]
   
   N <- length(mags.subset)
@@ -233,7 +232,7 @@ ggplot() +
 ```
 # L'Aquila Sequence
 
-To focus on the L'Aquila seismic sequence is sufficient to retain only the observations in a specific space-time-magnitude region that include the sequence of interest. For the L'Aquila sequence, we retain all the events with magnitude greater or equal than $2.5$ happened during 2009 with longitude in $(10.5, 16)$ and latitude in $(40.5, 45)$. The L'Aquila sequence selected in this way should be composed by 1024 events. Any other seismic sequence can be selected similarly.
+To focus on the L Aquila seismic sequence is sufficient to retain only the observations in a specific space-time-magnitude region that include the sequence of interest. For the L'Aquila sequence, we retain all the events with magnitude greater or equal than $2.5$ happened during 2009 with longitude in $(10.5, 16)$ and latitude in $(40.5, 45)$. The L'Aquila sequence selected in this way should be composed by 1024 events. Any other seismic sequence can be selected similarly.
 
 To do the selection is convenient to transform the time string in a `Date` object and to select the rows of the Horus catalogue verifying the conditions.
 
@@ -245,7 +244,7 @@ max.longitude = 13.75
 min.latitude = 42.2
 max.latitude = 42.5 
 
-```{r Extract l'Aquila subset}
+```{r Extract l Aquila subset}
 eventDate <- ymd_hms( '2009-04-06 00:00:00 BST' )
 endDate <- eventDate + days(400)
 startDate <- eventDate - days(50)
@@ -332,7 +331,6 @@ max.index.x <- length(x)-5
 
 for( i in 1:max.index.x ){
   mag.threshold <- x[i]
-  print(mag.threshold)
   mags.subset <- mags[mags > mag.threshold]
   
   N <- length(mags.subset)
