@@ -68,6 +68,7 @@ The data reports for each earthquake the longitude (`lon`) and latitude (`lat`) 
 ```{r}
 italy.map <- ne_countries(country = 'Italy', returnclass = "sf", scale = 'medium')
 italy.crs <- crs(italy.map)
+print(italy.crs)
 
 ggplot() + geom_sf(data = italy.map) + theme_bw()
 ```
@@ -78,14 +79,6 @@ ggplot() + geom_sf(data = italy.map) + theme_bw()
 
 ```{r}
 hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths" )
-```
-
-
-```{r Depth histogram, eval=FALSE, include=FALSE}
-ggplot(df_cat, aes( x="depth" )) + 
-  geom_histogram( ) + 
-  coord_flip (xlim = c(350, 0) ) +
-  ggtitle("Hight res. histogram of event depths for depth inversion aretfacts")
 ```
 
 ## Plot of event magnitudes using natural time
