@@ -47,7 +47,7 @@ Suggests:
     lemon,
     lubridate,
     patchwork,
-    raster,
+    terra,
     rnaturalearth,
     rnaturalearthdata,
     sn,
