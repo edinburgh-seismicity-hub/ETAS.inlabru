@@ -43,8 +43,12 @@ Imports:
     utils
 Suggests:
     ggpubr,
+    ggspatial,
     lemon,
+    lubridate
     patchwork,
+    rnaturalearth,
+    rnaturalearthdata,
     sn,
     tidyquant
 Additional_repositories: https://inla.r-inla-download.org/R/testing
