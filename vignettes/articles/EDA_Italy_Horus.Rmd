@@ -28,7 +28,7 @@ library(terra)
 library(sf)
 library(ggspatial)
 library(rnaturalearthdata)
-
+library(dplyr)
 library(lubridate)
 
 ## This is just the EPSG equivalent of WGS84
@@ -54,15 +54,19 @@ horus$time_date <- as.POSIXct(
 
 head(horus)
 
+# Set df_cat to be the catalogue we want to analyse and then use this below
 df_cat <- horus
 
-# add event number
+# Add an integer id to each event
 df_cat$event_num <- seq.int(nrow(df_cat))
 
-# sf version of the catalogue
+# Generate an sf version of the catalogue where the longitude and latitude are converted to a point object
 df_cat.sf<- st_as_sf(df_cat,
                      coords = c("lon", "lat"),
                      crs = crs_wgs84)
+
+head(df_cat.sf)
+
 ```
 
 The data reports for each earthquake the time as a string (`time_string`),
@@ -71,12 +75,17 @@ kilometres (`depth`), and the moment magnitude (`M`).
 
 ## Get map and extract crs for the map
 
+We download a polygon file for the national boundary of Italy for use later in this notebook.
+
 ```{r}
 italy.map <- ne_countries(country = 'Italy', returnclass = "sf", scale = 'medium')
 italy.crs <- crs(italy.map)
 print(italy.crs)
 
-ggplot() + geom_sf(data = italy.map) + theme_bw()
+ggplot() + 
+  geom_sf(data = italy.map) + 
+  theme_bw() +
+  ggtitle("Map of the Italian territorial boundary and coastline")
 ```
 
 
@@ -85,7 +94,8 @@ ggplot() + geom_sf(data = italy.map) + theme_bw()
 ## Histogram of event depths
 
 ```{r}
-hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths" )
+hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths", xlab="Depth [km]")
+
 ```
 
 ## Plot of event magnitudes using natural time
@@ -110,17 +120,48 @@ ggplot(df_cat, aes(x=event_num, y=M))  +
 
 ## Plot of event magnitudes using date-time
 
+Here we present the same data as in the previous plot, but plotted against the data-time. Clustered events now sit on top of each other. We get a better representaion of how the data density increases towards the modern day and how the magnitude incompleteness varyies in time.
+
 ```{r Magnitude natural-time series}
 ggplot(df_cat, aes(x=time_date, y=M)) + 
   geom_point(size = 0.1) +
   ggtitle("Horus catalogue magnitude time series")
 ```
 
+The number of events occuring each year is difficult to assess in this plot, so below we group the data by year and count the number of events occuring each year. The plot of this shows how the number of events being recorded each year is gradually increasing. This artefact is due to the gradual increase in the sensitivity of the network, not that the seismicity is systematically increasing.
+
+```{r}
+df_cat$Time <- as.Date(df_cat$time_date)
+ 
+print("Extract year")
+# extract the year and convert to numeric format
+df_cat$Year <- as.numeric(format(df_cat$Time, "%Y"))
+
+countEventsInYear <- df_cat %>%
+  group_by(Year) %>%
+  summarize(counts = n())
+
+plot(countEventsInYear, type="l", main="Annual number of events with M>=4")
+
+```
+
+
 ```{r Magnitude time series}
 # Filtered for M>4
 ggplot(df_cat[df_cat$M>4,], aes(x=time_date, y=M)) + 
   geom_point(size = 0.1) +
   ggtitle("Whole catalogue magnitude timeseries for M>4")
+
+```
+
+```{r}
+
+countEventsInYear <- df_cat[df_cat$M>=4,] %>%
+  group_by(Year) %>%
+  summarize(counts = n())
+
+plot(countEventsInYear, type="l", main="Annual number of events with M>=4")
+abline(h=mean(countEventsInYear), col=2)
 
 ```
 
@@ -140,7 +181,7 @@ tmp$cumulativeCounts <- cumsum(tmp$counts[N.counts:1])[N.counts:1]
 m.min <- 4
 bin_m.min <- which(tmp$mids==m.min)
 freq_m.min <- tmp$counts[bin_m.min]
-b <- 1.1
+b <- 1
 x <- tmp$mids
 y <- freq_m.min * 10^(-b*(x-m.min))
 y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b*(x-m.min))
@@ -224,6 +265,9 @@ ggplot() +
 ```
 
 ## Map of the events in the Italian Horus catalogue
+
+Here we plot the location of the seismicity on a map. The outline of the Italy territory is shown in green.
+
 
 ```{r map of locations}
 ggplot() +
@@ -361,6 +405,6 @@ ggplot() +
   ylab("b-value estimate") +
   geom_hline(yintercept = 1, lty=3) +
   geom_hline(yintercept = 0.85, lty=3) +
-  ggtitle("b-value stability plot for Horus catalogue")
+  ggtitle("b-value stability plot for the l'Aquila catalogue")
 ```
 
