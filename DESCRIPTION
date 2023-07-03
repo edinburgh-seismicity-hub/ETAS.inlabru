@@ -45,7 +45,7 @@ Suggests:
     ggpubr,
     ggspatial,
     lemon,
-    lubridate
+    lubridate,
     patchwork,
     rnaturalearth,
     rnaturalearthdata,
