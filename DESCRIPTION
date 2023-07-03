@@ -44,7 +44,7 @@ Imports:
 Suggests:
     ggpubr,
     lemon,
-    lubridate
+    lubridate,
     patchwork,
     raster,
     rnaturalearth,
