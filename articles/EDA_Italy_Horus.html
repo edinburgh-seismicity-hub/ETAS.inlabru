@@ -261,7 +261,7 @@ that the seismicity is systematically increasing.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">countEventsInYear</span>, type<span class="op">=</span><span class="st">"l"</span>, main<span class="op">=</span><span class="st">"Annual number of events with M&gt;=4"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">countEventsInYear</span>, type<span class="op">=</span><span class="st">"l"</span>, main<span class="op">=</span><span class="st">"Annual number of events for whole catalogue"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Filtered for M&gt;4</span></span>
@@ -285,8 +285,20 @@ that the seismicity is systematically increasing.</p>
 <div class="section level3">
 <h3 id="frequency-magnitude-analysis-for-horus-catalogue">Frequency-magnitude analysis for Horus catalogue<a class="anchor" aria-label="anchor" href="#frequency-magnitude-analysis-for-horus-catalogue"></a>
 </h3>
+<p>The traditional GR plot shows cumulative data (red) and we also show
+the incremental data (black). I personally prefer looking at the
+incremental data because it is not correlated and therefore easier to
+understand how Poisson counting errors account for uncertainty in the
+data.</p>
+<p>There are three domains in a standard GR plot. - At low magnitudes
+there will always be incompleteness due to limitations of the monitoring
+network - A requirement of GR being a good model is that there is a
+log-linear portion of the data where the slope is stable, this slope is
+refered to as the b-value - At high magnitudes there will always be
+fluctuations in the magnitudes due to the effect of counting errors on
+bins with low rates</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span>
 <span><span class="va">maxMag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mags</span> <span class="op">&lt;-</span> <span class="va">df_cat</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span><span class="op">&gt;</span><span class="va">minMag</span>,<span class="op">]</span><span class="op">$</span><span class="va">M</span></span>
