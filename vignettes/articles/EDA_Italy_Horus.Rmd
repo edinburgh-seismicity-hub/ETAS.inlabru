@@ -141,7 +141,7 @@ countEventsInYear <- df_cat %>%
   group_by(Year) %>%
   summarize(counts = n())
 
-plot(countEventsInYear, type="l", main="Annual number of events with M>=4")
+plot(countEventsInYear, type="l", main="Annual number of events for whole catalogue")
 
 ```
 
@@ -167,8 +167,15 @@ abline(h=mean(countEventsInYear), col=2)
 
 ## Frequency-magnitude analysis for Horus catalogue
 
+The traditional GR plot shows cumulative data (red) and we also show the incremental data (black). I personally prefer looking at the incremental data because it is not correlated and therefore easier to understand how Poisson counting errors account for uncertainty in the data.
+
+There are three domains in a standard GR plot.
+- At low magnitudes there will always be incompleteness due to limitations of the monitoring network
+- A requirement of GR being a good model is that there is a log-linear portion of the data where the slope is stable, this slope is refered to as the b-value
+- At high magnitudes there will always be fluctuations in the magnitudes due to the effect of counting errors on bins with low rates
+
 ```{r National GR Plot}
-minMag <- 3
+minMag <- 1.5
 maxMag <- max(df_cat$M)
 
 mags <- df_cat[df_cat$M>minMag,]$M
