@@ -293,7 +293,7 @@ for details on how the the subset was created from the original data
 set. This HORUS catalogue subset can be accessed directly using
 <code>horus</code> or <code><a href="../reference/horus.html">ETAS.inlabru::horus</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># load ISIDE catalogue</span></span>
+<code class="sourceCode R"><span><span class="co"># load HORUS catalogue</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           time_string     lon     lat depth    M</span></span>
 <span><span class="co">#&gt; 1 1960-01-03T20:19:34 15.3000 39.3000   290 6.34</span></span>
@@ -490,7 +490,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.667483</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.302385</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -573,12 +573,12 @@ corresponding to the ETAS parameters</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.2891900 0.1390311 2.413904 0.07262829 1.180244</span></span>
-<span><span class="co">#&gt; 2 0.3408133 0.1443367 2.435482 0.07025947 1.214066</span></span>
-<span><span class="co">#&gt; 3 0.2558231 0.1834828 2.408376 0.05343864 1.165728</span></span>
-<span><span class="co">#&gt; 4 0.2952213 0.1162077 2.446593 0.07699642 1.166865</span></span>
-<span><span class="co">#&gt; 5 0.2775213 0.1094046 2.434099 0.09802999 1.194178</span></span>
-<span><span class="co">#&gt; 6 0.2476919 0.1246622 2.453869 0.06700295 1.159281</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2650637 0.1219624 2.405585 0.08910811 1.201617</span></span>
+<span><span class="co">#&gt; 2 0.2514935 0.1098669 2.433061 0.09114100 1.183513</span></span>
+<span><span class="co">#&gt; 3 0.2628852 0.1266315 2.454177 0.05850618 1.131311</span></span>
+<span><span class="co">#&gt; 4 0.3097305 0.1232104 2.396926 0.09933655 1.217503</span></span>
+<span><span class="co">#&gt; 5 0.3087044 0.1297323 2.478945 0.06985007 1.187922</span></span>
+<span><span class="co">#&gt; 6 0.2962416 0.1120404 2.464802 0.07485709 1.161657</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -958,7 +958,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 21 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
