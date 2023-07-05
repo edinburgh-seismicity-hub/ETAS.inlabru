@@ -147,7 +147,7 @@ See [data-raw/horus.R](https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/
 This HORUS catalogue subset can be accessed directly using `horus` or `ETAS.inlabru::horus`:
 
 ```{r}
-# load ISIDE catalogue
+# load HORUS catalogue
 head(horus)
 ```
 Further documentation of the data set is available via `?horus`.

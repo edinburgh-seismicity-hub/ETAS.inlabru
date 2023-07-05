@@ -43,7 +43,7 @@ A subset (see [data-raw/horus.R](https://github.com/edinburgh-seismicity-hub/ETA
 of the information in the Horus catalogue can be loaded using
 
 ```{r}
-# load ISIDE catalogue
+# load HORUS catalogue
 data(horus, package = "ETAS.inlabru")
 
 # transform time string in Date object
