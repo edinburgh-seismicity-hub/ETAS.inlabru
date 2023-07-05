@@ -15,6 +15,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+Prior to any statistical analysis, it is important to explore the properties of the dataset. Earthquake catalogues are composed of estimates of the spatial location of events, their data-time, a measure of their magnitude and their depth. The depth is most prone to uncertainty and artefacts, followed by the estimate of the magnitude for which there can be a range of values depending upon the method used to estimate it. Some catalogues also attempt to estimate uncertainty in these parameters.
+
+Below, we provide examples of the sorts of plots you can do to understand important features of catalogue data.
+- `ETAS.inlabru` currently requires that a b-value to descrive the frequency-magnitude of earthquakes is provided to the model, so we show how this can be evaluated.
+- We have choices in how we subset data for regional events, and we use the example of l'Aquila to show how this can be implemented.
+
+What we don't show in this notebook is how to input the data into a dataframe in the first place. We reccommend using the same column names as below so that it is easy to copy and modify the code.
+
 # Setup
 
 ## Load Packages
@@ -93,11 +101,28 @@ ggplot() +
 
 ## Histogram of event depths
 
+The histogram of depth data with 1km bins initially looks reasonable except for the artefact of a cluster of events at zero depth.
+
 ```{r}
-hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths", xlab="Depth [km]")
+hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths, 1km bins", xlab="Depth [km]")
 
 ```
 
+However, when we reduce the bin width to 100m we see that there are more artefacts in the data. The spikes at 0, 5, 10 and 11km are artefacts of the depth estimation, one cause is that that the algorithms may have got stuck at their starting values.
+
+```{r}
+hist(df_cat$depth, breaks=seq(650,-5,-0.1), xlim=c(-5,40), main="Histogram of depths (100m bins)", xlab="Depth [km]")
+
+```
+The magnitude time series shows how the completeness of intermediate and deep events has improved over time. 
+```{r}
+ggplot(df_cat, aes(x=time_date, y=depth))  + 
+  geom_point(size = 0.1) +
+  ylim(620,0) +
+  ggtitle('Depth timeseries using natural time')
+
+```
+  
 ## Plot of event magnitudes using natural time
 
 Natural time refers to where we plot each event evenly spaced along the x-axis. The advantage of this is that data that occurs in periods of high activity are spread out, which means that we can see structure in the data when the rates are high.
@@ -210,7 +235,7 @@ ggplot() +
 
 ```{r National b-value stability}
 
-minMag <- 0
+minMag <- 2
 maxMag <- max(df_cat$M, na.rm=TRUE)
 mags <- df_cat[df_cat$M>=minMag,]$M
 
@@ -283,6 +308,22 @@ ggplot() +
   geom_sf(data = df_cat.sf[df_cat$M>5,], size = 0.5, color='orange') +
   geom_sf(data = df_cat.sf[df_cat$M>6,], size = 0.5, color='red') +
   ggtitle("Map of event locations")
+```
+
+```{r}
+eventDate <- ymd_hms( '2009-04-06 00:00:00' )
+endDate <- eventDate + days(400)
+startDate <- eventDate - days(50)
+deltaLat <- 2.4
+latLims <- c( 42.2,42.5)
+longLims <- c( 13, 13.75)
+
+ggplot() + 
+  geom_point(data=df_cat[df_cat$M>3,], aes(time_date, lat), size=0.1) +
+  geom_point(data=df_cat[df_cat$M>5,], aes(time_date, lat), size=1.2, color='orange') +
+  geom_point(data=df_cat[df_cat$M>6,], aes(time_date, lat), size=1.5, color='red') +
+  ggtitle("Italian latitude-time plot")  +
+  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill='blue', color='blue')
 ```
 
 # Analysis if the L'Aquila Sequence
