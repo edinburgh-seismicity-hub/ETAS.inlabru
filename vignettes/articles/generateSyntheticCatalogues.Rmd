@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 library(ETAS.inlabru)
 library(ggplot2)
 library(dplyr)
+library(magrittr)
 # library(tidyquant)
 
 # Increase num.threads if you have more cores on your computer
@@ -41,20 +42,24 @@ theta_etas <- data.frame(mu = mu, K = K, alpha = alpha, c = c, p = p)
 
 Ht <- data.frame(ts = c(0., 1.5), magnitudes = c(6.7, 7.))
 
-samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, T1 = 0, T2 = modelledDuration, Ht = Ht)
+combined.M7.ETAS.cat <-
+  generate_temporal_ETAS_synthetic(
+    theta = theta_etas,
+    beta.p = log(10),
+    M0 = M0,
+    T1 = 0,
+    T2 = modelledDuration,
+    Ht = Ht,
+    format = "df"
+  )
+combined.M7.ETAS.cat$ID <- seq_len(nrow(combined.M7.ETAS.cat))
 
-ggplot() +
-  geom_point(data = samp.etas.list[[1]], aes(x = ts, y = magnitudes), color = "red") +
-  geom_point(data = samp.etas.list[[2]], aes(x = ts, y = magnitudes), color = "green") +
+ggplot(combined.M7.ETAS.cat %>%
+         mutate(generation = if_else(gen == -1, "initial", "child"))) +
+  geom_point(aes(x = ts, y = magnitudes, color = generation)) +
   xlim(0, modelledDuration) +
   ggtitle("M7 plus background and ETAS")
 
-combined.M7.ETAS.cat <- bind_rows(samp.etas.list)
-
-combined.M7.ETAS.cat <- bind_rows(samp.etas.list)
-combined.M7.ETAS.cat <- combined.M7.ETAS.cat[order(combined.M7.ETAS.cat$ts), ]
-
-combined.M7.ETAS.cat$ID <- seq(1, length(combined.M7.ETAS.cat$ts))
 
 ggplot() +
   geom_point(data = combined.M7.ETAS.cat, aes(x = ID, y = magnitudes), color = "red") #+
