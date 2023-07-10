@@ -1,4 +1,4 @@
-# ETAS.inlabru (development version)
+# ETAS.inlabru 1.1.1
 
 * Cleaned up R package structure
 * Added vignettes for the package website
