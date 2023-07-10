@@ -54,12 +54,16 @@ combined.M7.ETAS.cat <-
   )
 combined.M7.ETAS.cat$ID <- seq_len(nrow(combined.M7.ETAS.cat))
 
-ggplot(combined.M7.ETAS.cat %>%
-         mutate(generation = if_else(gen == -1, "initial", "child"))) +
-  geom_point(aes(x = ts, y = magnitudes, color = generation)) +
+ggplot(combined.M7.ETAS.cat) +
+  geom_point(aes(x = ts, y = magnitudes, color = factor(gen))) +
   xlim(0, modelledDuration) +
   ggtitle("M7 plus background and ETAS")
 
+ggplot(combined.M7.ETAS.cat %>%
+         mutate(generation = if_else(gen == -1, "Initial", "Child"))) +
+  geom_point(aes(x = ts, y = magnitudes, color = generation)) +
+  xlim(0, modelledDuration) +
+  ggtitle("M7 plus background and ETAS")
 
 ggplot() +
   geom_point(data = combined.M7.ETAS.cat, aes(x = ID, y = magnitudes), color = "red") #+
