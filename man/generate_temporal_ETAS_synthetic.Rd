@@ -11,7 +11,8 @@ generate_temporal_ETAS_synthetic(
   T1,
   T2,
   Ht = NULL,
-  ncore = 1
+  ncore = 1,
+  format = "list"
 )
 }
 \arguments{
@@ -28,10 +29,28 @@ generate_temporal_ETAS_synthetic(
 \item{Ht}{A catalogue history to impose on the synthetic sequence.}
 
 \item{ncore}{Integer number of compute cores to use.}
+
+\item{format}{If "list", return a list of data.frame objects, one for each generation.
+If "df", return a data.frame where the list element have been joined into a
+single data.frame, and ordered by \code{ts}}
 }
 \value{
-A data.frame of the temporal catalogue with columns \verb{[t_i, M_i, gen_i]}
-where, \code{t_i} are the times,  \code{M_i} the magnitudes, \code{gen_i} includes information about the generation number
+A list of data.frame objects of the temporal catalogue with
+columns \verb{[ts, magnitudes, gen]} where, \code{ts} are the times \code{t_i},
+\code{magnitudes} the magnitudes \code{M_i}, and \code{gen} includes information about the
+generation number, \code{gen_i}.
+
+To join into an time-ordered data.frame,
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{cata <- generate_temporal_ETAS_synthetic(...)
+cata <- dplyr::bind_rows(cata)
+cata <- dplyr::arrange(cata, ts)
+}\if{html}{\out{</div>}}
+
+or
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{cata <- generate_temporal_ETAS_synthetic(..., format = "df")
+}\if{html}{\out{</div>}}
 }
 \description{
 Generates a synthetic catalogue using the ETAS model

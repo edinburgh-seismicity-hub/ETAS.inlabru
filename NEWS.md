@@ -1,3 +1,8 @@
+# ETAS.inlabru (development version)
+
+* Add `format` argument to `generate_temporal_ETAS_synthetic()` to simplify
+  conversion to `data.frame`.
+
 # ETAS.inlabru 1.1.1
 
 * Cleaned up R package structure

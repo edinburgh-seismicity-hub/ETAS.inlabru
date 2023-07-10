@@ -18,8 +18,28 @@
 #' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param Ht A catalogue history to impose on the synthetic sequence.
 #' @param ncore Integer number of compute cores to use.
-#' @return A data.frame of the temporal catalogue with columns `[t_i, M_i, gen_i]`
-#' where, `t_i` are the times,  `M_i` the magnitudes, `gen_i` includes information about the generation number
+#' @param format If "list", return a list of data.frame objects, one for each generation.
+#' If "df", return a data.frame where the list element have been joined into a
+#' single data.frame, and ordered by `ts`
+#' @return A list of data.frame objects of the temporal catalogue with
+#' columns `[ts, magnitudes, gen]` where, `ts` are the times `t_i`,
+#' `magnitudes` the magnitudes `M_i`, and `gen` includes information about the
+#' generation number, `gen_i`.
+#'
+#' To join into an time-ordered data.frame,
+#'
+#' ```
+#' cata <- generate_temporal_ETAS_synthetic(...)
+#' cata <- dplyr::bind_rows(cata)
+#' cata <- dplyr::arrange(cata, ts)
+#' ```
+#'
+#' or
+#'
+#' ```
+#' cata <- generate_temporal_ETAS_synthetic(..., format = "df")
+#' ```
+#'
 #' @examples
 #' ## EXAMPLE 1: Generate a 1000 day synthetic ETAS catalogue
 #'
@@ -45,7 +65,10 @@
 #' @export
 
 generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
-                                             Ht = NULL, ncore = 1) {
+                                             Ht = NULL, ncore = 1,
+                                             format = "list") {
+  format <- match.arg(format, c("list", "df"))
+
   # sample.ETAS <- function(theta, beta.p, M0, T1, T2,
 
   # Check that the end time is greater than the start time
@@ -100,7 +123,12 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   if (nrow(Gen.list[[1]]) == 0) {
     # print(exp(theta.v[1])*(T2 - T1)*(area(bdy)/1000000))
     # stop('No events generated - increase theta1')
+    if (identical(format, "df")) {
+      Gen.list <- dplyr::bind_rows(Gen.list)
+      Gen.list <- dplyr::arrange(Gen.list, .data$ts)
+    }
     return(Gen.list)
+
   }
 
   ## MN: Generate the daughters of backgorund and 1st daughters of imposed event set
@@ -135,18 +163,21 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   if (!is.null(Ht)) {
     if (sum(Ht$ts >= T1 & Ht$ts <= T2) == 0) {
       Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
-      return(Gen.list)
     } else {
       Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
       Ht.to.gen$gen <- -1
       Ht.to.gen <- Ht.to.gen[, c("ts", "magnitudes", "gen")]
       Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
-      return(append(list(Ht.to.gen), Gen.list))
+      Gen.list <- append(list(Ht.to.gen), Gen.list)
     }
   } else {
     Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
-    return(Gen.list)
   }
+  if (identical(format, "df")) {
+    Gen.list <- dplyr::bind_rows(Gen.list)
+    Gen.list <- dplyr::arrange(Gen.list, .data$ts)
+  }
+  return(Gen.list)
 }
 
 
