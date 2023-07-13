@@ -92,8 +92,11 @@ Serafini</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/">ETAS.inlabru</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Increase num.threads if you have more cores on your computer</span></span>
-<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Increase num.cores if you have more cores on your computer, and reduce it</span></span>
+<span><span class="co"># if you have fewer!</span></span>
+<span><span class="va">num.cores</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span></span>
+<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="introduction-to-etas-model">Introduction to ETAS model<a class="anchor" aria-label="anchor" href="#introduction-to-etas-model"></a>
 </h2>
@@ -324,6 +327,11 @@ verifying the conditions.</p>
 <span>  <span class="va">horus</span><span class="op">$</span><span class="va">time_string</span>,</span>
 <span>  format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%OS"</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co"># There may be some incorrectly registered data-times in the original data set,</span></span>
+<span><span class="co"># that as.POSIXct() can't convert, depending on the system.</span></span>
+<span><span class="co"># These should ideally be corrected, but for now, we just remove the rows that</span></span>
+<span><span class="co"># couldn't be converted.</span></span>
+<span><span class="va">horus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># set up parameters for selection</span></span>
 <span><span class="va">start.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2009-01-01T00:00:00"</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%OS"</span><span class="op">)</span></span>
@@ -476,7 +484,7 @@ options as described in the previous Section.</li>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.</span></span>
 <span><span class="va">T1</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span><span class="va">T2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.2</span></span>
+<span><span class="va">T2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="co"># Use max(..., na.rm = TRUE) if there may still be NAs here</span></span>
 <span><span class="co"># fit the model</span></span>
 <span><span class="va">aquila.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Temporal.ETAS.html">Temporal.ETAS</a></span><span class="op">(</span></span>
 <span>  total.data <span class="op">=</span> <span class="va">aquila.bru</span>,</span>
@@ -490,7 +498,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.798659</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.116181</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -568,17 +576,17 @@ corresponding to the ETAS parameters</p>
 <span>  input.list <span class="op">=</span> <span class="va">input_list</span>,</span>
 <span>  n.samp <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  max.batch <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  ncore <span class="op">=</span> <span class="fl">1</span></span>
+<span>  ncore <span class="op">=</span> <span class="va">num.cores</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3205406 0.1643636 2.421462 0.05213094 1.142079</span></span>
-<span><span class="co">#&gt; 2 0.2507679 0.1473285 2.451149 0.05875150 1.162298</span></span>
-<span><span class="co">#&gt; 3 0.2833505 0.1541970 2.431065 0.06645111 1.187564</span></span>
-<span><span class="co">#&gt; 4 0.3200078 0.1474801 2.462785 0.05675695 1.164986</span></span>
-<span><span class="co">#&gt; 5 0.2610512 0.1108214 2.475794 0.07353076 1.179184</span></span>
-<span><span class="co">#&gt; 6 0.3256090 0.1491330 2.437360 0.05963760 1.164145</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3470104 0.1260210 2.497211 0.05949712 1.157757</span></span>
+<span><span class="co">#&gt; 2 0.2958848 0.1316819 2.450078 0.06304385 1.166512</span></span>
+<span><span class="co">#&gt; 3 0.3216552 0.1332976 2.470935 0.06368277 1.157579</span></span>
+<span><span class="co">#&gt; 4 0.2499366 0.1371255 2.449576 0.06398508 1.149188</span></span>
+<span><span class="co">#&gt; 5 0.2957505 0.1372523 2.438459 0.06870959 1.169935</span></span>
+<span><span class="co">#&gt; 6 0.3010415 0.1462465 2.424095 0.05610195 1.140713</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -927,7 +935,7 @@ the forecasting period.</p>
 <span>  T1 <span class="op">=</span> <span class="va">T1.fore</span>, <span class="co"># forecast starting time</span></span>
 <span>  T2 <span class="op">=</span> <span class="va">T2.fore</span>, <span class="co"># forecast end time</span></span>
 <span>  Ht <span class="op">=</span> <span class="va">Ht.fore</span>, <span class="co"># known events</span></span>
-<span>  ncore <span class="op">=</span> <span class="fl">3</span></span>
+<span>  ncore <span class="op">=</span> <span class="va">num.cores</span></span>
 <span><span class="op">)</span> <span class="co"># number of cores</span></span></code></pre></div>
 <p>We can easily retrieve the predictive distribution of the number of
 events in the forecasting period looking at the frequencies with which
@@ -958,7 +966,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 33 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 39 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
