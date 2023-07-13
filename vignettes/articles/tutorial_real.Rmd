@@ -19,8 +19,11 @@ knitr::opts_chunk$set(
 library(ETAS.inlabru)
 library(ggplot2)
 
-# Increase num.threads if you have more cores on your computer
-INLA::inla.setOption(num.threads = 2)
+# Increase num.cores if you have more cores on your computer, and reduce it
+# if you have fewer!
+num.cores <- 2
+
+INLA::inla.setOption(num.threads = num.cores)
 ```
 
 
@@ -164,6 +167,11 @@ horus$time_date <- as.POSIXct(
   horus$time_string,
   format = "%Y-%m-%dT%H:%M:%OS"
 )
+# There may be some incorrectly registered data-times in the original data set,
+# that as.POSIXct() can't convert, depending on the system.
+# These should ideally be corrected, but for now, we just remove the rows that
+# couldn't be converted.
+horus <- na.omit(horus)
 
 # set up parameters for selection
 start.date <- as.POSIXct("2009-01-01T00:00:00", format = "%Y-%m-%dT%H:%M:%OS")
@@ -261,7 +269,7 @@ The function `Temporal.ETAS` fit the ETAS model and returns a `bru` object as ou
 ```{r, message=FALSE}
 # set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.
 T1 <- 0
-T2 <- max(aquila.bru$ts) + 0.2
+T2 <- max(aquila.bru$ts) + 0.2 # Use max(..., na.rm = TRUE) if there may still be NAs here
 # fit the model
 aquila.fit <- Temporal.ETAS(
   total.data = aquila.bru,
@@ -325,7 +333,7 @@ post.samp <- post_sampling(
   input.list = input_list,
   n.samp = 1000,
   max.batch = 1000,
-  ncore = 1
+  ncore = num.cores
 )
 
 head(post.samp)
@@ -549,7 +557,7 @@ daily.fore <- Temporal.ETAS.forecast(
   T1 = T1.fore, # forecast starting time
   T2 = T2.fore, # forecast end time
   Ht = Ht.fore, # known events
-  ncore = 3
+  ncore = num.cores
 ) # number of cores
 ```
 
