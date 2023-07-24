@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">post_sampling</span><span class="op">(</span><span class="va">input.list</span>, <span class="va">n.samp</span>, max.batch <span class="op">=</span> <span class="fl">1000</span>, ncore <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">post_sampling</span><span class="op">(</span><span class="va">input.list</span>, <span class="va">n.samp</span>, max.batch <span class="op">=</span> <span class="fl">1000</span>, ncore <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -82,7 +82,9 @@
 
 
 <dt>ncore</dt>
-<dd><p>Number of cores to be used if <code>n.samp</code> exceeds <code>max.batch</code>. Default is 1</p></dd>
+<dd><p>Deprecated argument for controlling parallelism. Use
+<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to configure
+parallelism in your code instead.</p></dd>
 
 </dl></div>
     <div class="section level2">

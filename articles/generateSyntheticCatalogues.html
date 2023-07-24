@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,8 +92,14 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
 <span><span class="co"># library(tidyquant)</span></span>
 <span></span>
-<span><span class="co"># Increase num.threads if you have more cores on your computer</span></span>
-<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Increase/decrease num.cores if you have more/fewer cores on your computer.</span></span>
+<span><span class="co"># future::multisession works on both Windows, MacOS, and Linux</span></span>
+<span><span class="va">num.cores</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="fu">future</span><span class="fu">::</span><span class="va"><a href="https://future.futureverse.org/reference/multisession.html" class="external-link">multisession</a></span>, workers <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="co"># To deactivate parallelism, run</span></span>
+<span><span class="co">#   future::plan(future::sequential)</span></span>
+<span><span class="co">#   INLA::inla.setOption(num.threads = 1)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="create-catalogue">Create catalogue<a class="anchor" aria-label="anchor" href="#create-catalogue"></a>
 </h2>

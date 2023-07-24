@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,8 +92,14 @@ Serafini</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/">ETAS.inlabru</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Increase num.threads if you have more cores on your computer</span></span>
-<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Increase/decrease num.cores if you have more/fewer cores on your computer.</span></span>
+<span><span class="co"># future::multisession works on both Windows, MacOS, and Linux</span></span>
+<span><span class="va">num.cores</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="fu">future</span><span class="fu">::</span><span class="va"><a href="https://future.futureverse.org/reference/multisession.html" class="external-link">multisession</a></span>, workers <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="co"># To deactivate parallelism, run</span></span>
+<span><span class="co">#   future::plan(future::sequential)</span></span>
+<span><span class="co">#   INLA::inla.setOption(num.threads = 1)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -178,8 +184,7 @@ magnitude distribution comes from the same example.</p>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>,</span>
 <span>  T1 <span class="op">=</span> <span class="va">T1</span>,</span>
 <span>  T2 <span class="op">=</span> <span class="va">T2</span>,</span>
-<span>  Ht <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ncore <span class="op">=</span> <span class="fl">1</span></span>
+<span>  Ht <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>The output of the function is a <code>list</code> of
 <code>data.frame</code>s and it is convenient to transform it in a
@@ -201,7 +206,7 @@ data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">)</span>, N.bkg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">gen</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, N.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">gen</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       N   N.bkg N.after </span></span>
-<span><span class="co">#&gt;     288     112     176</span></span></code></pre></div>
+<span><span class="co">#&gt;     283     112     171</span></span></code></pre></div>
 <p>The code below is to plot the occurrence time of the events against
 their magnitude with color indicating the generation of each event and
 the time evolution cumulative number of events. The
@@ -398,7 +403,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.5662448</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  0.5988903</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="check-marginal-posterior-distributions">Check marginal posterior distributions<a class="anchor" aria-label="anchor" href="#check-marginal-posterior-distributions"></a>
@@ -474,14 +479,21 @@ corresponding to the ETAS parameters</p>
 <span>  max.batch <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ncore <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: The `ncore` argument of `post_sampling()` is deprecated as of ETAS.inlabru</span></span>
+<span><span class="co">#&gt; 1.1.1.9001.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use future::plan(future::multisession, workers = ncore) in your code</span></span>
+<span><span class="co">#&gt;   instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          mu          K    alpha         c        p</span></span>
-<span><span class="co">#&gt; 1 0.3486628 0.04560290 2.587489 0.2359790 1.352721</span></span>
-<span><span class="co">#&gt; 2 0.3256986 0.02997082 2.558787 0.3960673 1.446702</span></span>
-<span><span class="co">#&gt; 3 0.3212016 0.03376037 2.680164 0.4344579 1.657118</span></span>
-<span><span class="co">#&gt; 4 0.2705829 0.04753127 2.499950 0.2526586 1.343067</span></span>
-<span><span class="co">#&gt; 5 0.3098899 0.04627551 2.483610 0.3416950 1.406082</span></span>
-<span><span class="co">#&gt; 6 0.3025027 0.02243282 2.635444 0.4811390 1.531598</span></span></code></pre></div>
+<span><span class="co">#&gt;          mu          K    alpha          c        p</span></span>
+<span><span class="co">#&gt; 1 0.2703242 0.07772063 2.817706 0.04405354 1.158531</span></span>
+<span><span class="co">#&gt; 2 0.2962545 0.11946073 2.530242 0.07333611 1.209367</span></span>
+<span><span class="co">#&gt; 3 0.2937161 0.06262619 2.522844 0.19481556 1.336901</span></span>
+<span><span class="co">#&gt; 4 0.3273610 0.09268547 2.473937 0.22724007 1.503260</span></span>
+<span><span class="co">#&gt; 5 0.3138248 0.12545886 2.545132 0.09331670 1.322615</span></span>
+<span><span class="co">#&gt; 6 0.2925499 0.10534268 2.521352 0.11295471 1.326896</span></span></code></pre></div>
 <p>The posterior samples can then be used to estimate the posterior
 distribution of functions of the parameters.</p>
 </div>
@@ -633,9 +645,9 @@ is expected given that the time interval is the same.</p>
 <span>    N.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df.2</span><span class="op">$</span><span class="va">gen</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">synth.cat.df.2</span><span class="op">$</span><span class="va">gen</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;          N N.bkg N.after</span></span>
-<span><span class="co">#&gt; first  288   112     176</span></span>
-<span><span class="co">#&gt; second 408   104     304</span></span></code></pre></div>
+<span><span class="co">#&gt;           N N.bkg N.after</span></span>
+<span><span class="co">#&gt; first   283   112     171</span></span>
+<span><span class="co">#&gt; second 1082   104     978</span></span></code></pre></div>
 <p>Then, we just need to set up the <code>data.frame</code> for model
 fitting. For all the other inputs we can use the ones created for the
 first model fit.</p>
@@ -655,7 +667,7 @@ first model fit.</p>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.784637</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.257848</span></span></code></pre></div>
 <p>Now, to extract the marginal posterior distributions, we need to
 create the <code>input_list</code> of the second model fit.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">

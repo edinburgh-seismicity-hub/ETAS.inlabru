@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,11 +92,14 @@ Serafini</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/">ETAS.inlabru</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Increase num.cores if you have more cores on your computer, and reduce it</span></span>
-<span><span class="co"># if you have fewer!</span></span>
+<span><span class="co"># Increase/decrease num.cores if you have more/fewer cores on your computer.</span></span>
+<span><span class="co"># future::multisession works on both Windows, MacOS, and Linux</span></span>
 <span><span class="va">num.cores</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span></span>
-<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="fu">future</span><span class="fu">::</span><span class="va"><a href="https://future.futureverse.org/reference/multisession.html" class="external-link">multisession</a></span>, workers <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="fu">INLA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/INLA/man/options.html" class="external-link">inla.setOption</a></span><span class="op">(</span>num.threads <span class="op">=</span> <span class="va">num.cores</span><span class="op">)</span></span>
+<span><span class="co"># To deactivate parallelism, run</span></span>
+<span><span class="co">#   future::plan(future::sequential)</span></span>
+<span><span class="co">#   INLA::inla.setOption(num.threads = 1)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="introduction-to-etas-model">Introduction to ETAS model<a class="anchor" aria-label="anchor" href="#introduction-to-etas-model"></a>
 </h2>
@@ -498,7 +501,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.116181</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  2.299931</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -578,15 +581,22 @@ corresponding to the ETAS parameters</p>
 <span>  max.batch <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ncore <span class="op">=</span> <span class="va">num.cores</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: The `ncore` argument of `post_sampling()` is deprecated as of ETAS.inlabru</span></span>
+<span><span class="co">#&gt; 1.1.1.9001.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use future::plan(future::multisession, workers = ncore) in your code</span></span>
+<span><span class="co">#&gt;   instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3470104 0.1260210 2.497211 0.05949712 1.157757</span></span>
-<span><span class="co">#&gt; 2 0.2958848 0.1316819 2.450078 0.06304385 1.166512</span></span>
-<span><span class="co">#&gt; 3 0.3216552 0.1332976 2.470935 0.06368277 1.157579</span></span>
-<span><span class="co">#&gt; 4 0.2499366 0.1371255 2.449576 0.06398508 1.149188</span></span>
-<span><span class="co">#&gt; 5 0.2957505 0.1372523 2.438459 0.06870959 1.169935</span></span>
-<span><span class="co">#&gt; 6 0.3010415 0.1462465 2.424095 0.05610195 1.140713</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3021242 0.1302891 2.519261 0.05201877 1.147929</span></span>
+<span><span class="co">#&gt; 2 0.2914638 0.1038356 2.448769 0.10150325 1.219382</span></span>
+<span><span class="co">#&gt; 3 0.2843393 0.1691639 2.479588 0.03744396 1.127995</span></span>
+<span><span class="co">#&gt; 4 0.3055755 0.1440415 2.404510 0.06691007 1.159365</span></span>
+<span><span class="co">#&gt; 5 0.2762775 0.1109113 2.454912 0.07800483 1.167500</span></span>
+<span><span class="co">#&gt; 6 0.2770023 0.1501069 2.384977 0.07666930 1.192113</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -966,7 +976,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 39 rows containing non-finite values (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 25 rows containing non-finite values (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
