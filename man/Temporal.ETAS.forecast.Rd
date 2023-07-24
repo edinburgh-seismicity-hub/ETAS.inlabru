@@ -4,7 +4,7 @@
 \alias{Temporal.ETAS.forecast}
 \title{Title}
 \usage{
-Temporal.ETAS.forecast(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1)
+Temporal.ETAS.forecast(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = NULL)
 }
 \arguments{
 \item{post.samp}{a \code{data.frame} containing samples from the posterior distribution of ETAS parameters.
@@ -25,7 +25,9 @@ Each row of the \code{data.frame} corresponds to a different sample and the para
 
 \item{Ht}{set of known events}
 
-\item{ncore}{number of cores to be used to generate the synthetic catalogues in parallel.}
+\item{ncore}{Deprecated argument for controlling parallelism. Use
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
+parallelism in your code instead.}
 }
 \value{
 a \code{list} with two elements: \code{fore.df} is a \code{data.frame} containing all the synthetic catalogues composing the forecast.

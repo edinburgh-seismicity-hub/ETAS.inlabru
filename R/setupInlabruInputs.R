@@ -1,7 +1,8 @@
 #' Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
 #'
 #' @param input_path path of the `txt` file containing experiment's information
-#' @param num.threads Optional argument for the number of threads to be used by parallel processing
+#' @param num.threads Optional argument for the number of threads to be used by
+#' parallel processing in inlabru/INLA
 #'
 #' @return The formatted input.list with the elements required for the temporal Hawkes model
 #' @export
@@ -245,7 +246,8 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
 #' Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file
 #'
 #' @param input_path Input file and path as a string
-#' @param num.threads Optional argument for the number of threads to be used by parallel processing
+#' @param num.threads Optional argument for the number of threads to be used by
+#' parallel processing by inlabru/INLA
 #'
 #' @return The formatted input.list with the elements required for the temporal Hawkes model
 #' @export

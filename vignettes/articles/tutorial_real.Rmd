@@ -19,11 +19,14 @@ knitr::opts_chunk$set(
 library(ETAS.inlabru)
 library(ggplot2)
 
-# Increase num.cores if you have more cores on your computer, and reduce it
-# if you have fewer!
+# Increase/decrease num.cores if you have more/fewer cores on your computer.
+# future::multisession works on both Windows, MacOS, and Linux
 num.cores <- 2
-
+future::plan(future::multisession, workers = num.cores)
 INLA::inla.setOption(num.threads = num.cores)
+# To deactivate parallelism, run
+#   future::plan(future::sequential)
+#   INLA::inla.setOption(num.threads = 1)
 ```
 
 

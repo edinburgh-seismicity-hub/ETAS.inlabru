@@ -11,30 +11,42 @@
 #' @param T1 starting time of the forecast
 #' @param T2 end time of the forecast
 #' @param Ht set of known events
-#' @param ncore number of cores to be used to generate the synthetic catalogues in parallel.
+#' @param ncore Deprecated argument for controlling parallelism. Use
+#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
+#' parallelism in your code instead.
 #'
 #' @return a `list` with two elements: `fore.df` is a `data.frame` containing all the synthetic catalogues composing the forecast.
 #' The `data.frame` has four columns, `ts` for the occurrence time, `magnitudes` for the magnitude, `gen` with the generation of the event, and `cat.idx` with the catalogue identifier
 #' The second element of the output `list` is `n.cat` which is the number of synthetic catalogues generated.
 #' @seealso [generate_temporal_ETAS_synthetic()]
 #' @export
-Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = 1) {
+Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = NULL) {
+  if (!is.null(ncore)) {
+    lifecycle::deprecate_soft(
+      "1.1.1.9001",
+      "post_sampling(ncore)",
+      I("future::plan(future::multisession, workers = ncore) in your code")
+    )
+  }
   if (n.cat > nrow(post.samp)) {
     post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat, replace = TRUE), ]
   } else if (n.cat < nrow(post.samp)) {
     post.samp <- post.samp[sample(seq_len(nrow(post.samp)), n.cat), ]
   }
   n.cat <- nrow(post.samp)
-  synth.cat.list <- parallel::mclapply(seq_len(n.cat), \(x)
-  generate_temporal_ETAS_synthetic(
-    theta = post.samp[x, ],
-    beta.p = beta.p,
-    M0 = M0,
-    T1 = T1,
-    T2 = T2,
-    Ht = Ht
-  ),
-  mc.cores = ncore
+  synth.cat.list <- future.apply::future_lapply(
+    seq_len(n.cat),
+    function(x) {
+      generate_temporal_ETAS_synthetic(
+        theta = post.samp[x, ],
+        beta.p = beta.p,
+        M0 = M0,
+        T1 = T1,
+        T2 = T2,
+        Ht = Ht
+      )
+    },
+    future.seed = TRUE
   )
   synth.cat.list.df <- lapply(synth.cat.list, \(x) do.call(rbind, x))
   synth.cat.with.events <- vapply(synth.cat.list.df, \(x) nrow(x) > 0, TRUE)

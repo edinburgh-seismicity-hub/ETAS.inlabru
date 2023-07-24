@@ -17,10 +17,12 @@
 #' @param T1 The start time for the synthetic catalogue `[days]`.
 #' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param Ht A catalogue history to impose on the synthetic sequence.
-#' @param ncore Integer number of compute cores to use.
 #' @param format If "list", return a list of data.frame objects, one for each generation.
 #' If "df", return a data.frame where the list element have been joined into a
 #' single data.frame, and ordered by `ts`
+#' @param ncore Deprecated argument for controlling parallelism. Use
+#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
+#' parallelism in your code instead.
 #' @return A list of data.frame objects of the temporal catalogue with
 #' columns `[ts, magnitudes, gen]` where, `ts` are the times `t_i`,
 #' `magnitudes` the magnitudes `M_i`, and `gen` includes information about the
@@ -63,10 +65,20 @@
 #' )
 #'
 #' @export
+#' @importFrom lifecycle deprecated
 
 generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
-                                             Ht = NULL, ncore = 1,
-                                             format = "list") {
+                                             Ht = NULL,
+                                             format = "list",
+                                             ncore = NULL) {
+  if (!is.null(ncore)) {
+    lifecycle::deprecate_soft(
+      "1.1.1.9001",
+      "post_sampling(ncore)",
+      I("future::plan(future::multisession, workers = ncore) in your code")
+    )
+  }
+
   format <- match.arg(format, c("list", "df"))
 
   # sample.ETAS <- function(theta, beta.p, M0, T1, T2,
@@ -106,7 +118,15 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   # if known events are provided
   if (!is.null(Ht)) {
     # sample a generation from the known events
-    gen.from.past <- sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore)
+    gen.from.past <-
+      sample_temporal_ETAS_generation(
+        theta = theta,
+        beta.p = beta.p,
+        Ht = Ht,
+        M0 = M0,
+        T1 = T1,
+        T2 = T2
+      )
     # if at least an aftershock is produced
     if (nrow(gen.from.past) > 0) {
       # set generation
@@ -144,8 +164,8 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
     # print(range(parents$ts))
     # generate aftershocks
     triggered <- sample_temporal_ETAS_generation(
-      theta, beta.p, parents,
-      M0, T1, T2, ncore
+      theta = theta, beta.p = beta.p, Ht = parents,
+      M0 = M0, T1 = T1, T2 = T2
     )
     # print(nrow(triggered))
     # stop the loop if there are no more aftershocks
@@ -190,8 +210,10 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @param M0 The minimum earthquake magnitude in the synthetic catalogue.
 #' @param T1 The start time for the synthetic catalogue `[days]`.
 #' @param T2 The end time for the synthetic catalogue `[days]`.
-#' @param ncore The number of compute cores to use
-#'
+#' @param ncore Deprecated argument for controlling parallelism. Use
+#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
+#' parallelism in your code instead.
+
 #' @return Return one generation of daughters from the parents in `Ht` in the form `data.frame(t_i, M_i)`.
 #' @export
 #'
@@ -205,7 +227,15 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #'   T1 = 0, T2 = 1000,
 #'   Ht = Ht
 #' )
-sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = 1) {
+sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = NULL) {
+  if (!is.null(ncore)) {
+    lifecycle::deprecate_soft(
+      "1.1.1.9001",
+      "post_sampling(ncore)",
+      I("future::plan(future::multisession, workers = ncore) in your code")
+    )
+  }
+
   # number of parents
   n.parent <- nrow(Ht)
   # calculate the aftershock rate for each parent in history (i.e. mean number daughters)
@@ -229,12 +259,16 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 
   # print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
   # sample (in parallel) the aftershocks for each parent
-  sample.list <- parallel::mclapply(idx.p, function(idx) {
-    sample_temporal_ETAS_daughters(
-      theta = theta, beta.p = beta.p, th = Ht$ts[idx],
-      n.ev = n.ev.v[idx], M0, T1, T2
-    )
-  }, mc.cores = ncore)
+  sample.list <- future.apply::future_lapply(
+    idx.p,
+    function(idx) {
+      sample_temporal_ETAS_daughters(
+        theta = theta, beta.p = beta.p, th = Ht$ts[idx],
+        n.ev = n.ev.v[idx], M0, T1, T2
+      )
+    },
+    future.seed = TRUE
+  )
 
   # bind the data.frame in the list and return
   sample.pts <- dplyr::bind_rows(sample.list)

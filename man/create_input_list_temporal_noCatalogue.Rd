@@ -9,7 +9,8 @@ create_input_list_temporal_noCatalogue(input_path, num.threads = NULL)
 \arguments{
 \item{input_path}{Input file and path as a string}
 
-\item{num.threads}{Optional argument for the number of threads to be used by parallel processing}
+\item{num.threads}{Optional argument for the number of threads to be used by
+parallel processing by inlabru/INLA}
 }
 \value{
 The formatted input.list with the elements required for the temporal Hawkes model

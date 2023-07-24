@@ -11,8 +11,8 @@ generate_temporal_ETAS_synthetic(
   T1,
   T2,
   Ht = NULL,
-  ncore = 1,
-  format = "list"
+  format = "list",
+  ncore = NULL
 )
 }
 \arguments{
@@ -28,11 +28,13 @@ generate_temporal_ETAS_synthetic(
 
 \item{Ht}{A catalogue history to impose on the synthetic sequence.}
 
-\item{ncore}{Integer number of compute cores to use.}
-
 \item{format}{If "list", return a list of data.frame objects, one for each generation.
 If "df", return a data.frame where the list element have been joined into a
 single data.frame, and ordered by \code{ts}}
+
+\item{ncore}{Deprecated argument for controlling parallelism. Use
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
+parallelism in your code instead.}
 }
 \value{
 A list of data.frame objects of the temporal catalogue with

@@ -41,8 +41,14 @@ library(ETAS.inlabru)
 
 library(dplyr)
 
-# Increase num.threads if you have more cores on your computer
-INLA::inla.setOption(num.threads = 2)
+# Increase/decrease num.cores if you have more/fewer cores on your computer.
+# future::multisession works on both Windows, MacOS, and Linux
+num.cores <- 2
+future::plan(future::multisession, workers = num.cores)
+INLA::inla.setOption(num.threads = num.cores)
+# To deactivate parallelism, run
+#   future::plan(future::sequential)
+#   INLA::inla.setOption(num.threads = 1)
 ```
 
 
@@ -285,14 +291,14 @@ for (i in seq_len(nRealisations)) {
   # Define options for inlabru
   if (is.null(list.input$max_step)) {
     list.input$bru.opt.list <- list(
-      bru_verbose = 3, # type of visual output
+      bru_verbose = 4, # type of visual output
       bru_max_iter = list.input$max_iter, # maximum number of iterations
       # bru_method = list(max_step = 0.5),
       bru_initial = list.input$th.init
     ) # parameters initial values
   } else {
     list.input$bru.opt.list <- list(
-      bru_verbose = 3, # type of visual output
+      bru_verbose = 4, # type of visual output
       bru_max_iter = list.input$max_iter, # maximum number of iterations
       bru_method = list(max_step = list.input$max_step),
       bru_initial = list.input$th.init

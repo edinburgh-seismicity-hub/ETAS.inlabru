@@ -4,7 +4,7 @@
 \alias{post_sampling}
 \title{Sample from the posterior of the ETAS parameters}
 \usage{
-post_sampling(input.list, n.samp, max.batch = 1000, ncore = 1)
+post_sampling(input.list, n.samp, max.batch = 1000, ncore = NULL)
 }
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
@@ -17,7 +17,9 @@ post_sampling(input.list, n.samp, max.batch = 1000, ncore = 1)
 
 \item{max.batch}{Maximum number of posterior samples to be generated simultaneously. Default is 1000.}
 
-\item{ncore}{Number of cores to be used if \code{n.samp} exceeds \code{max.batch}. Default is 1}
+\item{ncore}{Deprecated argument for controlling parallelism. Use
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
+parallelism in your code instead.}
 }
 \value{
 \code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters.

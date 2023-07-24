@@ -72,11 +72,20 @@ get_posterior_param <- function(input.list) {
 #' }
 #' @param n.samp The number of samples to draw from the posteriors
 #' @param max.batch Maximum number of posterior samples to be generated simultaneously. Default is 1000.
-#' @param ncore Number of cores to be used if `n.samp` exceeds `max.batch`. Default is 1
+#' @param ncore Deprecated argument for controlling parallelism. Use
+#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
+#' parallelism in your code instead.
 #'
 #' @return `data.frame` of posterior samples with `nrow = n.samp` and columns `mu, K, alpha, c, p` corresponding to ETAS parameters.
 #' @export
-post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = 1) {
+post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = NULL) {
+  if (!is.null(ncore)) {
+    lifecycle::deprecate_soft(
+      "1.1.1.9001",
+      "post_sampling(ncore)",
+      I("future::plan(future::multisession, workers = ncore) in your code")
+    )
+  }
   if (n.samp > max.batch) {
     n.batch <- floor(n.samp / max.batch)
     if (n.samp - max.batch * n.batch == 0) {
@@ -84,20 +93,25 @@ post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = 1) {
     } else {
       n.samp.per.batch <- c(rep(max.batch, n.batch), n.samp - max.batch * n.batch)
     }
-    post.samp.list <- parallel::mclapply(n.samp.per.batch, \(n.samp.batch)
-    inlabru::generate(
-      input.list$model.fit,
-      data.frame(),
-      ~ c(
-        input.list$link.functions$mu(th.mu),
-        input.list$link.functions$K(th.K),
-        input.list$link.functions$alpha(th.alpha),
-        input.list$link.functions$c_(th.c),
-        input.list$link.functions$p(th.p)
-      ),
-      n.samples = n.samp.batch
-    ),
-    mc.cores = ncore
+    post.samp.list <- future.apply::future_lapply(
+      n.samp.per.batch,
+      function(n.samp.batch) {
+        inla.seed <- sample.int(n = .Machine$integer.max, size = 1)
+        inlabru::generate(
+          input.list$model.fit,
+          data.frame(),
+          ~ c(
+            input.list$link.functions$mu(th.mu),
+            input.list$link.functions$K(th.K),
+            input.list$link.functions$alpha(th.alpha),
+            input.list$link.functions$c_(th.c),
+            input.list$link.functions$p(th.p)
+          ),
+          n.samples = n.samp.batch,
+          seed = inla.seed
+        )
+      },
+      future.seed = TRUE
     )
     post.samp <- do.call(cbind, post.samp.list)
   } else {

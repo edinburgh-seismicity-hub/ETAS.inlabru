@@ -18,8 +18,14 @@ knitr::opts_chunk$set(
 library(ETAS.inlabru)
 library(ggplot2)
 
-# Increase num.threads if you have more cores on your computer
-INLA::inla.setOption(num.threads = 2)
+# Increase/decrease num.cores if you have more/fewer cores on your computer.
+# future::multisession works on both Windows, MacOS, and Linux
+num.cores <- 2
+future::plan(future::multisession, workers = num.cores)
+INLA::inla.setOption(num.threads = num.cores)
+# To deactivate parallelism, run
+#   future::plan(future::sequential)
+#   INLA::inla.setOption(num.threads = 1)
 ```
 
 # Introduction
@@ -62,8 +68,7 @@ synth.cat.list <- generate_temporal_ETAS_synthetic(
   M0 = M0,
   T1 = T1,
   T2 = T2,
-  Ht = NULL,
-  ncore = 1
+  Ht = NULL
 )
 ```
 

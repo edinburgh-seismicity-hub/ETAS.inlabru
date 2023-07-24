@@ -4,7 +4,7 @@
 \alias{sample_temporal_ETAS_generation}
 \title{Take all previous parent events from \code{Ht=data.frame[ts, magnitudes]} and generates their daughters events using the ETAS model}
 \usage{
-sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
+sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore = NULL)
 }
 \arguments{
 \item{theta}{ETAS parameters \code{list(mu=mu, K=K, alpha=alpha, c=c, p=p)}.}
@@ -19,7 +19,9 @@ sample_temporal_ETAS_generation(theta, beta.p, Ht, M0, T1, T2, ncore = 1)
 
 \item{T2}{The end time for the synthetic catalogue \verb{[days]}.}
 
-\item{ncore}{The number of compute cores to use}
+\item{ncore}{Deprecated argument for controlling parallelism. Use
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
+parallelism in your code instead.}
 }
 \value{
 Return one generation of daughters from the parents in \code{Ht} in the form \code{data.frame(t_i, M_i)}.
