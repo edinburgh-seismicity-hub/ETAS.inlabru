@@ -68,7 +68,7 @@ gt <- function(theta, t, th, mh, M0) {
 #'
 #' Do not use when `t` is a vector.
 cond_lambda <- function(theta, t, th, mh, M0) {
-  if (is.null(th) | all(th > t)) {
+  if (is.null(th) || all(th > t)) {
     theta$mu
   }
   theta$mu + sum(gt(theta, t, th, mh, M0))

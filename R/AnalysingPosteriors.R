@@ -156,7 +156,7 @@ post_sampling <- function(input.list, n.samp, max.batch = 1000, ncore = NULL) {
 #' @export
 post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
                             post.samp = NULL, max.batch = 1000) {
-  if (is.null(input.list) & is.null(post.samp)) {
+  if (is.null(input.list) && is.null(post.samp)) {
     stop("input.list and post.samp are missing, please provide at least one of the two")
   }
   if (is.null(post.samp)) {

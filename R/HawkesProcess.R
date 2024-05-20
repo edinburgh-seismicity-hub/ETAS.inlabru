@@ -65,7 +65,8 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
   cat("Start creating grid...", "\n")
   time.g.st <- Sys.time()
   idx <- NULL # Dummy assignment to avoid global variable warning.
-  df.j <- foreach::foreach(idx = 1:nrow(total.data), .combine = rbind) %do% {
+  df.j <- foreach::foreach(idx = seq_len(nrow(total.data)),
+                           .combine = rbind) %do% {
     time_grid(
       data.point = total.data[idx, ],
       coef.t = coef.t.,

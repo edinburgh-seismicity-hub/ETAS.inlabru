@@ -10,7 +10,7 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
-  for (i in 1:length(par.raw)) {
+  for (i in seq_len(length(par.raw))) {
     row.i <- par.raw[[i]]
     if (grepl("start.date", row.i)) {
       # Do explicit assignment of the eval-result, to avoid package check warnings
@@ -261,7 +261,7 @@ create_input_list_temporal_noCatalogue <- function(input_path, num.threads = NUL
   on.exit(close(con))
   par.raw <- readLines(con)
 
-  for (i in 1:length(par.raw)) {
+  for (i in seq_len(length(par.raw))) {
     row.i <- par.raw[[i]]
 
     if (grepl("a_mu", row.i)) {

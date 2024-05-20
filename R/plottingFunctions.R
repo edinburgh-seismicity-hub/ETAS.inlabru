@@ -36,7 +36,7 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
   }
   if ((!is.null(post.samp)) & (!is.null(n.samp))) {
     if (nrow(post.samp) != n.samp) {
-      idx.samp <- sample(1:nrow(post.samp), n.samp, replace = TRUE)
+      idx.samp <- sample(seq_len(nrow(post.samp)), n.samp, replace = TRUE)
       post.samp <- post.samp[idx.samp, ]
     }
   }
@@ -295,7 +295,7 @@ omori_plot_posterior <- function(input.list, post.samp = NULL,
   }
   if ((!is.null(post.samp)) & (!is.null(n.samp))) {
     if (nrow(post.samp) != n.samp) {
-      idx.samp <- sample(1:nrow(post.samp), n.samp, replace = TRUE)
+      idx.samp <- sample(seq_len(nrow(post.samp)), n.samp, replace = TRUE)
       post.samp <- post.samp[idx.samp, ]
     }
   }

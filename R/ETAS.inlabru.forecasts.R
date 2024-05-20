@@ -59,9 +59,10 @@ Temporal.ETAS.forecast <- function(post.samp, n.cat, beta.p, M0, T1, T2, Ht, nco
     ))
   } else {
     # set catalogue identifier
-    synth.cat.list.df <- lapply(idx.cat.with.events, \(x) cbind(synth.cat.list.df[[x]],
-      cat.idx = x
-    ))
+    synth.cat.list.df <- lapply(
+      idx.cat.with.events,
+      \(x) cbind(synth.cat.list.df[[x]], cat.idx = x)
+    )
     return(list(
       fore.df = do.call(rbind, synth.cat.list.df),
       n.cat = n.cat
