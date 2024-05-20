@@ -148,7 +148,6 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
       Gen.list <- dplyr::arrange(Gen.list, .data$ts)
     }
     return(Gen.list)
-
   }
 
   ## MN: Generate the daughters of backgorund and 1st daughters of imposed event set

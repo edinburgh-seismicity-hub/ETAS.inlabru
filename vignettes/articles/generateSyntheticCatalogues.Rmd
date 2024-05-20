@@ -66,7 +66,7 @@ ggplot(combined.M7.ETAS.cat) +
   ggtitle("M7 plus background and ETAS")
 
 ggplot(combined.M7.ETAS.cat %>%
-         mutate(generation = if_else(gen == -1, "Initial", "Child"))) +
+  mutate(generation = if_else(gen == -1, "Initial", "Child"))) +
   geom_point(aes(x = ts, y = magnitudes, color = generation)) +
   xlim(0, modelledDuration) +
   ggtitle("M7 plus background and ETAS")

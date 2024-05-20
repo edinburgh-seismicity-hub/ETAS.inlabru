@@ -40,8 +40,7 @@ library(dplyr)
 library(lubridate)
 
 ## This is just the EPSG equivalent of WGS84
-crs_wgs84 <- st_crs('EPSG:4326')
-
+crs_wgs84 <- st_crs("EPSG:4326")
 ```
 
 # Load an earthquake catalogue
@@ -69,12 +68,12 @@ df_cat <- horus
 df_cat$event_num <- seq.int(nrow(df_cat))
 
 # Generate an sf version of the catalogue where the longitude and latitude are converted to a point object
-df_cat.sf<- st_as_sf(df_cat,
-                     coords = c("lon", "lat"),
-                     crs = crs_wgs84)
+df_cat.sf <- st_as_sf(df_cat,
+  coords = c("lon", "lat"),
+  crs = crs_wgs84
+)
 
 head(df_cat.sf)
-
 ```
 
 The data reports for each earthquake the time as a string (`time_string`),
@@ -86,12 +85,12 @@ kilometres (`depth`), and the moment magnitude (`M`).
 We download a polygon file for the national boundary of Italy for use later in this notebook.
 
 ```{r}
-italy.map <- ne_countries(country = 'Italy', returnclass = "sf", scale = 'medium')
+italy.map <- ne_countries(country = "Italy", returnclass = "sf", scale = "medium")
 italy.crs <- crs(italy.map)
 print(italy.crs)
 
-ggplot() + 
-  geom_sf(data = italy.map) + 
+ggplot() +
+  geom_sf(data = italy.map) +
   theme_bw() +
   ggtitle("Map of the Italian territorial boundary and coastline")
 ```
@@ -104,23 +103,20 @@ ggplot() +
 The histogram of depth data with 1km bins initially looks reasonable except for the artefact of a cluster of events at zero depth.
 
 ```{r}
-hist(df_cat$depth, breaks=seq(650,-5,-1), xlim=c(-5,40), main="Histogram of depths, 1km bins", xlab="Depth [km]")
-
+hist(df_cat$depth, breaks = seq(650, -5, -1), xlim = c(-5, 40), main = "Histogram of depths, 1km bins", xlab = "Depth [km]")
 ```
 
 However, when we reduce the bin width to 100m we see that there are more artefacts in the data. The spikes at 0, 5, 10 and 11km are artefacts of the depth estimation, one cause is that that the algorithms may have got stuck at their starting values.
 
 ```{r}
-hist(df_cat$depth, breaks=seq(650,-5,-0.1), xlim=c(-5,40), main="Histogram of depths (100m bins)", xlab="Depth [km]")
-
+hist(df_cat$depth, breaks = seq(650, -5, -0.1), xlim = c(-5, 40), main = "Histogram of depths (100m bins)", xlab = "Depth [km]")
 ```
 The magnitude time series shows how the completeness of intermediate and deep events has improved over time. 
 ```{r}
-ggplot(df_cat, aes(x=time_date, y=depth))  + 
+ggplot(df_cat, aes(x = time_date, y = depth)) +
   geom_point(size = 0.1) +
-  ylim(620,0) +
-  ggtitle('Depth timeseries using natural time')
-
+  ylim(620, 0) +
+  ggtitle("Depth timeseries using natural time")
 ```
   
 ## Plot of event magnitudes using natural time
@@ -138,9 +134,9 @@ Some of the observations are:
 - The sensitivity at the lowest magnitudes varies in time as can be seen by the changes in the lowest magnitudes
 
 ```{r}
-ggplot(df_cat, aes(x=event_num, y=M))  + 
+ggplot(df_cat, aes(x = event_num, y = M)) +
   geom_point(size = 0.1) +
-  ggtitle('Magnitude timeseries using natural time')
+  ggtitle("Magnitude timeseries using natural time")
 ```
 
 ## Plot of event magnitudes using date-time
@@ -148,7 +144,7 @@ ggplot(df_cat, aes(x=event_num, y=M))  +
 Here we present the same data as in the previous plot, but plotted against the data-time. Clustered events now sit on top of each other. We get a better representaion of how the data density increases towards the modern day and how the magnitude incompleteness varyies in time.
 
 ```{r Magnitude natural-time series}
-ggplot(df_cat, aes(x=time_date, y=M)) + 
+ggplot(df_cat, aes(x = time_date, y = M)) +
   geom_point(size = 0.1) +
   ggtitle("Horus catalogue magnitude time series")
 ```
@@ -157,7 +153,7 @@ The number of events occuring each year is difficult to assess in this plot, so 
 
 ```{r}
 df_cat$Time <- as.Date(df_cat$time_date)
- 
+
 print("Extract year")
 # extract the year and convert to numeric format
 df_cat$Year <- as.numeric(format(df_cat$Time, "%Y"))
@@ -166,28 +162,24 @@ countEventsInYear <- df_cat %>%
   group_by(Year) %>%
   summarize(counts = n())
 
-plot(countEventsInYear, type="l", main="Annual number of events for whole catalogue")
-
+plot(countEventsInYear, type = "l", main = "Annual number of events for whole catalogue")
 ```
 
 
 ```{r Magnitude time series}
 # Filtered for M>4
-ggplot(df_cat[df_cat$M>4,], aes(x=time_date, y=M)) + 
+ggplot(df_cat[df_cat$M > 4, ], aes(x = time_date, y = M)) +
   geom_point(size = 0.1) +
   ggtitle("Whole catalogue magnitude timeseries for M>4")
-
 ```
 
 ```{r}
-
-countEventsInYear <- df_cat[df_cat$M>=4,] %>%
+countEventsInYear <- df_cat[df_cat$M >= 4, ] %>%
   group_by(Year) %>%
   summarize(counts = n())
 
-plot(countEventsInYear, type="l", main="Annual number of events with M>=4")
-abline(h=mean(countEventsInYear), col=2)
-
+plot(countEventsInYear, type = "l", main = "Annual number of events with M>=4")
+abline(h = mean(countEventsInYear), col = 2)
 ```
 
 ## Frequency-magnitude analysis for Horus catalogue
@@ -203,43 +195,41 @@ There are three domains in a standard GR plot.
 minMag <- 1.5
 maxMag <- max(df_cat$M)
 
-mags <- df_cat[df_cat$M>minMag,]$M
+mags <- df_cat[df_cat$M > minMag, ]$M
 
-tmp <- hist(mags, breaks=seq(minMag-0.05,maxMag+0.1,0.1), plot=FALSE)
+tmp <- hist(mags, breaks = seq(minMag - 0.05, maxMag + 0.1, 0.1), plot = FALSE)
 
-N.counts <- length( tmp$counts)
+N.counts <- length(tmp$counts)
 tmp$cumulativeCounts <- cumsum(tmp$counts[N.counts:1])[N.counts:1]
 
 m.min <- 4
-bin_m.min <- which(tmp$mids==m.min)
+bin_m.min <- which(tmp$mids == m.min)
 freq_m.min <- tmp$counts[bin_m.min]
 b <- 1
 x <- tmp$mids
-y <- freq_m.min * 10^(-b*(x-m.min))
-y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b*(x-m.min))
+y <- freq_m.min * 10^(-b * (x - m.min))
+y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b * (x - m.min))
 
 ggplot() +
-  geom_point( aes(x=tmp$mids, y=tmp$counts) ) +
-  geom_point( aes(x=tmp$mids, y=tmp$cumulativeCounts) , color='red', pch="+", size=2) +
+  geom_point(aes(x = tmp$mids, y = tmp$counts)) +
+  geom_point(aes(x = tmp$mids, y = tmp$cumulativeCounts), color = "red", pch = "+", size = 2) +
   scale_y_log10() +
   ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
   xlab("Magnitude") +
   ylab("log10(Frequency)") +
-  geom_line(aes(x=x, y=y)) +
-  geom_line(aes(x=x, y=y.cum), color='red') +
-  geom_vline( xintercept=m.min, lty=2 )
-
+  geom_line(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = y.cum), color = "red") +
+  geom_vline(xintercept = m.min, lty = 2)
 ```
 
 ## b-value stability plot for the events in the Horus catalogue
 
 ```{r National b-value stability}
-
 minMag <- 2
-maxMag <- max(df_cat$M, na.rm=TRUE)
-mags <- df_cat[df_cat$M>=minMag,]$M
+maxMag <- max(df_cat$M, na.rm = TRUE)
+mags <- df_cat[df_cat$M >= minMag, ]$M
 
-x <- seq(minMag,maxMag,0.1)
+x <- seq(minMag, maxMag, 0.1)
 
 b.stability.list <- c()
 b.error.list <- c()
@@ -252,36 +242,36 @@ delta_b_utsu <- c()
 b_elst_lower <- c()
 b_elst_upper <- c()
 
-max.index.x <- length(x)-5
+max.index.x <- length(x) - 5
 
-for( i in 1:max.index.x ){
+for (i in 1:max.index.x) {
   mag.threshold <- x[i]
   mags.subset <- mags[mags > mag.threshold]
-  
+
   N <- length(mags.subset)
-  b_utsu[i] <- 1/( log(10)*(mean(mags.subset)-mag.threshold+0.05))
-  delta_b_utsu[i] <- log(10)*b_utsu[i]**2 * sqrt( sum((mags.subset - mean(mags.subset))**2)/(N*(N-1)))
-    
-  b_guttorp[i] = 1/( 2*0.05*log(10))*log((mean(mags.subset)-mag.threshold+2*0.05)/(mean(mags.subset)-mag.threshold))
-    
+  b_utsu[i] <- 1 / (log(10) * (mean(mags.subset) - mag.threshold + 0.05))
+  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 * sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
+
+  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(mags.subset) - mag.threshold + 2 * 0.05) / (mean(mags.subset) - mag.threshold))
+
   deltaMags <- diff(mags.subset)
-  deltaMags_p <- deltaMags[deltaMags>0.1]
+  deltaMags_p <- deltaMags[deltaMags > 0.1]
   N <- length(deltaMags_p)
-  b_elst[i] <- 1/(2*0.05* log(10)) * log((mean(deltaMags_p))/(mean(deltaMags_p)-0.1))
-  c = 10**(0.1*b_elst[i])
-  b_elst_lower[i] <- 1/(0.1 * log(10)) * log((c+sqrt(c/N))/(1+sqrt(c/N)))
-  b_elst_upper[i] <- 1/(0.1 * log(10)) * log((c-sqrt(c/N))/(1-sqrt(c/N)))
+  b_elst[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
+  c <- 10**(0.1 * b_elst[i])
+  b_elst_lower[i] <- 1 / (0.1 * log(10)) * log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
+  b_elst_upper[i] <- 1 / (0.1 * log(10)) * log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
 }
 
 ggplot() +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu) ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu+delta_b_utsu), color=2, lty=2 ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu-delta_b_utsu), color=2, lty=2 ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_guttorp), color=3, lty=1 ) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu)) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu), color = 2, lty = 2) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu), color = 2, lty = 2) +
+  geom_line(aes(x = x[1:max.index.x], y = b_guttorp), color = 3, lty = 1) +
   xlab("Magnitude threshold") +
   ylab("b-value estimate") +
-  geom_hline(yintercept = 1, lty=3) +
-  geom_hline(yintercept = 0.85, lty=3) +
+  geom_hline(yintercept = 1, lty = 3) +
+  geom_hline(yintercept = 0.85, lty = 3) +
   ggtitle("b-value stability plot for Horus catalogue")
 ```
 
@@ -289,9 +279,9 @@ ggplot() +
 
 ```{r hexbin event density}
 ggplot() +
-  geom_hex(data = df_cat[df_cat$M>3,], aes(x = lon, y = lat), bins = 50) +
+  geom_hex(data = df_cat[df_cat$M > 3, ], aes(x = lon, y = lat), bins = 50) +
   scale_fill_continuous(type = "viridis") +
-  geom_sf(data = italy.map, fill=alpha("lightgrey", 0), color = 'orange', size=0.2) + 
+  geom_sf(data = italy.map, fill = alpha("lightgrey", 0), color = "orange", size = 0.2) +
   ggtitle("Density plot for M>3 events") +
   theme_bw()
 ```
@@ -303,27 +293,27 @@ Here we plot the location of the seismicity on a map. The outline of the Italy t
 
 ```{r map of locations}
 ggplot() +
-  geom_sf(data = df_cat.sf[df_cat$M>3,], size = 0.05) +
-  geom_sf(data = italy.map, fill=alpha("lightgrey", 0), color = 'green', linewidth=0.7) +
-  geom_sf(data = df_cat.sf[df_cat$M>5,], size = 0.5, color='orange') +
-  geom_sf(data = df_cat.sf[df_cat$M>6,], size = 0.5, color='red') +
+  geom_sf(data = df_cat.sf[df_cat$M > 3, ], size = 0.05) +
+  geom_sf(data = italy.map, fill = alpha("lightgrey", 0), color = "green", linewidth = 0.7) +
+  geom_sf(data = df_cat.sf[df_cat$M > 5, ], size = 0.5, color = "orange") +
+  geom_sf(data = df_cat.sf[df_cat$M > 6, ], size = 0.5, color = "red") +
   ggtitle("Map of event locations")
 ```
 
 ```{r}
-eventDate <- ymd_hms( '2009-04-06 00:00:00' )
+eventDate <- ymd_hms("2009-04-06 00:00:00")
 endDate <- eventDate + days(400)
 startDate <- eventDate - days(50)
 deltaLat <- 2.4
-latLims <- c( 42.2,42.5)
-longLims <- c( 13, 13.75)
+latLims <- c(42.2, 42.5)
+longLims <- c(13, 13.75)
 
-ggplot() + 
-  geom_point(data=df_cat[df_cat$M>3,], aes(time_date, lat), size=0.1) +
-  geom_point(data=df_cat[df_cat$M>5,], aes(time_date, lat), size=1.2, color='orange') +
-  geom_point(data=df_cat[df_cat$M>6,], aes(time_date, lat), size=1.5, color='red') +
-  ggtitle("Italian latitude-time plot")  +
-  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill='blue', color='blue')
+ggplot() +
+  geom_point(data = df_cat[df_cat$M > 3, ], aes(time_date, lat), size = 0.1) +
+  geom_point(data = df_cat[df_cat$M > 5, ], aes(time_date, lat), size = 1.2, color = "orange") +
+  geom_point(data = df_cat[df_cat$M > 6, ], aes(time_date, lat), size = 1.5, color = "red") +
+  ggtitle("Italian latitude-time plot") +
+  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill = "blue", color = "blue")
 ```
 
 # Analysis if the L'Aquila Sequence
@@ -341,76 +331,74 @@ min.latitude = 42.2
 max.latitude = 42.5 
 
 ```{r Extract l Aquila subset}
-eventDate <- ymd_hms( '2009-04-06 00:00:00' )
+eventDate <- ymd_hms("2009-04-06 00:00:00")
 endDate <- eventDate + days(400)
 startDate <- eventDate - days(50)
 deltaLat <- 2.4
-latLims <- c( 42.2,42.5)
-longLims <- c( 13, 13.75)
+latLims <- c(42.2, 42.5)
+longLims <- c(13, 13.75)
 
 minMAG <- 0
 
 # Subset the main catalogue
 df_cat.subset <- df_cat[df_cat$M >= minMAG, ]
-df_cat.subset <- df_cat.subset[ (df_cat.subset$lat>latLims[1]), ]
-df_cat.subset <- df_cat.subset[ (df_cat.subset$lat<latLims[2]), ]
-df_cat.subset <- df_cat.subset[ (df_cat.subset$lon>longLims[1]), ]
-df_cat.subset <- df_cat.subset[ (df_cat.subset$lon<longLims[2]), ]
+df_cat.subset <- df_cat.subset[(df_cat.subset$lat > latLims[1]), ]
+df_cat.subset <- df_cat.subset[(df_cat.subset$lat < latLims[2]), ]
+df_cat.subset <- df_cat.subset[(df_cat.subset$lon > longLims[1]), ]
+df_cat.subset <- df_cat.subset[(df_cat.subset$lon < longLims[2]), ]
 
 head(df_cat.subset)
 ```
 ## Plot of the event magnitude time series: l'Aquila
 
 ```{r}
-ggplot() + 
-  geom_point(data=df_cat.subset[df_cat.subset$M>3,], aes(time_date, lat), size=0.1) +
-  geom_point(data=df_cat.subset[df_cat.subset$M>5,], aes(time_date, lat), size=1.2, color='orange') +
-  geom_point(data=df_cat.subset[df_cat.subset$M>6,], aes(time_date, lat), size=1.5, color='red') +
+ggplot() +
+  geom_point(data = df_cat.subset[df_cat.subset$M > 3, ], aes(time_date, lat), size = 0.1) +
+  geom_point(data = df_cat.subset[df_cat.subset$M > 5, ], aes(time_date, lat), size = 1.2, color = "orange") +
+  geom_point(data = df_cat.subset[df_cat.subset$M > 6, ], aes(time_date, lat), size = 1.5, color = "red") +
   ggtitle("L'Aquila latitude-time plot") +
-  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill='blue', color='blue')
+  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill = "blue", color = "blue")
 ```
 
 ```{r regional GR Plot}
 minMag <- 0
-maxMag <- max(df_cat.subset$M, na.rm=TRUE)
+maxMag <- max(df_cat.subset$M, na.rm = TRUE)
 
-mags <- df_cat.subset[df_cat.subset$M>=minMag,]$M
+mags <- df_cat.subset[df_cat.subset$M >= minMag, ]$M
 
-tmp <- hist(mags, breaks=seq(minMag-0.05,maxMag+0.4,0.1), plot=FALSE)
+tmp <- hist(mags, breaks = seq(minMag - 0.05, maxMag + 0.4, 0.1), plot = FALSE)
 
-N.counts <- length( tmp$counts)
+N.counts <- length(tmp$counts)
 tmp$cumulativeCounts <- cumsum(tmp$counts[N.counts:1])[N.counts:1]
 
 m.min <- 4
-bin_m.min <- which(tmp$mids==m.min)
+bin_m.min <- which(tmp$mids == m.min)
 freq_m.min <- tmp$counts[bin_m.min]
 b <- 1.
 x <- tmp$mids
-y <- freq_m.min * 10^(-b*(x-m.min))
-y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b*(x-m.min))
+y <- freq_m.min * 10^(-b * (x - m.min))
+y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b * (x - m.min))
 
 ggplot() +
-  geom_point( aes(x=tmp$mids, y=tmp$counts) ) +
-  geom_point( aes(x=tmp$mids, y=tmp$cumulativeCounts) , color='red', pch="+") +
+  geom_point(aes(x = tmp$mids, y = tmp$counts)) +
+  geom_point(aes(x = tmp$mids, y = tmp$cumulativeCounts), color = "red", pch = "+") +
   scale_y_log10() +
   ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
   xlab("Magnitude") +
   ylab("log10(Frequency)") +
-  geom_line(aes(x=x, y=y)) +
-  geom_line(aes(x=x, y=y.cum), color='red') +
-  geom_vline( xintercept=m.min, lty=2 )
-
+  geom_line(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = y.cum), color = "red") +
+  geom_vline(xintercept = m.min, lty = 2)
 ```
 
 ## b-value stability plot: l'Aquila
 
 ```{r}
-
 minMag <- 0
-maxMag <- max(df_cat.subset$M, na.rm=TRUE)
-mags <- df_cat.subset[df_cat.subset$M>=minMag,]$M
+maxMag <- max(df_cat.subset$M, na.rm = TRUE)
+mags <- df_cat.subset[df_cat.subset$M >= minMag, ]$M
 
-x <- seq(minMag,maxMag,0.1)
+x <- seq(minMag, maxMag, 0.1)
 
 b.stability.list <- c()
 b.error.list <- c()
@@ -423,36 +411,36 @@ delta_b_utsu <- c()
 b_elst_lower <- c()
 b_elst_upper <- c()
 
-max.index.x <- length(x)-5
+max.index.x <- length(x) - 5
 
-for( i in 1:max.index.x ){
+for (i in 1:max.index.x) {
   mag.threshold <- x[i]
   mags.subset <- mags[mags > mag.threshold]
-  
+
   N <- length(mags.subset)
-  b_utsu[i] <- 1/( log(10)*(mean(mags.subset)-mag.threshold+0.05))
-  delta_b_utsu[i] <- log(10)*b_utsu[i]**2 * sqrt( sum((mags.subset - mean(mags.subset))**2)/(N*(N-1)))
-    
-  b_guttorp[i] = 1/( 2*0.05*log(10))*log((mean(mags.subset)-mag.threshold+2*0.05)/(mean(mags.subset)-mag.threshold))
-    
+  b_utsu[i] <- 1 / (log(10) * (mean(mags.subset) - mag.threshold + 0.05))
+  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 * sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
+
+  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(mags.subset) - mag.threshold + 2 * 0.05) / (mean(mags.subset) - mag.threshold))
+
   deltaMags <- diff(mags.subset)
-  deltaMags_p <- deltaMags[deltaMags>0.1]
+  deltaMags_p <- deltaMags[deltaMags > 0.1]
   N <- length(deltaMags_p)
-  b_elst[i] <- 1/(2*0.05* log(10)) * log((mean(deltaMags_p))/(mean(deltaMags_p)-0.1))
-  c = 10**(0.1*b_elst[i])
-  b_elst_lower[i] <- 1/(0.1 * log(10)) * log((c+sqrt(c/N))/(1+sqrt(c/N)))
-  b_elst_upper[i] <- 1/(0.1 * log(10)) * log((c-sqrt(c/N))/(1-sqrt(c/N)))
+  b_elst[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
+  c <- 10**(0.1 * b_elst[i])
+  b_elst_lower[i] <- 1 / (0.1 * log(10)) * log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
+  b_elst_upper[i] <- 1 / (0.1 * log(10)) * log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
 }
 
 ggplot() +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu) ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu+delta_b_utsu), color=2, lty=2 ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_utsu-delta_b_utsu), color=2, lty=2 ) +
-  geom_line( aes(x=x[1:max.index.x], y=b_guttorp), color=3, lty=1 ) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu)) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu), color = 2, lty = 2) +
+  geom_line(aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu), color = 2, lty = 2) +
+  geom_line(aes(x = x[1:max.index.x], y = b_guttorp), color = 3, lty = 1) +
   xlab("Magnitude threshold") +
   ylab("b-value estimate") +
-  geom_hline(yintercept = 1, lty=3) +
-  geom_hline(yintercept = 0.85, lty=3) +
+  geom_hline(yintercept = 1, lty = 3) +
+  geom_hline(yintercept = 0.85, lty = 3) +
   ggtitle("b-value stability plot for the l'Aquila catalogue")
 ```
 
