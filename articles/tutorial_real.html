@@ -8,10 +8,10 @@
 <meta name="description" content="ETAS.inlabru">
 <title>2d Temporal Model: Tutorial on real data • ETAS.inlabru</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="2d Temporal Model: Tutorial on real data">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="2d Temporal Model: Tutorial on real data">
 <meta property="og:description" content="ETAS.inlabru">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
@@ -249,12 +249,15 @@ parameter in the internal scale if the value in the ETAS scale is
 provided. Below an example</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/inv_gamma_t.html">inv_gamma_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/gamma_t.html">gamma_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.2</span></span>
-<span><span class="fu"><a href="../reference/inv_unif_t.html">inv_unif_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/unif_t.html">unif_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.2</span></span>
-<span><span class="fu"><a href="../reference/inv_exp_t.html">inv_exp_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/exp_t.html">exp_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.2</span></span>
-<span><span class="fu"><a href="../reference/inv_loggaus_t.html">inv_loggaus_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/loggaus_t.html">loggaus_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/inv_unif_t.html">inv_unif_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/unif_t.html">unif_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/inv_exp_t.html">inv_exp_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/exp_t.html">exp_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/inv_loggaus_t.html">inv_loggaus_t</a></span><span class="op">(</span><span class="fu"><a href="../reference/loggaus_t.html">loggaus_t</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 1.2</span></span></code></pre></div>
 <p>Once we have decided the priors that we are going to use in the
 analysis, we need to store the corresponding copula transformations in a
@@ -268,7 +271,7 @@ the same with the inverse functions also, this list will be used to set
 the initial value of the parameters later. The code below assumes that
 parameter <span class="math inline">\(\mu\)</span> has a Gamma
 distribution as prior with parameters <span class="math inline">\(0.3\)</span> and <span class="math inline">\(0.6\)</span>, parameters <span class="math inline">\(K, \alpha,\)</span> and <span class="math inline">\(c\)</span> have a Uniform prior on <span class="math inline">\((0,10)\)</span>, while the parameter <span class="math inline">\(p\)</span> has a Uniform prior on <span class="math inline">\((1,10)\)</span>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set copula transformations list</span></span>
 <span><span class="va">link.f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  mu <span class="op">=</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/gamma_t.html">gamma_t</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span><span class="op">)</span>,</span>
@@ -298,9 +301,9 @@ can be downloaded from <a href="http://horus.bo.ingv.it/" class="external-link">
 for details on how the the subset was created from the original data
 set. This HORUS catalogue subset can be accessed directly using
 <code>horus</code> or <code><a href="../reference/horus.html">ETAS.inlabru::horus</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load HORUS catalogue</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horus</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           time_string     lon     lat depth    M</span></span>
 <span><span class="co">#&gt; 1 1960-01-03T20:19:34 15.3000 39.3000   290 6.34</span></span>
 <span><span class="co">#&gt; 2 1960-01-04T09:20:00 13.1667 43.1333     0 3.94</span></span>
@@ -324,7 +327,7 @@ seismic sequence can be selected similarly.</p>
 <p>To do the selection is convenient to transform the time string in a
 <code>Date</code> object and to select the rows of the Horus catalogue
 verifying the conditions.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># transform time string in Date object</span></span>
 <span><span class="va">horus</span><span class="op">$</span><span class="va">time_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span></span>
 <span>  <span class="va">horus</span><span class="op">$</span><span class="va">time_string</span>,</span>
@@ -359,7 +362,7 @@ verifying the conditions.</p>
 <p>The data can be visually represented by plotting the time of each
 event against the magnitude. This shows the clustering of the
 observations in correspondance of high magnitude events.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">aquila</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time_date</span>, <span class="va">M</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -379,14 +382,14 @@ date and the occurrence time of the events (measured in days in this
 example), <code>magnitudes</code> for the magnitude of the events, and
 <code>idx.p</code> which is an index column with a different value for
 each event. The names are fixed and should not be changed</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up data.frame for model fitting</span></span>
 <span><span class="va">aquila.bru</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">$</span><span class="va">time_date</span>, <span class="va">start.date</span>, units <span class="op">=</span> <span class="st">"days"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  magnitudes <span class="op">=</span> <span class="va">aquila</span><span class="op">$</span><span class="va">M</span>,</span>
-<span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
+<span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>After that, we need to set up the initial values of the parameters
 and the <code>list</code> containing the <code>inlabru</code> options to
@@ -403,7 +406,7 @@ is crucial to set initial values that do not cause numerical problems,
 in general this is achieved by setting initial values that are not nor
 from zero. The values provided below have worked well in various
 examples.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up list of initial values</span></span>
 <span><span class="va">th.init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  th.mu <span class="op">=</span> <span class="va">inv.link.f</span><span class="op">$</span><span class="fu">mu</span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>,</span>
@@ -435,7 +438,7 @@ line setting <code>bru_method</code> is commented.</li>
 <code>bru_initial</code>: <code>list</code> of initial values
 created before.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up list of bru options</span></span>
 <span><span class="va">bru.opt.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  bru_verbose <span class="op">=</span> <span class="fl">3</span>, <span class="co"># type of visual output</span></span>
@@ -484,7 +487,7 @@ corresponds to <code>coef.t.</code><span class="math inline">\(=\delta\)</span>,
 <code>bru.opt</code>: <code>list</code> of <code>inlabru</code>
 options as described in the previous Section.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.</span></span>
 <span><span class="va">T1</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="va">T2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="co"># Use max(..., na.rm = TRUE) if there may still be NAs here</span></span>
@@ -501,7 +504,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  2.299931</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.82634</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -520,7 +523,7 @@ posterior of the parameters we only need two elements:</p>
 <li>
 <code>link.functions</code>: the list of copula transformations</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create input list to explore model output</span></span>
 <span><span class="va">input_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  model.fit <span class="op">=</span> <span class="va">aquila.fit</span>,</span>
@@ -543,7 +546,7 @@ are referring to.</p></li>
 <li><p><code>post.plot</code>: a <code>ggplot</code> object containing
 the plot of the marginal posteriors of the parameters</p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get marginal posterior information</span></span>
 <span><span class="va">post.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_posterior_param.html">get_posterior_param</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span><span class="op">)</span></span>
 <span></span>
@@ -574,7 +577,7 @@ samples are generated in parallel in batches of maximum size equal to
 </ul>
 <p>The function returns a <code>data.frame</code> with columns
 corresponding to the ETAS parameters</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">post.samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/post_sampling.html">post_sampling</a></span><span class="op">(</span></span>
 <span>  input.list <span class="op">=</span> <span class="va">input_list</span>,</span>
 <span>  n.samp <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -587,16 +590,17 @@ corresponding to the ETAS parameters</p>
 <span><span class="co">#&gt;   instead.</span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3021242 0.1302891 2.519261 0.05201877 1.147929</span></span>
-<span><span class="co">#&gt; 2 0.2914638 0.1038356 2.448769 0.10150325 1.219382</span></span>
-<span><span class="co">#&gt; 3 0.2843393 0.1691639 2.479588 0.03744396 1.127995</span></span>
-<span><span class="co">#&gt; 4 0.3055755 0.1440415 2.404510 0.06691007 1.159365</span></span>
-<span><span class="co">#&gt; 5 0.2762775 0.1109113 2.454912 0.07800483 1.167500</span></span>
-<span><span class="co">#&gt; 6 0.2770023 0.1501069 2.384977 0.07666930 1.192113</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2938510 0.1378869 2.411814 0.07232739 1.182768</span></span>
+<span><span class="co">#&gt; 2 0.2883584 0.1200788 2.440669 0.07672093 1.169661</span></span>
+<span><span class="co">#&gt; 3 0.2800687 0.1715908 2.437354 0.06111878 1.198671</span></span>
+<span><span class="co">#&gt; 4 0.2896018 0.1257673 2.440773 0.07550159 1.181645</span></span>
+<span><span class="co">#&gt; 5 0.3615158 0.1194157 2.429327 0.08824102 1.187888</span></span>
+<span><span class="co">#&gt; 6 0.2875844 0.1711079 2.431666 0.05576694 1.168678</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -632,7 +636,7 @@ generated simultaneously. Same as before and only used when
 <code>post.samp</code> with the posterior samples, and
 <code>pair.plot</code> which is a <code>ggplot</code> object containing
 the pair plot.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pair.plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/post_pairs_plot.html">post_pairs_plot</a></span><span class="op">(</span></span>
 <span>  post.samp <span class="op">=</span> <span class="va">post.samp</span>,</span>
 <span>  input.list <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -641,8 +645,9 @@ the pair plot.</p>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Registered S3 method overwritten by 'GGally':</span></span>
 <span><span class="co">#&gt;   method from   </span></span>
-<span><span class="co">#&gt;   +.gg   ggplot2</span></span>
-<span><span class="va">pair.plot</span><span class="op">$</span><span class="va">pair.plot</span></span></code></pre></div>
+<span><span class="co">#&gt;   +.gg   ggplot2</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pair.plot</span><span class="op">$</span><span class="va">pair.plot</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -665,12 +670,12 @@ plot of the distribution with shaded regions representing <span class="math inli
 <code>post.df</code> with the <code>data.frame</code> used to generate
 the plots. The vertical line in the plots represent the number of events
 in the <code>catalog.bru</code> element of the input list.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set additional elements of the list</span></span>
 <span><span class="va">input_list</span><span class="op">$</span><span class="va">T12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">T1</span>, <span class="va">T2</span><span class="op">)</span></span>
 <span><span class="va">input_list</span><span class="op">$</span><span class="va">M0</span> <span class="op">&lt;-</span> <span class="va">M0</span></span>
 <span><span class="va">input_list</span><span class="op">$</span><span class="va">catalog.bru</span> <span class="op">&lt;-</span> <span class="va">aquila.bru</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">N.post</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_posterior_N.html">get_posterior_N</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span><span class="op">)</span></span>
 <span><span class="va">N.post</span><span class="op">$</span><span class="va">post.plot</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
@@ -716,7 +721,7 @@ rate <span class="math inline">\(\mu\)</span>.</p>
 the value of the parameters are sampled according to the prior
 distribution rather than the posterior, and therefore, we do not need to
 specify a posterior samples <code>data.frame</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/triggering_fun_plot.html">triggering_fun_plot</a></span><span class="op">(</span></span>
 <span>  input.list <span class="op">=</span> <span class="va">input_list</span>,</span>
 <span>  post.samp <span class="op">=</span> <span class="va">post.samp</span>,</span>
@@ -724,7 +729,7 @@ specify a posterior samples <code>data.frame</code>.</p>
 <span>  t.end <span class="op">=</span> <span class="fl">5</span>, n.breaks <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/triggering_fun_plot_prior.html">triggering_fun_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, magnitude <span class="op">=</span> <span class="fl">4</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <p>The functions <code>omori_plot_posterior</code> and
@@ -735,10 +740,10 @@ specify a posterior samples <code>data.frame</code>.</p>
 \left(\frac{t- t_h}{c} + 1\right)^{-p}
 \]</span> instead of the whole triggering function and without the
 background rate.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, post.samp <span class="op">=</span> <span class="va">post.samp</span>, n.samp <span class="op">=</span> <span class="cn">NULL</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_prior.html">omori_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 </div>
@@ -786,9 +791,9 @@ maximum likelihood estimator for <span class="math inline">\(\beta\)</span> whic
 \hat\beta = \frac{1}{\bar{m} - M_0}
 \]</span> where <span class="math inline">\(\bar m\)</span> is the mean
 of the observed magnitudes values.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># maximum likelihood estimator for beta</span></span>
-<span><span class="va">beta.p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span> <span class="op">-</span> <span class="va">M0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">beta.p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span> <span class="op">-</span> <span class="va">M0</span><span class="op">)</span></span></code></pre></div>
 <p>The function returns a <code>list</code> of <code>data.frame</code>,
 each element of the output <code>list</code> corresponds to a different
 generation. The <code>data.frame</code> have three columns: occurence
@@ -808,28 +813,28 @@ sufficient to bind by rows all the generations.</p>
 parameters one of the posterior samples generated before. The catalogue
 covers the same time span as the L’Aquila catalogue and we impose the
 greatest event in the sequence.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">synth.cat.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_temporal_ETAS_synthetic.html">generate_temporal_ETAS_synthetic</a></span><span class="op">(</span></span>
 <span>  theta <span class="op">=</span> <span class="va">post.samp</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>, <span class="co"># ETAS parameters</span></span>
 <span>  beta.p <span class="op">=</span> <span class="va">beta.p</span>, <span class="co"># magnitude distribution parameter</span></span>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>, <span class="co"># cutoff magnitude</span></span>
 <span>  T1 <span class="op">=</span> <span class="va">T1</span>, <span class="co"># starting time</span></span>
 <span>  T2 <span class="op">=</span> <span class="va">T2</span>, <span class="co"># end time</span></span>
-<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># known events</span></span>
+<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span> <span class="co"># known events</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co"># merge into unique data.frame</span></span>
 <span><span class="va">synth.cat.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">synth.cat.list</span><span class="op">)</span></span>
 <span><span class="co"># order events by time</span></span>
 <span><span class="va">synth.cat.df</span> <span class="op">&lt;-</span> <span class="va">synth.cat.df</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span>, <span class="op">]</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">synth.cat.df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/is.bool.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gen</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">synth.cat.df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span>, color <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/is.bool.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gen</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
 <p>We can easily generate multiple catalogues. The code below generates
 8 catalogues using different samples from the posterior distribution of
 the parameters. The red point indicates the event that we have imposed
 and the last panel represents the observed L’Aquila sequence.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">n.cat</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
 <span><span class="co"># generate catalogues as list of lists</span></span>
@@ -840,7 +845,7 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>,</span>
 <span>  T1 <span class="op">=</span> <span class="va">T1</span>,</span>
 <span>  T2 <span class="op">=</span> <span class="va">T2</span>,</span>
-<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
+<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># store catalogues as list of data.frames</span></span>
@@ -865,7 +870,7 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cat.df.for.plotting</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span><span class="op">)</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"red"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
@@ -922,11 +927,11 @@ zero correspond to <code>start.date</code> stated in the beginning of
 the document which for the example is <span class="math inline">\(2009-01-01 00:00:00\)</span>. The forecast is
 generated assuming known all the events in the catalogue occurred before
 the forecasting period.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># express 1 minute in days</span></span>
 <span><span class="va">min.in.days</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">24</span> <span class="op">*</span> <span class="fl">60</span><span class="op">)</span></span>
 <span><span class="co"># find time of the event with the greatest magnitude</span></span>
-<span><span class="va">t.max.mag</span> <span class="op">&lt;-</span> <span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">t.max.mag</span> <span class="op">&lt;-</span> <span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co"># set starting time of the forecasting period</span></span>
 <span><span class="va">T1.fore</span> <span class="op">&lt;-</span> <span class="va">t.max.mag</span> <span class="op">+</span> <span class="va">min.in.days</span></span>
 <span><span class="co"># set forecast length</span></span>
@@ -939,7 +944,7 @@ the forecasting period.</p>
 <span><span class="co"># produce forecast</span></span>
 <span><span class="va">daily.fore</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Temporal.ETAS.forecast.html">Temporal.ETAS.forecast</a></span><span class="op">(</span></span>
 <span>  post.samp <span class="op">=</span> <span class="va">post.samp</span>, <span class="co"># ETAS parameters posterior samples</span></span>
-<span>  n.cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span>, <span class="co"># number of synthetic catalogues</span></span>
+<span>  n.cat <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span>, <span class="co"># number of synthetic catalogues</span></span>
 <span>  beta.p <span class="op">=</span> <span class="va">beta.p</span>, <span class="co"># magnitude distribution parameter</span></span>
 <span>  M0 <span class="op">=</span> <span class="va">M0</span>, <span class="co"># cutoff magnitude</span></span>
 <span>  T1 <span class="op">=</span> <span class="va">T1.fore</span>, <span class="co"># forecast starting time</span></span>
@@ -963,7 +968,7 @@ not present in <code>fore.df$cat.idx</code>. So using <code>table</code>
 would lead to have zero probability of having zero events in a day,
 quantity that is crucial if we are intersted in the probability of
 earthquake activity (probability of having at least one event).</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># find number of events per catalogue</span></span>
 <span><span class="va">N.fore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">daily.fore</span><span class="op">$</span><span class="va">n.cat</span><span class="op">)</span>,</span>
@@ -976,8 +981,10 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 25 rows containing non-finite values (`stat_bin()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite outside the scale range</span></span>
+<span><span class="co">#&gt; (`stat_bin()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -987,13 +994,11 @@ earthquake activity (probability of having at least one event).</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Francesco Serafini, Mark Naylor, Finn Lindgren.</p>
+  <p>Developed by Francesco Serafini, Mark Naylor, Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer>

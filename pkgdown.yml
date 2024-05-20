@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   EDA_Italy_Horus: EDA_Italy_Horus.html
@@ -8,7 +8,7 @@ articles:
   sensitivityToStartingPoint: sensitivityToStartingPoint.html
   tutorial_real: tutorial_real.html
   tutorial_synth: tutorial_synth.html
-last_built: 2023-07-24T16:16Z
+last_built: 2024-05-20T12:59Z
 urls:
   reference: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/reference
   article: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/articles

@@ -8,10 +8,10 @@
 <meta name="description" content="ETAS.inlabru">
 <title>Sensitivity to starting point • ETAS.inlabru</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Sensitivity to starting point">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Sensitivity to starting point">
 <meta property="og:description" content="ETAS.inlabru">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
@@ -309,7 +309,7 @@ in files explicitly:</p>
 <span>  <span class="va">list.input</span><span class="op">$</span><span class="va">catalog.bru</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>    ts <span class="op">=</span> <span class="va">quiet.ETAS.cat</span><span class="op">$</span><span class="va">ts</span>,</span>
 <span>    magnitudes <span class="op">=</span> <span class="va">quiet.ETAS.cat</span><span class="op">$</span><span class="va">magnitudes</span>,</span>
-<span>    idx.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">quiet.ETAS.cat</span><span class="op">)</span><span class="op">)</span></span>
+<span>    idx.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">quiet.ETAS.cat</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="co">## Input list is now formatted</span></span>
@@ -325,11 +325,11 @@ in files explicitly:</p>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.5432522 </span></span>
+<span><span class="co">#&gt; Finished creating grid, time  0.1656168 </span></span>
 <span><span class="co">#&gt; Finish model fitting </span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.5450776 </span></span>
+<span><span class="co">#&gt; Finished creating grid, time  0.4050794 </span></span>
 <span><span class="co">#&gt; Finish model fitting</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -404,7 +404,7 @@ in files explicitly:</p>
 <span>  <span class="va">list.input</span><span class="op">$</span><span class="va">catalog.bru</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>    ts <span class="op">=</span> <span class="va">M6p7.ETAS.cat</span><span class="op">$</span><span class="va">ts</span>,</span>
 <span>    magnitudes <span class="op">=</span> <span class="va">M6p7.ETAS.cat</span><span class="op">$</span><span class="va">magnitudes</span>,</span>
-<span>    idx.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">M6p7.ETAS.cat</span><span class="op">)</span><span class="op">)</span></span>
+<span>    idx.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">M6p7.ETAS.cat</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span>  <span class="co">## Input list is now formatted</span></span>
@@ -420,7 +420,7 @@ in files explicitly:</p>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  5.823672</span></span>
+<span><span class="co">#&gt; Finished creating grid, time  11.80497</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component inputs</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component simplifications</span></span>
@@ -428,448 +428,787 @@ in files explicitly:</p>
 <span><span class="co">#&gt; iinla: Construct inla stack</span></span>
 <span><span class="co">#&gt; iinla: Model initialisation completed</span></span>
 <span><span class="co">#&gt; iinla: Iteration 1 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 93.26%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 9366</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -55.58</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 336.4</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 96.82%, Approx Optimisation (norm0 = 19910, norm1 = 486.1, norm01 = 19950)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 19950</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -42.85</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 484.2</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
 <span><span class="co">#&gt; iinla: Iteration 2 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 125%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 2286</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -59.4</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 279.8</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 5708, norm1 = 1694, norm01 = 4060)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 3666, norm1 = 452.3, norm01 = 4060)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 111.2%, Approx Optimisation (norm0 = 4045, norm1 = 253.7, norm01 = 4060)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 4060</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -23.39</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 252.7</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 1520% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 1710% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 3 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 61.08%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 2089</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -1130</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 141.5</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 4432, norm1 = 1539, norm01 = 2897)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 2773, norm1 = 143.4, norm01 = 2897)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 104.6%, Approx Optimisation (norm0 = 2897, norm1 = 74.64, norm01 = 2897)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 2897</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -1.69</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 74.62</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 2270% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 1900% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 4 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 117%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 1524</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -7.557</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 106.7</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 61.8%, Contract (norm0 = 549.9, norm1 = 1073, norm01 = 1473)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 52.73%, Approx Optimisation (norm0 = 530.9, norm1 = 998.4, norm01 = 1473)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 1473</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -979.3</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 194.5</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 1110% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 1250% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 5 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 110.5%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 590.2</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -4.381</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 28.52</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 2435, norm1 = 791.6, norm01 = 1650)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 1549, norm1 = 115.9, norm01 = 1650)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 106.7%, Approx Optimisation (norm0 = 1648, norm1 = 62.22, norm01 = 1650)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 1650</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -3.775</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 62.1</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 678% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 1080% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 6 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 101.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 352.3</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.02589</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 2.191</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 1621, norm1 = 615.3, norm01 = 1005)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 1003, norm1 = 2.672, norm01 = 1005)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 1005, norm1 = 1.481, norm01 = 1005)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 1005</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.005327</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.481</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 261% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 439% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 7 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 103.8%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 255.5</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.5008</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 7.588</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 1208, norm1 = 444.7, norm01 = 763.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 753.8, norm1 = 12.7, norm01 = 763.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 101.3%, Approx Optimisation (norm0 = 763.7, norm1 = 7.917, norm01 = 763.8)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 763.8</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.1787</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 7.915</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 181% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 336% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 8 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.5%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 236.2</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.007301</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.9119</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 1128, norm1 = 426, norm01 = 701.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 698.7, norm1 = 3.592, norm01 = 701.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Approx Optimisation (norm0 = 701.6, norm1 = 2.211, norm01 = 701.6)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 701.6</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.01453</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 2.211</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 169% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 309% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 9 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 101%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 201.6</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.02185</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.455</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 1012, norm1 = 381.5, norm01 = 630.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 627.8, norm1 = 4.015, norm01 = 630.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.5%, Approx Optimisation (norm0 = 630.9, norm1 = 2.484, norm01 = 630.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 630.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.02034</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 2.484</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 144% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 278% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 10 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.7%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 183.5</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.01136</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.005</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 935.7, norm1 = 353.6, norm01 = 582.2)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 579.9, norm1 = 3.003, norm01 = 582.2)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Approx Optimisation (norm0 = 582.2, norm1 = 1.861, norm01 = 582.2)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 582.2</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.01227</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.861</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 258% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 11 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 865.3, norm1 = 327.3, norm01 = 538)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 536, norm1 = 2.479, norm01 = 538)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Approx Optimisation (norm0 = 538, norm1 = 1.54, norm01 = 538)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 538</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.00906</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.54</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 239% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 12 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 803.6, norm1 = 304.3, norm01 = 499.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 497.7, norm1 = 2.091, norm01 = 499.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Approx Optimisation (norm0 = 499.3, norm1 = 1.303, norm01 = 499.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 499.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.008958</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.303</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 223% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 13 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 748.5, norm1 = 283.6, norm01 = 464.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 463.5, norm1 = 1.798, norm01 = 464.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Approx Optimisation (norm0 = 464.9, norm1 = 1.123, norm01 = 464.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 464.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.01044</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.123</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 209% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 14 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 698.9, norm1 = 265, norm01 = 433.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 432.7, norm1 = 1.567, norm01 = 433.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Approx Optimisation (norm0 = 433.9, norm1 = 0.9812, norm01 = 433.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 433.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.01135</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.9811</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 196% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 15 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 654, norm1 = 248.1, norm01 = 405.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 404.9, norm1 = 1.378, norm01 = 405.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Approx Optimisation (norm0 = 405.9, norm1 = 0.8648, norm01 = 405.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 405.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0119</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.8647</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 184% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 16 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 613.2, norm1 = 232.7, norm01 = 380.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 379.5, norm1 = 1.219, norm01 = 380.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Approx Optimisation (norm0 = 380.5, norm1 = 0.7671, norm01 = 380.5)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 380.5</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.003192</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.7671</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 173% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 17 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 575.8, norm1 = 218.6, norm01 = 357.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 356.4, norm1 = 1.084, norm01 = 357.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 357.3, norm1 = 0.6837, norm01 = 357.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 357.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.002103</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.6837</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 163% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 18 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 541.6, norm1 = 205.6, norm01 = 335.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 335.2, norm1 = 0.9675, norm01 = 335.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 335.9, norm1 = 0.6115, norm01 = 335.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 335.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001207</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.6115</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 154% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 19 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 510, norm1 = 193.7, norm01 = 316.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 315.6, norm1 = 0.866, norm01 = 316.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 316.3, norm1 = 0.5486, norm01 = 316.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 316.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004653</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.5486</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 146% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 20 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 480.9, norm1 = 182.7, norm01 = 298.2)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 297.6, norm1 = 0.7771, norm01 = 298.2)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 298.2, norm1 = 0.4933, norm01 = 298.2)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 298.2</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0001512</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.4933</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 138% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 21 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 453.9, norm1 = 172.5, norm01 = 281.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 280.9, norm1 = 0.6987, norm01 = 281.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 281.4, norm1 = 0.4444, norm01 = 281.4)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 281.4</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0006643</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.4444</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
 <span><span class="co">#&gt; iinla: Max deviation from previous: 131% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 11 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.6%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 166.1</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.007638</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.7861</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 119% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 12 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.5%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 151</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.005318</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.6266</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 109% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 13 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.5%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 137.6</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.003836</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.5088</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 99.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 14 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 125.7</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002836</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.4186</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 91.3% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 15 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 115.1</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002134</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.3477</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 83.9% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 16 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 105.5</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001626</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2908</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 77.3% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 17 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 96.84</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2445</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 71.2% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 18 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 89.03</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.00228</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2063</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 65.7% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 19 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.3%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 81.95</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0008539</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1746</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 60.7% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 20 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 75.5</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004826</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1482</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 56.1% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 21 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 69.63</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00019</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.126</span></span>
-<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
-<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 51.9% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 22 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 64.26</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -3.935e-05</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1074</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 428.9, norm1 = 163, norm01 = 265.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 265.4, norm1 = 0.6294, norm01 = 265.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 265.9, norm1 = 0.4011, norm01 = 265.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 265.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001091</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.4011</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 48% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 124% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 23 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 59.36</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0002177</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.09164</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 405.6, norm1 = 154.2, norm01 = 251.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 251, norm1 = 0.5678, norm01 = 251.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 251.4, norm1 = 0.3626, norm01 = 251.4)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 251.4</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001445</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.3626</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 44.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 118% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 24 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 54.86</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0003547</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.0783</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 383.9, norm1 = 146, norm01 = 237.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 237.5, norm1 = 0.5129, norm01 = 237.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 237.9, norm1 = 0.3282, norm01 = 237.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 237.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001737</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.3282</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 41.2% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 112% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 25 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 50.74</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0004583</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.06699</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 363.6, norm1 = 138.3, norm01 = 225.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 224.9, norm1 = 0.464, norm01 = 225.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 225.3, norm1 = 0.2974, norm01 = 225.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 225.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001976</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2974</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 38.2% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 106% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 26 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 46.95</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0005348</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.05738</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 344.6, norm1 = 131.1, norm01 = 213.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 213.2, norm1 = 0.4202, norm01 = 213.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 213.5, norm1 = 0.2697, norm01 = 213.5)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 213.5</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.00217</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2697</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 35.4% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 101% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 27 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 43.47</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0005895</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.0492</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 326.9, norm1 = 124.4, norm01 = 202.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 202.2, norm1 = 0.3809, norm01 = 202.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 202.5, norm1 = 0.2449, norm01 = 202.5)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 202.5</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002326</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2449</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 32.9% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 96% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 28 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 40.26</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0006264</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.04222</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 310.2, norm1 = 118.1, norm01 = 192.1)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 191.9, norm1 = 0.3456, norm01 = 192.1)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 192.1, norm1 = 0.2226, norm01 = 192.1)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 192.1</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002449</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2226</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 30.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 91.4% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 29 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 37.31</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0006492</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03626</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 294.5, norm1 = 112.1, norm01 = 182.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 182.2, norm1 = 0.3138, norm01 = 182.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 182.4, norm1 = 0.2024, norm01 = 182.4)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 182.4</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002544</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.2024</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 28.3% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 87% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 30 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 34.59</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0006605</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03117</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 279.8, norm1 = 106.5, norm01 = 173.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 173.1, norm1 = 0.2852, norm01 = 173.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 173.3, norm1 = 0.1842, norm01 = 173.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 173.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002614</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1842</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 26.3% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 82.9% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 31 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 32.07</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0006628</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02681</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 265.9, norm1 = 101.3, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 164.5, norm1 = 0.2593, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 164.7, norm1 = 0.1678, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 164.7</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002663</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1678</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 24.4% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 79% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 32 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 29.75</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0005509</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02308</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 252.8, norm1 = 96.28, norm01 = 156.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 156.4, norm1 = 0.236, norm01 = 156.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 156.6, norm1 = 0.1529, norm01 = 156.6)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 156.6</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002694</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1529</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 22.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 75.3% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 33 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 27.61</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004744</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01987</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 240.5, norm1 = 91.6, norm01 = 148.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 148.7, norm1 = 0.2148, norm01 = 148.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 148.9, norm1 = 0.1394, norm01 = 148.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 148.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.00271</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1394</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 21.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 71.8% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 34 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 25.63</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004087</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01712</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 228.9, norm1 = 87.17, norm01 = 141.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 141.5, norm1 = 0.1957, norm01 = 141.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 141.7, norm1 = 0.1271, norm01 = 141.7)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 141.7</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002712</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1271</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 19.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 68.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 35 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 23.79</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003523</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01476</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 217.8, norm1 = 82.99, norm01 = 134.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 134.7, norm1 = 0.1784, norm01 = 134.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 134.9, norm1 = 0.116, norm01 = 134.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 134.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002704</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.116</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 18.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 65.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 36 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 22.09</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003038</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01273</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 207.4, norm1 = 79.03, norm01 = 128.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 128.3, norm1 = 0.1626, norm01 = 128.4)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 128.4, norm1 = 0.1059, norm01 = 128.4)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 128.4</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.002685</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1059</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 16.9% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 62.4% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 37 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 20.52</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002621</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01098</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 197.6, norm1 = 75.29, norm01 = 122.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 122.2, norm1 = 0.1484, norm01 = 122.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 122.3, norm1 = 0.09673, norm01 = 122.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 122.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00231</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.0967</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 15.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 59.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 38 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 19.07</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002262</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.009477</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 188.3, norm1 = 71.74, norm01 = 116.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 116.4, norm1 = 0.1354, norm01 = 116.5)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 116.5, norm1 = 0.08837, norm01 = 116.5)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 116.5</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00211</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.08834</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 14.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 56.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 39 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 17.72</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001952</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.008182</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 179.4, norm1 = 68.38, norm01 = 111)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 110.9, norm1 = 0.1236, norm01 = 111)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 111, norm1 = 0.08075, norm01 = 111)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 111</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001927</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.08073</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 13.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 54.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 40 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 16.46</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001686</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.007066</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 171, norm1 = 65.19, norm01 = 105.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 105.8, norm1 = 0.1129, norm01 = 105.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 105.8, norm1 = 0.07381, norm01 = 105.8)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 105.8</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00176</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.07379</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 12.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 51.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 41 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 15.3</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001456</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.006104</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 163.1, norm1 = 62.17, norm01 = 100.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 100.8, norm1 = 0.1031, norm01 = 100.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 100.9, norm1 = 0.06748, norm01 = 100.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 100.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001609</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.06747</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 11.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 49.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 42 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 14.23</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001258</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.005275</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 155.5, norm1 = 59.3, norm01 = 96.25)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 96.18, norm1 = 0.09419, norm01 = 96.25)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 96.25, norm1 = 0.06172, norm01 = 96.25)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 96.25</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00147</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.0617</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 47.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 43 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 148.4, norm1 = 56.57, norm01 = 91.81)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 91.75, norm1 = 0.08608, norm01 = 91.81)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 91.81, norm1 = 0.05645, norm01 = 91.81)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 91.81</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001345</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.05644</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 45.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 44 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 141.6, norm1 = 53.98, norm01 = 87.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 87.54, norm1 = 0.07868, norm01 = 87.6)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 87.6, norm1 = 0.05165, norm01 = 87.6)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 87.6</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.00123</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.05163</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 43.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 45 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 135.1, norm1 = 51.52, norm01 = 83.59)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 83.54, norm1 = 0.07194, norm01 = 83.59)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 83.59, norm1 = 0.04726, norm01 = 83.59)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 83.59</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001125</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.04725</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 41.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 46 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 129, norm1 = 49.18, norm01 = 79.78)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 79.73, norm1 = 0.06579, norm01 = 79.78)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 79.79, norm1 = 0.04326, norm01 = 79.78)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 79.78</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.001029</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.04324</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 39.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 47 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 123.1, norm1 = 46.95, norm01 = 76.16)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 76.12, norm1 = 0.06018, norm01 = 76.16)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 76.16, norm1 = 0.03959, norm01 = 76.16)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 76.16</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0009416</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03958</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 37.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 48 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 117.6, norm1 = 44.83, norm01 = 72.72)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 72.68, norm1 = 0.05505, norm01 = 72.72)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 72.72, norm1 = 0.03625, norm01 = 72.72)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 72.72</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0008617</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03624</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 36.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 49 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 112.3, norm1 = 42.82, norm01 = 69.44)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 69.4, norm1 = 0.05037, norm01 = 69.44)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 69.44, norm1 = 0.03319, norm01 = 69.44)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 69.44</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0007888</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03318</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 34.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 50 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 107.2, norm1 = 40.9, norm01 = 66.32)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 66.29, norm1 = 0.0461, norm01 = 66.32)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 66.32, norm1 = 0.03039, norm01 = 66.32)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 66.32</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0007221</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.03038</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 33% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 51 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 102.4, norm1 = 39.07, norm01 = 63.35)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 63.32, norm1 = 0.04219, norm01 = 63.35)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 63.35, norm1 = 0.02784, norm01 = 63.35)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 63.35</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0006611</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02783</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 31.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 52 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 97.84, norm1 = 37.33, norm01 = 60.52)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 60.49, norm1 = 0.03862, norm01 = 60.52)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 60.52, norm1 = 0.0255, norm01 = 60.52)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 60.52</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0006054</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02549</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 30.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 53 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 93.49, norm1 = 35.67, norm01 = 57.82)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 57.8, norm1 = 0.03536, norm01 = 57.82)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 57.82, norm1 = 0.02335, norm01 = 57.82)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 57.82</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0005544</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02335</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 28.9% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 54 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 89.34, norm1 = 34.08, norm01 = 55.25)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 55.23, norm1 = 0.03237, norm01 = 55.25)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 55.25, norm1 = 0.0214, norm01 = 55.25)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 55.25</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0005078</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02139</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 27.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 55 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 85.38, norm1 = 32.58, norm01 = 52.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 52.78, norm1 = 0.02964, norm01 = 52.8)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 52.8, norm1 = 0.0196, norm01 = 52.8)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 52.8</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004651</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.0196</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 26.4% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 56 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 81.6, norm1 = 31.14, norm01 = 50.47)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 50.45, norm1 = 0.02715, norm01 = 50.47)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 50.47, norm1 = 0.01796, norm01 = 50.47)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 50.47</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.000426</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01796</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 25.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 57 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 78, norm1 = 29.76, norm01 = 48.24)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 48.22, norm1 = 0.02486, norm01 = 48.24)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 48.24, norm1 = 0.01646, norm01 = 48.24)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 48.24</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003903</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01645</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 24.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 58 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 74.57, norm1 = 28.46, norm01 = 46.11)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 46.1, norm1 = 0.02277, norm01 = 46.11)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 46.12, norm1 = 0.01508, norm01 = 46.11)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 46.11</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003576</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01508</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 23.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 59 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 71.29, norm1 = 27.21, norm01 = 44.09)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 44.07, norm1 = 0.02086, norm01 = 44.09)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 44.09, norm1 = 0.01382, norm01 = 44.09)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 44.09</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003276</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01382</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 22.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 60 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 68.17, norm1 = 26.01, norm01 = 42.15)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 42.14, norm1 = 0.01911, norm01 = 42.15)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 42.15, norm1 = 0.01267, norm01 = 42.15)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 42.15</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003002</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01266</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 21.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 61 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 65.18, norm1 = 24.88, norm01 = 40.31)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 40.29, norm1 = 0.01751, norm01 = 40.31)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 40.31, norm1 = 0.01161, norm01 = 40.31)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 40.31</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002751</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01161</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 20.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 62 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 62.34, norm1 = 23.79, norm01 = 38.55)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 38.53, norm1 = 0.01604, norm01 = 38.55)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 38.55, norm1 = 0.01064, norm01 = 38.55)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 38.55</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002521</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01064</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 19.4% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 63 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 59.62, norm1 = 22.75, norm01 = 36.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 36.85, norm1 = 0.0147, norm01 = 36.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 36.86, norm1 = 0.009753, norm01 = 36.86)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 36.86</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.000231</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.00975</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 18.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 64 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 57.02, norm1 = 21.76, norm01 = 35.26)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 35.25, norm1 = 0.01347, norm01 = 35.26)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 35.26, norm1 = 0.00894, norm01 = 35.26)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 35.26</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002118</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.008937</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 65 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 54.54, norm1 = 20.82, norm01 = 33.72)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 33.71, norm1 = 0.01234, norm01 = 33.72)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 33.72, norm1 = 0.008195, norm01 = 33.72)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 33.72</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001941</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.008192</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 66 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 52.17, norm1 = 19.91, norm01 = 32.26)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 32.25, norm1 = 0.01131, norm01 = 32.26)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 32.26, norm1 = 0.007512, norm01 = 32.26)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 32.26</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001779</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.00751</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 16.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 67 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 49.91, norm1 = 19.05, norm01 = 30.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 30.85, norm1 = 0.01036, norm01 = 30.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 30.86, norm1 = 0.006886, norm01 = 30.86)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 30.86</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.000163</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.006884</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 15.6% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 68 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 47.75, norm1 = 18.23, norm01 = 29.52)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 29.51, norm1 = 0.009496, norm01 = 29.52)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 29.52, norm1 = 0.006313, norm01 = 29.52)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 29.52</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001494</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.006311</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 14.9% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 69 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 45.68, norm1 = 17.44, norm01 = 28.24)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 28.24, norm1 = 0.008703, norm01 = 28.24)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 28.24, norm1 = 0.005788, norm01 = 28.24)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 28.24</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.000137</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.005786</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 14.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 70 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 43.71, norm1 = 16.69, norm01 = 27.02)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 27.02, norm1 = 0.007976, norm01 = 27.02)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 27.02, norm1 = 0.005306, norm01 = 27.02)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 27.02</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001256</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.005304</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 13.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 71 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 41.82, norm1 = 15.97, norm01 = 25.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 25.85, norm1 = 0.00731, norm01 = 25.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 25.86, norm1 = 0.004864, norm01 = 25.86)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 25.86</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001151</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004863</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 13.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 72 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 40.02, norm1 = 15.28, norm01 = 24.74)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 24.74, norm1 = 0.0067, norm01 = 24.74)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 24.74, norm1 = 0.00446, norm01 = 24.74)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 24.74</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001055</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004459</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 12.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 73 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 38.3, norm1 = 14.62, norm01 = 23.68)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 23.67, norm1 = 0.006141, norm01 = 23.68)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 23.68, norm1 = 0.004089, norm01 = 23.68)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 23.68</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 9.673e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004088</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 12% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 74 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 36.65, norm1 = 13.99, norm01 = 22.66)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 22.65, norm1 = 0.005629, norm01 = 22.66)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 22.66, norm1 = 0.003749, norm01 = 22.66)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 22.66</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 8.868e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003748</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 11.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 75 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 35.07, norm1 = 13.39, norm01 = 21.68)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 21.68, norm1 = 0.00516, norm01 = 21.68)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 21.68, norm1 = 0.003437, norm01 = 21.68)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 21.68</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 8.129e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003436</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
 <span><span class="co">#&gt; iinla: Max deviation from previous: 11% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 43 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 13.23</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001087</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004559</span></span>
+<span><span class="co">#&gt; iinla: Iteration 76 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 33.57, norm1 = 12.82, norm01 = 20.75)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 20.75, norm1 = 0.004729, norm01 = 20.75)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 20.75, norm1 = 0.003151, norm01 = 20.75)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 20.75</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 7.453e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.00315</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 10.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Iteration 44 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 12.3</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 9.398e-05</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003941</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 10.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 77 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 32.13, norm1 = 12.27, norm01 = 19.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 19.86, norm1 = 0.004335, norm01 = 19.86)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 19.86, norm1 = 0.002889, norm01 = 19.86)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 19.86</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 6.832e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.002888</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 9.49% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 10.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 78 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 30.75, norm1 = 11.74, norm01 = 19.01)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 19.01, norm1 = 0.003974, norm01 = 19.01)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 19.01, norm1 = 0.002649, norm01 = 19.01)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 19.01</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 6.263e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.002648</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 9.66% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Convergence criterion met, running final INLA integration with known theta mode.</span></span>
-<span><span class="co">#&gt; iinla: Iteration 45 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 79 [max:100]</span></span>
 <span><span class="co">#&gt; Finish model fitting </span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  5.954548</span></span>
+<span><span class="co">#&gt; Finished creating grid, time  10.94019</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component inputs</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component simplifications</span></span>
@@ -877,52 +1216,196 @@ in files explicitly:</p>
 <span><span class="co">#&gt; iinla: Construct inla stack</span></span>
 <span><span class="co">#&gt; iinla: Model initialisation completed</span></span>
 <span><span class="co">#&gt; iinla: Iteration 1 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 92.06%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 174.3</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -3.799</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 18.5</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 266, norm1 = 107.5, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 163.9, norm1 = 17.4, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 98.84%, Approx Optimisation (norm0 = 162, norm1 = 17.29, norm01 = 164.7)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 164.7</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -3.589</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 16.91</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
 <span><span class="co">#&gt; iinla: Iteration 2 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 99.32%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 41.11</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.1645</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.838</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 93.12, norm1 = 34.8, norm01 = 58.42)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 57.88, norm1 = 1.428, norm01 = 58.42)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.9%, Approx Optimisation (norm0 = 58.38, norm1 = 1.336, norm01 = 58.42)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 58.42</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.06169</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 1.335</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 42.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 39.4% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 3 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 99.99%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 10.12</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001882</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.09727</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 64.15, norm1 = 24.26, norm01 = 39.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 39.74, norm1 = 0.2421, norm01 = 39.9)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.4%, Approx Optimisation (norm0 = 39.89, norm1 = 0.1891, norm01 = 39.9)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 39.9</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.001803</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.1891</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 16.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17.7% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 4 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 5.642</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0001879</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01588</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 60.27, norm1 = 22.94, norm01 = 37.33)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 37.28, norm1 = 0.07212, norm01 = 37.33)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 37.33, norm1 = 0.05169, norm01 = 37.33)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 37.33</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0005434</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.05169</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 10.5% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17.9% of SD, and line search is active [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 5 [max:100]</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep</span></span>
-<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Optimisation</span></span>
-<span><span class="co">#&gt; iinla: |lin1-lin0| = 5.666</span></span>
-<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = -0.0001337</span></span>
-<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.007986</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 57.59, norm1 = 21.96, norm01 = 35.63)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 35.61, norm1 = 0.03359, norm01 = 35.63)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 35.63, norm1 = 0.02382, norm01 = 35.63)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 35.63</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0004829</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.02381</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
-<span><span class="co">#&gt; iinla: Max deviation from previous: 6.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
-<span><span class="co">#&gt; iinla: Convergence criterion met, running final INLA integration with known theta mode.</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
 <span><span class="co">#&gt; iinla: Iteration 6 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 55.15, norm1 = 21.04, norm01 = 34.11)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 34.09, norm1 = 0.02118, norm01 = 34.11)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 34.11, norm1 = 0.01486, norm01 = 34.11)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 34.11</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0003126</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01486</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 17.1% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 7 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 52.84, norm1 = 20.16, norm01 = 32.67)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 32.66, norm1 = 0.01581, norm01 = 32.67)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 32.67, norm1 = 0.01094, norm01 = 32.67)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 32.67</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0002384</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.01093</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 16.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 8 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 50.62, norm1 = 19.32, norm01 = 31.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 31.29, norm1 = 0.0129, norm01 = 31.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 31.3, norm1 = 0.008808, norm01 = 31.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 31.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001975</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.008806</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 15.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 9 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 48.48, norm1 = 18.51, norm01 = 29.98)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 29.97, norm1 = 0.01103, norm01 = 29.98)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 29.98, norm1 = 0.007465, norm01 = 29.98)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 29.98</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001706</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.007463</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 15.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 10 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 46.43, norm1 = 17.72, norm01 = 28.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 28.7, norm1 = 0.009692, norm01 = 28.7)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 28.7, norm1 = 0.00652, norm01 = 28.7)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 28.7</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001509</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.006518</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 14.5% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 11 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 44.45, norm1 = 16.97, norm01 = 27.48)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 27.47, norm1 = 0.008653, norm01 = 27.48)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 27.48, norm1 = 0.005799, norm01 = 27.48)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 27.48</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001353</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.005797</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 13.9% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 12 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 42.54, norm1 = 16.24, norm01 = 26.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 26.3, norm1 = 0.0078, norm01 = 26.3)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 26.3, norm1 = 0.005215, norm01 = 26.3)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 26.3</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001223</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.005213</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 13.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 13 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 40.72, norm1 = 15.55, norm01 = 25.18)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 25.17, norm1 = 0.007074, norm01 = 25.18)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 25.18, norm1 = 0.004723, norm01 = 25.18)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 25.18</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001111</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004722</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 12.8% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 14 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 38.97, norm1 = 14.88, norm01 = 24.1)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 24.09, norm1 = 0.006441, norm01 = 24.1)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 24.1, norm1 = 0.004296, norm01 = 24.1)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 24.1</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 0.0001013</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.004295</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 12.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 15 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 37.3, norm1 = 14.24, norm01 = 23.06)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 23.06, norm1 = 0.005878, norm01 = 23.06)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 23.06, norm1 = 0.003919, norm01 = 23.06)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 23.06</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 9.248e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003918</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 11.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 16 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 35.7, norm1 = 13.63, norm01 = 22.07)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 22.07, norm1 = 0.005373, norm01 = 22.07)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 22.07, norm1 = 0.003582, norm01 = 22.07)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 22.07</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 8.458e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003581</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 11.2% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 17 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 34.17, norm1 = 13.05, norm01 = 21.12)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 21.12, norm1 = 0.004916, norm01 = 21.12)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 21.12, norm1 = 0.003277, norm01 = 21.12)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 21.12</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 7.742e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.003276</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 10.7% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 18 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 32.7, norm1 = 12.49, norm01 = 20.22)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 20.21, norm1 = 0.004501, norm01 = 20.22)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 20.22, norm1 = 0.003, norm01 = 20.22)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 20.22</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 7.09e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.002999</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 10.3% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Iteration 19 [max:100]</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 162%, Expand (norm0 = 31.3, norm1 = 11.95, norm01 = 19.35)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Overstep (norm0 = 19.35, norm1 = 0.004122, norm01 = 19.35)</span></span>
+<span><span class="co">#&gt; iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 19.35, norm1 = 0.002748, norm01 = 19.35)</span></span>
+<span><span class="co">#&gt; iinla: |lin1-lin0| = 19.35</span></span>
+<span><span class="co">#&gt;        &lt;eta-lin1,delta&gt;/|delta| = 6.496e-05</span></span>
+<span><span class="co">#&gt;        |eta-lin0 - delta &lt;delta,eta-lin0&gt;/&lt;delta,delta&gt;| = 0.002748</span></span>
+<span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
+<span><span class="co">#&gt; iinla: Evaluate predictor linearisation</span></span>
+<span><span class="co">#&gt; iinla: Max deviation from previous: 9.83% of SD, and line search is inactive [stop if: &lt;10% and line search inactive]</span></span>
+<span><span class="co">#&gt; iinla: Convergence criterion met, running final INLA integration with known theta mode.</span></span>
+<span><span class="co">#&gt; iinla: Iteration 20 [max:100]</span></span>
 <span><span class="co">#&gt; Finish model fitting</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="plot-posteriors-with-corresponding-starting-values">Plot posteriors with corresponding starting values<a class="anchor" aria-label="anchor" href="#plot-posteriors-with-corresponding-starting-values"></a>
@@ -1001,15 +1484,16 @@ in files explicitly:</p>
 <span><span class="co">#&gt; TableGrob (2 x 1) "arrange": 2 grobs</span></span>
 <span><span class="co">#&gt;   z     cells    name              grob</span></span>
 <span><span class="co">#&gt; 1 1 (1-1,1-1) arrange   gtable[arrange]</span></span>
-<span><span class="co">#&gt; 2 2 (2-2,1-1) arrange gtable[guide-box]</span></span>
-<span><span class="co"># ggsave("initialCondition_posteriors.png", plt)</span></span>
+<span><span class="co">#&gt; 2 2 (2-2,1-1) arrange gtable[guide-box]</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ggsave("initialCondition_posteriors.png", plt)</span></span>
 <span><span class="co"># ggsave("initialCondition_posteriors.pdf", plt)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="explore-etas-triggering-function-using-posterior-samples">Explore ETAS triggering function using posterior samples<a class="anchor" aria-label="anchor" href="#explore-etas-triggering-function-using-posterior-samples"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_triggering</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/triggering_fun_plot.html">triggering_fun_plot</a></span><span class="op">(</span><span class="va">list.output.quietScenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, magnitude <span class="op">=</span> <span class="fl">4</span>, n.samp <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"C. M4 triggering function"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1039,19 +1523,21 @@ in files explicitly:</p>
 <span></span>
 <span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="st">"Triggering function variability"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 3 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 29 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 74 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 129 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 106 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plt</span></span>
-<span><span class="co">#&gt; NULL</span></span>
-<span></span>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># ggsave("trigFuncVariability_runin.png", plt)</span></span>
 <span><span class="co"># ggsave("trigFuncVariability_runin.pdf", plt)</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot_omori</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot_omori</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span><span class="va">list.output.quietScenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, n.samp <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"A. Omori decay"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1065,15 +1551,16 @@ in files explicitly:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">plot_omori</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_omori</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="st">"Triggering  function variability"</span>, left <span class="op">=</span> <span class="st">"M6.7 baseline            Unseeded baseline"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 3 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 29 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 74 rows containing missing values (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_line()`).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 129 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 106 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plt</span></span>
 <span><span class="co">#&gt; TableGrob (3 x 4) "arrange": 8 grobs</span></span>
 <span><span class="co">#&gt;   z     cells    name                 grob</span></span>
@@ -1083,19 +1570,20 @@ in files explicitly:</p>
 <span><span class="co">#&gt; 4 4 (3-3,2-2) arrange       gtable[layout]</span></span>
 <span><span class="co">#&gt; 5 5 (3-3,3-3) arrange       gtable[layout]</span></span>
 <span><span class="co">#&gt; 6 6 (3-3,4-4) arrange       gtable[layout]</span></span>
-<span><span class="co">#&gt; 7 7 (1-1,2-4) arrange text[GRID.text.1299]</span></span>
-<span><span class="co">#&gt; 8 8 (1-3,1-1) arrange text[GRID.text.1300]</span></span>
-<span></span>
+<span><span class="co">#&gt; 7 7 (1-1,2-4) arrange text[GRID.text.1279]</span></span>
+<span><span class="co">#&gt; 8 8 (1-3,1-1) arrange text[GRID.text.1280]</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># ggsave("trigFuncVariability_runin.png", plt)</span></span>
 <span><span class="co"># ggsave("trigFuncVariability_runin.pdf", plt)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="plot-the-samples-from-the-joint-posteriors-as-pairs-plots">Plot the samples from the joint posteriors as pairs plots<a class="anchor" aria-label="anchor" href="#plot-the-samples-from-the-joint-posteriors-as-pairs-plots"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/post_pairs_plot.html">post_pairs_plot</a></span><span class="op">(</span><span class="va">list.output.quietScenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, n.samp <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">$</span><span class="va">pair.plot</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/post_pairs_plot.html">post_pairs_plot</a></span><span class="op">(</span><span class="va">list.output.M6p7Scenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, n.samp <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">$</span><span class="va">pair_plot</span></span>
 <span><span class="co">#&gt; NULL</span></span></code></pre></div>
 </div>
@@ -1107,16 +1595,16 @@ using the <code><a href="https://inlabru-org.github.io/inlabru/reference/bru_con
 if the starting values for the inlabru estimation are unreasonable, and
 better starting values for the nonlinear iterations might speed up the
 computations.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru_convergence_plot.html" class="external-link">bru_convergence_plot</a></span><span class="op">(</span><span class="va">list.output.quietScenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">model.fit</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru_convergence_plot.html" class="external-link">bru_convergence_plot</a></span><span class="op">(</span><span class="va">list.output.quietScenario</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">model.fit</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru_convergence_plot.html" class="external-link">bru_convergence_plot</a></span><span class="op">(</span><span class="va">list.output.M6p7Scenario</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">model.fit</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/bru_convergence_plot.html" class="external-link">bru_convergence_plot</a></span><span class="op">(</span><span class="va">list.output.M6p7Scenario</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">model.fit</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
@@ -1128,13 +1616,11 @@ computations.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Francesco Serafini, Mark Naylor, Finn Lindgren.</p>
+  <p>Developed by Francesco Serafini, Mark Naylor, Finn Lindgren.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer>
