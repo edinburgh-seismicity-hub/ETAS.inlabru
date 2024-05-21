@@ -325,11 +325,11 @@ in files explicitly:</p>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.1656168 </span></span>
+<span><span class="co">#&gt; Finished creating grid, time  0.165746 </span></span>
 <span><span class="co">#&gt; Finish model fitting </span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.4050794 </span></span>
+<span><span class="co">#&gt; Finished creating grid, time  0.1595168 </span></span>
 <span><span class="co">#&gt; Finish model fitting</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -420,7 +420,7 @@ in files explicitly:</p>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  11.80497</span></span>
+<span><span class="co">#&gt; Finished creating grid, time  11.75175</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component inputs</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component simplifications</span></span>
@@ -1208,7 +1208,7 @@ in files explicitly:</p>
 <span><span class="co">#&gt; Finish model fitting </span></span>
 <span><span class="co">#&gt; Start model fitting </span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  10.94019</span></span>
+<span><span class="co">#&gt; Finished creating grid, time  11.1673</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component inputs</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component linearisations</span></span>
 <span><span class="co">#&gt; iinla: Evaluate component simplifications</span></span>
@@ -1523,11 +1523,13 @@ in files explicitly:</p>
 <span></span>
 <span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="st">"Triggering function variability"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 129 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 36 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 106 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 51 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 5 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -1553,11 +1555,13 @@ in files explicitly:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">plot_omori</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_omori</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">plot_triggering</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">2</span>, top <span class="op">=</span> <span class="st">"Triggering  function variability"</span>, left <span class="op">=</span> <span class="st">"M6.7 baseline            Unseeded baseline"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 129 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 36 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 106 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 51 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">#&gt; (`geom_line()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 5 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_line()`).</span></span></code></pre></div>
 <p><img src="sensitivityToStartingPoint_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">

@@ -504,7 +504,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.82634</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.828034</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -595,12 +595,12 @@ corresponding to the ETAS parameters</p>
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.2938510 0.1378869 2.411814 0.07232739 1.182768</span></span>
-<span><span class="co">#&gt; 2 0.2883584 0.1200788 2.440669 0.07672093 1.169661</span></span>
-<span><span class="co">#&gt; 3 0.2800687 0.1715908 2.437354 0.06111878 1.198671</span></span>
-<span><span class="co">#&gt; 4 0.2896018 0.1257673 2.440773 0.07550159 1.181645</span></span>
-<span><span class="co">#&gt; 5 0.3615158 0.1194157 2.429327 0.08824102 1.187888</span></span>
-<span><span class="co">#&gt; 6 0.2875844 0.1711079 2.431666 0.05576694 1.168678</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2411410 0.1300014 2.409399 0.08859204 1.205747</span></span>
+<span><span class="co">#&gt; 2 0.2888501 0.1272289 2.411110 0.08545839 1.200647</span></span>
+<span><span class="co">#&gt; 3 0.2595656 0.1090445 2.484187 0.07782078 1.188642</span></span>
+<span><span class="co">#&gt; 4 0.3321000 0.1124104 2.426986 0.08907119 1.181603</span></span>
+<span><span class="co">#&gt; 5 0.2983993 0.1426886 2.479121 0.05042026 1.143531</span></span>
+<span><span class="co">#&gt; 6 0.2512075 0.1212171 2.492540 0.07171357 1.196999</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -981,7 +981,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 26 rows containing non-finite outside the scale range</span></span>
 <span><span class="co">#&gt; (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_bar()`).</span></span></code></pre></div>

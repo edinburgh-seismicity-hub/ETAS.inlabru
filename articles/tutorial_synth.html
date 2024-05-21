@@ -403,7 +403,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.4219315</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  0.4259927</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="check-marginal-posterior-distributions">Check marginal posterior distributions<a class="anchor" aria-label="anchor" href="#check-marginal-posterior-distributions"></a>
@@ -489,12 +489,12 @@ corresponding to the ETAS parameters</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu          K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3122018 0.07668540 2.632231 0.09896888 1.268097</span></span>
-<span><span class="co">#&gt; 2 0.3352261 0.07872262 2.571459 0.08941519 1.207446</span></span>
-<span><span class="co">#&gt; 3 0.3328604 0.12356655 2.539207 0.07160328 1.199755</span></span>
-<span><span class="co">#&gt; 4 0.3142624 0.09154684 2.587898 0.07344734 1.226635</span></span>
-<span><span class="co">#&gt; 5 0.3015312 0.13167627 2.704045 0.02196437 1.100207</span></span>
-<span><span class="co">#&gt; 6 0.3180648 0.04738047 2.658230 0.12360568 1.241341</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3122822 0.17945334 2.483125 0.04818298 1.191162</span></span>
+<span><span class="co">#&gt; 2 0.3190413 0.06816852 2.708325 0.12321482 1.349476</span></span>
+<span><span class="co">#&gt; 3 0.3292353 0.08122246 2.569875 0.14774945 1.440712</span></span>
+<span><span class="co">#&gt; 4 0.3165809 0.12466379 2.563006 0.06209589 1.234209</span></span>
+<span><span class="co">#&gt; 5 0.3494627 0.14230207 2.502791 0.04206438 1.134111</span></span>
+<span><span class="co">#&gt; 6 0.3369706 0.05480806 2.658513 0.12027717 1.248025</span></span></code></pre></div>
 <p>The posterior samples can then be used to estimate the posterior
 distribution of functions of the parameters.</p>
 </div>
@@ -668,7 +668,7 @@ first model fit.</p>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.605226</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.651808</span></span></code></pre></div>
 <p>Now, to extract the marginal posterior distributions, we need to
 create the <code>input_list</code> of the second model fit.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
