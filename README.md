@@ -115,5 +115,4 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 
 ## Roadmap
 
-- Implement incompleteness fix
 - Integrate spatial modelling
