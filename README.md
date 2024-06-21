@@ -112,8 +112,6 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 - Add inversion modelling based on original code
 - Modify the implementation so that the generic Hawkes code can go into
   inlabru and the ETAS triggering function code stay in this package
-- Implement time varying incompleteness model by [Farnaz
-  Kamranzad](https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
 
 ## Roadmap
 
