@@ -5,69 +5,53 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="ETAS.inlabru">
 <title>2c Temporal Model: Tutorial on synthetic data • ETAS.inlabru</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="2c Temporal Model: Tutorial on synthetic data">
-<meta property="og:description" content="ETAS.inlabru">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="2c Temporal Model: Tutorial on synthetic data">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a>
-    <a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">2a Temporal Model: Generating synthetic temporal ETAS catalogues</a>
-    <a class="dropdown-item" href="../articles/sampleFromETASpriors.html">2b Temporal Model: Presenting samples drawn from the ETAS priors</a>
-    <a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a>
-    <a class="dropdown-item" href="../articles/tutorial_real.html">2d Temporal Model: Tutorial on real data</a>
-    <a class="dropdown-item" href="../articles/tutorial_synth.html">2c Temporal Model: Tutorial on synthetic data</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a></li>
+    <li><a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">2a Temporal Model: Generating synthetic temporal ETAS catalogues</a></li>
+    <li><a class="dropdown-item" href="../articles/sampleFromETASpriors.html">2b Temporal Model: Presenting samples drawn from the ETAS priors</a></li>
+    <li><a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a></li>
+    <li><a class="dropdown-item" href="../articles/tutorial_real.html">2d Temporal Model: Tutorial on real data</a></li>
+    <li><a class="dropdown-item" href="../articles/tutorial_synth.html">2c Temporal Model: Tutorial on synthetic data</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -76,13 +60,14 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>2c Temporal Model: Tutorial on synthetic data</h1>
+
+      <h1>2c Temporal Model: Tutorial on synthetic data</h1>
                         <h4 data-toc-skip class="author">Francesco
 Serafini</h4>
             
             <h4 data-toc-skip class="date">2023-06-29</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/HEAD/vignettes/articles/tutorial_synth.Rmd" class="external-link"><code>vignettes/articles/tutorial_synth.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/vignettes/articles/tutorial_synth.Rmd" class="external-link"><code>vignettes/articles/tutorial_synth.Rmd</code></a></small>
       <div class="d-none name"><code>tutorial_synth.Rmd</code></div>
     </div>
 
@@ -147,24 +132,40 @@ each element of the output <code>list</code> corresponds to a different
 generation. The <code>data.frame</code> have three columns: occurence
 time (<code>ts</code>), magnitude (<code>magnitudes</code>), a the
 generation identifier (<code>gen</code>). The generation identifier uses
-the following convention, <span class="math inline">\(-1\)</span>
+the following convention,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>
 indicates the events in <code>Ht</code> with time between
-<code>T1</code> and <code>T2</code>, <span class="math inline">\(0\)</span> indicates the first generation
-offspring of the events with <code>gen</code> equal <span class="math inline">\(-1\)</span>, <span class="math inline">\(1\)</span> indicates background events, <span class="math inline">\(2\)</span> all the offspring of the events with
-<code>gen</code> equal <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, <span class="math inline">\(3\)</span>
+<code>T1</code> and <code>T2</code>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+indicates the first generation offspring of the events with
+<code>gen</code> equal
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>
+indicates background events,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>
+all the offspring of the events with <code>gen</code> equal
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>
 indicates all the offspring of the events with <code>gen</code> equal
-<span class="math inline">\(2\)</span>, <span class="math inline">\(4\)</span> indicates all the offspring of the
-events with <code>gen</code> equal <span class="math inline">\(3\)</span>, and so on. To obtain a unique
-<code>data.frame</code> containing all the simulated events it is
-sufficient to bind by rows all the generations.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>
+indicates all the offspring of the events with <code>gen</code> equal
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>,
+and so on. To obtain a unique <code>data.frame</code> containing all the
+simulated events it is sufficient to bind by rows all the
+generations.</p>
 <p>The code below generates a synthetic catalogue of events with
-magnitude greater than <span class="math inline">\(2.5\)</span>
+magnitude greater than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2.5</mn><annotation encoding="application/x-tex">2.5</annotation></semantics></math>
 according to a temporal ETAS model with parameters equal to the vector
 <code>true.param</code>. The value of the parameters is equal to the
 posterior mean of the parameters obtained fitting a model on the
 L’Aquila seismic sequence as it is done in the tutorial on real data.
-Also the parameter <span class="math inline">\(\beta\)</span> of the
-magnitude distribution comes from the same example.</p>
+Also the parameter
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+of the magnitude distribution comes from the same example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">111</span><span class="op">)</span></span>
 <span><span class="co"># set true ETAS parameters</span></span>
@@ -200,9 +201,14 @@ single <code>data.frame</code> binding the rows of the
 <span><span class="co">#&gt; 4 152.693124   2.653628   1</span></span>
 <span><span class="co">#&gt; 5   3.890113   2.686633   1</span></span>
 <span><span class="co">#&gt; 6 194.287763   3.035756   1</span></span></code></pre></div>
-<p>The synthetic catalogue is composed by a total of <span class="math inline">\(288\)</span> events of which <span class="math inline">\(112\)</span> are background events and <span class="math inline">\(176\)</span> are aftershocks. We can easily
-retrieve this numbers looking at the <code>gen</code> column of the
-data.</p>
+<p>The synthetic catalogue is composed by a total of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>288</mn><annotation encoding="application/x-tex">288</annotation></semantics></math>
+events of which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>112</mn><annotation encoding="application/x-tex">112</annotation></semantics></math>
+are background events and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>176</mn><annotation encoding="application/x-tex">176</annotation></semantics></math>
+are aftershocks. We can easily retrieve this numbers looking at the
+<code>gen</code> column of the data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">)</span>, N.bkg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">gen</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, N.after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">$</span><span class="va">gen</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       N   N.bkg N.after </span></span>
@@ -253,13 +259,13 @@ ETAS scale. These are <code>inv_gamma_t</code>, <code>inv_unif_t</code>,
 <code>exp_t</code>, and <code>inv_loggaus_t</code>.</p>
 <p>For this example we are going to consider the following priors for
 the parameters</p>
-<p><span class="math display">\[\begin{align*}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mi>μ</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>Γ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0.3</mn><mo>,</mo><mn>0.6</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>K</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Unif</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>α</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Unif</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>c</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Unif</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>p</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Unif</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
 \mu &amp; \sim \Gamma(0.3, 0.6) \\
 K &amp; \sim \text{Unif}(0,10) \\
 \alpha &amp; \sim \text{Unif}(0,10) \\
-c &amp; \sim \text{Unif}(0,10) \\
+c &amp; \sim \text{Unif}(0,10) \\ 
 p &amp; \sim \text{Unif}(1,10)
-\end{align*}\]</span></p>
+\end{align*}</annotation></semantics></math></p>
 <p>To <code>list</code> of link functions corresponding to the above
 priors is</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -290,15 +296,19 @@ parameters in the internal scale. This can be done as shown below</p>
 <code>list</code> with names <code>th.mu</code>, <code>th.K</code>,
 <code>th.alpha</code>, <code>th.c</code>, and <code>th.p</code>, where,
 for example, <code>th.mu</code> corresponds to the initial value of
-parameter <span class="math inline">\(\mu\)</span> in the internal
-scale. The initial value of the parameters is important to ensure that
-the algorithm will be able to converge. Indeed, if we start the
-algorithm from values of the parameters causing numerical problems, we
-may prevent the algorithm to converge. In our experience, setting the
-initial values such that each parameter is not (e.g. <span class="math inline">\(&lt; 10^{-5}\)</span>) or (e.g. <span class="math inline">\(&gt; 10^2\)</span>) is a safe choice. The code
-below uses the following initial values of the parameters <span class="math inline">\(\mu_{\text{init}} = 0.5, K_{\text{init}} = 0.1,
-\alpha_{\text{init}} = 1, c_{\text{init}} = 0.1, p_{\text{init}} =
-1.1\)</span></p>
+parameter
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
+in the internal scale. The initial value of the parameters is important
+to ensure that the algorithm will be able to converge. Indeed, if we
+start the algorithm from values of the parameters causing numerical
+problems, we may prevent the algorithm to converge. In our experience,
+setting the initial values such that each parameter is not
+(e.g. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">&lt; 10^{-5}</annotation></semantics></math>)
+or
+(e.g. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><msup><mn>10</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">&gt; 10^2</annotation></semantics></math>)
+is a safe choice. The code below uses the following initial values of
+the parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mtext mathvariant="normal">init</mtext></msub><mo>=</mo><mn>0.5</mn><mo>,</mo><msub><mi>K</mi><mtext mathvariant="normal">init</mtext></msub><mo>=</mo><mn>0.1</mn><mo>,</mo><msub><mi>α</mi><mtext mathvariant="normal">init</mtext></msub><mo>=</mo><mn>1</mn><mo>,</mo><msub><mi>c</mi><mtext mathvariant="normal">init</mtext></msub><mo>=</mo><mn>0.1</mn><mo>,</mo><msub><mi>p</mi><mtext mathvariant="normal">init</mtext></msub><mo>=</mo><mn>1.1</mn></mrow><annotation encoding="application/x-tex">\mu_{\text{init}} = 0.5, K_{\text{init}} = 0.1, \alpha_{\text{init}} = 1, c_{\text{init}} = 0.1, p_{\text{init}} = 1.1</annotation></semantics></math></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up list of initial values</span></span>
 <span><span class="va">th.init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -325,8 +335,11 @@ run for exactly <code>bru_max_iter</code> iterations.</li>
 that we may need to set is the <code>max_step</code> argument. If the
 algorithm does not converge without fixing a <code>max_step</code> then
 we suggest to try to fix it to some value below 1, in our experience
-<span class="math inline">\(0.5\)</span> or <span class="math inline">\(0.2\)</span> works well. In the example below the
-line setting <code>bru_method</code> is commented.</li>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.5</mn><annotation encoding="application/x-tex">0.5</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.2</mn><annotation encoding="application/x-tex">0.2</annotation></semantics></math>
+works well. In the example below the line setting
+<code>bru_method</code> is commented.</li>
 <li>
 <code>bru_initial</code>: <code>list</code> of initial values
 created before.</li>
@@ -385,7 +398,11 @@ sections.</li>
 parameters of the temporal binning. The binning strategy is described in
 Appendix B of the paper <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2798" class="external-link">Approximation
 of Bayesian Hawkes process with <code>inlabru</code></a>. The parameters
-corresponds to <code>coef.t.</code><span class="math inline">\(=\delta\)</span>, <code>delta.t.</code><span class="math inline">\(=\Delta\)</span>, and <code>N.max.</code><span class="math inline">\(=n_{\max}\)</span>.</li>
+corresponds to
+<code>coef.t.</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mi>δ</mi></mrow><annotation encoding="application/x-tex">=\delta</annotation></semantics></math>,
+<code>delta.t.</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mi>Δ</mi></mrow><annotation encoding="application/x-tex">=\Delta</annotation></semantics></math>,
+and
+<code>N.max.</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><msub><mi>n</mi><mo>max</mo></msub></mrow><annotation encoding="application/x-tex">=n_{\max}</annotation></semantics></math>.</li>
 <li>
 <code>bru.opt</code>: <code>list</code> of <code>inlabru</code>
 options as described in the previous Section.</li>
@@ -403,65 +420,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.4343553</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75d6a6895":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a730e631b8":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74f6d9bd2":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77bf6f5c0":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7ba7a9cb":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a73d6aeb8f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74eced468":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76a23e522":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a72f72cc3f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a71ebb1b88":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a72eefad9":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a714ecca71":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76df49f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7757036af":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a755cb9112":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a78c61826":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76af82d41":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7ebcd044":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7a9bda5":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76d69142f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75b54359b":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74adaab39":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75b25ac81":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74e0b1282":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77c28a061":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a740b6a6f4":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7127ebf79":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7ea66110":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7cf27e87":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  0.432471</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="check-marginal-posterior-distributions">Check marginal posterior distributions<a class="anchor" aria-label="anchor" href="#check-marginal-posterior-distributions"></a>
@@ -521,12 +480,14 @@ above.</li>
 <code>n.samp</code>: number of posterior samples.</li>
 <li>
 <code>max.batch</code>: the number of posterior samples to be
-generated simultaneously. If <code>n.samp</code><span class="math inline">\(&gt;\)</span><code>max.batch</code>, then, the
-samples are generated in parallel in batches of maximum size equal to
-<code>max.batch</code>. Default is <span class="math inline">\(1000\)</span>.</li>
+generated simultaneously. If
+<code>n.samp</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>&gt;</mo><annotation encoding="application/x-tex">&gt;</annotation></semantics></math><code>max.batch</code>,
+then, the samples are generated in parallel in batches of maximum size
+equal to <code>max.batch</code>. Default is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1000</mn><annotation encoding="application/x-tex">1000</annotation></semantics></math>.</li>
 <li>
 <code>ncore</code>: number of cores to be used in parallel when
-<code>n.samp</code><span class="math inline">\(&gt;\)</span><code>max.batch</code>.</li>
+<code>n.samp</code><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>&gt;</mo><annotation encoding="application/x-tex">&gt;</annotation></semantics></math><code>max.batch</code>.</li>
 </ul>
 <p>The function returns a <code>data.frame</code> with columns
 corresponding to the ETAS parameters</p>
@@ -543,16 +504,15 @@ corresponding to the ETAS parameters</p>
 <span><span class="co">#&gt;   instead.</span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu          K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.2945484 0.05595909 2.669479 0.12469257 1.301679</span></span>
-<span><span class="co">#&gt; 2 0.3089001 0.07465417 2.595890 0.10420083 1.310166</span></span>
-<span><span class="co">#&gt; 3 0.2791156 0.09312194 2.616081 0.08934939 1.244548</span></span>
-<span><span class="co">#&gt; 4 0.2986531 0.03857101 2.636509 0.18377823 1.274642</span></span>
-<span><span class="co">#&gt; 5 0.2995158 0.09777400 2.576634 0.10788516 1.296938</span></span>
-<span><span class="co">#&gt; 6 0.2943949 0.12762230 2.513983 0.09323885 1.274000</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3365434 0.07804868 2.513727 0.14897074 1.312891</span></span>
+<span><span class="co">#&gt; 2 0.2989483 0.08576867 2.586837 0.10407146 1.297491</span></span>
+<span><span class="co">#&gt; 3 0.2583917 0.14226278 2.444718 0.07363789 1.242291</span></span>
+<span><span class="co">#&gt; 4 0.3065787 0.10646275 2.548477 0.07876536 1.265846</span></span>
+<span><span class="co">#&gt; 5 0.3460396 0.12283198 2.427048 0.11892406 1.302384</span></span>
+<span><span class="co">#&gt; 6 0.3187342 0.06411155 2.642837 0.11952577 1.304356</span></span></code></pre></div>
 <p>The posterior samples can then be used to estimate the posterior
 distribution of functions of the parameters.</p>
 </div>
@@ -564,11 +524,12 @@ and the Omori law. We can estimate the posterior distribution of these
 functions using the samples from the joint posterior distribution of the
 parameters obtained in the previous section.</p>
 <p>The functions <code>triggering_fun_plot</code> provides a plot of the
-quantiles of the posterior distribution of the triggering function <span class="math inline">\(g(t-t_h, mh)\)</span>, namely,</p>
-<p><span class="math display">\[
-g(t - t_h, m_h) = K\exp\{\alpha(m_h - M_0)\}\left(\frac{t - t_h}{c} +
-1\right)^{-p}
-\]</span></p>
+quantiles of the posterior distribution of the triggering function
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>h</mi></msub><mo>,</mo><mi>m</mi><mi>h</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">g(t-t_h, mh)</annotation></semantics></math>,
+namely,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>h</mi></msub><mo>,</mo><msub><mi>m</mi><mi>h</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>K</mi><mo>exp</mo><mo stretchy="false" form="prefix">{</mo><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>m</mi><mi>h</mi></msub><mo>−</mo><msub><mi>M</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>h</mi></msub></mrow><mi>c</mi></mfrac><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+g(t - t_h, m_h) = K\exp\{\alpha(m_h - M_0)\}\left(\frac{t - t_h}{c} + 1\right)^{-p}
+</annotation></semantics></math></p>
 <p>The function takes in input</p>
 <ul>
 <li>
@@ -583,28 +544,37 @@ the posterior.</li>
 <code>n.samp</code>: number of posterior samples of the parameters
 to be used or generated.</li>
 <li>
-<code>magnitude</code>: the magnitude of the event (<span class="math inline">\(m_h\)</span>).</li>
+<code>magnitude</code>: the magnitude of the event
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>h</mi></msub><annotation encoding="application/x-tex">m_h</annotation></semantics></math>).</li>
 <li>
-<code>t.end</code>: the maximum value of <span class="math inline">\(t\)</span> for the plot.</li>
+<code>t.end</code>: the maximum value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+for the plot.</li>
 <li>
 <code>n.breaks</code>: the number of breaks in which the interval
-<span class="math inline">\((0, \texttt{t.end})\)</span> is
-divided.</li>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mtext mathvariant="monospace">𝚝.𝚎𝚗𝚍</mtext><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0, \texttt{t.end})</annotation></semantics></math>
+is divided.</li>
 </ul>
 <p>The function returns a <code>ggplot</code> object. For each sample of
-the parameters the triggering function between <span class="math inline">\(0\)</span> and <code>t.end</code> is calculated.
-The black solid lines represents the <span class="math inline">\(95\%\)</span> posterior interval of the function,
-the grey lines represent the triggering function calculated with the
-posterior samples, and the horizontal red lines represent the <span class="math inline">\(95\%\)</span> posterior interval of the background
-rate <span class="math inline">\(\mu\)</span>. The function
-<code>triggering_plot_prior</code> does the same but using parameters
-sampled from the priors of the parameters.</p>
+the parameters the triggering function between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+and <code>t.end</code> is calculated. The black solid lines represents
+the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math>
+posterior interval of the function, the grey lines represent the
+triggering function calculated with the posterior samples, and the
+horizontal red lines represent the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>95</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">95\%</annotation></semantics></math>
+posterior interval of the background rate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>.
+The function <code>triggering_plot_prior</code> does the same but using
+parameters sampled from the priors of the parameters.</p>
 <p>The code below creates the plot of the posterior of the triggering
 function and adds the triggering function calculated with the true
 parameter values in blue. We need to add the argument <code>M0</code> to
 the <code>input_list</code> to use the function
 <code>triggering_fun_plot</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># add cutoff magnitude to input_list</span></span>
 <span><span class="va">input_list</span><span class="op">$</span><span class="va">M0</span> <span class="op">&lt;-</span> <span class="va">M0</span></span>
 <span></span>
@@ -632,11 +602,11 @@ the <code>input_list</code> to use the function
 <p><img src="tutorial_synth_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <p>The functions <code>omori_plot_posterior</code> does the same as the
 function <code>triggering_fun_plot</code> but considering only</p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>h</mi></msub></mrow><mi>c</mi></mfrac><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">
 \left(\frac{t- t_h}{c} + 1\right)^{-p}
-\]</span> instead of the whole triggering function and without the
-background rate.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+</annotation></semantics></math> instead of the whole triggering
+function and without the background rate.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">omori.plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, post.samp <span class="op">=</span> <span class="va">post.samp</span>, n.samp <span class="op">=</span> <span class="cn">NULL</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">true.omori</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/omori.html">omori</a></span><span class="op">(</span>theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">true.param</span><span class="op">)</span>, t <span class="op">=</span> <span class="va">t.breaks</span>, ti <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -657,11 +627,12 @@ and compare the parameters posterior distributions obtained with
 different catalogues. In this section, we are going to generate a second
 synthetic catalogue, fit the model, and compare the posterior
 distributions with the ones obtained before. For the second catalogue we
-impose a large event with magnitude <span class="math inline">\(6\)</span> happening in the midpoint of the time
-interval.</p>
+impose a large event with magnitude
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>6</mn><annotation encoding="application/x-tex">6</annotation></semantics></math>
+happening in the midpoint of the time interval.</p>
 <p>The first step is to set the <code>data.frame</code> of known events
 and generate a second synthetic catalogue</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># set up data.frame of imposed events</span></span>
 <span><span class="va">Ht.imposed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  ts <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">T1</span>, <span class="va">T2</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -685,13 +656,13 @@ is slightly different from before. In fact, we count the imposed event
 as a background event, and the aftershocks need to include also the
 event with <code>gen = 0</code> which are the ones induced by the
 imposed event which in this case are 192.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">synth.cat.df.2</span><span class="op">$</span><span class="va">gen</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 192</span></span></code></pre></div>
 <p>Below the comparison between the number of events in the two
 catalogues. Notice that the background events are roughly the same which
 is expected given that the time interval is the same.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
 <span>  first <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    N <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">synth.cat.df</span><span class="op">)</span>,</span>
@@ -710,7 +681,7 @@ is expected given that the time interval is the same.</p>
 <p>Then, we just need to set up the <code>data.frame</code> for model
 fitting. For all the other inputs we can use the ones created for the
 first model fit.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">synth.cat.df.2</span> <span class="op">&lt;-</span> <span class="va">synth.cat.df.2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">synth.cat.df.2</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">synth.cat.df.2</span><span class="op">$</span><span class="va">idx.p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">synth.cat.df.2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -726,110 +697,10 @@ first model fit.</p>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.652831</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a72fd5407c":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7394b9c98":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76ee97528":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7121e0ae":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76afd2319":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7562a7e4a":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a764293179":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7100d1650":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77d85d5c4":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a721c7d008":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a716365f1d":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a747b66355":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76a2305bc":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77cb7c16c":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a717e49c3e":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7133e5462":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a744ecae32":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77aa0b126":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77d8c81cf":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7a84ccd5":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a749c89b03":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a728ea3d04":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75718a56b":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a766b6670f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7688da043":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a753b6c69e":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a750f2af9f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77fcebd27":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a71e01ce97":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77bee8c2f":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a721544d7":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7161ce003":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74384dad7":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a720c0faf8":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a71b3b0b2e":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a719202578":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a74dea96af":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a71791156c":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a774125db7":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75bb11c34":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77ccf5ed2":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a747976070":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a77ce6cf4c":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a72043261e":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a76a96859d":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a73a4e43f7":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a7772db1ad":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a73d6e66fe":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a75a3ccd06":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span>
-<span><span class="co">#&gt; Warning in normalizePath(inla.dir): path[1]="/tmp/RtmpYUkavH/filea4a73e44bbf7":</span></span>
-<span><span class="co">#&gt; No such file or directory</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.635865</span></span></code></pre></div>
 <p>Now, to extract the marginal posterior distributions, we need to
 create the <code>input_list</code> of the second model fit.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">input_list.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  model.fit <span class="op">=</span> <span class="va">synth.fit.2</span>,</span>
 <span>  link.functions <span class="op">=</span> <span class="va">link.f</span></span>
@@ -837,7 +708,7 @@ create the <code>input_list</code> of the second model fit.</p>
 <p>Now, we can retrieve the marginal posterior distributions provided by
 the model fitted on the second catalogue and compare them with the ones
 obtained before.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve marginal posterior distributions</span></span>
 <span><span class="va">post.list.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_posterior_param.html">get_posterior_param</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list.2</span><span class="op">)</span></span>
 <span></span>
@@ -859,15 +730,17 @@ obtained before.</p>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">x</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_synth_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
-<p>The process shown here can be extended to multiple (<span class="math inline">\(&gt;2\)</span>) input catalogues in order to study
-if the parameters are identifiable. Also, using characteristics of the
-input catalogue as catalogue identifier we can study the change in the
-posterior distribution as the characteristic of the input catalogue
-changes. An interesting example is the number of events in the
-catalogue, and studying how the marginal posterior distributions change
-as we increase or decrease the number of events.</p>
+<p>The process shown here can be extended to multiple
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">&gt;2</annotation></semantics></math>)
+input catalogues in order to study if the parameters are identifiable.
+Also, using characteristics of the input catalogue as catalogue
+identifier we can study the change in the posterior distribution as the
+characteristic of the input catalogue changes. An interesting example is
+the number of events in the catalogue, and studying how the marginal
+posterior distributions change as we increase or decrease the number of
+events.</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -878,15 +751,15 @@ as we increase or decrease the number of events.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

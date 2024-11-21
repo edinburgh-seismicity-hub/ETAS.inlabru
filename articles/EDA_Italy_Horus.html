@@ -5,69 +5,53 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="ETAS.inlabru">
 <title>1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus • ETAS.inlabru</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus">
-<meta property="og:description" content="ETAS.inlabru">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a>
-    <a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">2a Temporal Model: Generating synthetic temporal ETAS catalogues</a>
-    <a class="dropdown-item" href="../articles/sampleFromETASpriors.html">2b Temporal Model: Presenting samples drawn from the ETAS priors</a>
-    <a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a>
-    <a class="dropdown-item" href="../articles/tutorial_real.html">2d Temporal Model: Tutorial on real data</a>
-    <a class="dropdown-item" href="../articles/tutorial_synth.html">2c Temporal Model: Tutorial on synthetic data</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/EDA_Italy_Horus.html">1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</a></li>
+    <li><a class="dropdown-item" href="../articles/generateSyntheticCatalogues.html">2a Temporal Model: Generating synthetic temporal ETAS catalogues</a></li>
+    <li><a class="dropdown-item" href="../articles/sampleFromETASpriors.html">2b Temporal Model: Presenting samples drawn from the ETAS priors</a></li>
+    <li><a class="dropdown-item" href="../articles/sensitivityToStartingPoint.html">Sensitivity to starting point</a></li>
+    <li><a class="dropdown-item" href="../articles/tutorial_real.html">2d Temporal Model: Tutorial on real data</a></li>
+    <li><a class="dropdown-item" href="../articles/tutorial_synth.html">2c Temporal Model: Tutorial on synthetic data</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -76,13 +60,14 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</h1>
+
+      <h1>1. Exploratory Data Analysis: Italian Earthquake Catalogue - Horus</h1>
                         <h4 data-toc-skip class="author">Mark
 Naylor</h4>
             
             <h4 data-toc-skip class="date">2023-06-27</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/HEAD/vignettes/articles/EDA_Italy_Horus.Rmd" class="external-link"><code>vignettes/articles/EDA_Italy_Horus.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/blob/main/vignettes/articles/EDA_Italy_Horus.Rmd" class="external-link"><code>vignettes/articles/EDA_Italy_Horus.Rmd</code></a></small>
       <div class="d-none name"><code>EDA_Italy_Horus.Rmd</code></div>
     </div>
 
@@ -156,9 +141,8 @@ catalogue can be loaded using</p>
 <span><span class="co">#&gt; 3 1960-01-06T15:17:34 12.7000 46.4833     4 4.69 1960-01-06 15:17:34</span></span>
 <span><span class="co">#&gt; 4 1960-01-06T15:20:53 12.7000 46.4667     0 4.14 1960-01-06 15:20:53</span></span>
 <span><span class="co">#&gt; 5 1960-01-06T15:31:00 12.7500 46.4333     0 3.00 1960-01-06 15:31:00</span></span>
-<span><span class="co">#&gt; 6 1960-01-06T15:45:00 12.7500 46.4333     0 3.00 1960-01-06 15:45:00</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; 6 1960-01-06T15:45:00 12.7500 46.4333     0 3.00 1960-01-06 15:45:00</span></span>
+<span></span>
 <span><span class="co"># Set df_cat to be the catalogue we want to analyse and then use this below</span></span>
 <span><span class="va">df_cat</span> <span class="op">&lt;-</span> <span class="va">horus</span></span>
 <span></span>
@@ -200,13 +184,12 @@ latitude (<code>lat</code>) of the epicentre, the depth in kilometres
 </h3>
 <p>We download a polygon file for the national boundary of Italy for use
 later in this notebook.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">italy.map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"Italy"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span>, scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">)</span></span>
 <span><span class="va">italy.crs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">italy.map</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">italy.crs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    ID[\"EPSG\",4326]]"</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    ID[\"EPSG\",4326]]"</span></span>
+<span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">italy.map</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -223,19 +206,19 @@ catalogue<a class="anchor" aria-label="anchor" href="#exploratory-data-analysis-
 </h3>
 <p>The histogram of depth data with 1km bins initially looks reasonable
 except for the artefact of a cluster of events at zero depth.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">depth</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">650</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">40</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Histogram of depths, 1km bins"</span>, xlab <span class="op">=</span> <span class="st">"Depth [km]"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>However, when we reduce the bin width to 100m we see that there are
 more artefacts in the data. The spikes at 0, 5, 10 and 11km are
 artefacts of the depth estimation, one cause is that that the algorithms
 may have got stuck at their starting values.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">depth</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">650</span>, <span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">40</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Histogram of depths (100m bins)"</span>, xlab <span class="op">=</span> <span class="st">"Depth [km]"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-4-1.png" width="700">
 The magnitude time series shows how the completeness of intermediate and
 deep events has improved over time.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df_cat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time_date</span>, y <span class="op">=</span> <span class="va">depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">620</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
@@ -256,15 +239,16 @@ time on the horizontal.</p>
 <p>Some of the observations are:</p>
 <ul>
 <li>There are over 40,000 events with magnitude data</li>
-<li>There is a cluster of events with <span class="math inline">\(M=0\)</span> which is likely to be an artefact of
-how the catalogue is generated</li>
+<li>There is a cluster of events with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">M=0</annotation></semantics></math>
+which is likely to be an artefact of how the catalogue is generated</li>
 <li>There are period of time when the data are all rounded to 1 decimal
 place producing horizontal banding</li>
 <li>At other times, some of the data is not rounded</li>
 <li>The sensitivity at the lowest magnitudes varies in time as can be
 seen by the changes in the lowest magnitudes</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df_cat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">event_num</span>, y <span class="op">=</span> <span class="va">M</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Magnitude timeseries using natural time"</span><span class="op">)</span></span></code></pre></div>
@@ -277,7 +261,7 @@ seen by the changes in the lowest magnitudes</li>
 against the data-time. Clustered events now sit on top of each other. We
 get a better representaion of how the data density increases towards the
 modern day and how the magnitude incompleteness varyies in time.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df_cat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time_date</span>, y <span class="op">=</span> <span class="va">M</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Horus catalogue magnitude time series"</span><span class="op">)</span></span>
@@ -290,13 +274,12 @@ events occuring each year. The plot of this shows how the number of
 events being recorded each year is gradually increasing. This artefact
 is due to the gradual increase in the sensitivity of the network, not
 that the seismicity is systematically increasing.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_cat</span><span class="op">$</span><span class="va">Time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">time_date</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Extract year"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Extract year"</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># extract the year and convert to numeric format</span></span>
+<span><span class="co">#&gt; [1] "Extract year"</span></span>
+<span><span class="co"># extract the year and convert to numeric format</span></span>
 <span><span class="va">df_cat</span><span class="op">$</span><span class="va">Year</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">Time</span>, <span class="st">"%Y"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">countEventsInYear</span> <span class="op">&lt;-</span> <span class="va">df_cat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -305,7 +288,7 @@ that the seismicity is systematically increasing.</p>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">countEventsInYear</span>, type <span class="op">=</span> <span class="st">"l"</span>, main <span class="op">=</span> <span class="st">"Annual number of events for whole catalogue"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Filtered for M&gt;4</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">4</span>, <span class="op">]</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time_date</span>, y <span class="op">=</span> <span class="va">M</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -313,7 +296,7 @@ that the seismicity is systematically increasing.</p>
 <span><span class="co">#&gt; Warning: Removed 1 row containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/Magnitude%20time%20series-1.png" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">countEventsInYear</span> <span class="op">&lt;-</span> <span class="va">df_cat</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;=</span> <span class="fl">4</span>, <span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -339,7 +322,7 @@ log-linear portion of the data where the slope is stable, this slope is
 refered to as the b-value - At high magnitudes there will always be
 fluctuations in the magnitudes due to the effect of counting errors on
 bins with low rates</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">1.5</span></span>
 <span><span class="va">maxMag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span><span class="op">)</span></span>
 <span></span>
@@ -375,7 +358,7 @@ bins with low rates</p>
 <div class="section level3">
 <h3 id="b-value-stability-plot-for-the-events-in-the-horus-catalogue">b-value stability plot for the events in the Horus catalogue<a class="anchor" aria-label="anchor" href="#b-value-stability-plot-for-the-events-in-the-horus-catalogue"></a>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">maxMag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">mags</span> <span class="op">&lt;-</span> <span class="va">df_cat</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;=</span> <span class="va">minMag</span>, <span class="op">]</span><span class="op">$</span><span class="va">M</span></span>
@@ -429,7 +412,7 @@ bins with low rates</p>
 <div class="section level3">
 <h3 id="heatmap-of-the-events-in-the-horus-catalogue">Heatmap of the events in the Horus catalogue<a class="anchor" aria-label="anchor" href="#heatmap-of-the-events-in-the-horus-catalogue"></a>
 </h3>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html" class="external-link">geom_hex</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_cat</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">3</span>, <span class="op">]</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html" class="external-link">scale_fill_continuous</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"viridis"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -443,7 +426,7 @@ bins with low rates</p>
 </h3>
 <p>Here we plot the location of the seismicity on a map. The outline of
 the Italy territory is shown in green.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_cat.sf</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">3</span>, <span class="op">]</span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">italy.map</span>, fill <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/alpha.html" class="external-link">alpha</a></span><span class="op">(</span><span class="st">"lightgrey"</span>, <span class="fl">0</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"green"</span>, linewidth <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
@@ -451,7 +434,7 @@ the Italy territory is shown in green.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_cat.sf</span><span class="op">[</span><span class="va">df_cat</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">6</span>, <span class="op">]</span>, size <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Map of event locations"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/map%20of%20locations-1.png" width="700"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eventDate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="st">"2009-04-06 00:00:00"</span><span class="op">)</span></span>
 <span><span class="va">endDate</span> <span class="op">&lt;-</span> <span class="va">eventDate</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">days</a></span><span class="op">(</span><span class="fl">400</span><span class="op">)</span></span>
 <span><span class="va">startDate</span> <span class="op">&lt;-</span> <span class="va">eventDate</span> <span class="op">-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">days</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span>
@@ -476,17 +459,21 @@ the Italy territory is shown in green.</p>
 <p>To focus on the L Aquila seismic sequence is sufficient to retain
 only the observations in a specific space-time-magnitude region that
 include the sequence of interest. For the L’Aquila sequence, we retain
-all the events with magnitude greater or equal than <span class="math inline">\(2.5\)</span> happened during 2009 with longitude
-in <span class="math inline">\((10.5, 16)\)</span> and latitude in <span class="math inline">\((40.5, 45)\)</span>. The L’Aquila sequence
-selected in this way should be composed by 1024 events. Any other
-seismic sequence can be selected similarly.</p>
+all the events with magnitude greater or equal than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2.5</mn><annotation encoding="application/x-tex">2.5</annotation></semantics></math>
+happened during 2009 with longitude in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>10.5</mn><mo>,</mo><mn>16</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(10.5, 16)</annotation></semantics></math>
+and latitude in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>40.5</mn><mo>,</mo><mn>45</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(40.5, 45)</annotation></semantics></math>.
+The L’Aquila sequence selected in this way should be composed by 1024
+events. Any other seismic sequence can be selected similarly.</p>
 <p>To do the selection is convenient to transform the time string in a
 <code>Date</code> object and to select the rows of the Horus catalogue
 verifying the conditions.</p>
 <p>start.date = “2009-04-06 00:00:00 BST” end.date = “2010-01-01
 00:00:00 BST” magnitude.completeness = 2.49 min.longitude = 13.00
 max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eventDate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="st">"2009-04-06 00:00:00"</span><span class="op">)</span></span>
 <span><span class="va">endDate</span> <span class="op">&lt;-</span> <span class="va">eventDate</span> <span class="op">+</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">days</a></span><span class="op">(</span><span class="fl">400</span><span class="op">)</span></span>
 <span><span class="va">startDate</span> <span class="op">&lt;-</span> <span class="va">eventDate</span> <span class="op">-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link">days</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span>
@@ -521,7 +508,7 @@ max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
 <div class="section level3">
 <h3 id="plot-of-the-event-magnitude-time-series-laquila">Plot of the event magnitude time series: l’Aquila<a class="anchor" aria-label="anchor" href="#plot-of-the-event-magnitude-time-series-laquila"></a>
 </h3>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_cat.subset</span><span class="op">[</span><span class="va">df_cat.subset</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">3</span>, <span class="op">]</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time_date</span>, <span class="va">lat</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_cat.subset</span><span class="op">[</span><span class="va">df_cat.subset</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;</span> <span class="fl">5</span>, <span class="op">]</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time_date</span>, <span class="va">lat</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1.2</span>, color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -529,7 +516,7 @@ max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"L'Aquila latitude-time plot"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_rect</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="va">startDate</span><span class="op">)</span>, xmax <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="va">endDate</span><span class="op">)</span>, ymin <span class="op">=</span> <span class="va">latLims</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, ymax <span class="op">=</span> <span class="va">latLims</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.4</span>, fill <span class="op">=</span> <span class="st">"blue"</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="va">maxMag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_cat.subset</span><span class="op">$</span><span class="va">M</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -565,7 +552,7 @@ max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
 <div class="section level3">
 <h3 id="b-value-stability-plot-laquila">b-value stability plot: l’Aquila<a class="anchor" aria-label="anchor" href="#b-value-stability-plot-laquila"></a>
 </h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">minMag</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span><span class="va">maxMag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_cat.subset</span><span class="op">$</span><span class="va">M</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">mags</span> <span class="op">&lt;-</span> <span class="va">df_cat.subset</span><span class="op">[</span><span class="va">df_cat.subset</span><span class="op">$</span><span class="va">M</span> <span class="op">&gt;=</span> <span class="va">minMag</span>, <span class="op">]</span><span class="op">$</span><span class="va">M</span></span>
@@ -621,7 +608,7 @@ max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
 <p><img src="EDA_Italy_Horus_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -632,15 +619,15 @@ max.longitude = 13.75 min.latitude = 42.2 max.latitude = 42.5</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
