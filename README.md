@@ -96,9 +96,6 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 - I changed the theta from `c(mu, K, ...)` to a
   `df <- data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`. This means we
   should refer to the values as `df$mu` which is unambiguous etc
-  - Might this do anything bad?
-- Sometimes you used `th` for `theta` and sometimes for historic times…
-  - I have tried to modify to just `theta`
 
 # What has been done
 

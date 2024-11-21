@@ -83,9 +83,6 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 
 - Let's be specific about when we are doing just temporal so we have clear function names for the spatial and spatial-temporal later on
 - I changed the theta from `c(mu, K, ...)` to a `df <- data.frame(mu=mu, K=K, alpha=alpha, c=c, p=p)`. This means we should refer to the values as `df$mu` which is unambiguous etc
-  - Might this do anything bad?
-- Sometimes you used `th` for `theta` and sometimes for historic times...
-  - I have tried to modify to just `theta`
 
 # What has been done
 
@@ -98,9 +95,7 @@ remotes::install_github("edinburgh-seismicity-hub/ETAS.inlabru")
 - Add inversion modelling based on original code
 - Modify the implementation so that the generic Hawkes code can go into
   inlabru and the ETAS triggering function code stay in this package
-- Implement time varying incompleteness model by [Farnaz Kamranzad](https://www.linkedin.com/in/farnaz-kamranzad-a03820265/?originalSubdomain=uk)
 
 ## Roadmap
 
-- Implement incompleteness fix
 - Integrate spatial modelling
