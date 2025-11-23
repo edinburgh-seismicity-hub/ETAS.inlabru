@@ -7,17 +7,23 @@
 get_posterior_param(input.list)
 }
 \arguments{
-\item{input.list}{input.list structured input \code{list} with at least two elements:
+\item{input.list}{input.list structured input \code{list} with at least two
+elements:
 \itemize{
-\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
-\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS
+parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale
 }}
 }
 \value{
 A \code{list} of two elements:
 \itemize{
-\item \code{post.df} : \code{data.frame} with the posterior distributions of the parameters with columns \code{x} (value of the parameter), \code{y} (value of the posterior), \code{param} (parameter name)
-\item \code{post.plot} : \code{ggplot} object showing the posterior distribution of each parameter}
+\item \code{post.df} : \code{data.frame} with the posterior distributions of the
+parameters with columns \code{x} (value of the parameter), \code{y} (value of the
+posterior), \code{param} (parameter name)
+\item \code{post.plot} : \code{ggplot} object showing the posterior distribution of
+each parameter}
 }
 \description{
 Retrieve posterior distribution of ETAS parameters

@@ -7,7 +7,8 @@
 It_df(param_, time.df)
 }
 \arguments{
-\item{param_}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}
+\item{param_}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only
+\eqn{c, p} are used.}
 
 \item{time.df}{output of the function \code{\link[=time_grid]{time_grid()}}}
 }

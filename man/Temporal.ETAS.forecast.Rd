@@ -7,17 +7,23 @@
 Temporal.ETAS.forecast(post.samp, n.cat, beta.p, M0, T1, T2, Ht, ncore = NULL)
 }
 \arguments{
-\item{post.samp}{a \code{data.frame} containing samples from the posterior distribution of ETAS parameters.
-Each row of the \code{data.frame} corresponds to a different sample and the parameters are in the order
-\eqn{\mu}{mu}, \eqn{K}{K}, \eqn{\alpha}{alpha}, \eqn{c}{c}, \eqn{p}{p}.}
+\item{post.samp}{a \code{data.frame} containing samples from the posterior
+distribution of ETAS parameters. Each row of the \code{data.frame} corresponds
+to a different sample and the parameters are in the order \eqn{\mu}{mu},
+\eqn{K}{K}, \eqn{\alpha}{alpha}, \eqn{c}{c}, \eqn{p}{p}.}
 
-\item{n.cat}{number of synthetic catalogues composing the forecast. If \code{n.cat} is greater than \code{nrow(post.samp)}, then,
-\code{n.cat} rows are sampled uniformly and with replacement from the \code{post.samp}. If \code{n.cat} is smaller than \code{nrow(post.samp)}, then,
-\code{n.cat} rows are sampled uniformly and without replacement from the \code{post.samp}. If \code{n.cat} is \code{NULL} or equal to \code{nrow(post.samp)}, \code{post.samp} is used at it is and \code{nrow(post.samp)} catalogues are generated.}
+\item{n.cat}{number of synthetic catalogues composing the forecast. If
+\code{n.cat} is greater than \code{nrow(post.samp)}, then, \code{n.cat} rows are sampled
+uniformly and with replacement from the \code{post.samp}. If \code{n.cat} is smaller
+than \code{nrow(post.samp)}, then, \code{n.cat} rows are sampled uniformly and
+without replacement from the \code{post.samp}. If \code{n.cat} is \code{NULL} or equal to
+\code{nrow(post.samp)}, \code{post.samp} is used at it is and \code{nrow(post.samp)}
+catalogues are generated.}
 
 \item{beta.p}{parameter of the magnitude distribution}
 
-\item{M0}{cutoff magnitude, all the synthetic events will have magnitude greater than this value.}
+\item{M0}{cutoff magnitude, all the synthetic events will have magnitude
+greater than this value.}
 
 \item{T1}{starting time of the forecast}
 
@@ -26,13 +32,16 @@ Each row of the \code{data.frame} corresponds to a different sample and the para
 \item{Ht}{set of known events}
 
 \item{ncore}{Deprecated argument for controlling parallelism. Use
-\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
-parallelism in your code instead.}
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to
+configure parallelism in your code instead.}
 }
 \value{
-a \code{list} with two elements: \code{fore.df} is a \code{data.frame} containing all the synthetic catalogues composing the forecast.
-The \code{data.frame} has four columns, \code{ts} for the occurrence time, \code{magnitudes} for the magnitude, \code{gen} with the generation of the event, and \code{cat.idx} with the catalogue identifier
-The second element of the output \code{list} is \code{n.cat} which is the number of synthetic catalogues generated.
+a \code{list} with two elements: \code{fore.df} is a \code{data.frame} containing
+all the synthetic catalogues composing the forecast. The \code{data.frame} has
+four columns, \code{ts} for the occurrence time, \code{magnitudes} for the magnitude,
+\code{gen} with the generation of the event, and \code{cat.idx} with the catalogue
+identifier The second element of the output \code{list} is \code{n.cat} which is the
+number of synthetic catalogues generated.
 }
 \description{
 Title

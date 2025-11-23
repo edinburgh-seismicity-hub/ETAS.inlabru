@@ -7,16 +7,23 @@
 get_posterior_N(input.list, domain.extension = 0.1)
 }
 \arguments{
-\item{input.list}{Which has combined the input file (for link functions) and bru output (for marginals)}
+\item{input.list}{Which has combined the input file (for link functions) and
+bru output (for marginals)}
 
-\item{domain.extension}{Percentage of posterior quantiles to extend the domain specified as \code{scalar}. Default is set to 0.10.}
+\item{domain.extension}{Percentage of posterior quantiles to extend the
+domain specified as \code{scalar}. Default is set to 0.10.}
 }
 \value{
 A \code{list} of three objects:
 \itemize{
-\item \code{post.df}: \code{data.frame} containing posterior informations on the posterior distribution of the number of events
-\item \code{post.plot} : \code{ggplot} object showing the posterior distribution of the expected number of events
-\item \code{post.plot.shaded} : \code{ggplot} object showing the posterior distribution of the expected number of events, shaded region corresponds to the 0.025 and 0.975 quantiles of the distribution of the distribution of the number of events.}
+\item \code{post.df}: \code{data.frame} containing posterior informations on the
+posterior distribution of the number of events
+\item \code{post.plot} : \code{ggplot} object showing the posterior distribution of the
+expected number of events
+\item \code{post.plot.shaded} : \code{ggplot} object showing the posterior distribution
+of the expected number of events, shaded region corresponds to the 0.025 and
+0.975 quantiles of the distribution of the distribution of the number of
+events.}
 }
 \description{
 Plot the posterior distribution of the expected number of events

@@ -26,8 +26,8 @@ Inv_IntInjectionIntensity(
 
 \item{T2}{End of temporal model domain}
 
-\item{number.injected.events}{The number of expected injected events, used for the
-inverse.}
+\item{number.injected.events}{The number of expected injected events, used
+for the inverse.}
 }
 \value{
 \code{IntInjectionIntensity} returns the forward time integrated function

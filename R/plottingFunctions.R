@@ -1,20 +1,32 @@
-#' Function to plot the ETAS triggering function corresponding to different posterior samples
+#' @title Triggering function plot from posterior samples
+#'
+#' @description
+#' Function to plot the ETAS triggering function corresponding to different
+#' posterior samples
 #'
 #' @param input.list structured input `list` with at least two elements:
 #' \itemize{
-#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
-#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS
+#' parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters
+#' from the INLA scale to the ETAS scale
 #' }
-#' @param post.samp `data.frame` containing posterior samples of the parameters. If `NULL`, then `n.samp` samples are
-#' generated. If `n.samp` is different from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from `post.samp`. Default is `NULL`
-#' @param magnitude Magnitude of the event for which the triggering function is calculated, `scalar` (`default = 4`).
+#' @param post.samp `data.frame` containing posterior samples of the parameters.
+#'   If `NULL`, then `n.samp` samples are generated. If `n.samp` is different
+#'   from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from
+#'   `post.samp`. Default is `NULL`
+#' @param magnitude Magnitude of the event for which the triggering function is
+#'   calculated, `scalar` (`default = 4`).
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
-#' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`)
+#' @param n.breaks Number of points between 0 and `t.end` to calculate the
+#'   function, `integer` (`default = 100`)
 #'
-#' @return `ggplot` object with grey lines representing the triggering function for each posterior sample.
-#' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
-#' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
+#' @return `ggplot` object with grey lines representing the triggering function
+#'   for each posterior sample. Black lines representing the 0.025 and 0.975
+#'   quantiles of the function values calculated for each posterior sample.
+#'   Horizontal red lines represents the 0.025 and 0.975 quantiles of the
+#'   sampled background rates.
 #' @export
 triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
                                 magnitude = 4, t.end = 1, n.breaks = 100) {
@@ -34,7 +46,7 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
     )
     post.samp <- t(post.samp)
   }
-  if ((!is.null(post.samp)) & (!is.null(n.samp))) {
+  if ((!is.null(post.samp)) && (!is.null(n.samp))) {
     if (nrow(post.samp) != n.samp) {
       idx.samp <- sample(seq_len(nrow(post.samp)), n.samp, replace = TRUE)
       post.samp <- post.samp[idx.samp, ]
@@ -42,13 +54,15 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
   }
   trig.eval <- lapply(
     seq_len(nrow(post.samp)),
-    \(x) gt(
-      theta = post.samp[x, ],
-      t = t.eval,
-      th = 0,
-      mh = magnitude,
-      M0 = input.list$M0
-    )
+    \(x) {
+      gt(
+        theta = post.samp[x, ],
+        t = t.eval,
+        th = 0,
+        mh = magnitude,
+        M0 = input.list$M0
+      )
+    }
   )
   trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
@@ -92,22 +106,32 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
 }
 
 
-#' Function to plot the ETAS triggering function corresponding to different prior samples
+#' @title Triggering function plot from prior samples
+#'
+#' @description
+#' Function to plot the ETAS triggering function corresponding to different
+#' prior samples
 #'
 #' @param input.list structured input `list` with at least one element:
 #' \itemize{
-#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters
+#' from the INLA scale to the ETAS scale
 #' }
-#' @param magnitude Magnitude of the event for which the triggering function is calculated, `scalar` (`default = 4`).
+#' @param magnitude Magnitude of the event for which the triggering function is
+#'   calculated, `scalar` (`default = 4`).
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
-#' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`)
+#' @param n.breaks Number of points between 0 and `t.end` to calculate the
+#'   function, `integer` (`default = 100`)
 #'
-#' @return `ggplot` object with grey lines representing the triggering function for each posterior sample.
-#' Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
-#' Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
+#' @return `ggplot` object with grey lines representing the triggering function
+#'   for each posterior sample. Black lines representing the 0.025 and 0.975
+#'   quantiles of the function values calculated for each posterior sample.
+#'   Horizontal red lines represents the 0.025 and 0.975 quantiles of the
+#'   sampled background rates.
 #' @export
-triggering_fun_plot_prior <- function(input.list, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100) {
+triggering_fun_plot_prior <- function(
+    input.list, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100) {
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind(
     input.list$link.functions$mu(rnorm(n.samp)),
@@ -119,13 +143,15 @@ triggering_fun_plot_prior <- function(input.list, magnitude = 4, n.samp = 10, t.
 
   trig.eval <- lapply(
     seq_len(nrow(prior.samp)),
-    \(x) gt(
-      theta = prior.samp[x, ],
-      t = t.eval,
-      th = 0,
-      mh = magnitude,
-      M0 = input.list$M0
-    )
+    \(x) {
+      gt(
+        theta = prior.samp[x, ],
+        t = t.eval,
+        th = 0,
+        mh = magnitude,
+        M0 = input.list$M0
+      )
+    }
   )
   trig.cols <- do.call(cbind, trig.eval)
   trig.lower.quant <- apply(trig.cols, 1, \(x) quantile(x, c(0.025)))
@@ -170,13 +196,18 @@ triggering_fun_plot_prior <- function(input.list, magnitude = 4, n.samp = 10, t.
 
 
 
-#' Function to calculate Omori's law
+#' @title Function to calculate Omori's law
 #'
-#' @param theta ETAS parameters (`list(mu = mu, K = K, alpha = alpha, c = c, p = p`), only parameters `c` and `p` are used
+#' @description Function to calculate Omori's law at time `t` for an event
+#'   that happened at time `ti`
+#'
+#' @param theta ETAS parameters
+#'   (`list(mu = mu, K = K, alpha = alpha, c = c, p = p`), only parameters `c`
+#'   and `p` are used
 #' @param t Time at which Omori's law is evaluated
 #' @param ti Time of the event in the history
 #'
-#' @return Value of Omori's law at point `t` for and event happened in `ti`
+#' @return Value of Omori's law at point `t` for an event that happened at `ti`
 #' @export
 omori <- function(theta, t, ti) {
   output <- rep(0, length(t))
@@ -191,20 +222,27 @@ omori <- function(theta, t, ti) {
   output
 }
 
+#' @title Plot Omori's law for prior samples
+#'
+#' @description
 #' Function to plot Omori's law corresponding to different prior samples
 #'
 #' @param input.list structured input `list` with at least one element:
 #' \itemize{
-#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters
+#' from the INLA scale to the ETAS scale
 #' }
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
-#' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
+#' @param n.breaks Number of points between 0 and `t.end` to calculate the
+#'   function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
-#' @seealso [create_input_list_temporal_noCatalogue()], [create_input_list_temporal_withCatalogue()]
+#' @seealso [create_input_list_temporal_noCatalogue()],
+#'   [create_input_list_temporal_withCatalogue()]
 #' @export
-omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100) {
+omori_plot_prior <- function(
+    input.list, n.samp = 10, t.end = 1, n.breaks = 100) {
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind(
     input.list$link.functions$mu(rnorm(n.samp)),
@@ -216,11 +254,13 @@ omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 
   omori.eval <- lapply(
     seq_len(nrow(prior.samp)),
-    \(x) omori(
-      theta = prior.samp[x, ],
-      t = t.eval,
-      ti = 0
-    )
+    \(x) {
+      omori(
+        theta = prior.samp[x, ],
+        t = t.eval,
+        ti = 0
+      )
+    }
   )
   omori.cols <- do.call(cbind, omori.eval)
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))
@@ -263,17 +303,23 @@ omori_plot_prior <- function(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 #'
 #' @param input.list structured input `list` with at least two elements:
 #' \itemize{
-#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS parameters
-#' \item `link.functions`: `list` of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+#' \item `model.fit`: `bru` object used to sample the posterior of the ETAS
+#' parameters
+#' \item `link.functions`: `list` of functions to convert the ETAS parameters
+#' from the INLA scale to the ETAS scale
 #' }
-#' @param post.samp `data.frame` containing posterior samples of the parameters. If `NULL`, then `n.samp` samples are
-#' generated. If `n.samp` is different from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from `post.samp`. Default is `NULL`.
+#' @param post.samp `data.frame` containing posterior samples of the parameters.
+#'   If `NULL`, then `n.samp` samples are generated. If `n.samp` is different
+#'   from `nrow(post.samp)` then `n.samp` rows are uniformly sampled from
+#'   `post.samp`. Default is `NULL`.
 #' @param n.samp Number of posterior samples, `integer` (`default = 10`).
 #' @param t.end Upper bound of the x-axis, `scalar` (`default = 1`).
-#' @param n.breaks Number of points between 0 and `t.end` to calculate the function, `integer` (`default = 100`).
+#' @param n.breaks Number of points between 0 and `t.end` to calculate the
+#'   function, `integer` (`default = 100`).
 #'
 #' @return A ggplot object
-#' @seealso [create_input_list_temporal_noCatalogue()], [create_input_list_temporal_withCatalogue()]
+#' @seealso [create_input_list_temporal_noCatalogue()],
+#'   [create_input_list_temporal_withCatalogue()]
 #' @export
 omori_plot_posterior <- function(input.list, post.samp = NULL,
                                  n.samp = 10, t.end = 1, n.breaks = 100) {
@@ -293,7 +339,7 @@ omori_plot_posterior <- function(input.list, post.samp = NULL,
     )
     post.samp <- t(post.samp)
   }
-  if ((!is.null(post.samp)) & (!is.null(n.samp))) {
+  if ((!is.null(post.samp)) && (!is.null(n.samp))) {
     if (nrow(post.samp) != n.samp) {
       idx.samp <- sample(seq_len(nrow(post.samp)), n.samp, replace = TRUE)
       post.samp <- post.samp[idx.samp, ]
@@ -301,11 +347,13 @@ omori_plot_posterior <- function(input.list, post.samp = NULL,
   }
   omori.eval <- lapply(
     seq_len(nrow(post.samp)),
-    \(x) omori(
-      theta = as.numeric(post.samp[x, ]),
-      t = t.eval,
-      ti = 0
-    )
+    \(x) {
+      omori(
+        theta = as.numeric(post.samp[x, ]),
+        t = t.eval,
+        ti = 0
+      )
+    }
   )
   omori.cols <- do.call(cbind, omori.eval)
   omori.lower.quant <- apply(omori.cols, 1, \(x) quantile(x, c(0.025)))

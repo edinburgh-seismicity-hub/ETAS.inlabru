@@ -2,21 +2,23 @@
 % Please edit documentation in R/plottingFunctions.R
 \name{omori_plot_prior}
 \alias{omori_plot_prior}
-\title{Function to plot Omori's law corresponding to different prior samples}
+\title{Plot Omori's law for prior samples}
 \usage{
 omori_plot_prior(input.list, n.samp = 10, t.end = 1, n.breaks = 100)
 }
 \arguments{
 \item{input.list}{structured input \code{list} with at least one element:
 \itemize{
-\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale
 }}
 
 \item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
 
 \item{t.end}{Upper bound of the x-axis, \code{scalar} (\code{default = 1}).}
 
-\item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the function, \code{integer} (\code{default = 100}).}
+\item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the
+function, \code{integer} (\code{default = 100}).}
 }
 \value{
 A ggplot object
@@ -25,5 +27,6 @@ A ggplot object
 Function to plot Omori's law corresponding to different prior samples
 }
 \seealso{
-\code{\link[=create_input_list_temporal_noCatalogue]{create_input_list_temporal_noCatalogue()}}, \code{\link[=create_input_list_temporal_withCatalogue]{create_input_list_temporal_withCatalogue()}}
+\code{\link[=create_input_list_temporal_noCatalogue]{create_input_list_temporal_noCatalogue()}},
+\code{\link[=create_input_list_temporal_withCatalogue]{create_input_list_temporal_withCatalogue()}}
 }

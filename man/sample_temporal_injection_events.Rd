@@ -30,7 +30,8 @@ sample_temporal_injection_events(
 \item{T2}{End of temporal model domain \verb{[days]}.}
 }
 \value{
-Catalogue of parent events induced by injection; \code{data.frame(times, magnitudes)}
+Catalogue of parent events induced by injection;
+\code{data.frame(times, magnitudes)}
 }
 \description{
 Title

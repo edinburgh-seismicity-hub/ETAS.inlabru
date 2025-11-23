@@ -7,15 +7,18 @@
 omori(theta, t, ti)
 }
 \arguments{
-\item{theta}{ETAS parameters (\verb{list(mu = mu, K = K, alpha = alpha, c = c, p = p}), only parameters \code{c} and \code{p} are used}
+\item{theta}{ETAS parameters
+(\verb{list(mu = mu, K = K, alpha = alpha, c = c, p = p}), only parameters \code{c}
+and \code{p} are used}
 
 \item{t}{Time at which Omori's law is evaluated}
 
 \item{ti}{Time of the event in the history}
 }
 \value{
-Value of Omori's law at point \code{t} for and event happened in \code{ti}
+Value of Omori's law at point \code{t} for an event that happened at \code{ti}
 }
 \description{
-Function to calculate Omori's law
+Function to calculate Omori's law at time \code{t} for an event
+that happened at time \code{ti}
 }

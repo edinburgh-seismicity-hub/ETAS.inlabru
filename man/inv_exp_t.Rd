@@ -12,7 +12,8 @@ inv_exp_t(x, rate)
 \item{rate}{rate of the Exponential distribution, \code{scalar}.}
 }
 \value{
-values from a standard Normal distribution, \code{vector} same length as \code{x}
+values from a standard Normal distribution, \code{vector} same length as
+\code{x}
 }
 \description{
 Copula transformation from an Exponential to a standard Normal distribution

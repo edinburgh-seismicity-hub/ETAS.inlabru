@@ -1,10 +1,16 @@
 ## MN: DESCRIPTION: Fit a model according to the information in the input list
 ## MN: Arguments: input list containing parameters
 ## MN: Returns: bru output for the fitted ETAS model as a dataframe
-#' Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.
+##
+#' @title Fit temporal ETAS model
+#' @description
+#' Fits the remporal ETAS model and returns the results. This function
+#' decomposes the input.list for the `Hawkes.bru2`` function.
 #'
-#' @param input.list All input data and parameters are passed to inlabru via this structured `list`.
-#' This is the output of the function [create_input_list_temporal_withCatalogue] or [create_input_list_temporal_noCatalogue]
+#' @param input.list All input data and parameters are passed to inlabru via
+#'   this structured `list`. This is the output of the function
+#'   [create_input_list_temporal_withCatalogue] or
+#'   [create_input_list_temporal_noCatalogue]
 #'
 #' @return The fitted model as a `bru` object, which is a list
 #' @export
@@ -27,18 +33,28 @@ Temporal.ETAS.fit <- function(input.list) {
 
 
 #######
-## MN: DESCRIPTION: Function to fit an ETAS Hawkes process model to catalogue data
+## MN: DESCRIPTION: Function to fit an ETAS Hawkes process model to catalogue
+## data
 #' Function to fit Hawkes process model
 #' @description function to fit a temporal ETAS model using `inlabru`.
-#' @param total.data Observed events: `data.frame` with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.
+#' @param total.data Observed events: `data.frame` with columns time (ts),
+#'   magnitude (magnitudes), event identifier (idx.p). Column names must not be
+#'   changed.
 #' @param M0 Minimum magnitude threshold, `scalar`
-#' @param T1 Start of temporal model domain, `scalar` `[measure unit of sample.s$ts]`.
-#' @param T2 End of temporal model domain, `scalar` `[measure unit of sample.s$ts]`.
-#' @param link.functions Functions to transform the parameters from the internal INLA scale to the ETAS scale. It must be a `list` of functions with names (mu, K, alpha, c_, p)
-#' @param coef.t. TimeBinning parameter: parameter regulating the relative length of successive bins, `scalar`.
-#' @param delta.t. TimeBinning parameter: parameter regulating the bins' width, `scalar`.
-#' @param N.max. TimeBinning parameter: parameter regulating the Number of bins (= `N.max` + 2), `scalar`.
-#' @param bru.opt Runtime options for inlabru: See https://inlabru-org.github.io/inlabru/reference/bru_call_options.html, `list`
+#' @param T1 Start of temporal model domain, `scalar` `[measure unit of
+#'   sample.s$ts]`.
+#' @param T2 End of temporal model domain, `scalar` `[measure unit of
+#'   sample.s$ts]`.
+#' @param link.functions Functions to transform the parameters from the internal
+#'   INLA scale to the ETAS scale. It must be a `list` of functions with names
+#'   `(mu, K, alpha, c_, p)`
+#' @param coef.t. TimeBinning parameter: parameter regulating the relative
+#'   length of successive bins, `scalar`.
+#' @param delta.t. TimeBinning parameter: parameter regulating the bins' width,
+#'   `scalar`.
+#' @param N.max. TimeBinning parameter: parameter regulating the Number of bins
+#'   (= `N.max` + 2), `scalar`.
+#' @param bru.opt Runtime options for inlabru: See [inlabru::bru_options()]
 #'
 #' @return The fitted model as a 'bru' object, which is a list
 #' @export
@@ -83,15 +99,28 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
   df.j$part <- "triggered"
 
   t.names <- unique(df.j$t.ref_layer)
-  time.sel <- df.j[vapply(t.names, \(bname) match(TRUE, df.j$t.ref_layer == bname), 0L), , drop = FALSE]
+  time.sel <- df.j[
+    vapply(
+      t.names,
+      \(bname) match(TRUE, df.j$t.ref_layer == bname), 0L
+    ), ,
+    drop = FALSE
+  ]
   Imapping <- match(df.j$t.ref_layer, t.names)
 
   cat("Finished creating grid, time ", Sys.time() - time.g.st, "\n")
 
-  # MN: Define local function to calculate log-likelihood triggered contribution of one event to each bin.
+  # MN: Define local function to calculate log-likelihood triggered contribution
+  # of one event to each bin.
   # MN: h is to denote it is from past events
-  # FL: ncore_ was set to ncore but that doesn't exist, and ncore_ is unused here
-  logLambda.h.inla <- function(th.K, th.alpha, th.c, th.p, list.input_, ncore_ = NULL) {
+  # FL: ncore_ was set to ncore but that doesn't exist, and ncore_ is unused
+  # here
+  logLambda.h.inla <- function(th.K,
+                               th.alpha,
+                               th.c,
+                               th.p,
+                               list.input_,
+                               ncore_ = NULL) {
     theta_ <- c(
       0,
       link.functions$K(th.K[1]),
@@ -104,7 +133,8 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
     comp. <- compute_grid(param. = theta_, list.input_ = list.input_)
     # print(sum(is.na(comp.list$It)))
     # print(sum(is.infinite(comp.list$It)))
-    out <- theta_[3] * (list.input_$df_grid$magnitudes - list.input_$M0) + log(theta_[2] + 1e-100) + log(comp. + 1e-100)
+    out <- theta_[3] * (list.input_$df_grid$magnitudes - list.input_$M0) +
+      log(theta_[2] + 1e-100) + log(comp. + 1e-100)
     out
   }
 
@@ -113,7 +143,15 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
   df.s <- data.frame(counts = nrow(sample.s), exposures = 0, part = "SL")
 
   ## MN: Function to calculate sum of log intensities using past events
-  loglambda.inla <- function(th.mu, th.K, th.alpha, th.c, th.p, tt, th, mh, M0) {
+  loglambda.inla <- function(th.mu,
+                             th.K,
+                             th.alpha,
+                             th.c,
+                             th.p,
+                             tt,
+                             th,
+                             mh,
+                             M0) {
     ## MN: Rescale parameters to internal parameter scale
     if (is.null(link.functions)) {
       th.p <- list(
@@ -131,8 +169,10 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
       )
     }
 
-    ## MN: Parallel looping over the historic event magnitudes and times QQ why mean?  ALSO past in grid or historic?
-    ## MN: Finn's trick for making more stable - QQ is this to avoid large numbers??
+    ## MN: Parallel looping over the historic event magnitudes and times QQ why
+    ## mean?  ALSO past in grid or historic?
+    ## MN: Finn's trick for making more stable - QQ is this to avoid large
+    ## numbers??
     out <- mean(unlist(lapply(tt, \(x) {
       th_x <- th < x
       log(cond_lambda(
@@ -141,7 +181,7 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
       ))
     }))) # ,
     # mc.cores = 5)))
-    return(out)
+    out
   }
 
   list.input <- list(

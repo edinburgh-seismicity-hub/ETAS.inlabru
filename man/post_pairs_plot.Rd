@@ -14,21 +14,30 @@ post_pairs_plot(
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
 \itemize{
-\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
-\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS
+parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale
 }}
 
 \item{n.samp}{The number of samples to draw from the posteriors for the plot}
 
-\item{post.samp}{\code{data.frame} with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When \code{NULL} the function samples the joint posterior distribution \code{n.samp} times. The default is \code{NULL}.}
+\item{post.samp}{\code{data.frame} with columns mu, K, alpha, c, p and rows
+corresponding to different posterior samples. When \code{NULL} the function
+samples the joint posterior distribution \code{n.samp} times. The default is
+\code{NULL}.}
 
-\item{max.batch}{parameter of \link{post_sampling} function to be used in case \code{post.samp = NULL}}
+\item{max.batch}{parameter of \link{post_sampling} function to be used in case
+\code{post.samp = NULL}}
 }
 \value{
 \code{list}: with elements
 \itemize{
-\item \code{post.samp.df}:\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters. If \code{post.samp} is not \code{NULL} it returns \code{post.samp}
-\item \code{pair.plot}: \code{ggplot} object reporting the pair plot between parameters samples. It is obtained using the \code{ggpairs} function of the \code{Ggally} library
+\item \code{post.samp.df}:\code{data.frame} of posterior samples with \code{nrow = n.samp}
+and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters. If
+\code{post.samp} is not \code{NULL} it returns \code{post.samp}
+\item \code{pair.plot}: \code{ggplot} object reporting the pair plot between parameters
+samples. It is obtained using the \code{ggpairs} function of the \code{Ggally} library
 }
 }
 \description{

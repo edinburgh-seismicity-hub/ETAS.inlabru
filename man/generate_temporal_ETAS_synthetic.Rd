@@ -28,13 +28,13 @@ generate_temporal_ETAS_synthetic(
 
 \item{Ht}{A catalogue history to impose on the synthetic sequence.}
 
-\item{format}{If "list", return a list of data.frame objects, one for each generation.
-If "df", return a data.frame where the list element have been joined into a
-single data.frame, and ordered by \code{ts}}
+\item{format}{If "list", return a list of data.frame objects, one for each
+generation. If "df", return a data.frame where the list element have been
+joined into a single data.frame, and ordered by \code{ts}}
 
 \item{ncore}{Deprecated argument for controlling parallelism. Use
-\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
-parallelism in your code instead.}
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to
+configure parallelism in your code instead.}
 }
 \value{
 A list of data.frame objects of the temporal catalogue with
@@ -68,7 +68,8 @@ generate_temporal_ETAS_synthetic(
 )
 
 
-## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
+## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day
+##   500
 
 Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 generate_temporal_ETAS_synthetic(

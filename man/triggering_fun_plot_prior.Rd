@@ -2,7 +2,7 @@
 % Please edit documentation in R/plottingFunctions.R
 \name{triggering_fun_plot_prior}
 \alias{triggering_fun_plot_prior}
-\title{Function to plot the ETAS triggering function corresponding to different prior samples}
+\title{Triggering function plot from prior samples}
 \usage{
 triggering_fun_plot_prior(
   input.list,
@@ -15,22 +15,28 @@ triggering_fun_plot_prior(
 \arguments{
 \item{input.list}{structured input \code{list} with at least one element:
 \itemize{
-\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale
 }}
 
-\item{magnitude}{Magnitude of the event for which the triggering function is calculated, \code{scalar} (\code{default = 4}).}
+\item{magnitude}{Magnitude of the event for which the triggering function is
+calculated, \code{scalar} (\code{default = 4}).}
 
 \item{n.samp}{Number of posterior samples, \code{integer} (\code{default = 10}).}
 
 \item{t.end}{Upper bound of the x-axis, \code{scalar} (\code{default = 1}).}
 
-\item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the function, \code{integer} (\code{default = 100})}
+\item{n.breaks}{Number of points between 0 and \code{t.end} to calculate the
+function, \code{integer} (\code{default = 100})}
 }
 \value{
-\code{ggplot} object with grey lines representing the triggering function for each posterior sample.
-Black lines representing the 0.025 and 0.975 quantiles of the function values calculated for each posterior sample.
-Horizontal red lines represents the 0.025 and 0.975 quantiles of the sampled background rates.
+\code{ggplot} object with grey lines representing the triggering function
+for each posterior sample. Black lines representing the 0.025 and 0.975
+quantiles of the function values calculated for each posterior sample.
+Horizontal red lines represents the 0.025 and 0.975 quantiles of the
+sampled background rates.
 }
 \description{
-Function to plot the ETAS triggering function corresponding to different prior samples
+Function to plot the ETAS triggering function corresponding to different
+prior samples
 }

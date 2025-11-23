@@ -1,7 +1,7 @@
 Package: ETAS.inlabru
 Type: Package
 Title: Bayesian ETAS model for modelling seismic sequences with inlabru
-Version: 1.1.1.9001
+Version: 1.1.1.9002
 Authors@R: 
     c(
     person("Francesco", "Serafini",email="francesco.serafini@newcastle.ac.uk", role = c("aut", "cre"),
@@ -27,7 +27,7 @@ License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Imports:
     dplyr,
@@ -60,4 +60,4 @@ URL: https://edinburgh-seismicity-hub.github.io/ETAS.inlabru/, https://github.co
 BugReports: https://github.com/edinburgh-seismicity-hub/ETAS.inlabru/issues
 Config/Needs/website: rmarkdown
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)

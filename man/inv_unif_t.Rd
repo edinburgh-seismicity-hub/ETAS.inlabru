@@ -14,7 +14,8 @@ inv_unif_t(x, a, b)
 \item{b}{maximum of the Uniform distribution, \code{scalar}.}
 }
 \value{
-values from a standard Normal distribution, \code{vector} same length as \code{x}
+values from a standard Normal distribution, \code{vector} same length as
+\code{x}
 }
 \description{
 Copula transformation from an Uniform to a standard Normal distribution

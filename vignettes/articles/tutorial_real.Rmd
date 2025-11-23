@@ -217,7 +217,7 @@ aquila.bru <- data.frame(
     difftime(aquila$time_date, start.date, units = "days")
   ),
   magnitudes = aquila$M,
-  idx.p = 1:nrow(aquila)
+  idx.p = seq_len(nrow(aquila))
 )
 ```
 
@@ -270,9 +270,11 @@ The function `Temporal.ETAS` fit the ETAS model and returns a `bru` object as ou
 * `bru.opt`: `list` of `inlabru` options as described in the previous Section.
 
 ```{r, message=FALSE}
-# set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.
+# set starting and time of the time interval used for model fitting. In this
+# case, we use the interval covered by the data.
 T1 <- 0
-T2 <- max(aquila.bru$ts) + 0.2 # Use max(..., na.rm = TRUE) if there may still be NAs here
+# Use max(..., na.rm = TRUE) if there may still be NAs here
+T2 <- max(aquila.bru$ts) + 0.2
 # fit the model
 aquila.fit <- Temporal.ETAS(
   total.data = aquila.bru,
@@ -410,7 +412,12 @@ triggering_fun_plot(
 ```
 
 ```{r}
-triggering_fun_plot_prior(input.list = input_list, magnitude = 4, n.samp = 1000, t.end = 10)
+triggering_fun_plot_prior(
+  input.list = input_list,
+  magnitude = 4,
+  n.samp = 1000,
+  t.end = 10
+)
 ```
 
 The functions `omori_plot_posterior` and `omori_plot_prior` do the same as the functions `triggering_fun_plot` and `triggering_fun_plot_prior` but considering only 
@@ -421,7 +428,12 @@ $$
 instead of the whole triggering function and without the background rate.
 
 ```{r}
-omori_plot_posterior(input.list = input_list, post.samp = post.samp, n.samp = NULL, t.end = 5)
+omori_plot_posterior(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL,
+  t.end = 5
+)
 ```
 
 ```{r}
@@ -484,22 +496,26 @@ We can easily generate multiple catalogues. The code below generates 8 catalogue
 set.seed(2)
 n.cat <- 8
 # generate catalogues as list of lists
-multi.synth.cat.list <- lapply(seq_len(n.cat), \(x)
-generate_temporal_ETAS_synthetic(
-  theta = post.samp[x, ],
-  beta.p = beta.p,
-  M0 = M0,
-  T1 = T1,
-  T2 = T2,
-  Ht = aquila.bru[which.max(aquila.bru$magnitudes), ]
-))
+multi.synth.cat.list <- lapply(seq_len(n.cat), \(x) {
+  generate_temporal_ETAS_synthetic(
+    theta = post.samp[x, ],
+    beta.p = beta.p,
+    M0 = M0,
+    T1 = T1,
+    T2 = T2,
+    Ht = aquila.bru[which.max(aquila.bru$magnitudes), ]
+  )
+})
 
 # store catalogues as list of data.frames
 multi.synth.cat.list.df <- lapply(multi.synth.cat.list, \(x) do.call(rbind, x))
 # set catalogue identifier
-multi.synth.cat.list.df <- lapply(seq_len(n.cat), \(x) cbind(multi.synth.cat.list.df[[x]],
-  cat.idx = x
-))
+multi.synth.cat.list.df <- lapply(
+  seq_len(n.cat),
+  \(x) {
+    cbind(multi.synth.cat.list.df[[x]], cat.idx = x)
+  }
+)
 # merge catalogues in unique data.frame
 multi.synth.cat.df <- do.call(rbind, multi.synth.cat.list.df)
 

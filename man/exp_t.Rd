@@ -2,7 +2,8 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{exp_t}
 \alias{exp_t}
-\title{Copula transformation from a standard Normal distribution to an Exponential distribution}
+\title{Copula transformation from a standard Normal distribution to an Exponential
+distribution}
 \usage{
 exp_t(x, r)
 }
@@ -12,10 +13,12 @@ exp_t(x, r)
 \item{r}{rate of the exponential distribution, \code{scalar}.}
 }
 \value{
-values from an Exponential distribution with rate \code{r}, \code{vector} same length as \code{x}.
+values from an Exponential distribution with rate \code{r}, \code{vector} same
+length as \code{x}.
 }
 \description{
-Copula transformation from a standard Normal distribution to an Exponential distribution
+Copula transformation from a standard Normal distribution to an Exponential
+distribution
 }
 \seealso{
 Other copula-transformations: 

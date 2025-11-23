@@ -11,26 +11,31 @@ gt(theta, t, th, mh, M0)
 
 \item{t}{Time at which the function is calculated, \code{scalar} or \code{vector}}
 
-\item{th}{Time of events in the history in \verb{[days, months,...]}, \code{scalar} or \code{vector}}
+\item{th}{Time of events in the history in \verb{[days, months,...]}, \code{scalar} or
+\code{vector}}
 
 \item{mh}{Magnitude of events in the history, \code{scalar} or \code{vector}}
 
 \item{M0}{Minimum magnitude threshold, \code{scalar}}
 }
 \value{
-value of the ETAS triggering function evaluated at \code{t} with history \code{th}, \code{mh}.
+value of the ETAS triggering function evaluated at \code{t} with history
+\code{th}, \code{mh}.
 }
 \description{
-The function returns the value of the ETAS triggering function at a specified time \code{t} for the points in the history \verb{th, mh}
+The function returns the value of the ETAS triggering function
+at a specified time \code{t} for the points in the history \verb{th, mh}
 }
 \details{
-The ETAS triggering function to be evaluated is
-\deqn{g(t - t_h | m_h) = K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
-Where \eqn{K, \alpha, c > 0}, and \eqn{p \geq 1} are the ETAS parameters, \eqn{t} (\code{t}) is the time
-at which the function is evaluated, considering the past observation \eqn{t_h, m_h} (\verb{th, mh}).
-The function returns 0 if \eqn{t_h > t}.
-If \eqn{t} is a scalar and \eqn{t_h, m_h} are vectors than the function returns a vector,
-same if \eqn{t} is a vector and \eqn{t_h, m_h} are scalars, or if \eqn{t, t_h, m_h} are vectors of the same length.
+The ETAS triggering function to be evaluated is \deqn{g(t - t_h |
+  m_h) = K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
+Where \eqn{K, \alpha, c > 0}, and \eqn{p \geq 1} are the ETAS parameters,
+\eqn{t} (\code{t}) is the time at which the function is evaluated, considering
+the past observation \eqn{t_h, m_h} (\verb{th, mh}).
+The function returns 0 if \eqn{t_h > t}. If \eqn{t} is a scalar and \eqn{t_h,
+m_h} are vectors than the function returns a vector, same if \eqn{t} is a
+vector and \eqn{t_h, m_h} are scalars, or if \eqn{t, t_h, m_h} are vectors
+of the same length.
 
 Do not use if \eqn{t} and \eqn{t_h, m_h} are vectors of different lengths.
 }

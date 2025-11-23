@@ -11,25 +11,34 @@ breaks_exp(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10)
 
 \item{end.grid}{End point of the grid, \code{scalar}.}
 
-\item{coef.t}{TimeBinning parameter: \eqn{\delta > 0} determines the relative length of subsequent intervals, \code{scalar}.}
+\item{coef.t}{TimeBinning parameter: \eqn{\delta > 0} determines the relative
+length of subsequent intervals, \code{scalar}.}
 
-\item{delta.t}{TimeBinning parameter: \eqn{\Delta > 0} determines the length of the intervals, \code{scalar}.}
+\item{delta.t}{TimeBinning parameter: \eqn{\Delta > 0} determines the length
+of the intervals, \code{scalar}.}
 
-\item{N.exp.}{TimeBinning parameter: \eqn{n_{max} >0} determines the maximum number of intervals, \code{scalar}}
+\item{N.exp.}{TimeBinning parameter: \eqn{n_{max} >0} determines the maximum
+number of intervals, \code{scalar}}
 }
 \value{
 \code{vector} containing the grid points
 }
 \description{
-\code{breaks_exp} return the breaks points of a one dimensional grid depending on three parameters, see details
+\code{breaks_exp} return the breaks points of a one dimensional grid
+depending on three parameters, see details
 }
 \details{
-The grid is calculated as follows
-\deqn{t, t + \Delta, t + \Delta(1 + \delta), t + \Delta(1 + \delta)^2,...., T}
-where \eqn{t} is the \code{start.grid} argument, \eqn{T} is the \code{end.grid} argument, and \eqn{n_{max}} is the maximum value of the exponent
+The grid is calculated as follows \deqn{t, t + \Delta, t + \Delta(1
+  + \delta), t + \Delta(1 + \delta)^2,...., T} where \eqn{t} is the
+\code{start.grid} argument, \eqn{T} is the \code{end.grid} argument, and
+\eqn{n_{max}} is the maximum value of the exponent
 }
 \examples{
-breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3)
-breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10)
+breaks_exp(
+  start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3
+)
+breaks_exp(
+  start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10
+)
 
 }

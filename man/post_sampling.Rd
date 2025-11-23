@@ -9,20 +9,24 @@ post_sampling(input.list, n.samp, max.batch = 1000, ncore = NULL)
 \arguments{
 \item{input.list}{structured input \code{list} with at least two elements:
 \itemize{
-\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS parameters
-\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters from the INLA scale to the ETAS scale
+\item \code{model.fit}: \code{bru} object used to sample the posterior of the ETAS
+parameters
+\item \code{link.functions}: \code{list} of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale
 }}
 
 \item{n.samp}{The number of samples to draw from the posteriors}
 
-\item{max.batch}{Maximum number of posterior samples to be generated simultaneously. Default is 1000.}
+\item{max.batch}{Maximum number of posterior samples to be generated
+simultaneously. Default is 1000.}
 
 \item{ncore}{Deprecated argument for controlling parallelism. Use
-\code{future::plan(future::multisession, workers = ncore)} (or similar) to configure
-parallelism in your code instead.}
+\code{future::plan(future::multisession, workers = ncore)} (or similar) to
+configure parallelism in your code instead.}
 }
 \value{
-\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns \verb{mu, K, alpha, c, p} corresponding to ETAS parameters.
+\code{data.frame} of posterior samples with \code{nrow = n.samp} and columns
+\verb{mu, K, alpha, c, p} corresponding to ETAS parameters.
 }
 \description{
 Sample from the posterior of the ETAS parameters

@@ -22,7 +22,8 @@ mandatory and should not be changed}
 \item{T2.}{End of the temporal domain \code{scalar}.}
 }
 \value{
-A \code{data.frame} with as many rows as the number of bins and fixed number of columns.
+A \code{data.frame} with as many rows as the number of bins and fixed
+number of columns.
 The columns are
 \itemize{
 \item \code{t.start} : starting point of the bin (minimum = \code{T1.}).
@@ -40,5 +41,12 @@ Generate a set of time bins for a specific event.
 \examples{
 ## EXAMPLE 1
 event <- list(ts = 0, idx.p = 1)
-time_grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
+time_grid(
+  data.point = event,
+  coef.t = 1,
+  delta.t = 0.1,
+  N.exp. = 8,
+  T1. = 1,
+  T2. = 20
+)
 }

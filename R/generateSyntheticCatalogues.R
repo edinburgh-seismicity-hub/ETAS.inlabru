@@ -1,12 +1,15 @@
 ## DESCRIPTION: Generates a whole catalogue by using a set of known events
 ## Arguments
-##          Ht: Ether (i) Historic events to precondition sequence or (ii) notable in sequence events (e.g. Cofiorito)
+##          Ht: Ether (i) Historic events to precondition sequence or (ii)
+##          notable in sequence events (e.g. Cofiorito)
 ##                Dataframe[t_h, M_h]
-## Returns: The catalogue Dataframe[t_i, M_i, gen_i] including the events in Ht that are within T1 to T2
+## Returns: The catalogue Dataframe[t_i, M_i, gen_i] including the events in Ht
+## that are within T1 to T2
 ##                gen_i = -1 for Ht
 ##                gen_i = 0 for daughters of Ht
 ##                gen_i = 1 for background events
-##                gen_i = 2 for first order daughters of background or second order daughters historic
+##                gen_i = 2 for first order daughters of background or second
+##                order daughters historic
 ##                gen_i = increments for successive generations
 
 #' Generates a synthetic catalogue using the ETAS model
@@ -17,12 +20,12 @@
 #' @param T1 The start time for the synthetic catalogue `[days]`.
 #' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param Ht A catalogue history to impose on the synthetic sequence.
-#' @param format If "list", return a list of data.frame objects, one for each generation.
-#' If "df", return a data.frame where the list element have been joined into a
-#' single data.frame, and ordered by `ts`
+#' @param format If "list", return a list of data.frame objects, one for each
+#'   generation. If "df", return a data.frame where the list element have been
+#'   joined into a single data.frame, and ordered by `ts`
 #' @param ncore Deprecated argument for controlling parallelism. Use
-#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
-#' parallelism in your code instead.
+#'   `future::plan(future::multisession, workers = ncore)` (or similar) to
+#'   configure parallelism in your code instead.
 #' @return A list of data.frame objects of the temporal catalogue with
 #' columns `[ts, magnitudes, gen]` where, `ts` are the times `t_i`,
 #' `magnitudes` the magnitudes `M_i`, and `gen` includes information about the
@@ -53,7 +56,8 @@
 #' )
 #'
 #'
-#' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
+#' ## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day
+#' ##   500
 #'
 #' Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 #' generate_temporal_ETAS_synthetic(
@@ -114,8 +118,8 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   #########
   ### Generate from imposed events listed in Ht and the background events
 
-  ## MN: Combine imposed and background events and add 1st generation daughters of imposed event set
-  # if known events are provided
+  ## MN: Combine imposed and background events and add 1st generation daughters
+  ## of imposed event set if known events are provided
   if (!is.null(Ht)) {
     # sample a generation from the known events
     gen.from.past <-
@@ -139,7 +143,8 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   } else {
     Gen.list <- list(bkg.df)
   }
-  # stop if we have no background events and no events generated from known observations
+  # stop if we have no background events and no events generated from known
+  # observations
   if (nrow(Gen.list[[1]]) == 0) {
     # print(exp(theta.v[1])*(T2 - T1)*(area(bdy)/1000000))
     # stop('No events generated - increase theta1')
@@ -150,8 +155,8 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
     return(Gen.list)
   }
 
-  ## MN: Generate the daughters of backgorund and 1st daughters of imposed event set
-  # initialize flag and gen counter
+  ## MN: Generate the daughters of backgorund and 1st daughters of imposed event
+  ## set initialize flag and gen counter
   flag <- TRUE
   gen <- 1
   # this goes until the condition inside the loop is met
@@ -181,16 +186,25 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
   }
   if (!is.null(Ht)) {
     if (sum(Ht$ts >= T1 & Ht$ts <= T2) == 0) {
-      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
+      Gen.list <- lapply(
+        Gen.list,
+        \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ]
+      )
     } else {
       Ht.to.gen <- Ht[Ht$ts >= T1 & Ht$ts <= T2, ]
       Ht.to.gen$gen <- -1
       Ht.to.gen <- Ht.to.gen[, c("ts", "magnitudes", "gen")]
-      Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
+      Gen.list <- lapply(
+        Gen.list,
+        \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ]
+      )
       Gen.list <- append(list(Ht.to.gen), Gen.list)
     }
   } else {
-    Gen.list <- lapply(Gen.list, \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ])
+    Gen.list <- lapply(
+      Gen.list,
+      \(gen.df) gen.df[gen.df$ts >= T1 & gen.df$ts <= T2, ]
+    )
   }
   if (identical(format, "df")) {
     Gen.list <- dplyr::bind_rows(Gen.list)
@@ -201,7 +215,8 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 
 
 
-#' Take all previous parent events from `Ht=data.frame[ts, magnitudes]` and generates their daughters events using the ETAS model
+#' Take all previous parent events from `Ht=data.frame[ts, magnitudes]` and
+#' generates their daughters events using the ETAS model
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
@@ -210,10 +225,11 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #' @param T1 The start time for the synthetic catalogue `[days]`.
 #' @param T2 The end time for the synthetic catalogue `[days]`.
 #' @param ncore Deprecated argument for controlling parallelism. Use
-#' `future::plan(future::multisession, workers = ncore)` (or similar) to configure
-#' parallelism in your code instead.
+#'   `future::plan(future::multisession, workers = ncore)` (or similar) to
+#'   configure parallelism in your code instead.
 
-#' @return Return one generation of daughters from the parents in `Ht` in the form `data.frame(t_i, M_i)`.
+#' @return Return one generation of daughters from the parents in `Ht` in the
+#'   form `data.frame(t_i, M_i)`.
 #' @export
 #'
 #' @examples
@@ -226,7 +242,13 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
 #'   T1 = 0, T2 = 1000,
 #'   Ht = Ht
 #' )
-sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore = NULL) {
+sample_temporal_ETAS_generation <- function(theta,
+                                            beta.p,
+                                            Ht,
+                                            M0,
+                                            T1,
+                                            T2,
+                                            ncore = NULL) {
   if (!is.null(ncore)) {
     lifecycle::deprecate_soft(
       "1.1.1.9001",
@@ -237,13 +259,15 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 
   # number of parents
   n.parent <- nrow(Ht)
-  # calculate the aftershock rate for each parent in history (i.e. mean number daughters)
+  # calculate the aftershock rate for each parent in history (i.e. mean number
+  # daughters)
   trig.rates <- exp(log_Lambda_h(
     theta = theta,
     th = Ht$ts, mh = Ht$magnitudes,
     M0 = M0, T1 = T1, T2 = T2
   ))
-  # extract number of aftershock for each parent (Sample poisson to deterime no daughters this realisation)
+  # extract number of aftershock for each parent (Sample poisson to determine no
+  # daughters this realisation)
   n.ev.v <- sapply(1:n.parent, function(x) rpois(1, trig.rates[x]))
 
   # if no aftershock has to be generated returns empty data.frame
@@ -256,7 +280,8 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
   # identify parent events with the number of aftershocks > 0
   idx.p <- which(n.ev.v > 0)
 
-  # print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]], Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
+  # print(sample.triggered(theta.v, beta.p, Sigma, Chol.M, n.ev.v[idx.p[1]],
+  # Ht[idx.p[1],], T1, T2, M0, bdy, crsobj))
   # sample (in parallel) the aftershocks for each parent
   sample.list <- future.apply::future_lapply(
     idx.p,
@@ -276,7 +301,10 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 
 
 ##
-#' Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for one parent event occuring at time `t_h` using the ETAS model.
+#' @title Sample daughter events from one parent using the ETAS model
+#' @description
+#' Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for
+#' one parent event occuring at time `t_h` using the ETAS model.
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
 #' @param beta.p Slope of GR relation: beta = b ln(10).
@@ -286,26 +314,34 @@ sample_temporal_ETAS_generation <- function(theta, beta.p, Ht, M0, T1, T2, ncore
 #' @param T1 Start time for synthetic catalogue `[days]`.
 #' @param T2 End time for synthetic catalogue `[days]`.
 #'
-#' @return Generate a sample of new events `data.frame(t_i, M_i)` from one parent
-sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2) {
+#' @return Generate a sample of new events `data.frame(t_i, M_i)` from one
+#'   parent
+sample_temporal_ETAS_daughters <- function(theta,
+                                           beta.p,
+                                           th,
+                                           n.ev,
+                                           M0,
+                                           T1,
+                                           T2) {
   # if the number of events to be placed is zero returns an empty data.frame
   if (n.ev == 0) {
     samp.points <- data.frame(x = 1, y = 1, ts = 1, magnitudes = 1)
     samp.points <- samp.points[-1, ]
     return(samp.points)
-  } else {
-    # Generate the time sample
-    samp.ts <- sample_temporal_ETAS_times(theta, n.ev, th, T2)
-
-    # Generate the magnitude sample
-    samp.mags <- sample_GR_magnitudes(n = n.ev, beta.p = beta.p, M0 = M0)
-
-    # Combine to build output synthetic catalogue for single parent
-    samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
-    # return only the ones with time different from NA (the one with NA are outside the interval T1, T2)
-    # even though it should not happen given how we built sample.omori
-    return(samp.points[!is.na(samp.points$ts), ])
   }
+
+  # Generate the time sample
+  samp.ts <- sample_temporal_ETAS_times(theta, n.ev, th, T2)
+
+  # Generate the magnitude sample
+  samp.mags <- sample_GR_magnitudes(n = n.ev, beta.p = beta.p, M0 = M0)
+
+  # Combine to build output synthetic catalogue for single parent
+  samp.points <- data.frame(ts = samp.ts, magnitudes = samp.mags)
+  # return only the ones with time different from NA (the one with NA are
+  # outside the interval T1, T2) even though it should not happen given how we
+  # built sample.omori
+  samp.points[!is.na(samp.points$ts), , drop = FALSE]
 }
 
 
@@ -322,18 +358,24 @@ sample_temporal_ETAS_daughters <- function(theta, beta.p, th, n.ev, M0, T1, T2) 
 #'
 #' @export
 sample_GR_magnitudes <- function(n, beta.p, M0) {
-  return(rexp(n, beta.p) + M0)
+  rexp(n, beta.p) + M0
 }
 
 
-#' Sampling times for events triggered by a parent at th according to the ETAS triggering function
+#' @title Sample times for events triggered by a parent according to the ETAS
+#' triggering function
+#' @description
+#' Sampling times for events triggered by a parent at th according to the ETAS
+#' triggering function
 #'
 #' @param theta ETAS parameters `list(mu=mu, K=K, alpha=alpha, c=c, p=p)`.
-#' @param n.ev Number of events to return in the sample in time domain `(th, T2]`.
+#' @param n.ev Number of events to return in the sample in time domain `(th,
+#'   T2]`.
 #' @param th Time of the parent event producing `n.ev` daughters.
 #' @param T2 End time of model domain.
 #'
-#' @return t.sample A list of times in the interval `[0, T2]` distributed according to the ETAS triggering function.
+#' @return t.sample A list of times in the interval `[0, T2]` distributed
+#'   according to the ETAS triggering function.
 sample_temporal_ETAS_times <- function(theta, n.ev, th, T2) {
   if (n.ev == 0) {
     df <- data.frame(ts = 1, x = 1, y = 1, magnitudes = 1, gen = 0)
@@ -343,7 +385,7 @@ sample_temporal_ETAS_times <- function(theta, n.ev, th, T2) {
   bound.u <- Int_ETAS_time_trig_function(theta, th, T2)
   unif.s <- runif(n.ev, min = bound.l, max = bound.u)
   t.sample <- Inv_Int_ETAS_time_trig_function(theta, unif.s, th)
-  return(t.sample)
+  t.sample
 }
 
 #' Integrated Omori's law
@@ -368,11 +410,14 @@ Int_ETAS_time_trig_function <- function(theta, th, T2) {
 #' @param omega Value of the integral to be inverted, `vector`
 #' @param th Time from which the integral is calculated `scalar`
 #'
-#' @return Value of the start of the temporal domain used to calculate the integral
+#' @return Value of the start of the temporal domain used to calculate the
+#'   integral
 #' @details
 #' Considering the integral of Omori's law
 #' \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-#' The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
+#' The function applied to the value \eqn{\omega} returns the value of
+#' \eqn{t_h}.
 Inv_Int_ETAS_time_trig_function <- function(theta, omega, th) {
-  th + theta$c * ((1 - omega * (1 / theta$c) * (theta$p - 1))^(-1 / (theta$p - 1)) - 1)
+  th + theta$c * ((1 - omega * (1 / theta$c) *
+    (theta$p - 1))^(-1 / (theta$p - 1)) - 1)
 }

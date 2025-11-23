@@ -2,7 +2,7 @@
 % Please edit documentation in R/setupInlabruInputs.R
 \name{create_input_list_temporal_withCatalogue}
 \alias{create_input_list_temporal_withCatalogue}
-\title{Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.}
+\title{Create input list for ETAS Hawkes temporal model with catalogue}
 \usage{
 create_input_list_temporal_withCatalogue(input_path, num.threads = NULL)
 }
@@ -13,8 +13,9 @@ create_input_list_temporal_withCatalogue(input_path, num.threads = NULL)
 parallel processing in inlabru/INLA}
 }
 \value{
-The formatted input.list with the elements required for the temporal Hawkes model
+The formatted input.list with the elements required for the temporal
+Hawkes model
 }
 \description{
-Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
+Create input list for ETAS Hawkes temporal model with catalogue
 }

@@ -2,7 +2,8 @@
 % Please edit documentation in R/generateSyntheticCatalogues.R
 \name{sample_temporal_ETAS_times}
 \alias{sample_temporal_ETAS_times}
-\title{Sampling times for events triggered by a parent at th according to the ETAS triggering function}
+\title{Sample times for events triggered by a parent according to the ETAS
+triggering function}
 \usage{
 sample_temporal_ETAS_times(theta, n.ev, th, T2)
 }
@@ -16,8 +17,10 @@ sample_temporal_ETAS_times(theta, n.ev, th, T2)
 \item{T2}{End time of model domain.}
 }
 \value{
-t.sample A list of times in the interval \verb{[0, T2]} distributed according to the ETAS triggering function.
+t.sample A list of times in the interval \verb{[0, T2]} distributed
+according to the ETAS triggering function.
 }
 \description{
-Sampling times for events triggered by a parent at th according to the ETAS triggering function
+Sampling times for events triggered by a parent at th according to the ETAS
+triggering function
 }

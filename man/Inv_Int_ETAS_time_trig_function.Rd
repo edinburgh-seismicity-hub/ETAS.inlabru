@@ -14,7 +14,8 @@ Inv_Int_ETAS_time_trig_function(theta, omega, th)
 \item{th}{Time from which the integral is calculated \code{scalar}}
 }
 \value{
-Value of the start of the temporal domain used to calculate the integral
+Value of the start of the temporal domain used to calculate the
+integral
 }
 \description{
 Inverse of integrated Omori's law
@@ -22,5 +23,6 @@ Inverse of integrated Omori's law
 \details{
 Considering the integral of Omori's law
 \deqn{\omega = \int_{t_h}^{T_2}\left(\frac{t - t_h}{c} + 1\right)^{-p} dt}
-The function applied to the value \eqn{\omega} returns the value of \eqn{t_h}.
+The function applied to the value \eqn{\omega} returns the value of
+\eqn{t_h}.
 }

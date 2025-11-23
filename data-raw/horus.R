@@ -33,11 +33,16 @@ hour.string <- as.character(horus_orig$Ho)
 minute.string <- as.character(horus_orig$Mi)
 second.string <- as.character(horus_orig$Se)
 
-month.string[horus_orig$Mo < 10] <- paste0("0", month.string[horus_orig$Mo < 10])
-day.string[horus_orig$Da < 10] <- paste0("0", day.string[horus_orig$Da < 10])
-hour.string[horus_orig$Ho < 10] <- paste0("0", hour.string[horus_orig$Ho < 10])
-minute.string[horus_orig$Mi < 10] <- paste0("0", minute.string[horus_orig$Mi < 10])
-second.string[horus_orig$Se < 10] <- paste0("0", second.string[horus_orig$Se < 10])
+month.string[horus_orig$Mo < 10] <-
+  paste0("0", month.string[horus_orig$Mo < 10])
+day.string[horus_orig$Da < 10] <-
+  paste0("0", day.string[horus_orig$Da < 10])
+hour.string[horus_orig$Ho < 10] <-
+  paste0("0", hour.string[horus_orig$Ho < 10])
+minute.string[horus_orig$Mi < 10] <-
+  paste0("0", minute.string[horus_orig$Mi < 10])
+second.string[horus_orig$Se < 10] <-
+  paste0("0", second.string[horus_orig$Se < 10])
 
 horus_orig$time_string <- paste0(
   horus_orig$Year, "-",

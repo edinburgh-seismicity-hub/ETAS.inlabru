@@ -1,19 +1,25 @@
-#' Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
+#' @title Create input list for ETAS Hawkes temporal model with catalogue
+#' @decription
+#' Function to create a default input file for the ETAS Hawkes temporal model
+#' where a catalogue is specified in the input file.
 #'
 #' @param input_path path of the `txt` file containing experiment's information
 #' @param num.threads Optional argument for the number of threads to be used by
 #' parallel processing in inlabru/INLA
 #'
-#' @return The formatted input.list with the elements required for the temporal Hawkes model
+#' @return The formatted input.list with the elements required for the temporal
+#'   Hawkes model
 #' @export
-create_input_list_temporal_withCatalogue <- function(input_path, num.threads = NULL) {
+create_input_list_temporal_withCatalogue <- function(input_path,
+                                                     num.threads = NULL) {
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
   for (i in seq_len(length(par.raw))) {
     row.i <- par.raw[[i]]
     if (grepl("start.date", row.i)) {
-      # Do explicit assignment of the eval-result, to avoid package check warnings
+      # Do explicit assignment of the eval-result, to avoid package check
+      # warnings
       start.date <- eval(parse(text = row.i))
     } else if (grepl("end.date", row.i)) {
       end.date <- eval(parse(text = row.i))
@@ -104,17 +110,22 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
   if (!catalog.header) {
     colnames(catalog) <- catalog.colnames
   }
-  if (!("time_string" %in% colnames(catalog))) {
-    stop('Error in the catalog column names: please set the column name of the observed time equal to "time_string"')
-  }
-  if (!("Lon" %in% colnames(catalog))) {
-    stop('Error in the catalog column names: please set the column name of the observed longitudes equal to "Lon"')
-  }
-  if (!("Lat" %in% colnames(catalog))) {
-    stop('Error in the catalog column names: please set the column name of the observed latitude equal to "Lat"')
-  }
-  if (!("magnitudes" %in% colnames(catalog))) {
-    stop('Error in the catalog column names: please set the column name of the observed magnitudes equal to "magnitudes"')
+  missing_names <- c("time_string", "Lon", "Lat", "magnitudes")
+  missing_names <- missing_names[!(missing_names %in% colnames(catalog))]
+  if (length(missing_names) > 0) {
+    missing_msg <- c(
+      "time_string" = "observed times",
+      "Lon" = "observed longitudes",
+      "Lat" = "observed latitudes",
+      "magnitudes" = "observed magnitudes"
+    )[missing_names]
+    stop(paste0(
+      "Error(s) in the catalog column names:\n",
+      paste0("Please set the column name of ", missing_msg, " equal to '",
+        missing_names, "'",
+        collapse = "\n"
+      )
+    ))
   }
   #
   # catalog preparation
@@ -142,7 +153,12 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
       .data$Lat <= max.latitude,
       .data$magnitudes >= magnitude.completeness
     ) %>%
-    dplyr::mutate(time_diff = as.numeric(difftime(.data$time_date, start.date, units = "days")))
+    dplyr::mutate(
+      time_diff = as.numeric(difftime(.data$time_date,
+        start.date,
+        units = "days"
+      ))
+    )
   cat("Finish loading & preparing catalog", "\n")
 
   # create data.frame for inlabru
@@ -243,20 +259,30 @@ create_input_list_temporal_withCatalogue <- function(input_path, num.threads = N
 }
 
 
-#' Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file
+#' @title Create input list for ETAS Hawkes temporal model without catalogue
+#'
+#' @decription
+#' Function to create a default input list for the ETAS Hawkes temporal model
+#' where no catalogue is specified in the input file
 #'
 #' @param input_path Input file and path as a string
 #' @param num.threads Optional argument for the number of threads to be used by
 #' parallel processing by inlabru/INLA
 #'
-#' @return The formatted input.list with the elements required for the temporal Hawkes model
+#' @return The formatted input.list with the elements required for the temporal
+#'   Hawkes model
 #' @export
 #'
 #' @examples
 #' create_input_list_temporal_noCatalogue(
-#'   system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru")
+#'   system.file(
+#'     "extdata",
+#'     "user_input_synthetic_noCatalogue.txt",
+#'     package = "ETAS.inlabru"
+#'   )
 #' )
-create_input_list_temporal_noCatalogue <- function(input_path, num.threads = NULL) {
+create_input_list_temporal_noCatalogue <- function(input_path,
+                                                   num.threads = NULL) {
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
@@ -265,7 +291,8 @@ create_input_list_temporal_noCatalogue <- function(input_path, num.threads = NUL
     row.i <- par.raw[[i]]
 
     if (grepl("a_mu", row.i)) {
-      # Do explicit assignment of the eval-result, to avoid package check warnings
+      # Do explicit assignment of the eval-result, to avoid package check
+      # warnings
       a_mu <- eval(parse(text = row.i))
     } else if (grepl("b_mu", row.i)) {
       b_mu <- eval(parse(text = row.i))

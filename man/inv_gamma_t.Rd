@@ -14,7 +14,8 @@ inv_gamma_t(x, a, b)
 \item{b}{rate parameter of the Gamma distribution, \code{scalar}.}
 }
 \value{
-values from a standard Normal distribution, \code{vector} same length as \code{x}
+values from a standard Normal distribution, \code{vector} same length as
+\code{x}
 }
 \description{
 Copula transformation from an Gamma to a standard Normal distribution

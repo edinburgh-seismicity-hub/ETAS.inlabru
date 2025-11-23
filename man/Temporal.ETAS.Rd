@@ -17,7 +17,9 @@ Temporal.ETAS(
 )
 }
 \arguments{
-\item{total.data}{Observed events: \code{data.frame} with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.}
+\item{total.data}{Observed events: \code{data.frame} with columns time (ts),
+magnitude (magnitudes), event identifier (idx.p). Column names must not be
+changed.}
 
 \item{M0}{Minimum magnitude threshold, \code{scalar}}
 
@@ -25,15 +27,20 @@ Temporal.ETAS(
 
 \item{T2}{End of temporal model domain, \code{scalar} \verb{[measure unit of sample.s$ts]}.}
 
-\item{link.functions}{Functions to transform the parameters from the internal INLA scale to the ETAS scale. It must be a \code{list} of functions with names (mu, K, alpha, c_, p)}
+\item{link.functions}{Functions to transform the parameters from the internal
+INLA scale to the ETAS scale. It must be a \code{list} of functions with names
+\verb{(mu, K, alpha, c_, p)}}
 
-\item{coef.t.}{TimeBinning parameter: parameter regulating the relative length of successive bins, \code{scalar}.}
+\item{coef.t.}{TimeBinning parameter: parameter regulating the relative
+length of successive bins, \code{scalar}.}
 
-\item{delta.t.}{TimeBinning parameter: parameter regulating the bins' width, \code{scalar}.}
+\item{delta.t.}{TimeBinning parameter: parameter regulating the bins' width,
+\code{scalar}.}
 
-\item{N.max.}{TimeBinning parameter: parameter regulating the Number of bins (= \code{N.max} + 2), \code{scalar}.}
+\item{N.max.}{TimeBinning parameter: parameter regulating the Number of bins
+(= \code{N.max} + 2), \code{scalar}.}
 
-\item{bru.opt}{Runtime options for inlabru: See https://inlabru-org.github.io/inlabru/reference/bru_call_options.html, \code{list}}
+\item{bru.opt}{Runtime options for inlabru: See \code{\link[inlabru:bru_options]{inlabru::bru_options()}}}
 }
 \value{
 The fitted model as a 'bru' object, which is a list

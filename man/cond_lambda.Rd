@@ -7,7 +7,8 @@
 cond_lambda(theta, t, th, mh, M0)
 }
 \arguments{
-\item{theta}{ETAS parameters as \code{list} with names \code{mu}, \code{K}, \code{alpha}, \code{c}, \code{p}}
+\item{theta}{ETAS parameters as \code{list} with names \code{mu}, \code{K}, \code{alpha}, \code{c},
+\code{p}}
 
 \item{t}{Time at which the conditional intensity is evaluated, \code{scalar}}
 
@@ -18,15 +19,19 @@ cond_lambda(theta, t, th, mh, M0)
 \item{M0}{Minimum magnitude threshold}
 }
 \value{
-Value of the ETAS conditional intensity calculated at \code{t} with history \verb{th, mh}, \code{scalar}
+Value of the ETAS conditional intensity calculated at \code{t} with
+history \verb{th, mh}, \code{scalar}
 }
 \description{
-Function to calculate the value of the ETAS model conditional intensity at a specified time given the history of the process.
+Function to calculate the value of the ETAS model conditional
+intensity at a specified time given the history of the process.
 }
 \details{
-The function takes a single value \code{t} and returns the ETAS conditional intensity calculated at \code{t}
-with history \verb{th, mh}. The ETAS conditional intensity is given by
-\deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t} K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
+The function takes a single value \code{t} and returns the ETAS conditional
+intensity calculated at \code{t} with history \verb{th, mh}. The ETAS conditional
+intensity is given by
+\deqn{\lambda(t | \mathcal H_t) = \mu + \sum_{h: (t_h,m_h) \in \mathcal H_t}
+K e^{\alpha(m_h - M_0)} \left( \frac{t - t_h}{c} + 1\right)^{-p}}
 
 Do not use when \code{t} is a vector.
 }

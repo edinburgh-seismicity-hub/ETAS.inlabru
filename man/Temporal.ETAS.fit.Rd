@@ -2,17 +2,20 @@
 % Please edit documentation in R/HawkesProcess.R
 \name{Temporal.ETAS.fit}
 \alias{Temporal.ETAS.fit}
-\title{Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.}
+\title{Fit temporal ETAS model}
 \usage{
 Temporal.ETAS.fit(input.list)
 }
 \arguments{
-\item{input.list}{All input data and parameters are passed to inlabru via this structured \code{list}.
-This is the output of the function \link{create_input_list_temporal_withCatalogue} or \link{create_input_list_temporal_noCatalogue}}
+\item{input.list}{All input data and parameters are passed to inlabru via
+this structured \code{list}. This is the output of the function
+\link{create_input_list_temporal_withCatalogue} or
+\link{create_input_list_temporal_noCatalogue}}
 }
 \value{
 The fitted model as a \code{bru} object, which is a list
 }
 \description{
-Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the `Hawkes.bru2`` function.
+Fits the remporal ETAS model and returns the results. This function
+decomposes the input.list for the `Hawkes.bru2`` function.
 }

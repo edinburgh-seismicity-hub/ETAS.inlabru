@@ -2,22 +2,27 @@
 % Please edit documentation in R/temporalBinning.R
 \name{compute_grid}
 \alias{compute_grid}
-\title{Function to compute the integral of Omori's law efficiently}
+\title{Integral of Omori's law}
 \usage{
 compute_grid(param., list.input_)
 }
 \arguments{
-\item{param.}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only \eqn{c, p} are used.}
+\item{param.}{ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only
+\eqn{c, p} are used.}
 
-\item{list.input_}{\code{list} containing information to calculate the integrals efficiently. The list is created inside the \code{Temporal.ETAS} function
+\item{list.input_}{\code{list} containing information to calculate the integrals
+efficiently. The list is created inside the \code{Temporal.ETAS} function
 Two elements are used
 \itemize{
-\item \code{time.sel} selection of rows of the output of \code{time_grid} with unique \code{t.ref_layer} value, \code{data.frame}.
-\item \code{Imapping} mapper between the unique names provided in \code{time.sel} and original rows of the output of \code{time_grid()}, \code{vector}.
+\item \code{time.sel} selection of rows of the output of \code{time_grid} with unique
+\code{t.ref_layer} value, \code{data.frame}.
+\item \code{Imapping} mapper between the unique names provided in \code{time.sel} and
+original rows of the output of \code{time_grid()}, \code{vector}.
 }}
 }
 \value{
-\code{vector} with same length as \code{list.input_$Imapping} with the integral of Omori's law for each bin.
+\code{vector} with same length as \code{list.input_$Imapping} with the integral
+of Omori's law for each bin.
 }
 \description{
 Function to compute the integral of Omori's law efficiently

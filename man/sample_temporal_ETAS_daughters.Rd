@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateSyntheticCatalogues.R
 \name{sample_temporal_ETAS_daughters}
 \alias{sample_temporal_ETAS_daughters}
-\title{Generate a sample of new events \code{data.frame(t_i, M_i)} of length \code{n.ev} for one parent event occuring at time \code{t_h} using the ETAS model.}
+\title{Sample daughter events from one parent using the ETAS model}
 \usage{
 sample_temporal_ETAS_daughters(theta, beta.p, th, n.ev, M0, T1, T2)
 }
@@ -22,8 +22,10 @@ sample_temporal_ETAS_daughters(theta, beta.p, th, n.ev, M0, T1, T2)
 \item{T2}{End time for synthetic catalogue \verb{[days]}.}
 }
 \value{
-Generate a sample of new events \code{data.frame(t_i, M_i)} from one parent
+Generate a sample of new events \code{data.frame(t_i, M_i)} from one
+parent
 }
 \description{
-Generate a sample of new events \code{data.frame(t_i, M_i)} of length \code{n.ev} for one parent event occuring at time \code{t_h} using the ETAS model.
+Generate a sample of new events \code{data.frame(t_i, M_i)} of length \code{n.ev} for
+one parent event occuring at time \code{t_h} using the ETAS model.
 }

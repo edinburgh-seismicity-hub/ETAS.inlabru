@@ -11,10 +11,12 @@ inv_loggaus_t(x, m, s)
 
 \item{m}{mean of the logarithm of the Log-Normal distribution, \code{scalar}.}
 
-\item{s}{standard deviation of the logarithm of the Log-Normal distribution, \code{scalar}.}
+\item{s}{standard deviation of the logarithm of the Log-Normal distribution,
+\code{scalar}.}
 }
 \value{
-values from a standard Normal distribution, \code{vector} same length as \code{x}
+values from a standard Normal distribution, \code{vector} same length as
+\code{x}
 }
 \description{
 Copula transformation from an Log-Normal to a standard Normal distribution

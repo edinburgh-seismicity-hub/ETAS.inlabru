@@ -52,7 +52,13 @@ The code below generates a synthetic catalogue of events with magnitude greater 
 ```{r}
 set.seed(111)
 # set true ETAS parameters
-true.param <- list(mu = 0.30106014, K = 0.13611399, alpha = 2.43945301, c = 0.07098607, p = 1.17838741)
+true.param <- list(
+  mu = 0.30106014,
+  K = 0.13611399,
+  alpha = 2.43945301,
+  c = 0.07098607,
+  p = 1.17838741
+)
 # set magnitude distribution parameter
 beta.p <- 2.353157
 # set cutoff magnitude
@@ -82,7 +88,11 @@ head(synth.cat.df)
 The synthetic catalogue is composed by a total of $288$ events of which $112$ are background events and $176$ are aftershocks. We can easily retrieve this numbers looking at the `gen` column of the data.
 
 ```{r}
-c(N = nrow(synth.cat.df), N.bkg = sum(synth.cat.df$gen == 1), N.after = sum(synth.cat.df$gen > 1))
+c(
+  N = nrow(synth.cat.df),
+  N.bkg = sum(synth.cat.df$gen == 1),
+  N.after = sum(synth.cat.df$gen > 1)
+)
 ```
 
 The code below is to plot the occurrence time of the events against their magnitude with color indicating the generation of each event and the time evolution cumulative number of events. The `multiplot` function provided by the `inlabru` R-package can be used to combine the plots.
@@ -239,7 +249,8 @@ df.true.param <- data.frame(
   x = unlist(true.param),
   param = names(true.param)
 )
-# add to the marginal posterior distribution of the parameters the true value of the parameters.
+# add to the marginal posterior distribution of the parameters the true value of
+# the parameters.
 post.list$post.plot +
   geom_vline(
     data = df.true.param,
@@ -328,7 +339,12 @@ $$
 instead of the whole triggering function and without the background rate.
 
 ```{r}
-omori.plot <- omori_plot_posterior(input.list = input_list, post.samp = post.samp, n.samp = NULL, t.end = 5)
+omori.plot <- omori_plot_posterior(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL,
+  t.end = 5
+)
 
 true.omori <- omori(theta = unlist(true.param), t = t.breaks, ti = 0)
 true.omori.df <- data.frame(ts = t.breaks, omori.fun = true.omori)

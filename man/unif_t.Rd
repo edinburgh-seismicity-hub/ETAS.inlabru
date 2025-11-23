@@ -2,7 +2,8 @@
 % Please edit documentation in R/CopulaTransformations.R
 \name{unif_t}
 \alias{unif_t}
-\title{Copula transformation from a standard Normal distribution to a Uniform distribution}
+\title{Copula transformation from a standard Normal distribution to a Uniform
+distribution}
 \usage{
 unif_t(x, a, b)
 }
@@ -14,10 +15,12 @@ unif_t(x, a, b)
 \item{b}{maximum value for the Uniform distribution, \code{scalar}.}
 }
 \value{
-values from a Uniform distribution between \code{a} and \code{b}, \code{vector} same length as \code{x}.
+values from a Uniform distribution between \code{a} and \code{b}, \code{vector} same
+length as \code{x}.
 }
 \description{
-Copula transformation from a standard Normal distribution to a Uniform distribution
+Copula transformation from a standard Normal distribution to a Uniform
+distribution
 }
 \seealso{
 Other copula-transformations: 
