@@ -11,6 +11,7 @@ on:
   pull_request:
     branches:
       - devel
+  workflow_dispatch:
 
 name: R-CMD-check
 
@@ -24,8 +25,12 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-12, r: 'release'}
+#          - {os: macos-latest, r: 'devel', http-user-agent: 'release'}
+          - {os: macos-latest, r: 'release'}
+          - {os: macos-latest, r: 'oldrel-1'}
+#          - {os: windows-latest, r: 'devel', http-user-agent: 'release'}
           - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: 'oldrel-1'}
           - {os: ubuntu-latest, r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest, r: 'release'}
           - {os: ubuntu-latest, r: 'oldrel-1'}
@@ -44,15 +49,15 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-          extra-repositories: "https://inla.r-inla-download.org/R/testing"
+          extra-repositories: 'https://inla.r-inla-download.org/R/testing https://inlabru-org.r-universe.dev'
 
       - name: Install system dependencies on MacOS (X11, gdal)
         if: runner.os == 'macOS'
         run: |
           brew install --cask xquartz
           brew install pkg-config
-          brew install proj@9
-          brew install gdal
+#          brew install proj@9
+#          brew install gdal
 
       - name: Install system dependencies on Linux (GL)
         if: runner.os == 'Linux'
