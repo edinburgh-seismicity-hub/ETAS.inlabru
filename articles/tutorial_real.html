@@ -268,8 +268,8 @@ the empirical density estimated from the sample.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="op">~</span><span class="va">distribution</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
+<span><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre></div>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="700"></p>
 <p>The package also provide inverse functions to retrieve the value of a
 parameter in the internal scale if the value in the ETAS scale is
 provided. Below an example</p>
@@ -411,7 +411,7 @@ observations in correspondance of high magnitude events.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="tutorial_real_files/figure-html/unnamed-chunk-6-1.png" alt="L'Aquila seismic sequence, times versus magnitudes" width="700"><p class="caption">
+<img src="tutorial_real_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="L'Aquila seismic sequence, times versus magnitudes" width="700"><p class="caption">
 L’Aquila seismic sequence, times versus magnitudes
 </p>
 </div>
@@ -557,7 +557,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.823082</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.823249</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -605,7 +605,7 @@ the plot of the marginal posteriors of the parameters</p></li>
 <span></span>
 <span><span class="co"># plot marginal posteriors</span></span>
 <span><span class="va">post.list</span><span class="op">$</span><span class="va">post.plot</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="sample-the-joint-posterior-and-make-pair-plot">Sample the joint posterior and make pair plot<a class="anchor" aria-label="anchor" href="#sample-the-joint-posterior-and-make-pair-plot"></a>
@@ -649,12 +649,12 @@ corresponding to the ETAS parameters</p>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3221930 0.1523066 2.513429 0.04218289 1.133595</span></span>
-<span><span class="co">#&gt; 2 0.2997950 0.1483348 2.410908 0.07159829 1.185750</span></span>
-<span><span class="co">#&gt; 3 0.2880364 0.1249349 2.478580 0.06221784 1.161846</span></span>
-<span><span class="co">#&gt; 4 0.3281058 0.1350934 2.453335 0.07208162 1.196780</span></span>
-<span><span class="co">#&gt; 5 0.2948586 0.1337900 2.431214 0.07597520 1.199861</span></span>
-<span><span class="co">#&gt; 6 0.2601195 0.1401241 2.446638 0.06193619 1.160302</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3047572 0.1785661 2.435666 0.05576880 1.182285</span></span>
+<span><span class="co">#&gt; 2 0.2808294 0.1399560 2.463338 0.07971187 1.245580</span></span>
+<span><span class="co">#&gt; 3 0.3165808 0.1244455 2.473912 0.06244564 1.152521</span></span>
+<span><span class="co">#&gt; 4 0.3535830 0.1654048 2.406460 0.06403861 1.186577</span></span>
+<span><span class="co">#&gt; 5 0.2897512 0.1070394 2.475240 0.08169738 1.188658</span></span>
+<span><span class="co">#&gt; 6 0.3189722 0.1462100 2.436895 0.05630849 1.139840</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -697,11 +697,8 @@ the pair plot.</p>
 <span>  n.samp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  max.batch <span class="op">=</span> <span class="fl">1000</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'GGally':</span></span>
-<span><span class="co">#&gt;   method from   </span></span>
-<span><span class="co">#&gt;   +.gg   ggplot2</span></span>
 <span><span class="va">pair.plot</span><span class="op">$</span><span class="va">pair.plot</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="check-posterior-number-of-events">Check posterior number of events<a class="anchor" aria-label="anchor" href="#check-posterior-number-of-events"></a>
@@ -733,7 +730,7 @@ element of the input list.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">N.post</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_posterior_N.html">get_posterior_N</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span><span class="op">)</span></span>
 <span><span class="va">N.post</span><span class="op">$</span><span class="va">post.plot</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="posterior-of-the-triggering-function-and-omori-law">Posterior of the triggering function and Omori law<a class="anchor" aria-label="anchor" href="#posterior-of-the-triggering-function-and-omori-law"></a>
@@ -793,10 +790,10 @@ specify a posterior samples <code>data.frame</code>.</p>
 <span>  n.samp <span class="op">=</span> <span class="cn">NULL</span>, magnitude <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  t.end <span class="op">=</span> <span class="fl">5</span>, n.breaks <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/triggering_fun_plot_prior.html">triggering_fun_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, magnitude <span class="op">=</span> <span class="fl">4</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="700"></p>
 <p>The functions <code>omori_plot_posterior</code> and
 <code>omori_plot_prior</code> do the same as the functions
 <code>triggering_fun_plot</code> and
@@ -807,10 +804,10 @@ specify a posterior samples <code>data.frame</code>.</p>
 function and without the background rate.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, post.samp <span class="op">=</span> <span class="va">post.samp</span>, n.samp <span class="op">=</span> <span class="cn">NULL</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_prior.html">omori_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="generate-synthetic-catalogues-from-model">Generate synthetic catalogues from model<a class="anchor" aria-label="anchor" href="#generate-synthetic-catalogues-from-model"></a>
@@ -912,7 +909,7 @@ greatest event in the sequence.</p>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">synth.cat.df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">magnitudes</span>, color <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/is.bool.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gen</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="700"></p>
 <p>We can easily generate multiple catalogues. The code below generates
 8 catalogues using different samples from the posterior distribution of
 the parameters. The red point indicates the event that we have imposed
@@ -958,7 +955,7 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <span>    color <span class="op">=</span> <span class="st">"red"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span>facets <span class="op">=</span> <span class="op">~</span><span class="va">cat.idx</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="forecasting">Forecasting<a class="anchor" aria-label="anchor" href="#forecasting"></a>
@@ -1065,11 +1062,11 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 29 rows containing non-finite outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 33 rows containing non-finite outside the scale range</span></span>
 <span><span class="co">#&gt; (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_bar()`).</span></span></code></pre></div>
-<p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
+<p><img src="tutorial_real_files/figure-html/unnamed-chunk-25-1.png" class="r-plt" alt="" width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -1082,7 +1079,7 @@ earthquake activity (probability of having at least one event).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

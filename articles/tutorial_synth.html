@@ -231,7 +231,7 @@ R-package can be used to combine the plots.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"cumulative number of events"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">inlabru</span><span class="fu">::</span><span class="fu"><a href="https://inlabru-org.github.io/inlabru/reference/multiplot.html" class="external-link">multiplot</a></span><span class="op">(</span><span class="va">pl1</span>, <span class="va">pl2</span>, cols <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="prepare-data-for-model-fitting">Prepare data for model fitting<a class="anchor" aria-label="anchor" href="#prepare-data-for-model-fitting"></a>
@@ -420,7 +420,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  0.432471</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  0.4329855</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="check-marginal-posterior-distributions">Check marginal posterior distributions<a class="anchor" aria-label="anchor" href="#check-marginal-posterior-distributions"></a>
@@ -464,7 +464,7 @@ parameters represented by the vertical dashed lines.</p>
 <span>    data <span class="op">=</span> <span class="va">df.true.param</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">x</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="sampling-the-joint-posterior-distribution">Sampling the joint posterior distribution<a class="anchor" aria-label="anchor" href="#sampling-the-joint-posterior-distribution"></a>
@@ -507,12 +507,12 @@ corresponding to the ETAS parameters</p>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu          K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3365434 0.07804868 2.513727 0.14897074 1.312891</span></span>
-<span><span class="co">#&gt; 2 0.2989483 0.08576867 2.586837 0.10407146 1.297491</span></span>
-<span><span class="co">#&gt; 3 0.2583917 0.14226278 2.444718 0.07363789 1.242291</span></span>
-<span><span class="co">#&gt; 4 0.3065787 0.10646275 2.548477 0.07876536 1.265846</span></span>
-<span><span class="co">#&gt; 5 0.3460396 0.12283198 2.427048 0.11892406 1.302384</span></span>
-<span><span class="co">#&gt; 6 0.3187342 0.06411155 2.642837 0.11952577 1.304356</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.3522849 0.09560155 2.513877 0.09539812 1.213356</span></span>
+<span><span class="co">#&gt; 2 0.2629484 0.15735892 2.467611 0.05061570 1.174567</span></span>
+<span><span class="co">#&gt; 3 0.2759741 0.06909708 2.603652 0.11230334 1.240917</span></span>
+<span><span class="co">#&gt; 4 0.3100148 0.09092345 2.617215 0.06873246 1.217715</span></span>
+<span><span class="co">#&gt; 5 0.3054101 0.04532379 2.642557 0.16821918 1.368259</span></span>
+<span><span class="co">#&gt; 6 0.2903563 0.07497273 2.540971 0.14603226 1.330576</span></span></code></pre></div>
 <p>The posterior samples can then be used to estimate the posterior
 distribution of functions of the parameters.</p>
 </div>
@@ -599,7 +599,7 @@ the <code>input_list</code> to use the function
 <span>    data <span class="op">=</span> <span class="va">true.trig.df</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ts</span>, y <span class="op">=</span> <span class="va">trig.fun</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="700"></p>
 <p>The functions <code>omori_plot_posterior</code> does the same as the
 function <code>triggering_fun_plot</code> but considering only</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>h</mi></msub></mrow><mi>c</mi></mfrac><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo>−</mo><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">
@@ -617,7 +617,7 @@ function and without the background rate.</p>
 <span>    data <span class="op">=</span> <span class="va">true.omori.df</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ts</span>, y <span class="op">=</span> <span class="va">omori.fun</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="comparison-between-different-fitted-models">Comparison between different fitted models<a class="anchor" aria-label="anchor" href="#comparison-between-different-fitted-models"></a>
@@ -697,7 +697,7 @@ first model fit.</p>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.635865</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.648112</span></span></code></pre></div>
 <p>Now, to extract the marginal posterior distributions, we need to
 create the <code>input_list</code> of the second model fit.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -729,7 +729,7 @@ obtained before.</p>
 <span>    data <span class="op">=</span> <span class="va">df.true.param</span>,</span>
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">x</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
+<p><img src="tutorial_synth_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="700"></p>
 <p>The process shown here can be extended to multiple
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">&gt;2</annotation></semantics></math>)
 input catalogues in order to study if the parameters are identifiable.
@@ -751,7 +751,7 @@ events.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
