@@ -13,3 +13,4 @@
 ^README\.Rmd$
 ^vignettes/articles$
 ^data-raw$
+^\.lintr$
