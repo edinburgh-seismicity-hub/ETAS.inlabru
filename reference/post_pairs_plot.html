@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,8 +61,10 @@
 
 
 <dl><dt id="arg-input-list">input.list<a class="anchor" aria-label="anchor" href="#arg-input-list"></a></dt>
-<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
-<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
+<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS
+parameters</p></li>
+<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale</p></li>
 </ul></dd>
 
 
@@ -71,17 +73,24 @@
 
 
 <dt id="arg-post-samp">post.samp<a class="anchor" aria-label="anchor" href="#arg-post-samp"></a></dt>
-<dd><p><code>data.frame</code> with columns mu, K, alpha, c, p and rows corresponding to different posterior samples. When <code>NULL</code> the function samples the joint posterior distribution <code>n.samp</code> times. The default is <code>NULL</code>.</p></dd>
+<dd><p><code>data.frame</code> with columns mu, K, alpha, c, p and rows
+corresponding to different posterior samples. When <code>NULL</code> the function
+samples the joint posterior distribution <code>n.samp</code> times. The default is
+<code>NULL</code>.</p></dd>
 
 
 <dt id="arg-max-batch">max.batch<a class="anchor" aria-label="anchor" href="#arg-max-batch"></a></dt>
-<dd><p>parameter of <a href="post_sampling.html">post_sampling</a> function to be used in case <code>post.samp = NULL</code></p></dd>
+<dd><p>parameter of <a href="post_sampling.html">post_sampling</a> function to be used in case
+<code>post.samp = NULL</code></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>list</code>: with elements</p><ul><li><p><code>post.samp.df</code>:<code>data.frame</code> of posterior samples with <code>nrow = n.samp</code> and columns <code>mu, K, alpha, c, p</code> corresponding to ETAS parameters. If <code>post.samp</code> is not <code>NULL</code> it returns <code>post.samp</code></p></li>
-<li><p><code>pair.plot</code>: <code>ggplot</code> object reporting the pair plot between parameters samples. It is obtained using the <code>ggpairs</code> function of the <code>Ggally</code> library</p></li>
+    <p><code>list</code>: with elements</p><ul><li><p><code>post.samp.df</code>:<code>data.frame</code> of posterior samples with <code>nrow = n.samp</code>
+and columns <code>mu, K, alpha, c, p</code> corresponding to ETAS parameters. If
+<code>post.samp</code> is not <code>NULL</code> it returns <code>post.samp</code></p></li>
+<li><p><code>pair.plot</code>: <code>ggplot</code> object reporting the pair plot between parameters
+samples. It is obtained using the <code>ggpairs</code> function of the <code>Ggally</code> library</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

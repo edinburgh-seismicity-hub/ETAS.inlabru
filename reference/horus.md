@@ -65,8 +65,8 @@ Original file format:
 - `Geo.CPTI15`:
 
   `"*"` indicates that the epicenter is within the spatial window of the
-  CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng, doi:
-  10.1007/s10518-020-00818-y)
+  CPTI15 catalog (Rovida et al., 2020, Bull Earth Eng,
+  `doi: 10.1007/s10518-020-00818-y`)
 
 - `Ev..type`:
 

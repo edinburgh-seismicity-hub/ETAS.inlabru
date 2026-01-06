@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,10 +138,16 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">combined.M7.ETAS.cat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ID</span>, y <span class="op">=</span> <span class="va">magnitudes</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="co">#+</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">combined.M7.ETAS.cat</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ID</span>, y <span class="op">=</span> <span class="va">magnitudes</span><span class="op">)</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"red"</span></span>
+<span>  <span class="op">)</span> <span class="co">#+</span></span></code></pre></div>
 <p><img src="generateSyntheticCatalogues_files/figure-html/unnamed-chunk-2-3.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#  geom_ma(data = combined.M7.ETAS.cat, aes(x=ID, y=magnitudes), ma_fun = SMA, n = 10)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#  geom_ma(data = combined.M7.ETAS.cat,</span></span>
+<span><span class="co">#          aes(x=ID, y=magnitudes),</span></span>
+<span><span class="co">#          ma_fun = SMA, n = 10)</span></span></code></pre></div>
 </div>
   </main>
 </div>

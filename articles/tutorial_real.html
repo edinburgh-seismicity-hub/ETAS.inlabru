@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -433,7 +433,7 @@ each event. The names are fixed and should not be changed</p>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">$</span><span class="va">time_date</span>, <span class="va">start.date</span>, units <span class="op">=</span> <span class="st">"days"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  magnitudes <span class="op">=</span> <span class="va">aquila</span><span class="op">$</span><span class="va">M</span>,</span>
-<span>  idx.p <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span></span>
+<span>  idx.p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">aquila</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>After that, we need to set up the initial values of the parameters
 and the <code>list</code> containing the <code>inlabru</code> options to
@@ -541,9 +541,11 @@ and
 options as described in the previous Section.</li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.</span></span>
+<code class="sourceCode R"><span><span class="co"># set starting and time of the time interval used for model fitting. In this</span></span>
+<span><span class="co"># case, we use the interval covered by the data.</span></span>
 <span><span class="va">T1</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span><span class="va">T2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="co"># Use max(..., na.rm = TRUE) if there may still be NAs here</span></span>
+<span><span class="co"># Use max(..., na.rm = TRUE) if there may still be NAs here</span></span>
+<span><span class="va">T2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">ts</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.2</span></span>
 <span><span class="co"># fit the model</span></span>
 <span><span class="va">aquila.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Temporal.ETAS.html">Temporal.ETAS</a></span><span class="op">(</span></span>
 <span>  total.data <span class="op">=</span> <span class="va">aquila.bru</span>,</span>
@@ -557,7 +559,7 @@ options as described in the previous Section.</li>
 <span>  bru.opt <span class="op">=</span> <span class="va">bru.opt.list</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start creating grid... </span></span>
-<span><span class="co">#&gt; Finished creating grid, time  1.823249</span></span></code></pre></div>
+<span><span class="co">#&gt; Finished creating grid, time  1.883136</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-input-list">Create input list<a class="anchor" aria-label="anchor" href="#create-input-list"></a>
@@ -649,12 +651,12 @@ corresponding to the ETAS parameters</p>
 <span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">post.samp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          mu         K    alpha          c        p</span></span>
-<span><span class="co">#&gt; 1 0.3047572 0.1785661 2.435666 0.05576880 1.182285</span></span>
-<span><span class="co">#&gt; 2 0.2808294 0.1399560 2.463338 0.07971187 1.245580</span></span>
-<span><span class="co">#&gt; 3 0.3165808 0.1244455 2.473912 0.06244564 1.152521</span></span>
-<span><span class="co">#&gt; 4 0.3535830 0.1654048 2.406460 0.06403861 1.186577</span></span>
-<span><span class="co">#&gt; 5 0.2897512 0.1070394 2.475240 0.08169738 1.188658</span></span>
-<span><span class="co">#&gt; 6 0.3189722 0.1462100 2.436895 0.05630849 1.139840</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.2665767 0.1380347 2.430186 0.06035882 1.136626</span></span>
+<span><span class="co">#&gt; 2 0.2659780 0.1561353 2.451008 0.05356473 1.145935</span></span>
+<span><span class="co">#&gt; 3 0.2967335 0.1241412 2.465217 0.07541373 1.196054</span></span>
+<span><span class="co">#&gt; 4 0.3227106 0.1541408 2.440673 0.05759712 1.153995</span></span>
+<span><span class="co">#&gt; 5 0.3022692 0.1193286 2.462765 0.07236185 1.179551</span></span>
+<span><span class="co">#&gt; 6 0.3107081 0.1246229 2.458360 0.08607486 1.229603</span></span></code></pre></div>
 <p>The posterior samples can be used to analyse the correlation between
 parameters. The function <code>post_pairs_plot</code> generate a pair
 plot of the posterior samples taken as input. The function has 4
@@ -792,7 +794,12 @@ specify a posterior samples <code>data.frame</code>.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/triggering_fun_plot_prior.html">triggering_fun_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, magnitude <span class="op">=</span> <span class="fl">4</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/triggering_fun_plot_prior.html">triggering_fun_plot_prior</a></span><span class="op">(</span></span>
+<span>  input.list <span class="op">=</span> <span class="va">input_list</span>,</span>
+<span>  magnitude <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  n.samp <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  t.end <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="700"></p>
 <p>The functions <code>omori_plot_posterior</code> and
 <code>omori_plot_prior</code> do the same as the functions
@@ -803,7 +810,12 @@ specify a posterior samples <code>data.frame</code>.</p>
 </annotation></semantics></math> instead of the whole triggering
 function and without the background rate.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, post.samp <span class="op">=</span> <span class="va">post.samp</span>, n.samp <span class="op">=</span> <span class="cn">NULL</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_posterior.html">omori_plot_posterior</a></span><span class="op">(</span></span>
+<span>  input.list <span class="op">=</span> <span class="va">input_list</span>,</span>
+<span>  post.samp <span class="op">=</span> <span class="va">post.samp</span>,</span>
+<span>  n.samp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  t.end <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="tutorial_real_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/omori_plot_prior.html">omori_plot_prior</a></span><span class="op">(</span>input.list <span class="op">=</span> <span class="va">input_list</span>, n.samp <span class="op">=</span> <span class="fl">1000</span>, t.end <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
@@ -918,22 +930,26 @@ and the last panel represents the observed L’Aquila sequence.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">n.cat</span> <span class="op">&lt;-</span> <span class="fl">8</span></span>
 <span><span class="co"># generate catalogues as list of lists</span></span>
-<span><span class="va">multi.synth.cat.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n.cat</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/generate_temporal_ETAS_synthetic.html">generate_temporal_ETAS_synthetic</a></span><span class="op">(</span></span>
-<span>  theta <span class="op">=</span> <span class="va">post.samp</span><span class="op">[</span><span class="va">x</span>, <span class="op">]</span>,</span>
-<span>  beta.p <span class="op">=</span> <span class="va">beta.p</span>,</span>
-<span>  M0 <span class="op">=</span> <span class="va">M0</span>,</span>
-<span>  T1 <span class="op">=</span> <span class="va">T1</span>,</span>
-<span>  T2 <span class="op">=</span> <span class="va">T2</span>,</span>
-<span>  Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">multi.synth.cat.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n.cat</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/generate_temporal_ETAS_synthetic.html">generate_temporal_ETAS_synthetic</a></span><span class="op">(</span></span>
+<span>    theta <span class="op">=</span> <span class="va">post.samp</span><span class="op">[</span><span class="va">x</span>, <span class="op">]</span>,</span>
+<span>    beta.p <span class="op">=</span> <span class="va">beta.p</span>,</span>
+<span>    M0 <span class="op">=</span> <span class="va">M0</span>,</span>
+<span>    T1 <span class="op">=</span> <span class="va">T1</span>,</span>
+<span>    T2 <span class="op">=</span> <span class="va">T2</span>,</span>
+<span>    Ht <span class="op">=</span> <span class="va">aquila.bru</span><span class="op">[</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/summarize-generics.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">aquila.bru</span><span class="op">$</span><span class="va">magnitudes</span><span class="op">)</span>, <span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># store catalogues as list of data.frames</span></span>
 <span><span class="va">multi.synth.cat.list.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">multi.synth.cat.list</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># set catalogue identifier</span></span>
-<span><span class="va">multi.synth.cat.list.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n.cat</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">multi.synth.cat.list.df</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>  cat.idx <span class="op">=</span> <span class="va">x</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">multi.synth.cat.list.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n.cat</span><span class="op">)</span>,</span>
+<span>  \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">multi.synth.cat.list.df</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, cat.idx <span class="op">=</span> <span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co"># merge catalogues in unique data.frame</span></span>
 <span><span class="va">multi.synth.cat.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">multi.synth.cat.list.df</span><span class="op">)</span></span>
 <span></span>
@@ -1062,7 +1078,7 @@ earthquake activity (probability of having at least one event).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N.fore</span>, y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">N.obs</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 33 rows containing non-finite outside the scale range</span></span>
+<span><span class="co">#&gt; Warning: Removed 40 rows containing non-finite outside the scale range</span></span>
 <span><span class="co">#&gt; (`stat_bin()`).</span></span>
 <span><span class="co">#&gt; Warning: Removed 2 rows containing missing values or values outside the scale range</span></span>
 <span><span class="co">#&gt; (`geom_bar()`).</span></span></code></pre></div>

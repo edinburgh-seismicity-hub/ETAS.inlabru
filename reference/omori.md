@@ -1,6 +1,7 @@
 # Function to calculate Omori's law
 
-Function to calculate Omori's law
+Function to calculate Omori's law at time `t` for an event that happened
+at time `ti`
 
 ## Usage
 
@@ -25,4 +26,4 @@ omori(theta, t, ti)
 
 ## Value
 
-Value of Omori's law at point `t` for and event happened in `ti`
+Value of Omori's law at point `t` for an event that happened at `ti`

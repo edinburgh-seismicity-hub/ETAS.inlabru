@@ -1,4 +1,4 @@
-# Function to plot Omori's law corresponding to different prior samples
+# Plot Omori's law for prior samples
 
 Function to plot Omori's law corresponding to different prior samples
 

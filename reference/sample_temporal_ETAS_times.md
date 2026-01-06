@@ -1,4 +1,4 @@
-# Sampling times for events triggered by a parent at th according to the ETAS triggering function
+# Sample times for events triggered by a parent according to the ETAS triggering function
 
 Sampling times for events triggered by a parent at th according to the
 ETAS triggering function

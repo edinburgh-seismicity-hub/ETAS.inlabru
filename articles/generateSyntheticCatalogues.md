@@ -74,11 +74,17 @@ ggplot(combined.M7.ETAS.cat %>%
 ``` r
 
 ggplot() +
-  geom_point(data = combined.M7.ETAS.cat, aes(x = ID, y = magnitudes), color = "red") #+
+  geom_point(
+    data = combined.M7.ETAS.cat,
+    aes(x = ID, y = magnitudes),
+    color = "red"
+  ) #+
 ```
 
 ![](generateSyntheticCatalogues_files/figure-html/unnamed-chunk-2-3.png)
 
 ``` r
-#  geom_ma(data = combined.M7.ETAS.cat, aes(x=ID, y=magnitudes), ma_fun = SMA, n = 10)
+#  geom_ma(data = combined.M7.ETAS.cat,
+#          aes(x=ID, y=magnitudes),
+#          ma_fun = SMA, n = 10)
 ```

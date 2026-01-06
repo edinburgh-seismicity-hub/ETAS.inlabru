@@ -1,4 +1,4 @@
-# Function to compute the integral of Omori's law efficiently
+# Integral of Omori's law
 
 Function to compute the integral of Omori's law efficiently
 

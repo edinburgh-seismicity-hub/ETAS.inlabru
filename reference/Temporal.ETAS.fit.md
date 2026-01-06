@@ -1,4 +1,4 @@
-# Fits the remporal ETAS model and returns the results. This function decomposes the input.list for the \`Hawkes.bru2“ function.
+# Fit temporal ETAS model
 
 Fits the remporal ETAS model and returns the results. This function
 decomposes the input.list for the \`Hawkes.bru2“ function.

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,8 +56,10 @@
 
 
 <dl><dt id="arg-input-list">input.list<a class="anchor" aria-label="anchor" href="#arg-input-list"></a></dt>
-<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
-<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
+<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS
+parameters</p></li>
+<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale</p></li>
 </ul></dd>
 
 
@@ -66,18 +68,20 @@
 
 
 <dt id="arg-max-batch">max.batch<a class="anchor" aria-label="anchor" href="#arg-max-batch"></a></dt>
-<dd><p>Maximum number of posterior samples to be generated simultaneously. Default is 1000.</p></dd>
+<dd><p>Maximum number of posterior samples to be generated
+simultaneously. Default is 1000.</p></dd>
 
 
 <dt id="arg-ncore">ncore<a class="anchor" aria-label="anchor" href="#arg-ncore"></a></dt>
 <dd><p>Deprecated argument for controlling parallelism. Use
-<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to configure
-parallelism in your code instead.</p></dd>
+<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to
+configure parallelism in your code instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>data.frame</code> of posterior samples with <code>nrow = n.samp</code> and columns <code>mu, K, alpha, c, p</code> corresponding to ETAS parameters.</p>
+    <p><code>data.frame</code> of posterior samples with <code>nrow = n.samp</code> and columns
+<code>mu, K, alpha, c, p</code> corresponding to ETAS parameters.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

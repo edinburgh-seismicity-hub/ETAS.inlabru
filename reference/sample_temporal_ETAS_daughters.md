@@ -1,4 +1,4 @@
-# Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev` for one parent event occuring at time `t_h` using the ETAS model.
+# Sample daughter events from one parent using the ETAS model
 
 Generate a sample of new events `data.frame(t_i, M_i)` of length `n.ev`
 for one parent event occuring at time `t_h` using the ETAS model.

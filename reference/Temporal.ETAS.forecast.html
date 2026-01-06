@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,15 +56,20 @@
 
 
 <dl><dt id="arg-post-samp">post.samp<a class="anchor" aria-label="anchor" href="#arg-post-samp"></a></dt>
-<dd><p>a <code>data.frame</code> containing samples from the posterior distribution of ETAS parameters.
-Each row of the <code>data.frame</code> corresponds to a different sample and the parameters are in the order
-\(\mu\), \(K\), \(\alpha\), \(c\), \(p\).</p></dd>
+<dd><p>a <code>data.frame</code> containing samples from the posterior
+distribution of ETAS parameters. Each row of the <code>data.frame</code> corresponds
+to a different sample and the parameters are in the order \(\mu\),
+\(K\), \(\alpha\), \(c\), \(p\).</p></dd>
 
 
 <dt id="arg-n-cat">n.cat<a class="anchor" aria-label="anchor" href="#arg-n-cat"></a></dt>
-<dd><p>number of synthetic catalogues composing the forecast. If <code>n.cat</code> is greater than <code>nrow(post.samp)</code>, then,
-<code>n.cat</code> rows are sampled uniformly and with replacement from the <code>post.samp</code>. If <code>n.cat</code> is smaller than <code>nrow(post.samp)</code>, then,
-<code>n.cat</code> rows are sampled uniformly and without replacement from the <code>post.samp</code>. If <code>n.cat</code> is <code>NULL</code> or equal to <code>nrow(post.samp)</code>, <code>post.samp</code> is used at it is and <code>nrow(post.samp)</code> catalogues are generated.</p></dd>
+<dd><p>number of synthetic catalogues composing the forecast. If
+<code>n.cat</code> is greater than <code>nrow(post.samp)</code>, then, <code>n.cat</code> rows are sampled
+uniformly and with replacement from the <code>post.samp</code>. If <code>n.cat</code> is smaller
+than <code>nrow(post.samp)</code>, then, <code>n.cat</code> rows are sampled uniformly and
+without replacement from the <code>post.samp</code>. If <code>n.cat</code> is <code>NULL</code> or equal to
+<code>nrow(post.samp)</code>, <code>post.samp</code> is used at it is and <code>nrow(post.samp)</code>
+catalogues are generated.</p></dd>
 
 
 <dt id="arg-beta-p">beta.p<a class="anchor" aria-label="anchor" href="#arg-beta-p"></a></dt>
@@ -72,7 +77,8 @@ Each row of the <code>data.frame</code> corresponds to a different sample and th
 
 
 <dt id="arg-m-">M0<a class="anchor" aria-label="anchor" href="#arg-m-"></a></dt>
-<dd><p>cutoff magnitude, all the synthetic events will have magnitude greater than this value.</p></dd>
+<dd><p>cutoff magnitude, all the synthetic events will have magnitude
+greater than this value.</p></dd>
 
 
 <dt id="arg-t-">T1<a class="anchor" aria-label="anchor" href="#arg-t-"></a></dt>
@@ -89,15 +95,18 @@ Each row of the <code>data.frame</code> corresponds to a different sample and th
 
 <dt id="arg-ncore">ncore<a class="anchor" aria-label="anchor" href="#arg-ncore"></a></dt>
 <dd><p>Deprecated argument for controlling parallelism. Use
-<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to configure
-parallelism in your code instead.</p></dd>
+<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to
+configure parallelism in your code instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <code>list</code> with two elements: <code>fore.df</code> is a <code>data.frame</code> containing all the synthetic catalogues composing the forecast.
-The <code>data.frame</code> has four columns, <code>ts</code> for the occurrence time, <code>magnitudes</code> for the magnitude, <code>gen</code> with the generation of the event, and <code>cat.idx</code> with the catalogue identifier
-The second element of the output <code>list</code> is <code>n.cat</code> which is the number of synthetic catalogues generated.</p>
+    <p>a <code>list</code> with two elements: <code>fore.df</code> is a <code>data.frame</code> containing
+all the synthetic catalogues composing the forecast. The <code>data.frame</code> has
+four columns, <code>ts</code> for the occurrence time, <code>magnitudes</code> for the magnitude,
+<code>gen</code> with the generation of the event, and <code>cat.idx</code> with the catalogue
+identifier The second element of the output <code>list</code> is <code>n.cat</code> which is the
+number of synthetic catalogues generated.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

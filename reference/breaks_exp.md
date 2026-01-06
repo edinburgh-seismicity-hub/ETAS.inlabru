@@ -48,8 +48,12 @@ The grid is calculated as follows \$\$t, t + \Delta, t + \Delta(1 +
 ## Examples
 
 ``` r
-breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3)
+breaks_exp(
+  start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 3
+)
 #> [1]   1   2   3   5   9 100
-breaks_exp(start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10)
+breaks_exp(
+  start.grid = 1, end.grid = 100, coef.t = 1, delta.t = 1, N.exp. = 10
+)
 #> [1]   1   2   3   5   9  17  33  65 100
 ```

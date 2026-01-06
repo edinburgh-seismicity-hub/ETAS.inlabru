@@ -43,8 +43,8 @@ Temporal.ETAS(
 - link.functions:
 
   Functions to transform the parameters from the internal INLA scale to
-  the ETAS scale. It must be a `list` of functions with names (mu, K,
-  alpha, c\_, p)
+  the ETAS scale. It must be a `list` of functions with names
+  `(mu, K, alpha, c_, p)`
 
 - coef.t.:
 
@@ -63,8 +63,7 @@ Temporal.ETAS(
 - bru.opt:
 
   Runtime options for inlabru: See
-  https://inlabru-org.github.io/inlabru/reference/bru_call_options.html,
-  `list`
+  [`inlabru::bru_options()`](https://inlabru-org.github.io/inlabru/reference/bru_options.html)
 
 ## Value
 

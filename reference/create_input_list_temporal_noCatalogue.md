@@ -1,7 +1,6 @@
-# Function to create a default input list for the ETAS Hawkes temporal model where no catalogue is specified in the input file
+# Create input list for ETAS Hawkes temporal model without catalogue
 
-Function to create a default input list for the ETAS Hawkes temporal
-model where no catalogue is specified in the input file
+Create input list for ETAS Hawkes temporal model without catalogue
 
 ## Usage
 
@@ -29,7 +28,11 @@ Hawkes model
 
 ``` r
 create_input_list_temporal_noCatalogue(
-  system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru")
+  system.file(
+    "extdata",
+    "user_input_synthetic_noCatalogue.txt",
+    package = "ETAS.inlabru"
+  )
 )
 #> $catalog
 #> NULL
@@ -107,32 +110,32 @@ create_input_list_temporal_noCatalogue(
 #> $link.functions$mu
 #> function (x) 
 #> gamma_t(x, a_mu, b_mu)
-#> <bytecode: 0x55c4cd9d5dd0>
-#> <environment: 0x55c4c1fc5650>
+#> <bytecode: 0x56031f501570>
+#> <environment: 0x56031f4fed58>
 #> 
 #> $link.functions$K
 #> function (x) 
 #> loggaus_t(x, a_K, b_K)
-#> <bytecode: 0x55c4cd9d5ac0>
-#> <environment: 0x55c4c1fc5650>
+#> <bytecode: 0x56031f4fda18>
+#> <environment: 0x56031f4fed58>
 #> 
 #> $link.functions$alpha
 #> function (x) 
 #> unif_t(x, a_alpha, b_alpha)
-#> <bytecode: 0x55c4cd9d57e8>
-#> <environment: 0x55c4c1fc5650>
+#> <bytecode: 0x56031f4fdcf0>
+#> <environment: 0x56031f4fed58>
 #> 
 #> $link.functions$c_
 #> function (x) 
 #> unif_t(x, a_c, b_c)
-#> <bytecode: 0x55c4cd9d5510>
-#> <environment: 0x55c4c1fc5650>
+#> <bytecode: 0x56031f4fe000>
+#> <environment: 0x56031f4fed58>
 #> 
 #> $link.functions$p
 #> function (x) 
 #> unif_t(x, a_p, b_p)
-#> <bytecode: 0x55c4cd9d5238>
-#> <environment: 0x55c4c1fc5650>
+#> <bytecode: 0x56031f4fe2d8>
+#> <environment: 0x56031f4fed58>
 #> 
 #> 
 #> $bru.opt.list

@@ -1,4 +1,4 @@
-# Function to plot the ETAS triggering function corresponding to different posterior samples
+# Triggering function plot from posterior samples
 
 Function to plot the ETAS triggering function corresponding to different
 posterior samples

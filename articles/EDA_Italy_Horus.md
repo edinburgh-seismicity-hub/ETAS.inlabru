@@ -76,7 +76,8 @@ df_cat <- horus
 # Add an integer id to each event
 df_cat$event_num <- seq.int(nrow(df_cat))
 
-# Generate an sf version of the catalogue where the longitude and latitude are converted to a point object
+# Generate an sf version of the catalogue where the longitude and latitude are
+# converted to a point object
 df_cat.sf <- st_as_sf(df_cat,
   coords = c("lon", "lat"),
   crs = crs_wgs84
@@ -115,7 +116,8 @@ We download a polygon file for the national boundary of Italy for use
 later in this notebook.
 
 ``` r
-italy.map <- ne_countries(country = "Italy", returnclass = "sf", scale = "medium")
+italy.map <-
+  ne_countries(country = "Italy", returnclass = "sf", scale = "medium")
 italy.crs <- crs(italy.map)
 print(italy.crs)
 #> [1] "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    ID[\"EPSG\",4326]]"
@@ -136,7 +138,13 @@ The histogram of depth data with 1km bins initially looks reasonable
 except for the artefact of a cluster of events at zero depth.
 
 ``` r
-hist(df_cat$depth, breaks = seq(650, -5, -1), xlim = c(-5, 40), main = "Histogram of depths, 1km bins", xlab = "Depth [km]")
+hist(
+  df_cat$depth,
+  breaks = seq(650, -5, -1),
+  xlim = c(-5, 40),
+  main = "Histogram of depths, 1km bins",
+  xlab = "Depth [km]"
+)
 ```
 
 ![](EDA_Italy_Horus_files/figure-html/unnamed-chunk-3-1.png)
@@ -147,7 +155,13 @@ the depth estimation, one cause is that that the algorithms may have got
 stuck at their starting values.
 
 ``` r
-hist(df_cat$depth, breaks = seq(650, -5, -0.1), xlim = c(-5, 40), main = "Histogram of depths (100m bins)", xlab = "Depth [km]")
+hist(
+  df_cat$depth,
+  breaks = seq(650, -5, -0.1),
+  xlim = c(-5, 40),
+  main = "Histogram of depths (100m bins)",
+  xlab = "Depth [km]"
+)
 ```
 
 ![](EDA_Italy_Horus_files/figure-html/unnamed-chunk-4-1.png) The
@@ -230,7 +244,11 @@ countEventsInYear <- df_cat %>%
   group_by(Year) %>%
   summarize(counts = n())
 
-plot(countEventsInYear, type = "l", main = "Annual number of events for whole catalogue")
+plot(
+  countEventsInYear,
+  type = "l",
+  main = "Annual number of events for whole catalogue"
+)
 ```
 
 ![](EDA_Italy_Horus_files/figure-html/unnamed-chunk-7-1.png)
@@ -295,7 +313,11 @@ y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b * (x - m.min))
 
 ggplot() +
   geom_point(aes(x = tmp$mids, y = tmp$counts)) +
-  geom_point(aes(x = tmp$mids, y = tmp$cumulativeCounts), color = "red", pch = "+", size = 2) +
+  geom_point(aes(x = tmp$mids, y = tmp$cumulativeCounts),
+    color = "red",
+    pch = "+",
+    size = 2
+  ) +
   scale_y_log10() +
   ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
   xlab("Magnitude") +
@@ -337,24 +359,40 @@ for (i in 1:max.index.x) {
 
   N <- length(mags.subset)
   b_utsu[i] <- 1 / (log(10) * (mean(mags.subset) - mag.threshold + 0.05))
-  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 * sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
+  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 *
+    sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
 
-  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(mags.subset) - mag.threshold + 2 * 0.05) / (mean(mags.subset) - mag.threshold))
+  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) *
+    log((mean(mags.subset) - mag.threshold + 2 * 0.05) /
+      (mean(mags.subset) - mag.threshold))
 
   deltaMags <- diff(mags.subset)
   deltaMags_p <- deltaMags[deltaMags > 0.1]
   N <- length(deltaMags_p)
-  b_elst[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
+  b_elst[i] <- 1 / (2 * 0.05 * log(10)) *
+    log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
   c <- 10**(0.1 * b_elst[i])
-  b_elst_lower[i] <- 1 / (0.1 * log(10)) * log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
-  b_elst_upper[i] <- 1 / (0.1 * log(10)) * log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
+  b_elst_lower[i] <- 1 / (0.1 * log(10)) *
+    log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
+  b_elst_upper[i] <- 1 / (0.1 * log(10)) *
+    log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
 }
 
 ggplot() +
   geom_line(aes(x = x[1:max.index.x], y = b_utsu)) +
-  geom_line(aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu), color = 2, lty = 2) +
-  geom_line(aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu), color = 2, lty = 2) +
-  geom_line(aes(x = x[1:max.index.x], y = b_guttorp), color = 3, lty = 1) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu),
+    color = 2,
+    lty = 2
+  ) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu),
+    color = 2, lty = 2
+  ) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_guttorp),
+    color = 3, lty = 1
+  ) +
   xlab("Magnitude threshold") +
   ylab("b-value estimate") +
   geom_hline(yintercept = 1, lty = 3) +
@@ -370,7 +408,12 @@ ggplot() +
 ggplot() +
   geom_hex(data = df_cat[df_cat$M > 3, ], aes(x = lon, y = lat), bins = 50) +
   scale_fill_continuous(type = "viridis") +
-  geom_sf(data = italy.map, fill = alpha("lightgrey", 0), color = "orange", size = 0.2) +
+  geom_sf(
+    data = italy.map,
+    fill = alpha("lightgrey", 0),
+    color = "orange",
+    size = 0.2
+  ) +
   ggtitle("Density plot for M>3 events") +
   theme_bw()
 ```
@@ -385,7 +428,12 @@ Italy territory is shown in green.
 ``` r
 ggplot() +
   geom_sf(data = df_cat.sf[df_cat$M > 3, ], size = 0.05) +
-  geom_sf(data = italy.map, fill = alpha("lightgrey", 0), color = "green", linewidth = 0.7) +
+  geom_sf(
+    data = italy.map,
+    fill = alpha("lightgrey", 0),
+    color = "green",
+    linewidth = 0.7
+  ) +
   geom_sf(data = df_cat.sf[df_cat$M > 5, ], size = 0.5, color = "orange") +
   geom_sf(data = df_cat.sf[df_cat$M > 6, ], size = 0.5, color = "red") +
   ggtitle("Map of event locations")
@@ -403,10 +451,30 @@ longLims <- c(13, 13.75)
 
 ggplot() +
   geom_point(data = df_cat[df_cat$M > 3, ], aes(time_date, lat), size = 0.1) +
-  geom_point(data = df_cat[df_cat$M > 5, ], aes(time_date, lat), size = 1.2, color = "orange") +
-  geom_point(data = df_cat[df_cat$M > 6, ], aes(time_date, lat), size = 1.5, color = "red") +
+  geom_point(
+    data = df_cat[df_cat$M > 5, ],
+    aes(time_date, lat),
+    size = 1.2,
+    color = "orange"
+  ) +
+  geom_point(
+    data = df_cat[df_cat$M > 6, ],
+    aes(time_date, lat),
+    size = 1.5,
+    color = "red"
+  ) +
   ggtitle("Italian latitude-time plot") +
-  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill = "blue", color = "blue")
+  geom_rect(
+    aes(
+      xmin = as.POSIXct(startDate),
+      xmax = as.POSIXct(endDate),
+      ymin = latLims[1],
+      ymax = latLims[2]
+    ),
+    alpha = 0.4,
+    fill = "blue",
+    color = "blue"
+  )
 #> Warning: Removed 1 row containing missing values or values outside the scale range
 #> (`geom_point()`).
 ```
@@ -469,11 +537,31 @@ head(df_cat.subset)
 
 ``` r
 ggplot() +
-  geom_point(data = df_cat.subset[df_cat.subset$M > 3, ], aes(time_date, lat), size = 0.1) +
-  geom_point(data = df_cat.subset[df_cat.subset$M > 5, ], aes(time_date, lat), size = 1.2, color = "orange") +
-  geom_point(data = df_cat.subset[df_cat.subset$M > 6, ], aes(time_date, lat), size = 1.5, color = "red") +
+  geom_point(
+    data = df_cat.subset[df_cat.subset$M > 3, ], aes(time_date, lat), size = 0.1
+  ) +
+  geom_point(
+    data = df_cat.subset[df_cat.subset$M > 5, ],
+    aes(time_date, lat),
+    size = 1.2,
+    color = "orange"
+  ) +
+  geom_point(
+    data = df_cat.subset[df_cat.subset$M > 6, ],
+    aes(time_date, lat),
+    size = 1.5,
+    color = "red"
+  ) +
   ggtitle("L'Aquila latitude-time plot") +
-  geom_rect(aes(xmin = as.POSIXct(startDate), xmax = as.POSIXct(endDate), ymin = latLims[1], ymax = latLims[2]), alpha = 0.4, fill = "blue", color = "blue")
+  geom_rect(
+    aes(
+      xmin = as.POSIXct(startDate),
+      xmax = as.POSIXct(endDate),
+      ymin = latLims[1],
+      ymax = latLims[2]
+    ),
+    alpha = 0.4, fill = "blue", color = "blue"
+  )
 ```
 
 ![](EDA_Italy_Horus_files/figure-html/unnamed-chunk-10-1.png)
@@ -499,7 +587,11 @@ y.cum <- tmp$cumulativeCounts[bin_m.min] * 10^(-b * (x - m.min))
 
 ggplot() +
   geom_point(aes(x = tmp$mids, y = tmp$counts)) +
-  geom_point(aes(x = tmp$mids, y = tmp$cumulativeCounts), color = "red", pch = "+") +
+  geom_point(
+    aes(x = tmp$mids, y = tmp$cumulativeCounts),
+    color = "red",
+    pch = "+"
+  ) +
   scale_y_log10() +
   ggtitle(paste("Frequency-magnitude plot with arbitary GR dist: b =", b)) +
   xlab("Magnitude") +
@@ -541,24 +633,39 @@ for (i in 1:max.index.x) {
 
   N <- length(mags.subset)
   b_utsu[i] <- 1 / (log(10) * (mean(mags.subset) - mag.threshold + 0.05))
-  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 * sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
+  delta_b_utsu[i] <- log(10) * b_utsu[i]**2 *
+    sqrt(sum((mags.subset - mean(mags.subset))**2) / (N * (N - 1)))
 
-  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(mags.subset) - mag.threshold + 2 * 0.05) / (mean(mags.subset) - mag.threshold))
+  b_guttorp[i] <- 1 / (2 * 0.05 * log(10)) *
+    log((mean(mags.subset) - mag.threshold + 2 * 0.05) /
+      (mean(mags.subset) - mag.threshold))
 
   deltaMags <- diff(mags.subset)
   deltaMags_p <- deltaMags[deltaMags > 0.1]
   N <- length(deltaMags_p)
-  b_elst[i] <- 1 / (2 * 0.05 * log(10)) * log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
+  b_elst[i] <- 1 / (2 * 0.05 * log(10)) *
+    log((mean(deltaMags_p)) / (mean(deltaMags_p) - 0.1))
   c <- 10**(0.1 * b_elst[i])
-  b_elst_lower[i] <- 1 / (0.1 * log(10)) * log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
-  b_elst_upper[i] <- 1 / (0.1 * log(10)) * log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
+  b_elst_lower[i] <- 1 / (0.1 * log(10)) *
+    log((c + sqrt(c / N)) / (1 + sqrt(c / N)))
+  b_elst_upper[i] <- 1 / (0.1 * log(10)) *
+    log((c - sqrt(c / N)) / (1 - sqrt(c / N)))
 }
 
 ggplot() +
   geom_line(aes(x = x[1:max.index.x], y = b_utsu)) +
-  geom_line(aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu), color = 2, lty = 2) +
-  geom_line(aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu), color = 2, lty = 2) +
-  geom_line(aes(x = x[1:max.index.x], y = b_guttorp), color = 3, lty = 1) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_utsu + delta_b_utsu),
+    color = 2, lty = 2
+  ) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_utsu - delta_b_utsu),
+    color = 2, lty = 2
+  ) +
+  geom_line(
+    aes(x = x[1:max.index.x], y = b_guttorp),
+    color = 3, lty = 1
+  ) +
   xlab("Magnitude threshold") +
   ylab("b-value estimate") +
   geom_hline(yintercept = 1, lty = 3) +

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,9 @@
 
 
 <dl><dt id="arg-total-data">total.data<a class="anchor" aria-label="anchor" href="#arg-total-data"></a></dt>
-<dd><p>Observed events: <code>data.frame</code> with columns time (ts), magnitude (magnitudes), event identifier (idx.p). Column names must not be changed.</p></dd>
+<dd><p>Observed events: <code>data.frame</code> with columns time (ts),
+magnitude (magnitudes), event identifier (idx.p). Column names must not be
+changed.</p></dd>
 
 
 <dt id="arg-m-">M0<a class="anchor" aria-label="anchor" href="#arg-m-"></a></dt>
@@ -82,23 +84,28 @@
 
 
 <dt id="arg-link-functions">link.functions<a class="anchor" aria-label="anchor" href="#arg-link-functions"></a></dt>
-<dd><p>Functions to transform the parameters from the internal INLA scale to the ETAS scale. It must be a <code>list</code> of functions with names (mu, K, alpha, c_, p)</p></dd>
+<dd><p>Functions to transform the parameters from the internal
+INLA scale to the ETAS scale. It must be a <code>list</code> of functions with names
+<code>(mu, K, alpha, c_, p)</code></p></dd>
 
 
 <dt id="arg-coef-t-">coef.t.<a class="anchor" aria-label="anchor" href="#arg-coef-t-"></a></dt>
-<dd><p>TimeBinning parameter: parameter regulating the relative length of successive bins, <code>scalar</code>.</p></dd>
+<dd><p>TimeBinning parameter: parameter regulating the relative
+length of successive bins, <code>scalar</code>.</p></dd>
 
 
 <dt id="arg-delta-t-">delta.t.<a class="anchor" aria-label="anchor" href="#arg-delta-t-"></a></dt>
-<dd><p>TimeBinning parameter: parameter regulating the bins' width, <code>scalar</code>.</p></dd>
+<dd><p>TimeBinning parameter: parameter regulating the bins' width,
+<code>scalar</code>.</p></dd>
 
 
 <dt id="arg-n-max-">N.max.<a class="anchor" aria-label="anchor" href="#arg-n-max-"></a></dt>
-<dd><p>TimeBinning parameter: parameter regulating the Number of bins (= <code>N.max</code> + 2), <code>scalar</code>.</p></dd>
+<dd><p>TimeBinning parameter: parameter regulating the Number of bins
+(= <code>N.max</code> + 2), <code>scalar</code>.</p></dd>
 
 
 <dt id="arg-bru-opt">bru.opt<a class="anchor" aria-label="anchor" href="#arg-bru-opt"></a></dt>
-<dd><p>Runtime options for inlabru: See https://inlabru-org.github.io/inlabru/reference/bru_call_options.html, <code>list</code></p></dd>
+<dd><p>Runtime options for inlabru: See <code><a href="https://inlabru-org.github.io/inlabru/reference/bru_options.html" class="external-link">inlabru::bru_options()</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -63,7 +63,14 @@ The bins are only between `T1.` and `T2.` or containing `T1.`
 ``` r
 ## EXAMPLE 1
 event <- list(ts = 0, idx.p = 1)
-time_grid(data.point = event, coef.t = 1, delta.t = 0.1, N.exp. = 8, T1. = 1, T2. = 20)
+time_grid(
+  data.point = event,
+  coef.t = 1,
+  delta.t = 0.1,
+  N.exp. = 8,
+  T1. = 1,
+  T2. = 20
+)
 #>   t.start t.end t.bin.name t.ref_layer ts idx.p
 #> 1     1.0   1.6    0.8-1.6   between-1  0     1
 #> 2     1.6   3.2    1.6-3.2           6  0     1

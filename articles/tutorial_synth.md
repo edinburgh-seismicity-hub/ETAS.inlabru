@@ -70,7 +70,13 @@ same example.
 ``` r
 set.seed(111)
 # set true ETAS parameters
-true.param <- list(mu = 0.30106014, K = 0.13611399, alpha = 2.43945301, c = 0.07098607, p = 1.17838741)
+true.param <- list(
+  mu = 0.30106014,
+  K = 0.13611399,
+  alpha = 2.43945301,
+  c = 0.07098607,
+  p = 1.17838741
+)
 # set magnitude distribution parameter
 beta.p <- 2.353157
 # set cutoff magnitude
@@ -111,7 +117,11 @@ $112$ are background events and $176$ are aftershocks. We can easily
 retrieve this numbers looking at the `gen` column of the data.
 
 ``` r
-c(N = nrow(synth.cat.df), N.bkg = sum(synth.cat.df$gen == 1), N.after = sum(synth.cat.df$gen > 1))
+c(
+  N = nrow(synth.cat.df),
+  N.bkg = sum(synth.cat.df$gen == 1),
+  N.after = sum(synth.cat.df$gen > 1)
+)
 #>       N   N.bkg N.after 
 #>     283     112     171
 ```
@@ -305,7 +315,7 @@ synth.fit <- Temporal.ETAS(
   bru.opt = bru.opt.list
 )
 #> Start creating grid... 
-#> Finished creating grid, time  0.4329855
+#> Finished creating grid, time  0.4347594
 ```
 
 ## Check marginal posterior distributions
@@ -344,7 +354,8 @@ df.true.param <- data.frame(
   x = unlist(true.param),
   param = names(true.param)
 )
-# add to the marginal posterior distribution of the parameters the true value of the parameters.
+# add to the marginal posterior distribution of the parameters the true value of
+# the parameters.
 post.list$post.plot +
   geom_vline(
     data = df.true.param,
@@ -388,12 +399,12 @@ post.samp <- post_sampling(
 #> generated.
 head(post.samp)
 #>          mu          K    alpha          c        p
-#> 1 0.3522849 0.09560155 2.513877 0.09539812 1.213356
-#> 2 0.2629484 0.15735892 2.467611 0.05061570 1.174567
-#> 3 0.2759741 0.06909708 2.603652 0.11230334 1.240917
-#> 4 0.3100148 0.09092345 2.617215 0.06873246 1.217715
-#> 5 0.3054101 0.04532379 2.642557 0.16821918 1.368259
-#> 6 0.2903563 0.07497273 2.540971 0.14603226 1.330576
+#> 1 0.3247864 0.03366116 2.633236 0.18875211 1.290376
+#> 2 0.3441713 0.06787122 2.634086 0.12054596 1.329922
+#> 3 0.3775865 0.23393743 2.357084 0.06101693 1.268707
+#> 4 0.3061400 0.07609449 2.698249 0.06647236 1.227661
+#> 5 0.2920271 0.06533224 2.496700 0.15954579 1.301023
+#> 6 0.3180454 0.08229740 2.710671 0.06478342 1.278579
 ```
 
 The posterior samples can then be used to estimate the posterior
@@ -476,7 +487,12 @@ $$\left( \frac{t - t_{h}}{c} + 1 \right)^{- p}$$ instead of the whole
 triggering function and without the background rate.
 
 ``` r
-omori.plot <- omori_plot_posterior(input.list = input_list, post.samp = post.samp, n.samp = NULL, t.end = 5)
+omori.plot <- omori_plot_posterior(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL,
+  t.end = 5
+)
 
 true.omori <- omori(theta = unlist(true.param), t = t.breaks, ti = 0)
 true.omori.df <- data.frame(ts = t.breaks, omori.fun = true.omori)
@@ -575,7 +591,7 @@ synth.fit.2 <- Temporal.ETAS(
   bru.opt = bru.opt.list
 )
 #> Start creating grid... 
-#> Finished creating grid, time  1.648112
+#> Finished creating grid, time  1.640895
 ```
 
 Now, to extract the marginal posterior distributions, we need to create

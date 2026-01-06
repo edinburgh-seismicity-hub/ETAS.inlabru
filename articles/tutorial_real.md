@@ -311,7 +311,7 @@ aquila.bru <- data.frame(
     difftime(aquila$time_date, start.date, units = "days")
   ),
   magnitudes = aquila$M,
-  idx.p = 1:nrow(aquila)
+  idx.p = seq_len(nrow(aquila))
 )
 ```
 
@@ -397,9 +397,11 @@ object as output. The required inputs are:
   Section.
 
 ``` r
-# set starting and time of the time interval used for model fitting. In this case, we use the interval covered by the data.
+# set starting and time of the time interval used for model fitting. In this
+# case, we use the interval covered by the data.
 T1 <- 0
-T2 <- max(aquila.bru$ts) + 0.2 # Use max(..., na.rm = TRUE) if there may still be NAs here
+# Use max(..., na.rm = TRUE) if there may still be NAs here
+T2 <- max(aquila.bru$ts) + 0.2
 # fit the model
 aquila.fit <- Temporal.ETAS(
   total.data = aquila.bru,
@@ -413,7 +415,7 @@ aquila.fit <- Temporal.ETAS(
   bru.opt = bru.opt.list
 )
 #> Start creating grid... 
-#> Finished creating grid, time  1.823249
+#> Finished creating grid, time  1.883136
 ```
 
 ## Create input list
@@ -496,12 +498,12 @@ post.samp <- post_sampling(
 
 head(post.samp)
 #>          mu         K    alpha          c        p
-#> 1 0.3047572 0.1785661 2.435666 0.05576880 1.182285
-#> 2 0.2808294 0.1399560 2.463338 0.07971187 1.245580
-#> 3 0.3165808 0.1244455 2.473912 0.06244564 1.152521
-#> 4 0.3535830 0.1654048 2.406460 0.06403861 1.186577
-#> 5 0.2897512 0.1070394 2.475240 0.08169738 1.188658
-#> 6 0.3189722 0.1462100 2.436895 0.05630849 1.139840
+#> 1 0.2665767 0.1380347 2.430186 0.06035882 1.136626
+#> 2 0.2659780 0.1561353 2.451008 0.05356473 1.145935
+#> 3 0.2967335 0.1241412 2.465217 0.07541373 1.196054
+#> 4 0.3227106 0.1541408 2.440673 0.05759712 1.153995
+#> 5 0.3022692 0.1193286 2.462765 0.07236185 1.179551
+#> 6 0.3107081 0.1246229 2.458360 0.08607486 1.229603
 ```
 
 The posterior samples can be used to analyse the correlation between
@@ -621,7 +623,12 @@ triggering_fun_plot(
 ![](tutorial_real_files/figure-html/unnamed-chunk-17-1.png)
 
 ``` r
-triggering_fun_plot_prior(input.list = input_list, magnitude = 4, n.samp = 1000, t.end = 10)
+triggering_fun_plot_prior(
+  input.list = input_list,
+  magnitude = 4,
+  n.samp = 1000,
+  t.end = 10
+)
 ```
 
 ![](tutorial_real_files/figure-html/unnamed-chunk-18-1.png)
@@ -634,7 +641,12 @@ $$\left( \frac{t - t_{h}}{c} + 1 \right)^{- p}$$ instead of the whole
 triggering function and without the background rate.
 
 ``` r
-omori_plot_posterior(input.list = input_list, post.samp = post.samp, n.samp = NULL, t.end = 5)
+omori_plot_posterior(
+  input.list = input_list,
+  post.samp = post.samp,
+  n.samp = NULL,
+  t.end = 5
+)
 ```
 
 ![](tutorial_real_files/figure-html/unnamed-chunk-19-1.png)
@@ -729,22 +741,26 @@ and the last panel represents the observed L’Aquila sequence.
 set.seed(2)
 n.cat <- 8
 # generate catalogues as list of lists
-multi.synth.cat.list <- lapply(seq_len(n.cat), \(x)
-generate_temporal_ETAS_synthetic(
-  theta = post.samp[x, ],
-  beta.p = beta.p,
-  M0 = M0,
-  T1 = T1,
-  T2 = T2,
-  Ht = aquila.bru[which.max(aquila.bru$magnitudes), ]
-))
+multi.synth.cat.list <- lapply(seq_len(n.cat), \(x) {
+  generate_temporal_ETAS_synthetic(
+    theta = post.samp[x, ],
+    beta.p = beta.p,
+    M0 = M0,
+    T1 = T1,
+    T2 = T2,
+    Ht = aquila.bru[which.max(aquila.bru$magnitudes), ]
+  )
+})
 
 # store catalogues as list of data.frames
 multi.synth.cat.list.df <- lapply(multi.synth.cat.list, \(x) do.call(rbind, x))
 # set catalogue identifier
-multi.synth.cat.list.df <- lapply(seq_len(n.cat), \(x) cbind(multi.synth.cat.list.df[[x]],
-  cat.idx = x
-))
+multi.synth.cat.list.df <- lapply(
+  seq_len(n.cat),
+  \(x) {
+    cbind(multi.synth.cat.list.df[[x]], cat.idx = x)
+  }
+)
 # merge catalogues in unique data.frame
 multi.synth.cat.df <- do.call(rbind, multi.synth.cat.list.df)
 
@@ -868,7 +884,7 @@ ggplot() +
   geom_histogram(aes(x = N.fore, y = after_stat(density)), binwidth = 1) +
   geom_vline(xintercept = N.obs) +
   xlim(100, 500)
-#> Warning: Removed 33 rows containing non-finite outside the scale range
+#> Warning: Removed 40 rows containing non-finite outside the scale range
 #> (`stat_bin()`).
 #> Warning: Removed 2 rows containing missing values or values outside the scale range
 #> (`geom_bar()`).

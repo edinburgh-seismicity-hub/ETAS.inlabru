@@ -249,7 +249,8 @@ generate_temporal_ETAS_synthetic(
 #> 
 
 
-## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500
+## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day
+##   500
 
 Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 generate_temporal_ETAS_synthetic(

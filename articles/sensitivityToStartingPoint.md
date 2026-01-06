@@ -45,7 +45,8 @@ INLA::inla.setOption(num.threads = num.cores)
 ### Define the parameters for the synthetic catalogues and starting values for inversion
 
 ``` r
-# Parameters we use to generate synthetics, which we will refer to as the 'true' parameters
+# Parameters we use to generate synthetics, which we will refer to as the 'true'
+# parameters
 mu <- 0.1
 K <- 0.089
 alpha <- 2.29
@@ -93,9 +94,17 @@ quiet.ETAS.cat <- quiet.ETAS.cat[order(quiet.ETAS.cat$ts), ]
 ############
 #### Generate the second catalogue with a M6.7 event on day 1000
 
-Ht <- data.frame(ts = c(500), magnitudes = c(6.7)) # Impose a M6.7 event on day 1000
+# Impose a M6.7 event on day 1000
+Ht <- data.frame(ts = c(500), magnitudes = c(6.7))
 
-samp.etas.list <- generate_temporal_ETAS_synthetic(theta = theta_etas, beta.p = log(10), M0 = M0, T1 = 0, T2 = modelledDuration, Ht = Ht)
+samp.etas.list <- generate_temporal_ETAS_synthetic(
+  theta = theta_etas,
+  beta.p = log(10),
+  M0 = M0,
+  T1 = 0,
+  T2 = modelledDuration,
+  Ht = Ht
+)
 
 M6p7.ETAS.cat <- bind_rows(samp.etas.list)
 M6p7.ETAS.cat <- M6p7.ETAS.cat[order(M6p7.ETAS.cat$ts), ]
@@ -126,7 +135,12 @@ To read from saved object files:
 plots <- list()
 
 plots[[1]] <- ggplot() +
-  geom_point(data = quiet.ETAS.cat, aes(x = ts, y = magnitudes), size = 0.1, alpha = 0.5) +
+  geom_point(
+    data = quiet.ETAS.cat,
+    aes(x = ts, y = magnitudes),
+    size = 0.1,
+    alpha = 0.5
+  ) +
   xlim(0, modelledDuration) +
   ggtitle(paste("A.  Unseeded catalog, nEvents =", length(quiet.ETAS.cat$ts))) +
   ylim(2, 7) +
@@ -135,9 +149,17 @@ plots[[1]] <- ggplot() +
   theme_bw()
 
 plots[[2]] <- ggplot() +
-  geom_point(data = M6p7.ETAS.cat, aes(x = ts, y = magnitudes), size = 0.1, alpha = 0.5) +
+  geom_point(
+    data = M6p7.ETAS.cat,
+    aes(x = ts, y = magnitudes),
+    size = 0.1,
+    alpha = 0.5
+  ) +
   xlim(0, modelledDuration) +
-  ggtitle(paste("B.  Catalog seeded with M6.7 event on day 500, nEvents =", length(M6p7.ETAS.cat$ts))) +
+  ggtitle(paste(
+    "B.  Catalog seeded with M6.7 event on day 500, nEvents =",
+    length(M6p7.ETAS.cat$ts)
+  )) +
   ylim(2, 7) +
   xlab("Time [days]") +
   ylab("Magnitude") +
@@ -166,7 +188,10 @@ for (i in seq_len(nRealisations)) {
   if (exists("list.input")) remove("list.input")
 
   # Load a set of parameters that we will need to tweak for this application
-  fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru")
+  fpath <- system.file("extdata",
+    "user_input_synthetic_noCatalogue.txt",
+    package = "ETAS.inlabru"
+  )
   list.input <- create_input_list_temporal_noCatalogue(fpath)
 
   ####################
@@ -194,7 +219,11 @@ for (i in seq_len(nRealisations)) {
   list.input$th.init <- list(
     th.mu = inv_gamma_t(list.input$mu.init, list.input$a_mu, list.input$b_mu),
     th.K = inv_loggaus_t(list.input$K.init, list.input$a_K, list.input$b_K),
-    th.alpha = inv_unif_t(list.input$alpha.init, list.input$a_alpha, list.input$b_alpha),
+    th.alpha = inv_unif_t(
+      list.input$alpha.init,
+      list.input$a_alpha,
+      list.input$b_alpha
+    ),
     th.c = inv_unif_t(list.input$c.init, list.input$a_c, list.input$b_c),
     th.p = inv_unif_t(list.input$p.init, list.input$a_p, list.input$b_p)
   )
@@ -236,17 +265,20 @@ for (i in seq_len(nRealisations)) {
   ETAS.model.fit <- Temporal.ETAS.fit(list.input)
 
   ## Small bit of post processing
-  list.output.quietScenario[[i]] <- append(list.input, list(model.fit = ETAS.model.fit))
-  list.output.quietScenario[[i]]$runtime <- sum(list.output.quietScenario[[i]]$model.fit$bru_timings$Time)
-  list.output.quietScenario[[i]]$nEvents <- length(list.output.quietScenario[[i]]$catalog[, 1])
+  list.output.quietScenario[[i]] <-
+    append(list.input, list(model.fit = ETAS.model.fit))
+  list.output.quietScenario[[i]]$runtime <-
+    sum(list.output.quietScenario[[i]]$model.fit$bru_timings$Time)
+  list.output.quietScenario[[i]]$nEvents <-
+    length(list.output.quietScenario[[i]]$catalog[, 1])
 }
 #> Start model fitting 
 #> Start creating grid... 
-#> Finished creating grid, time  0.1712186 
+#> Finished creating grid, time  0.1698925 
 #> Finish model fitting 
 #> Start model fitting 
 #> Start creating grid... 
-#> Finished creating grid, time  0.1762016 
+#> Finished creating grid, time  0.1703124 
 #> Finish model fitting
 ```
 
@@ -261,7 +293,10 @@ for (i in seq_len(nRealisations)) {
   }
 
   # Load a set of parameters that we will need to tweak for this application
-  fpath <- system.file("extdata", "user_input_synthetic_noCatalogue.txt", package = "ETAS.inlabru")
+  fpath <- system.file("extdata",
+    "user_input_synthetic_noCatalogue.txt",
+    package = "ETAS.inlabru"
+  )
   list.input <- create_input_list_temporal_noCatalogue(fpath)
 
   ####################
@@ -289,7 +324,11 @@ for (i in seq_len(nRealisations)) {
   list.input$th.init <- list(
     th.mu = inv_gamma_t(list.input$mu.init, list.input$a_mu, list.input$b_mu),
     th.K = inv_loggaus_t(list.input$K.init, list.input$a_K, list.input$b_K),
-    th.alpha = inv_unif_t(list.input$alpha.init, list.input$a_alpha, list.input$b_alpha),
+    th.alpha = inv_unif_t(
+      list.input$alpha.init,
+      list.input$a_alpha,
+      list.input$b_alpha
+    ),
     th.c = inv_unif_t(list.input$c.init, list.input$a_c, list.input$b_c),
     th.p = inv_unif_t(list.input$p.init, list.input$a_p, list.input$b_p)
   )
@@ -331,13 +370,16 @@ for (i in seq_len(nRealisations)) {
   ETAS.model.fit <- Temporal.ETAS.fit(list.input)
 
   ## Small bit of post processing
-  list.output.M6p7Scenario[[i]] <- append(list.input, list(model.fit = ETAS.model.fit))
-  list.output.M6p7Scenario[[i]]$runtime <- sum(list.output.M6p7Scenario[[i]]$model.fit$bru_timings$Time)
-  list.output.M6p7Scenario[[i]]$nEvents <- length(list.output.M6p7Scenario[[i]]$catalog[, 1])
+  list.output.M6p7Scenario[[i]] <-
+    append(list.input, list(model.fit = ETAS.model.fit))
+  list.output.M6p7Scenario[[i]]$runtime <-
+    sum(list.output.M6p7Scenario[[i]]$model.fit$bru_timings$Time)
+  list.output.M6p7Scenario[[i]]$nEvents <-
+    length(list.output.M6p7Scenario[[i]]$catalog[, 1])
 }
 #> Start model fitting 
 #> Start creating grid... 
-#> Finished creating grid, time  12.68729
+#> Finished creating grid, time  12.04155
 #> bru: Preprocessing
 #> The `like()` function has been deprecated in favour of `bru_obs()`, since inlabru 2.12.0.
 #> Evaluate component inputs for each observation model
@@ -463,7 +505,7 @@ for (i in seq_len(nRealisations)) {
 #> iinla: Iteration 7 [max:100]
 #> iinla: Step rescaling: 61.8%, Contract (norm0 = 1186, norm1 = 2029, norm01 = 1060)
 #> iinla: Step rescaling: 38.2%, Contract (norm0 = 230.5, norm1 = 927.4, norm01 = 1060)
-#> iinla: Step rescaling: 28.23%, Approx Optimisation (norm0 = 213.8, norm1 = 859.6, norm01 = 1060)
+#> iinla: Step rescaling: 28.23%, Approx Optimisation (norm0 = 213.8, norm1 = 859.7, norm01 = 1060)
 #> iinla: |lin1-lin0| = 1060
 #>        <eta-lin1,delta>/|delta| = -857.1
 #>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 66.43
@@ -603,7 +645,7 @@ for (i in seq_len(nRealisations)) {
 #> iinla: Step rescaling: 100%, Overstep (norm0 = 599.8, norm1 = 1.201, norm01 = 600.9)
 #> iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 600.9, norm1 = 0.4557, norm01 = 600.9)
 #> iinla: |lin1-lin0| = 600.9
-#>        <eta-lin1,delta>/|delta| = -3.027e-05
+#>        <eta-lin1,delta>/|delta| = -3.024e-05
 #>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 0.4557
 #> iinla: Evaluate component linearisations
 #> Linearise components for each observation model
@@ -671,7 +713,7 @@ for (i in seq_len(nRealisations)) {
 #> iinla: Step rescaling: 100%, Overstep (norm0 = 426.1, norm1 = 1.154, norm01 = 427)
 #> iinla: Step rescaling: 100.2%, Approx Optimisation (norm0 = 427, norm1 = 0.7185, norm01 = 427)
 #> iinla: |lin1-lin0| = 427
-#>        <eta-lin1,delta>/|delta| = 0.0007222
+#>        <eta-lin1,delta>/|delta| = 0.0007221
 #>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 0.7185
 #> iinla: Evaluate component linearisations
 #> Linearise components for each observation model
@@ -1279,10 +1321,10 @@ for (i in seq_len(nRealisations)) {
 #> iinla: Max deviation from previous: 34.1% of SD, and line search is inactive
 #>        [stop if: <10% and line search inactive]
 #> iinla: Iteration 55 [max:100]
-#> iinla: Step rescaling: 162%, Expand (norm0 = 106, norm1 = 40.45, norm01 = 65.6)
-#> iinla: Step rescaling: 100%, Overstep (norm0 = 65.56, norm1 = 0.04513, norm01 = 65.6)
-#> iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 65.6, norm1 = 0.02976, norm01 = 65.6)
-#> iinla: |lin1-lin0| = 65.6
+#> iinla: Step rescaling: 162%, Expand (norm0 = 106, norm1 = 40.45, norm01 = 65.59)
+#> iinla: Step rescaling: 100%, Overstep (norm0 = 65.56, norm1 = 0.04513, norm01 = 65.59)
+#> iinla: Step rescaling: 100.1%, Approx Optimisation (norm0 = 65.6, norm1 = 0.02976, norm01 = 65.59)
+#> iinla: |lin1-lin0| = 65.59
 #>        <eta-lin1,delta>/|delta| = 0.000707
 #>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 0.02975
 #> iinla: Evaluate component linearisations
@@ -1675,7 +1717,7 @@ for (i in seq_len(nRealisations)) {
 #> iinla: Step rescaling: 100%, Approx Optimisation (norm0 = 23.43, norm1 = 0.004005, norm01 = 23.43)
 #> iinla: |lin1-lin0| = 23.43
 #>        <eta-lin1,delta>/|delta| = 9.474e-05
-#>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 0.004004
+#>        |eta-lin0 - delta <delta,eta-lin0>/<delta,delta>| = 0.004003
 #> iinla: Evaluate component linearisations
 #> Linearise components for each observation model
 #> Linearise component 'th.mu'
@@ -1760,7 +1802,7 @@ for (i in seq_len(nRealisations)) {
 #> Finish model fitting 
 #> Start model fitting 
 #> Start creating grid... 
-#> Finished creating grid, time  11.27993
+#> Finished creating grid, time  10.88548
 #> bru: Preprocessing
 #> The `like()` function has been deprecated in favour of `bru_obs()`, since inlabru 2.12.0.
 #> Evaluate component inputs for each observation model
@@ -2120,7 +2162,10 @@ for (i in seq_len(nRealisations)) {
 ``` r
 plots <- list()
 
-trueParas <- data.frame(value = c(mu, K, alpha, c, p), param = c("mu", "K", "alpha", "c", "p"))
+trueParas <- data.frame(
+  value = c(mu, K, alpha, c, p),
+  param = c("mu", "K", "alpha", "c", "p")
+)
 
 post.list <- get_posterior_param(input.list = list.output.quietScenario[[1]])
 post.df <- post.list[[1]]
@@ -2134,16 +2179,28 @@ for (i in 2:nRealisations) {
   post.df <- rbind(post.df, post.df.tmp)
 }
 
-plots[[1]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), lty = factor(id))) +
+plots[[1]] <-
+  ggplot(
+    post.df,
+    aes(x = x, y = y, group = id, color = factor(id), lty = factor(id))
+  ) +
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
-  facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
+  facet_wrap(
+    facets = vars(param),
+    scales = "free",
+    labeller = label_parsed,
+    nrow = 1
+  ) +
   geom_vline(aes(xintercept = value),
     data = trueParas, color = "black", linetype = 2,
     label = "True value"
   ) +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
-  ggtitle(paste("A.  Inversion of a 1000 day catalogue with no large events, nEvents =", length(quiet.ETAS.cat$ts))) +
+  ggtitle(paste(
+    "A.  Inversion of a 1000 day catalogue with no large events, nEvents =",
+    length(quiet.ETAS.cat$ts)
+  )) +
   xlab("ETAS Posteriors") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -2154,7 +2211,10 @@ plots[[1]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
 ```
 
 ``` r
-trueParas <- data.frame(value = c(mu, K, alpha, c, p), param = c("mu", "K", "alpha", "c", "p"))
+trueParas <- data.frame(
+  value = c(mu, K, alpha, c, p),
+  param = c("mu", "K", "alpha", "c", "p")
+)
 
 post.list <- get_posterior_param(input.list = list.output.M6p7Scenario[[1]])
 post.df <- post.list[[1]]
@@ -2168,16 +2228,28 @@ for (i in 2:nRealisations) {
   post.df <- rbind(post.df, post.df.tmp)
 }
 
-plots[[2]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), lty = factor(id))) +
+plots[[2]] <-
+  ggplot(
+    post.df,
+    aes(x = x, y = y, group = id, color = factor(id), lty = factor(id))
+  ) +
   geom_line() +
   # scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
-  facet_wrap(facets = vars(param), scales = "free", labeller = label_parsed, nrow = 1) +
+  facet_wrap(
+    facets = vars(param),
+    scales = "free",
+    labeller = label_parsed,
+    nrow = 1
+  ) +
   geom_vline(aes(xintercept = value),
     data = trueParas, color = "black", linetype = 2,
     label = "True value"
   ) +
   labs(color = "Initial ETAS Para. Set", linetype = "Initial ETAS Para. Set") +
-  ggtitle(paste("B. Inversion of a 1000 day catalogue with a M6.7 on day 500, nEvents =", length(M6p7.ETAS.cat$ts))) +
+  ggtitle(paste(
+    "B. Inversion of a 1000 day catalogue with a M6.7 on day 500,",
+    "nEvents =", length(M6p7.ETAS.cat$ts)
+  )) +
   xlab("ETAS Posteriors") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -2188,7 +2260,12 @@ plots[[2]] <- ggplot(post.df, aes(x = x, y = y, group = id, color = factor(id), 
 ```
 
 ``` r
-plt <- grid_arrange_shared_legend(plots[[1]], plots[[2]], ncol = 1, nrow = 2, position = "bottom")
+plt <- grid_arrange_shared_legend(plots[[1]],
+  plots[[2]],
+  ncol = 1,
+  nrow = 2,
+  position = "bottom"
+)
 ```
 
 ![](sensitivityToStartingPoint_files/figure-html/unnamed-chunk-8-1.png)
@@ -2207,35 +2284,59 @@ plt
 
 ``` r
 plot_triggering <- list()
-plot_triggering[[1]] <- triggering_fun_plot(list.output.quietScenario[[1]], magnitude = 4, n.samp = 100) +
+plot_triggering[[1]] <- triggering_fun_plot(list.output.quietScenario[[1]],
+  magnitude = 4,
+  n.samp = 100
+) +
   ggtitle("C. M4 triggering function") +
   theme_bw() +
   ylim(0, 5.5) +
   theme(plot.title = element_text(size = 8))
 
-plot_triggering[[2]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]], magnitude = 4, n.samp = 100) +
+plot_triggering[[2]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]],
+  magnitude = 4,
+  n.samp = 100
+) +
   ggtitle("D. M4 triggering function") +
   theme_bw() +
   ylim(0, 5.5) +
   theme(plot.title = element_text(size = 8))
 
-plot_triggering[[3]] <- triggering_fun_plot(list.output.quietScenario[[1]], magnitude = 6.7, n.samp = 100) +
+plot_triggering[[3]] <- triggering_fun_plot(list.output.quietScenario[[1]],
+  magnitude = 6.7,
+  n.samp = 100
+) +
   ggtitle("E. M6.7 triggering function") +
   theme_bw() +
   ylim(0, 1700) +
   theme(plot.title = element_text(size = 8))
 
 
-plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]], magnitude = 6.7, n.samp = 100) +
+plot_triggering[[4]] <- triggering_fun_plot(list.output.M6p7Scenario[[1]],
+  magnitude = 6.7,
+  n.samp = 100
+) +
   ggtitle("F. M6.7 triggering function") +
   theme_bw() +
   ylim(0, 1700) +
   theme(plot.title = element_text(size = 8))
 
 
-plt <- grid.arrange(plot_triggering[[1]], plot_triggering[[3]], plot_triggering[[2]], plot_triggering[[4]], ncol = 2, nrow = 2, top = "Triggering function variability") +
+plt <- grid.arrange(
+  plot_triggering[[1]],
+  plot_triggering[[3]],
+  plot_triggering[[2]],
+  plot_triggering[[4]],
+  ncol = 2,
+  nrow = 2,
+  top = "Triggering function variability"
+) +
   theme(plot.title = element_text(size = 8))
-#> Warning: Removed 120 rows containing missing values or values outside the scale range
+#> Warning: Removed 61 rows containing missing values or values outside the scale range
+#> (`geom_line()`).
+#> Warning: Removed 214 rows containing missing values or values outside the scale range
+#> (`geom_line()`).
+#> Warning: Removed 5 rows containing missing values or values outside the scale range
 #> (`geom_line()`).
 ```
 
@@ -2251,14 +2352,16 @@ plt
 
 ``` r
 plot_omori <- list()
-plot_omori[[1]] <- omori_plot_posterior(list.output.quietScenario[[1]], n.samp = 100) +
+plot_omori[[1]] <-
+  omori_plot_posterior(list.output.quietScenario[[1]], n.samp = 100) +
   ggtitle("A. Omori decay") +
   theme_bw() +
   ylim(0, 1) +
   theme(plot.title = element_text(size = 8))
 
 
-plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[1]], n.samp = 100) +
+plot_omori[[2]] <-
+  omori_plot_posterior(list.output.M6p7Scenario[[1]], n.samp = 100) +
   ggtitle("B. Omori decay") +
   theme_bw() +
   ylim(0, 1) +
@@ -2266,8 +2369,23 @@ plot_omori[[2]] <- omori_plot_posterior(list.output.M6p7Scenario[[1]], n.samp = 
 ```
 
 ``` r
-plt <- grid.arrange(plot_omori[[1]], plot_triggering[[1]], plot_triggering[[3]], plot_omori[[2]], plot_triggering[[2]], plot_triggering[[4]], ncol = 3, nrow = 2, top = "Triggering  function variability", left = "M6.7 baseline            Unseeded baseline")
-#> Warning: Removed 120 rows containing missing values or values outside the scale range
+plt <- grid.arrange(
+  plot_omori[[1]],
+  plot_triggering[[1]],
+  plot_triggering[[3]],
+  plot_omori[[2]],
+  plot_triggering[[2]],
+  plot_triggering[[4]],
+  ncol = 3,
+  nrow = 2,
+  top = "Triggering  function variability",
+  left = "M6.7 baseline            Unseeded baseline"
+)
+#> Warning: Removed 61 rows containing missing values or values outside the scale range
+#> (`geom_line()`).
+#> Warning: Removed 214 rows containing missing values or values outside the scale range
+#> (`geom_line()`).
+#> Warning: Removed 5 rows containing missing values or values outside the scale range
 #> (`geom_line()`).
 ```
 

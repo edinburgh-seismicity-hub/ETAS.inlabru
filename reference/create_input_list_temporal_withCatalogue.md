@@ -1,7 +1,6 @@
-# Function to create a default input file for the ETAS Hawkes temporal model where a catalogue is specified in the input file.
+# Create input list for ETAS Hawkes temporal model with catalogue
 
-Function to create a default input file for the ETAS Hawkes temporal
-model where a catalogue is specified in the input file.
+Create input list for ETAS Hawkes temporal model with catalogue
 
 ## Usage
 

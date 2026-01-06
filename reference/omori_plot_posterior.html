@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,14 +62,18 @@
 
 
 <dl><dt id="arg-input-list">input.list<a class="anchor" aria-label="anchor" href="#arg-input-list"></a></dt>
-<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS parameters</p></li>
-<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters from the INLA scale to the ETAS scale</p></li>
+<dd><p>structured input <code>list</code> with at least two elements:</p><ul><li><p><code>model.fit</code>: <code>bru</code> object used to sample the posterior of the ETAS
+parameters</p></li>
+<li><p><code>link.functions</code>: <code>list</code> of functions to convert the ETAS parameters
+from the INLA scale to the ETAS scale</p></li>
 </ul></dd>
 
 
 <dt id="arg-post-samp">post.samp<a class="anchor" aria-label="anchor" href="#arg-post-samp"></a></dt>
-<dd><p><code>data.frame</code> containing posterior samples of the parameters. If <code>NULL</code>, then <code>n.samp</code> samples are
-generated. If <code>n.samp</code> is different from <code>nrow(post.samp)</code> then <code>n.samp</code> rows are uniformly sampled from <code>post.samp</code>. Default is <code>NULL</code>.</p></dd>
+<dd><p><code>data.frame</code> containing posterior samples of the parameters.
+If <code>NULL</code>, then <code>n.samp</code> samples are generated. If <code>n.samp</code> is different
+from <code>nrow(post.samp)</code> then <code>n.samp</code> rows are uniformly sampled from
+<code>post.samp</code>. Default is <code>NULL</code>.</p></dd>
 
 
 <dt id="arg-n-samp">n.samp<a class="anchor" aria-label="anchor" href="#arg-n-samp"></a></dt>
@@ -81,7 +85,8 @@ generated. If <code>n.samp</code> is different from <code>nrow(post.samp)</code>
 
 
 <dt id="arg-n-breaks">n.breaks<a class="anchor" aria-label="anchor" href="#arg-n-breaks"></a></dt>
-<dd><p>Number of points between 0 and <code>t.end</code> to calculate the function, <code>integer</code> (<code>default = 100</code>).</p></dd>
+<dd><p>Number of points between 0 and <code>t.end</code> to calculate the
+function, <code>integer</code> (<code>default = 100</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -90,7 +95,8 @@ generated. If <code>n.samp</code> is different from <code>nrow(post.samp)</code>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="create_input_list_temporal_noCatalogue.html">create_input_list_temporal_noCatalogue()</a></code>, <code><a href="create_input_list_temporal_withCatalogue.html">create_input_list_temporal_withCatalogue()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="create_input_list_temporal_noCatalogue.html">create_input_list_temporal_noCatalogue()</a></code>,
+<code><a href="create_input_list_temporal_withCatalogue.html">create_input_list_temporal_withCatalogue()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

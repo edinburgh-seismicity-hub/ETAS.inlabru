@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ETAS.inlabru</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,15 +89,15 @@
 
 
 <dt id="arg-format">format<a class="anchor" aria-label="anchor" href="#arg-format"></a></dt>
-<dd><p>If "list", return a list of data.frame objects, one for each generation.
-If "df", return a data.frame where the list element have been joined into a
-single data.frame, and ordered by <code>ts</code></p></dd>
+<dd><p>If "list", return a list of data.frame objects, one for each
+generation. If "df", return a data.frame where the list element have been
+joined into a single data.frame, and ordered by <code>ts</code></p></dd>
 
 
 <dt id="arg-ncore">ncore<a class="anchor" aria-label="anchor" href="#arg-ncore"></a></dt>
 <dd><p>Deprecated argument for controlling parallelism. Use
-<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to configure
-parallelism in your code instead.</p></dd>
+<code>future::plan(future::multisession, workers = ncore)</code> (or similar) to
+configure parallelism in your code instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -290,7 +290,8 @@ generation number, <code>gen_i</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day 500</span></span></span>
+<span class="r-in"><span><span class="co">## EXAMPLE 2: To generate a 1000 day catalogue including a M6.7 event on day</span></span></span>
+<span class="r-in"><span><span class="co">##   500</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">Ht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>, magnitudes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.7</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">generate_temporal_ETAS_synthetic</span><span class="op">(</span></span></span>
