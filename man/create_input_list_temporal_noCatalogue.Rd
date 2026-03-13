@@ -17,7 +17,8 @@ The formatted input.list with the elements required for the temporal
 Hawkes model
 }
 \description{
-Create input list for ETAS Hawkes temporal model without catalogue
+Function to create a default input list for the ETAS Hawkes temporal model
+where no catalogue is specified in the input file
 }
 \examples{
 create_input_list_temporal_noCatalogue(

@@ -210,9 +210,9 @@ generate_temporal_ETAS_synthetic <- function(theta, beta.p, M0, T1, T2,
     Gen.list <- dplyr::bind_rows(Gen.list)
     Gen.list <- dplyr::arrange(Gen.list, .data$ts)
   }
-  return(Gen.list)
-}
 
+  Gen.list
+}
 
 
 #' Take all previous parent events from `Ht=data.frame[ts, magnitudes]` and
@@ -268,7 +268,7 @@ sample_temporal_ETAS_generation <- function(theta,
   ))
   # extract number of aftershock for each parent (Sample poisson to determine no
   # daughters this realisation)
-  n.ev.v <- sapply(1:n.parent, function(x) rpois(1, trig.rates[x]))
+  n.ev.v <- rpois(length(trig.rates), trig.rates)
 
   # if no aftershock has to be generated returns empty data.frame
   if (sum(n.ev.v) == 0) {

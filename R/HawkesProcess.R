@@ -229,16 +229,14 @@ Temporal.ETAS <- function(total.data, M0, T1, T2, link.functions = NULL,
     th.c(1, model = "linear", mean.linear = 0, prec.linear = 1) +
     th.p(1, model = "linear", mean.linear = 0, prec.linear = 1)
 
-  return(
-    inlabru::bru(
-      components = cmp.part,
-      inlabru::like(
-        formula = merged.form,
-        data = data.input,
-        family = "poisson",
-        E = data.input$exposures
-      ),
-      options = bru.opt
-    )
+  inlabru::bru(
+    components = cmp.part,
+    inlabru::bru_obs(
+      formula = merged.form,
+      data = data.input,
+      family = "poisson",
+      E = data.input$exposures
+    ),
+    options = bru.opt
   )
 }

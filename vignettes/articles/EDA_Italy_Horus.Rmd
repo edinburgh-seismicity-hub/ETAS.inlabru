@@ -172,8 +172,8 @@ print("Extract year")
 # extract the year and convert to numeric format
 df_cat$Year <- as.numeric(format(df_cat$Time, "%Y"))
 
-countEventsInYear <- df_cat %>%
-  group_by(Year) %>%
+countEventsInYear <- df_cat |>
+  group_by(Year) |>
   summarize(counts = n())
 
 plot(
@@ -192,8 +192,8 @@ ggplot(df_cat[df_cat$M > 4, ], aes(x = time_date, y = M)) +
 ```
 
 ```{r}
-countEventsInYear <- df_cat[df_cat$M >= 4, ] %>%
-  group_by(Year) %>%
+countEventsInYear <- df_cat[df_cat$M >= 4, ] |>
+  group_by(Year) |>
   summarize(counts = n())
 
 plot(countEventsInYear, type = "l", main = "Annual number of events with M>=4")

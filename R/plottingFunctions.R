@@ -131,7 +131,8 @@ triggering_fun_plot <- function(input.list, post.samp = NULL, n.samp = 10,
 #'   sampled background rates.
 #' @export
 triggering_fun_plot_prior <- function(
-    input.list, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100) {
+  input.list, magnitude = 4, n.samp = 10, t.end = 1, n.breaks = 100
+) {
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind(
     input.list$link.functions$mu(rnorm(n.samp)),
@@ -195,7 +196,6 @@ triggering_fun_plot_prior <- function(
 }
 
 
-
 #' @title Function to calculate Omori's law
 #'
 #' @description Function to calculate Omori's law at time `t` for an event
@@ -242,7 +242,8 @@ omori <- function(theta, t, ti) {
 #'   [create_input_list_temporal_withCatalogue()]
 #' @export
 omori_plot_prior <- function(
-    input.list, n.samp = 10, t.end = 1, n.breaks = 100) {
+  input.list, n.samp = 10, t.end = 1, n.breaks = 100
+) {
   t.eval <- seq(1e-6, t.end, length.out = n.breaks)
   prior.samp <- cbind(
     input.list$link.functions$mu(rnorm(n.samp)),

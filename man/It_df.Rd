@@ -2,7 +2,7 @@
 % Please edit documentation in R/temporalBinning.R
 \name{It_df}
 \alias{It_df}
-\title{Function to calculate the integral of Omori's law}
+\title{Integral of Omori's law}
 \usage{
 It_df(param_, time.df)
 }

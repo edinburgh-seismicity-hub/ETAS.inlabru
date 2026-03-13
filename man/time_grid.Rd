@@ -11,11 +11,11 @@ time_grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
 elements time (\verb{ts, scalar}), event index (\verb{idx.p, scalar}). Names are
 mandatory and should not be changed}
 
-\item{coef.t}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
+\item{coef.t}{TimeBinning parameter: see \code{\link[=breaks_exp]{breaks_exp()}}}
 
-\item{delta.t}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
+\item{delta.t}{TimeBinning parameter: see \code{\link[=breaks_exp]{breaks_exp()}}}
 
-\item{N.exp.}{TimeBinning parameter: look \code{\link[=breaks_exp]{breaks_exp()}}}
+\item{N.exp.}{TimeBinning parameter: see \code{\link[=breaks_exp]{breaks_exp()}}}
 
 \item{T1.}{Start of the temporal domain, \code{scalar}}
 

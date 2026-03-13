@@ -17,7 +17,8 @@
 IntInjectionIntensity <- function(a = 50, V.i = 1, tau = 10, T.i, T2) {
   expected.injection.events <-
     -tau * V.i * a * (exp(-(T2 - T.i) / tau) - 1)
-  return(expected.injection.events)
+
+  expected.injection.events
 }
 
 #' @rdname IntInjectionIntensity
@@ -34,7 +35,8 @@ Inv_IntInjectionIntensity <- function(a = 50,
                                       T.i,
                                       number.injected.events) {
   endTime <- T.i - tau * log(1 - number.injected.events / (tau * V.i * a))
-  return(endTime)
+
+  endTime
 }
 
 #' Title
@@ -70,5 +72,5 @@ sample_temporal_injection_events <- function(a = 50,
   samp.mags <- rexp(n.ev, rate = beta.p) + M0
 
   samp.points <- data.frame(ts = sample.ts, magnitudes = samp.mags)
-  return(samp.points[!is.na(samp.points$ts), ])
+  samp.points[!is.na(samp.points$ts), ]
 }

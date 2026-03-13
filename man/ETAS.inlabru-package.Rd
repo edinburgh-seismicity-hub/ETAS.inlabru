@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Francesco Serafini \email{francesco.serafini@newcastle.ac.uk} (\href{https://orcid.org/0000-0003-0154-6200}{ORCID})
+\strong{Maintainer}: Francesco Serafini \email{francesco.serafini@bristol.ac.uk} (\href{https://orcid.org/0000-0003-0154-6200}{ORCID})
 
 Authors:
 \itemize{

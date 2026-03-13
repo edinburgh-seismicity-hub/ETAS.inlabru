@@ -55,12 +55,12 @@ horus_orig$time_string <- paste0(
 
 library(magrittr)
 horus <-
-  horus_orig %>%
+  horus_orig |>
   dplyr::filter(
     # Only keep earthquakes:
     Ev..type != "x",
     as.numeric(Year) < 2020
-  ) %>%
+  ) |>
   dplyr::select(
     "time_string" = time_string,
     "lon" = Lon,

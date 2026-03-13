@@ -1,5 +1,5 @@
 #' @title Create input list for ETAS Hawkes temporal model with catalogue
-#' @decription
+#' @description
 #' Function to create a default input file for the ETAS Hawkes temporal model
 #' where a catalogue is specified in the input file.
 #'
@@ -15,7 +15,7 @@ create_input_list_temporal_withCatalogue <- function(input_path,
   con <- file(input_path)
   on.exit(close(con))
   par.raw <- readLines(con)
-  for (i in seq_len(length(par.raw))) {
+  for (i in seq_along(par.raw)) {
     row.i <- par.raw[[i]]
     if (grepl("start.date", row.i)) {
       # Do explicit assignment of the eval-result, to avoid package check
@@ -137,13 +137,13 @@ create_input_list_temporal_withCatalogue <- function(input_path,
     end.date,
     tryFormats = c("%Y-%m-%d %H:%M:%OS", "%Y-%m-%dT%H:%M:%OS")
   )
-  catalog <- catalog %>%
+  catalog <- catalog |>
     dplyr::mutate(
       time_date = as.POSIXct(
         .data$time_string,
         tryFormats = c("%Y-%m-%d %H:%M:%OS", "%Y-%m-%dT%H:%M:%OS")
       )
-    ) %>%
+    ) |>
     dplyr::filter(
       .data$time_date >= start.date,
       .data$time_date <= end.date,
@@ -152,7 +152,7 @@ create_input_list_temporal_withCatalogue <- function(input_path,
       .data$Lat >= min.latitude,
       .data$Lat <= max.latitude,
       .data$magnitudes >= magnitude.completeness
-    ) %>%
+    ) |>
     dplyr::mutate(
       time_diff = as.numeric(difftime(.data$time_date,
         start.date,
@@ -261,7 +261,7 @@ create_input_list_temporal_withCatalogue <- function(input_path,
 
 #' @title Create input list for ETAS Hawkes temporal model without catalogue
 #'
-#' @decription
+#' @description
 #' Function to create a default input list for the ETAS Hawkes temporal model
 #' where no catalogue is specified in the input file
 #'
@@ -287,7 +287,7 @@ create_input_list_temporal_noCatalogue <- function(input_path,
   on.exit(close(con))
   par.raw <- readLines(con)
 
-  for (i in seq_len(length(par.raw))) {
+  for (i in seq_along(par.raw)) {
     row.i <- par.raw[[i]]
 
     if (grepl("a_mu", row.i)) {
@@ -383,43 +383,41 @@ create_input_list_temporal_noCatalogue <- function(input_path,
     ) # parameters initial values
   }
 
-  return(
-    list(
-      catalog = NULL,
-      catalog.bru = NULL,
-      time.int = c(NULL, NULL),
-      T12 = c("T1", " T2"),
-      lat.int = c(-90, 90),
-      lon.int = c(-180, 180),
-      M0 = NULL,
-      mu.init = mu.init,
-      K.init = K.init,
-      alpha.init = alpha.init,
-      c.init = c.init,
-      p.init = p.init,
-      a_mu = a_mu,
-      b_mu = b_mu,
-      a_K = a_K,
-      b_K = b_K,
-      a_alpha = a_alpha,
-      b_alpha = b_alpha,
-      a_c = a_c,
-      b_c = b_c,
-      a_p = a_p,
-      b_p = b_p,
-      max_iter = max_iter,
-      max_step = max_step,
-      link.functions = link.f,
-      bru.opt.list = bru.opt.list,
-      coef.t = coef.t,
-      delta.t = DELTA,
-      Nmax = Nmax,
-      # model.fit = fit_etas,
-      n.periods = n.periods,
-      period.length = period.length,
-      start.date.fore = NULL,
-      magnitude.update = magnitude.update,
-      output.name = output.name
-    )
+  list(
+    catalog = NULL,
+    catalog.bru = NULL,
+    time.int = c(NULL, NULL),
+    T12 = c("T1", " T2"),
+    lat.int = c(-90, 90),
+    lon.int = c(-180, 180),
+    M0 = NULL,
+    mu.init = mu.init,
+    K.init = K.init,
+    alpha.init = alpha.init,
+    c.init = c.init,
+    p.init = p.init,
+    a_mu = a_mu,
+    b_mu = b_mu,
+    a_K = a_K,
+    b_K = b_K,
+    a_alpha = a_alpha,
+    b_alpha = b_alpha,
+    a_c = a_c,
+    b_c = b_c,
+    a_p = a_p,
+    b_p = b_p,
+    max_iter = max_iter,
+    max_step = max_step,
+    link.functions = link.f,
+    bru.opt.list = bru.opt.list,
+    coef.t = coef.t,
+    delta.t = DELTA,
+    Nmax = Nmax,
+    # model.fit = fit_etas,
+    n.periods = n.periods,
+    period.length = period.length,
+    start.date.fore = NULL,
+    magnitude.update = magnitude.update,
+    output.name = output.name
   )
 }

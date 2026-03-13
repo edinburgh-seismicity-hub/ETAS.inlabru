@@ -2,7 +2,7 @@
 % Please edit documentation in R/temporalBinning.R
 \name{breaks_exp}
 \alias{breaks_exp}
-\title{Find breaks point for 1D grid}
+\title{Find break points for 1D grid}
 \usage{
 breaks_exp(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10)
 }
@@ -24,7 +24,7 @@ number of intervals, \code{scalar}}
 \code{vector} containing the grid points
 }
 \description{
-\code{breaks_exp} return the breaks points of a one dimensional grid
+\code{breaks_exp} return the break points of a one dimensional grid
 depending on three parameters, see details
 }
 \details{

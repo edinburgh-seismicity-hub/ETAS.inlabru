@@ -1,5 +1,5 @@
-#' @title Find breaks point for 1D grid
-#' @description `breaks_exp` return the breaks points of a one dimensional grid
+#' @title Find break points for 1D grid
+#' @description `breaks_exp` return the break points of a one dimensional grid
 #'   depending on three parameters, see details
 #' @param start.grid Starting point of the grid, `scalar`.
 #' @param end.grid End point of the grid, `scalar`.
@@ -42,20 +42,21 @@ breaks_exp <- function(start.grid, end.grid, coef.t = 2, delta.t, N.exp. = 10) {
   if (tt_breaks[length(tt_breaks)] < end.grid) {
     tt_breaks <- c(tt_breaks, end.grid)
   }
-  return(c(start.grid, tt_breaks))
+
+  c(start.grid, tt_breaks)
 }
 
 
-#' Generate a set of time bins for a specific event.
+#' @title Generate a set of time bins for a specific event.
 #'
-#' @usage time_grid(data.point, coef.t, delta.t, N.exp., T1., T2.)
+#' @description Generate a set of time bins for a specific event.
 #'
 #' @param data.point Point for which the binning is calculated, `list` with
 #' elements time (`ts, scalar`), event index (`idx.p, scalar`). Names are
 #' mandatory and should not be changed
-#' @param coef.t TimeBinning parameter: look [breaks_exp()]
-#' @param delta.t TimeBinning parameter: look [breaks_exp()]
-#' @param N.exp. TimeBinning parameter: look [breaks_exp()]
+#' @param coef.t TimeBinning parameter: see [breaks_exp()]
+#' @param delta.t TimeBinning parameter: see [breaks_exp()]
+#' @param N.exp. TimeBinning parameter: see [breaks_exp()]
 #' @param T1. Start of the temporal domain, `scalar`
 #' @param T2. End of the temporal domain `scalar`.
 #'
@@ -104,7 +105,7 @@ time_grid <- function(data.point, coef.t, delta.t, N.exp.,
   time.bins <- data.frame(
     t.start = t_b[-length(t_b)],
     t.end = t_b[-1]
-  ) %>%
+  ) |>
     dplyr::mutate(
       t.bin.name = paste0(round(.data$t.start, 3), "-", round(.data$t.end, 3))
     )
@@ -113,7 +114,10 @@ time_grid <- function(data.point, coef.t, delta.t, N.exp.,
     time.bins$t.ref_layer <- paste0("last-", idx.p)
   } else {
     # assign a number to each bin except the last one.
-    time.bins$t.ref_layer <- c(1:(nrow(time.bins) - 1), paste0("last-", idx.p))
+    time.bins$t.ref_layer <- c(
+      seq_len(nrow(time.bins) - 1L),
+      paste0("last-", idx.p)
+    )
   }
   # remove bins before T1
   bin.before <- time.bins$t.end < T1.
@@ -128,7 +132,9 @@ time_grid <- function(data.point, coef.t, delta.t, N.exp.,
   cbind(time.bins, data.point, row.names = NULL)
 }
 
-#' Function to calculate the integral of Omori's law
+#' @title Integral of Omori's law
+#'
+#' @description Function to calculate the integral of Omori's law
 #'
 #' @param param_ ETAS parameters vector (\eqn{\mu, K, \alpha, c, p}), only
 #'   \eqn{c, p} are used.
@@ -146,7 +152,6 @@ It_df <- function(param_, time.df) {
   fun.u <- (1 + (T2b - tth) / param_c)^(1 - param_p)
   (param_c / (param_p - 1)) * (fun.l - fun.u)
 }
-
 
 
 #' @title Integral of Omori's law

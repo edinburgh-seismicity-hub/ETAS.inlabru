@@ -200,10 +200,11 @@ post_pairs_plot <- function(input.list = NULL, n.samp = NULL,
     labeller = ggplot2::label_parsed,
     lower = list(continuous = "density")
   )
-  return(list(
+
+  list(
     post.samp.df = post.samp,
     pair.plot = pair.plot
-  ))
+  )
 }
 
 
