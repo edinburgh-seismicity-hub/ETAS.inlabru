@@ -6,7 +6,8 @@ data_file <- file.path(data_dir, "HORUS_Ita_Catalog.zip")
 
 download.file(
   "http://horus.bo.ingv.it/DataFolder/HORUS_Ita_Catalog.zip",
-  destfile = file.path(data_dir, "HORUS_Ita_Catalog.zip")
+  destfile = file.path(data_dir, "HORUS_Ita_Catalog.zip"),
+  mode = "wb"
 )
 
 system(paste0("unzip -d ", data_dir, " ", data_file))
